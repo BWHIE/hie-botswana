@@ -38,14 +38,14 @@ Resolves #
 <!-- Visual changes require screenshots -->
 
 ## Added code snippets?
-- [ ] 👍 yes
-- [ ] 🙅 no, because they aren't needed
+- [ ] 👍 Yes
+- [ ] 🙅 No, because they aren't needed
 
 ## Added tests?
 
-- [ ] 👍 yes
-- [ ] 🙅 no, because they aren't needed
-- [ ] 🙋 no, because I need help
+- [ ] 👍 Yes
+- [ ] 🙅 No, because they aren't needed
+- [ ] 🙋 No, because I need help
 
 ### No tests? Add a note
 <!-- 
