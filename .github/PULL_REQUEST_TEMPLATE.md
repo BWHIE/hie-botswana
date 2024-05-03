@@ -11,6 +11,7 @@
 
 ## Type of PR (check all applicable)
 
+- [ ] 💼 New Package
 - [ ] ♻️ Refactor
 - [ ] ✨ New Feature
 - [ ] 🐛 Bug Fix
