@@ -22,5 +22,5 @@ profiles:
     envFiles:
       - .env.local
     dev: true
-    only: true
+    only: false
 
