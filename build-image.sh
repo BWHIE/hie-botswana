@@ -12,4 +12,4 @@ if [ -z "$1" ]; then
     fi
 fi
 
-docker build -t jembi/platform:"$TAG_NAME" .
+docker build -t jembi/platform:"$TAG_NAME" . --no-cache
