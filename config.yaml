@@ -4,7 +4,7 @@ logPath: /tmp/logs
 
 packages:
   - interoperability-layer-openhim
-  - reverse-proxy-nginx
+#  - reverse-proxy-nginx
   - fhir-datastore-hapi-fhir
   - monitoring
   - database-postgres
@@ -14,10 +14,12 @@ profiles:
   - name: dev
     packages:
       - interoperability-layer-openhim
-      - reverse-proxy-nginx
+      - database-postgres
       - fhir-datastore-hapi-fhir
       - monitoring
       - identity-access-manager-keycloak
     envFiles:
-      - .env
+      - .env.local
     dev: true
+    only: true
+
