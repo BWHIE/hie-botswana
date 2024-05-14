@@ -14,6 +14,7 @@ profiles:
   - name: dev
     packages:
       - interoperability-layer-openhim
+      - database-postgres
       - fhir-datastore-hapi-fhir
       - monitoring
       - identity-access-manager-keycloak
@@ -21,3 +22,5 @@ profiles:
     envFiles:
       - .env.local
     dev: true
+    only: true
+
