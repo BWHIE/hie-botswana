@@ -6,6 +6,7 @@ if [[ -n "$java_version" ]]; then
     echo "Java 8 is installed (version: $java_version)"
 else
     echo "Java 8 is NOT installed. Please install it."
+    exit 1
 fi
 
 # Check for Maven
@@ -14,6 +15,7 @@ if [[ -n "$mvn_version" ]]; then
     echo "Maven is installed (version: $mvn_version)"
 else
     echo "Maven is NOT installed. Please install it."
+    exit 1
 fi
 
 # Check for OpenMRS SDK
@@ -22,12 +24,13 @@ if [[ -n "$mvn_version" ]]; then
     echo "OpenMRS SDK is installed (version: $openmrs_sdk_version)"
 else
     echo "OpenMRS SDK is NOT installed. Please install it."
+    exit 1
 fi
 
 # Change directory and build OpenMRS distro
 cd openmrs-module-botswanaemr || { 
     echo "Directory 'openmrs-module-botswanaemr' not found." 
-    exit 1 
+    exit 1
 }  
 
-mvn openmrs-sdk:build-distro -Ddir=docker
+mvn openmrs-sdk:build-distro -DdbSql=./db/initial_db.sql -Dreset -Ddir=docker
