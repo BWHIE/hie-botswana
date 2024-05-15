@@ -80,3 +80,37 @@ Tests are located in `/test`
 Tests that execute platform-linux with parameters and observe docker to assert expected outcomes
 
 View `/test/cucumber/README.md` for more information
+
+## Access to services in the dev environement
+
+### Keycloak
+
+For dev environment you can access the admin console using the following credentials : 
+
+- URL : http://localhost:9088/
+- Realm : platform-realm
+- username : admin
+- password : dev_password_only
+
+
+### OpenHIM
+
+For dev environment you can access the admin console and signin with Keycloak using the following credentials : 
+
+- URL : http://localhost:9000/#!
+- username : test
+- password : test
+
+
+### HAPI FHIR UI
+
+Without credentials you could access : http://localhost:3447/
+
+### Grafana
+
+For dev environment you can access the admin console and signin with Keycloak using the following credentials : 
+
+- URL : http://localhost:3000/?orgId=1
+- username : test
+- password : test
+
