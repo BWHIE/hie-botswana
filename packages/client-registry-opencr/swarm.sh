@@ -32,31 +32,16 @@ function import_sources() {
 }
 
 function initialize_package() {
-  # local postgres_cluster_compose_filename=""
-  # local postgres_dev_compose_filename=""
-  # local hapi_fhir_dev_compose_filename=""
   local package_dev_compose_filename=""
 
   if [ "${MODE}" == "dev" ]; then
     log info "Running package in DEV mode"
-    # postgres_dev_compose_filename="docker-compose-postgres.dev.yml"
-    # hapi_fhir_dev_compose_filename="docker-compose-hapi.dev.yml"
     package_dev_compose_filename="docker-compose.dev.yml"
   else
     log info "Running package in PROD mode"
   fi
 
-  # if [ "${CLUSTERED_MODE}" == "true" ]; then
-  #   postgres_cluster_compose_filename="docker-compose-postgres.cluster.yml"
-  # fi
-
   (
-    # docker::deploy_service "$STACK" "${COMPOSE_FILE_PATH}" "docker-compose-postgres.yml" "$postgres_cluster_compose_filename" "$postgres_dev_compose_filename"
-    
-    # docker::deploy_service "$STACK" "${COMPOSE_FILE_PATH}" "docker-compose-es.yml"
-
-    # docker::deploy_service "$STACK" "${COMPOSE_FILE_PATH}" "docker-compose-hapi.yml" "$hapi_fhir_dev_compose_filename"
-
     docker::deploy_service "$STACK" "${COMPOSE_FILE_PATH}" "docker-compose.yml" "$package_dev_compose_filename"
   ) ||
     {
@@ -72,7 +57,7 @@ function destroy_package() {
     log warn "Volumes are only deleted on the host on which the command is run. Postgres volumes on other nodes are not deleted"
   fi
 
-  docker::prune_configs "hapi-fhir"
+  docker::prune_configs "opencr"
 }
 
 main() {
@@ -83,7 +68,7 @@ main() {
     if [[ "${CLUSTERED_MODE}" == "true" ]]; then
       log info "Running package in Cluster node mode"
     else
-    log info "Running package in Single node mode"
+      log info "Running package in Single node mode"
     fi
 
     initialize_package

@@ -23,7 +23,8 @@ services:
       - keycloak
       - opencr
       - hapi-fhir
-      # - postgres
+      - postgres
+      - elasticsearch
       - default
     deploy:
       replicas: 1    
@@ -60,12 +61,15 @@ networks:
     name: keycloak_public
     external: true
   opencr:
-    name: opencr
+    name: opencr_public
     external: true
   hapi-fhir:
     name: hapi-fhir_public
     external: true
-  # postgres:
-  #   name: postgres_public
-  #   external: true
+  postgres:
+    name: postgres_public
+    external: true
+  elasticsearch:
+    name: elastic_public
+    external: true
   default:
