@@ -4,7 +4,7 @@
   "description": "OpenCR Client Registry",
   "type": "infrastructure",
   "version": "0.0.1",
-  "dependencies": ["analytics-datastore-elastic-search", "fhir-datastore-hapi-fhir", "interoperability-layer-openhim"],
+  "dependencies": ["fhir-datastore-hapi-fhir", "interoperability-layer-openhim"],
   "environmentVariables": {    
     "OPENCR_REPMGR_PRIMARY_HOST": "opencr-postgres-1",
     "OPENCR_REPMGR_PARTNER_NODES": "opencr-postgres-1",
