@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  hl7-mock-server:
+    image: hl7-mock-server
+    build:
+      context: .
+      args:
+        SERVER_DOMAIN_ARG: ${SERVER_DOMAIN}
+        SERVER_PORT_ARG: ${SERVER_PORT}
+    environment:
+      SERVER_DOMAIN: ${SERVER_DOMAIN}
+      SERVER_PORT: ${SERVER_PORT}
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+    restart: unless-stopped
