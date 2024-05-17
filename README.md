@@ -119,3 +119,13 @@ For dev environment you can access the admin console and signin with Keycloak us
 For dev environment you can access the kafka (Kafdrop) UI viewer at the below endpoint:
 
 - URL : http://localhost:9013
+
+#### Kafka Pub/Sub testing
+
+For dev environment, you will need need to define an alias for the defined broker (kafka-01)
+
+Add the below alias to your `/etc/hosts`
+
+```
+0.0.0.0      kafka-01
+```
