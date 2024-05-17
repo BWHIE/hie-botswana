@@ -39,3 +39,4 @@ if __name__ == "__main__":
             initial_process.terminate()
             initial_process.wait()
     observer.join()
+    
