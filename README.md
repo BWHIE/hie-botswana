@@ -99,7 +99,7 @@ For dev environment you can access the admin console and signin with Keycloak us
 
 - URL : http://localhost:9000/#!
 - username : test
-- password : test
+- password : dev_password_only
 
 
 ### HAPI FHIR UI
@@ -112,5 +112,5 @@ For dev environment you can access the admin console and signin with Keycloak us
 
 - URL : http://localhost:3000/?orgId=1
 - username : test
-- password : test
+- password : dev_password_only
 
