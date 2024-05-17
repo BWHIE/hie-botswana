@@ -18,9 +18,31 @@ A dockerised version of the project can be built using the.
 
 A few prerequistes are needed to be able to build the dockerfiles. These are checked during the build process if they are installed. If any of them are not installed, [follow the guide for installing the OpenMRS SDK](https://openmrs.atlassian.net/wiki/spaces/docs/pages/25476136/OpenMRS+SDK) and its dependencies
 
-> Configure the maven setting found under ~/.m2.setting.xml by including the below in the "profiles" section
+### Maven Configuration
 
-See installation guide: [LINK]
+Configure the maven setting found under `~/.m2.setting.xml` by including the below in the `profiles` and `activeProfiles` section
+
+Add the additional `profile`
+
+```
+<profile>
+    <id>repsy</id>
+    <repositories>
+    <repository>
+        <id>repsy</id>
+        <url>https://repo.repsy.io/mvn/intellisoftdev/default</url>
+    </repository>
+    </repositories>
+</profile>
+```
+
+Add the additional `activeProfile`
+
+```
+<activeProfile>repsy</activeProfile>
+```
+
+[See installation guide for all required steps - Manual](https://docs.google.com/document/d/1xrSdsROGDm3H6KlAZ13G408doGsGDaG5071QktwVQcs/edit)
 
 ### Run the build script
 
