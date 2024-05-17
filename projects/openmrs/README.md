@@ -18,6 +18,10 @@ A dockerised version of the project can be built using the.
 
 A few prerequistes are needed to be able to build the dockerfiles. These are checked during the build process if they are installed. If any of them are not installed, [follow the guide for installing the OpenMRS SDK](https://openmrs.atlassian.net/wiki/spaces/docs/pages/25476136/OpenMRS+SDK) and its dependencies
 
+> Configure the maven setting found under ~/.m2.setting.xml by including the below in the "profiles" section
+
+See installation guide: [LINK]
+
 ### Run the build script
 
 `./build-openmrs.sh`
@@ -45,8 +49,7 @@ You should see the below output once the build has completed successfully
 docker compose \
     -f openmrs-module-botswanaemr/docker/docker-compose.yml \
     -f openmrs-module-botswanaemr/docker/docker-compose.override.yml \
-    up -d \
-    --force-recreate
+    up -d
 ```
 
 You can access the OpenMRS instance on the below details

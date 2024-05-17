@@ -33,4 +33,13 @@ cd openmrs-module-botswanaemr || {
     exit 1
 }  
 
-mvn openmrs-sdk:build-distro -DdbSql=./db/initial_db.sql -Dreset -Ddir=docker
+# remove the existing folder to ensure no create conflicts exists
+rm -r ~/openmrs/botswanaemr
+
+mvn openmrs-sdk:setup -DserverId=botswanaemr -Ddistro=referenceapplication:2.12.2 -DbatchAnswers="8080,1044,MySQL 5.6 in SDK docker container (requires pre-installed Docker)"
+
+mvn openmrs-sdk:deploy -DserverId=botswanaemr -Dplatform=2.5.0
+
+cp -r configuration ~/openmrs/botswanaemr/configuration
+
+mvn openmrs-sdk:build-distro -DdbSql=./db/initial_db.sql -Ddir=docker -Dreset
