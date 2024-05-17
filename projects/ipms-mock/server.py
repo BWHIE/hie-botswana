@@ -18,7 +18,6 @@ SERVER_PORT = int(os.getenv('SERVER_PORT', '2575'))
 
 _ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-
 class HL7Handler(AbstractHandler):
     def __init__(self, message):
         # Parse incoming message based on the message profile
