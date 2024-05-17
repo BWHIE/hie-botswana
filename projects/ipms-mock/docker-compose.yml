@@ -16,3 +16,4 @@ services:
     ports:
       - "${SERVER_PORT}:${SERVER_PORT}"
     restart: unless-stopped
+    
