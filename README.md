@@ -114,3 +114,8 @@ For dev environment you can access the admin console and signin with Keycloak us
 - username : test
 - password : dev_password_only
 
+### Kafka (Kafdrop)
+
+For dev environment you can access the kafka (Kafdrop) UI viewer at the below endpoint:
+
+- URL : http://localhost:9013
