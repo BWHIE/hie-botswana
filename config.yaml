@@ -9,6 +9,7 @@ packages:
   - monitoring
   - database-postgres
   - identity-access-manager-keycloak
+  - message-bus-kafka
 
 profiles:
   - name: dev
@@ -18,6 +19,7 @@ profiles:
       - fhir-datastore-hapi-fhir
       - monitoring
       - identity-access-manager-keycloak
+      - message-bus-kafka
     envFiles:
       - .env.local
     dev: true
