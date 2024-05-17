@@ -84,7 +84,6 @@ class HL7Handler(AbstractHandler):
         response.err.err_1 = error_msg
         return response.to_mllp()
 
-
 if __name__ == '__main__':
     # Define handlers for each message type expected
     handlers = {
