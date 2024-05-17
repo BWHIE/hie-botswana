@@ -23,7 +23,6 @@ Pass arguments:
 docker build --build-arg SERVER_DOMAIN_ARG=localhost --build-arg SERVER_PORT_ARG=2575 -t hl7-mock-server .
 ```
 
-
 To run the Docker container, use:
 
 ```bash
