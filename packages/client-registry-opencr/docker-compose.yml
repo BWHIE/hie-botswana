@@ -2,10 +2,7 @@ version: '3.9'
 
 services:
   opencr:
-    image: itechuw/opencr:bac5a14-2
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: itechuw/opencr:local
     environment:
       - NODE_ENV=${OPENCR_NODE_ENV}
       - HAPI_FHIR_URL=${OPENCR_HAPI_URL}
@@ -18,6 +15,8 @@ services:
         source: decisionRules.json
       - target: /src/resources/Relationships/PatientRelationship.json
         source: PatientRelationship.json
+    volumes:
+      - ./config/cacheFHIR.js:/src/server/lib/tools/cacheFHIR.js
     networks:
       - reverse-proxy
       - keycloak
@@ -26,6 +25,7 @@ services:
       - postgres
       - elasticsearch
       - default
+      - openhim
     deploy:
       replicas: 1    
       restart_policy:
@@ -71,5 +71,8 @@ networks:
     external: true
   elasticsearch:
     name: elastic_public
+    external: true
+  openhim:
+    name: openhim_public
     external: true
   default:

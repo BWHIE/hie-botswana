@@ -4,4 +4,4 @@ services:
   opencr:
     ports:
       - target: 3000
-        published: 3002
+        published: 3003

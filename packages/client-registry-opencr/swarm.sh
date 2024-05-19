@@ -65,6 +65,17 @@ main() {
   import_sources
 
   if [[ "${ACTION}" == "init" ]] || [[ "${ACTION}" == "up" ]]; then
+
+    # Define the OpenCR custom image name and tag
+    IMAGE_NAME="itechuw/opencr"
+    IMAGE_TAG="local"
+
+    # Check if the Docker image exists
+    if ! docker images "$IMAGE_NAME:$IMAGE_TAG" | grep -q "$IMAGE_TAG"; then
+      log error "Image $IMAGE_NAME:$IMAGE_TAG does not exist. Please build it locally ..."
+      exit
+    fi
+
     if [[ "${CLUSTERED_MODE}" == "true" ]]; then
       log info "Running package in Cluster node mode"
     else
