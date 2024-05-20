@@ -9,6 +9,9 @@ packages:
   - monitoring
   - database-postgres
   - identity-access-manager-keycloak
+  - client-registry-opencr
+  - analytics-datastore-elastic-search
+  - dashboard-visualiser-kibana
 
 profiles:
   - name: dev
@@ -18,8 +21,10 @@ profiles:
       - fhir-datastore-hapi-fhir
       - monitoring
       - identity-access-manager-keycloak
+      - client-registry-opencr
+      - analytics-datastore-elastic-search
+      - dashboard-visualiser-kibana
     envFiles:
       - .env.local
     dev: true
     only: false
-
