@@ -97,10 +97,17 @@ For dev environment you can access the admin console using the following credent
 
 For dev environment you can access the admin console and signin with Keycloak using the following credentials : 
 
-- URL : http://localhost:9000/#!
+- URL : http://localhost:3003/crux/#/
 - username : test
 - password : dev_password_only
 
+### OpenCR
+
+For dev environment you can access the OpenCR UI and signin using the following credentials : 
+
+- URL : http://localhost:3000/?orgId=1
+- username : root@intrahealth.org
+- password : intrahealth
 
 ### HAPI FHIR UI
 
@@ -113,4 +120,3 @@ For dev environment you can access the admin console and signin with Keycloak us
 - URL : http://localhost:3000/?orgId=1
 - username : test
 - password : dev_password_only
-
