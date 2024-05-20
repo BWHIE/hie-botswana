@@ -235,13 +235,11 @@ const updateESCompilationsRate = callback => {
       ),
     },
   };
-  const opts = {
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Basic ${Buffer.from(`${config.get('elastic:username')}:${config.get('elastic:password')}`).toString('base64')}`
-    }
+  let auth = {
+    username: config.get('elastic:username'),
+    password: config.get('elastic:password'),
   };
-  axios.put(url, body, opts).then(response => {
+  axios.put(url, body, { auth }).then(response => {
     if (response.status > 199 && response.status < 299) {
       logger.info('maximum compilation rate updated successfully');
       return callback(false);
@@ -285,13 +283,11 @@ const createESIndex = (name, IDFields, reportFields, callback) => {
           },
         },
       };
-      const opts = {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Basic ${Buffer.from(`${config.get('elastic:username')}:${config.get('elastic:password')}`).toString('base64')}`
-        }
+      let auth = {
+        username: config.get('elastic:username'),
+        password: config.get('elastic:password'),
       };
-      axios.put(url, settings, opts).then(response => {
+      axios.put(url, settings, { auth }).then(response => {
         if (response.status >= 200 && response.status <= 299) {
           logger.info('Analyzer created successfully');
           return callback(null);
@@ -349,7 +345,7 @@ const createESIndex = (name, IDFields, reportFields, callback) => {
         username: config.get('elastic:username'),
         password: config.get('elastic:password'),
       };
-      axios.put(url, mapping, auth).then(response => {
+      axios.put(url, mapping, { auth }).then(response => {
         if (response.status >= 200 && response.status <= 299) {
           logger.info('Mappings added successfully into elasticsearch');
           return callback(null);
@@ -393,7 +389,7 @@ const updateESDocument = (id, index, record, callback) => {
     username: config.get('elastic:username'),
     password: config.get('elastic:password')
   };
-  axios.post(url, record, auth).then(response => {
+  axios.post(url, record, { auth }).then(response => {
     logger.info(response.data);
     if (response.data._shards.failed) {
       logger.warn('Transaction failed, rerunning again');
