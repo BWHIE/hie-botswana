@@ -15,8 +15,6 @@ services:
         source: decisionRules.json
       - target: /src/resources/Relationships/PatientRelationship.json
         source: PatientRelationship.json
-    volumes:
-      - ./config/cacheFHIR.js:/src/server/lib/tools/cacheFHIR.js
     networks:
       - reverse-proxy
       - keycloak
