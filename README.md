@@ -92,14 +92,31 @@ For dev environment you can access the admin console using the following credent
 - username : admin
 - password : dev_password_only
 
-
 ### OpenHIM
 
 For dev environment you can access the admin console and signin with Keycloak using the following credentials : 
 
-- URL : http://localhost:9000/#!
+- URL : http://localhost:9000/
 - username : test
 - password : dev_password_only
+
+### OpenCR
+
+For dev environment you can access the OpenCR UI and signin using the following credentials : 
+
+- URL : http://localhost:3003/crux/#/
+- username : root@intrahealth.org
+- password : intrahealth
+
+
+### Elastic Search
+For dev environment you can access the ES and sign in using the following credentials:
+
+- URL : http://localhost:9201/
+- username : elastic
+- password : dev_password_only
+
+Note: Consider creating the ES_BACKUPS folder away from tmp since it will be deleted on system retart. The default value set inside .``env.local`` is ``/tmp/backups``
 
 
 ### HAPI FHIR UI
@@ -108,9 +125,8 @@ Without credentials you could access : http://localhost:3447/
 
 ### Grafana
 
-For dev environment you can access the admin console and signin with Keycloak using the following credentials : 
+For dev environment you can access the Grafana UI and signin using the following credentials:
 
-- URL : http://localhost:3000/?orgId=1
+- URL : http://localhost:3000
 - username : test
 - password : dev_password_only
-

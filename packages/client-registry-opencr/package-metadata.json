@@ -1,0 +1,21 @@
+{
+  "id": "client-registry-opencr",
+  "name": "OpenCR Client Registry",
+  "description": "OpenCR Client Registry",
+  "type": "infrastructure",
+  "version": "0.0.1",
+  "dependencies": ["fhir-datastore-hapi-fhir", "analytics-datastore-elastic-search", "interoperability-layer-openhim"],
+  "environmentVariables": {    
+    "OPENCR_REPMGR_PRIMARY_HOST": "postgres-1",
+    "OPENCR_REPMGR_PARTNER_NODES": "postgres-1",
+    "OPENCR_REPMGR_PASSWORD": "instant101",
+    "OPENCR_HAPI_URL": "http://hapi-fhir:8080/fhir/metadata",
+    "OPENCR_NODE_ENV": "docker",
+    "OPENCR_POSTGRES_REPLICA_SET": "postgres-1:5432",
+    "OPENCR_HAPI_POSTGRES_PASSWORD": "instant101",
+    "OPENCR_HF_POSTGRESQL_PASSWORD": "instant101",
+    "OPENCR_HF_POSTGRESQL_USERNAME": "admin",
+    "OPENCR_HF_POSTGRESQL_DATABASE": "opencr"
+  }
+}
+
