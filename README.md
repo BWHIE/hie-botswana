@@ -108,6 +108,17 @@ For dev environment you can access the OpenCR UI and signin using the following 
 - username : root@intrahealth.org
 - password : intrahealth
 
+
+### Elastic Search
+For dev environment you can access the ES and sign in using the following credentials:
+
+- URL : http://localhost:9201/
+- username : elastic
+- password : dev_password_only
+
+Note: Consider creating the ES_BACKUPS folder away from tmp since it will be deleted on system retart. The default value set inside .``env.local`` is ``/tmp/backups``
+
+
 ### HAPI FHIR UI
 
 Without credentials you could access : http://localhost:3447/
