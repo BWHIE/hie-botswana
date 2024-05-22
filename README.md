@@ -81,6 +81,22 @@ Tests that execute platform-linux with parameters and observe docker to assert e
 
 View `/test/cucumber/README.md` for more information
 
+## Local Development Setup steps
+
+Due the use of custom packages within the project, we need to ensure we have built the relevant docker images as well as building a new Platform image containing these packages.
+
+Run the below command to create the custom images and rebuild a new Platform image
+
+```
+./build-custom-images.sh
+```
+
+Once the custom images have been built, you can initilize the project with the below command
+
+```
+./instant-linux package init -p dev
+```
+
 ## Access to services in the dev environement
 
 ### Keycloak
@@ -108,7 +124,6 @@ For dev environment you can access the OpenCR UI and signin using the following 
 - username : root@intrahealth.org
 - password : intrahealth
 
-
 ### Elastic Search
 For dev environment you can access the ES and sign in using the following credentials:
 
@@ -116,8 +131,7 @@ For dev environment you can access the ES and sign in using the following creden
 - username : elastic
 - password : dev_password_only
 
-Note: Consider creating the ES_BACKUPS folder away from tmp since it will be deleted on system retart. The default value set inside .``env.local`` is ``/tmp/backups``
-
+Note: Consider creating the ES_BACKUPS folder away from tmp since it will be deleted on system restart. The default value set inside `.env.local` is `/tmp/backups`
 
 ### HAPI FHIR UI
 

@@ -8,7 +8,7 @@ docker build \
 
 # Build a Botswana Specific ElasticSearch instance
 # TEMP: Ensure the /tmp/backups folder exists
-mkdir /tmp/backup
+mkdir /tmp/backups
 
 docker build \
     -t docker.elastic.co/elasticsearch/elasticsearch:local \
