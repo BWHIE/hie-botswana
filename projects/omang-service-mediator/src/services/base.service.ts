@@ -1,10 +1,5 @@
 import { Injectable, Logger, Inject } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { InjectMapper } from '@automapper/nestjs';
-import { Mapper } from '@automapper/core';
-import { MasterPatientIndex } from './mpi';
-import { delay, retryWhen, scan, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { MasterPatientIndex } from '../modules/mpi/services/mpi';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import {ClientRegistry} from '../app-settings.json';
 

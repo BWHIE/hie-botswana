@@ -1,7 +1,7 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
-import { BasicAuthGuard } from './models/authentification';
-import { IpWhitelistGuard } from './models/middlewares';
+import { BasicAuthGuard } from './modules/user/models/authentification';
+import { IpWhitelistGuard } from './utils/middlewares';
 
 @Controller()
 @UseGuards(BasicAuthGuard)

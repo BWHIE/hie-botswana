@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserModule } from './modules/user.module';
-import { IpWhitelistGuard } from './models/middlewares';
-import { BasicAuthGuard } from './models/authentification';
+import { UserModule } from './modules/user/user.module';
+import { IpWhitelistGuard } from './utils/middlewares';
+import { BasicAuthGuard } from './modules/user/models/authentification';
 
 describe('AppController', () => {
   let appController: AppController;

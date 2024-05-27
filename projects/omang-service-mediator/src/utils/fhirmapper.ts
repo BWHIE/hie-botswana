@@ -1,14 +1,14 @@
 import {ClientRegistry} from '../app-settings.json';
 import { fhirR4 } from '@smile-cdr/fhirts';
 
-import { ImmigrationRecord } from '../models/immigration-record';
-import { BirthDeathRecord } from '../models/birthdeath-record';
-import { DeathRecord } from '../models/death-record';
-import { Omang, OmangFHIRPatient } from '../models/omang';
+import { ImmigrationRecord } from '../modules/immigration/models/immigration-record';
+import { BirthDeathRecord } from '../modules/bdrs/models/birthdeath-record';
+import { DeathRecord } from '../modules/bdrs/models/death-record';
+import { Omang, OmangFHIRPatient } from '../modules/omang/models/omang';
 
 import { v4 as uuidv4 } from 'uuid';
-import { FhirAPIResponses } from '../models/fhir-responses';
-import { BirthRecord } from 'src/models/birth-record';
+import { FhirAPIResponses } from './fhir-responses';
+import { BirthRecord } from 'src/modules/bdrs/models/birth-record';
 
 function calculateMD5Hash(input: string): string {
     const md5 = require('crypto').createHash('md5');

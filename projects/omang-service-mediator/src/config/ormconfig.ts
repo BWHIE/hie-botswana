@@ -3,8 +3,6 @@ import { DataSourceOptions } from 'typeorm';
 
 export const omangDataSourceOptions: DataSourceOptions = {
   type: 'oracle',
-  // host: 'localhost',
-  // port: 1521,
   username: 'omang',
   password: 'some-password',
   connectString: '(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = oracle-db)(PORT = 1521))(CONNECT_DATA = (SID = XE)))',
