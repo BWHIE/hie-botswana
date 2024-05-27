@@ -2,11 +2,9 @@ import {
   Injectable,
   CanActivate,
   ExecutionContext,
-  UnauthorizedException,
   ForbiddenException,
 } from '@nestjs/common';
 import { Request } from 'express';
-import { UserService } from '../modules/user/services/user.service';
 import { SafeList } from '../app-settings.json';
 
 @Injectable()

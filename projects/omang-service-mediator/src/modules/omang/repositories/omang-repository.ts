@@ -264,7 +264,6 @@ export class OmangRepository {
 
     return result;
   }
-
   async getMany(IDNO: string[], pager: Pager): Promise<Omang[]> {
     // const parameters = IDNO.map((s, i) => `$${i + 1}`); // create parameter array
     // const parameterStr = parameters.join(', '); // Get parameter string with comma delimiter
@@ -278,8 +277,6 @@ export class OmangRepository {
     const filter = IDNO.map((_, i) => `UPPER(ID_NO) = :ID${i}`).join(' OR ');
 
     // Creating the parameters
-    const valueAr: string[] = IDNO.map((id) => id.toUpperCase());
-
     const result: Omang[] = [];
     const queryRunner = this.connection.createQueryRunner();
 

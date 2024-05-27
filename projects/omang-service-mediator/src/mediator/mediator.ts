@@ -149,14 +149,11 @@ export class Mediator {
     };
   }
 
-  private static updateCallback(callback: any) {
-    return (newConfig: JSON) => {
-      logger.info('Received updated config:', newConfig);
-      const updatedConfig = Object.assign(medConfig, newConfig);
-      Mediator.reloadConfig(updatedConfig, () => {
-        theConfig.mediatorConfig.openHimAuth.urn = medConfig.urn;
-      });
-    };
+  private static updateCallback(newConfig: JSON) {
+    const updatedConfig = Object.assign(medConfig, newConfig);
+    Mediator.reloadConfig(updatedConfig, () => {
+      theConfig.mediatorConfig.openHimAuth.urn = medConfig.urn;
+    });
   }
 
   private static reloadConfig(data: JSON, callback: any) {

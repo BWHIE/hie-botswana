@@ -1,4 +1,4 @@
-import { Module, forwardRef, Global } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { createConnection } from 'typeorm';
 import { immigrationDataSourceOptions } from '../../config/ormconfig';

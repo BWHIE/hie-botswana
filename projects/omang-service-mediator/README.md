@@ -1,4 +1,4 @@
-<p align="center">
+<!-- <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
@@ -20,10 +20,30 @@
   <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
 </p>
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)--> -->
+
+# Omang Service Mediator 
+
+This service provides a RESTful API for three key national registries: the Omang Registry, the Births and Deaths (BDRS) Registry, and the Immigration Service Registry. The service is designed to run as an OpenHIM mediator and is responsible for providing an interface to the three registries, as well as for transforming the data from the registries into the FHIR format.
+
+## Overview
+The entire codebase was migrated to NodeJS using the NestJS framework in order to to simplify the technology stack and expedite development. The purpose
+of the present work is to mitigate the effects of the high workload required by the older Omang Service implementation.  
 
 ## Description
+The service used to be built as a C# .NET Core Web API and is designed to run as an OpenHIM mediator. The API layer connects to an Oracle database View, which provides the sole data source for each of the three registries. The API layer is responsible for transforming the data from the Oracle database into the FHIR format, and for providing the required query capabilities to retrieve patients by both their unique identifiers, as well as by their demographic information. The service runs as a Docker container and connects to an OpenHIM instance as a mediator. OpenHIM provides dedicated channels that manage and secure the communication between various clients and the service.
 
+## Schema 
+The service interacts with external national registries: external Oracle databases. There are three key national registries. Each Registry has a different owner from an Oracle DB standpoint.
+### Omang Registry 
+The Omang Registry is comprised of a single view and an owner. The values retrieved can either be in FHIR format or Omang Entity. 
+### BDRS Registry
+The BDRS Registry is comprised of two views (Births and Deaths). The values retrieved can either be in FHIR format or seperate BDRS entities :Birth Record, Death Record, Birthdeath Record which is a join between two views/tables: Births and Deaths
+### Immigration Registry 
+The Omang Registry is comprised of a single view and an owner. The values retrieved can either be in FHIR format or Immigration Record. 
+
+#### Sidenote:
+In the present Schema, each view can be understood
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation

@@ -23,9 +23,10 @@ export class PatientService {
   ) {}
 
   //@TODO retrieve Patient by applying FHIR compliant search ?
-  async getPatientByFHIRName(name: fhirR4.HumanName): Promise<fhirR4.Bundle> {
-    throw new Error('Method not implemented');
-  }
+
+  // async getPatientByFHIRName(name: fhirR4.HumanName): Promise<fhirR4.Bundle> {
+  //   throw new Error('Method not implemented');
+  // }
 
   async getPatientByFullName(
     firstName: string,

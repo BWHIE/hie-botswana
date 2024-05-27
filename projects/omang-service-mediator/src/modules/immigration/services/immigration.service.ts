@@ -4,14 +4,9 @@ import { ImmigrationRepository } from '../repositories/immigration-repository';
 import { FhirAPIResponses } from '../../../utils/fhir-responses';
 import { ImmigrationRecord } from '../models/immigration-record';
 import { Pager } from '../../../utils/pager';
-import {
-  mapImmigrationRecordToFhirPatient,
-  mapImmigrationRecordToSearchBundle,
-  mapOmangToSearchBundle,
-} from '../../../utils/fhirmapper';
+import { mapImmigrationRecordToSearchBundle } from '../../../utils/fhirmapper';
 import { BaseService } from '../../../services/base.service';
 import { MasterPatientIndex } from '../../mpi/services/mpi';
-import { ClientRegistry } from '../../../app-settings.json';
 
 @Injectable()
 export class ImmigrationService extends BaseService {
@@ -97,8 +92,6 @@ export class ImmigrationService extends BaseService {
     lastName: string,
     pager: Pager,
   ): Promise<fhirR4.Bundle> {
-    const names = firstName.split(' ');
-
     try {
       const results = await this.getByFullNameNonFHIR(
         firstName,
@@ -135,24 +128,19 @@ export class ImmigrationService extends BaseService {
     return this.repo.checkStatus();
   }
 
-  private async updateClientRegistryAsync<T>(
-    results: ImmigrationRecord[],
-    identifiers: string[],
-    configKey: string,
-  ): Promise<void> {
-    const searchParamValue = `${configKey}|${identifiers[0]}`;
-    const searchBundle = await this.retryGetSearchBundleAsync(searchParamValue);
+  // private async updateClientRegistryAsync<T>(results: ImmigrationRecord[], identifiers: string[], configKey: string): Promise<void> {
+  //   const searchParamValue = `${configKey}|${identifiers[0]}`
+  //   const searchBundle = await this.retryGetSearchBundleAsync(searchParamValue);
 
-    if (this.needsUpdateOrIsEmpty(searchBundle)) {
-      for (const result of results) {
-        try {
-          const patient: fhirR4.Patient =
-            mapImmigrationRecordToFhirPatient(result);
-          await this.mpi.createPatient(patient);
-        } catch (error) {
-          this.logger.error(`Error creating patient: ${error.message}`);
-        }
-      }
-    }
-  }
+  //   if (this.needsUpdateOrIsEmpty(searchBundle)) {
+  //     for (const result of results) {
+  //       try {
+  //         const patient:fhirR4.Patient = mapImmigrationRecordToFhirPatient(result)
+  //         await this.mpi.createPatient(patient);
+  //       } catch (error) {
+  //         this.logger.error(`Error creating patient: ${error.message}`);
+  //       }
+  //     }
+  //   }
+  // }
 }

@@ -1,4 +1,4 @@
-import { Module, forwardRef, Global } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OmangRepository } from './repositories/omang-repository';
 import { createConnection } from 'typeorm';

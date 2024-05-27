@@ -6,12 +6,12 @@ import { BirthDeathRecord } from '../modules/bdrs/models/birthdeath-record';
 import { DeathRecord } from '../modules/bdrs/models/death-record';
 import { Omang, OmangFHIRPatient } from '../modules/omang/models/omang';
 
-import { v4 as uuidv4 } from 'uuid';
 import { FhirAPIResponses } from './fhir-responses';
 import { BirthRecord } from 'src/modules/bdrs/models/birth-record';
+import { createHash } from 'crypto';
 
 function calculateMD5Hash(input: string): string {
-  const md5 = require('crypto').createHash('md5');
+  const md5 = createHash('md5');
   md5.update(input);
   return md5.digest('hex');
 }

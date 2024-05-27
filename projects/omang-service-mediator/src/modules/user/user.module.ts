@@ -1,4 +1,4 @@
-import { Module, forwardRef, Global } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { UserService } from './services/user.service';
 
 @Module({

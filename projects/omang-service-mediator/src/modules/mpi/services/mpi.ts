@@ -1,8 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { AxiosRequestConfig } from 'axios';
-import { firstValueFrom } from 'rxjs';
-import { fhirR4 } from '@smile-cdr/fhirts';
+import { Agent } from 'https';
 import { ClientRegistry } from '../../../app-settings.json';
 import FHIR from 'fhirclient';
 
@@ -31,7 +30,7 @@ export class MasterPatientIndex {
     };
 
     if (this.devMode) {
-      options.httpsAgent = new (require('https').Agent)({
+      options.httpsAgent = new Agent({
         rejectUnauthorized: false,
       });
     }
@@ -40,7 +39,6 @@ export class MasterPatientIndex {
   }
 
   async getSearchBundle(query): Promise<any> {
-    const search_bundle: fhirR4.Bundle = null;
     try {
       // const fhirClient = new Client({ baseUrl: this.clientRegistryUrl });
       const fhirClient = FHIR.client(this.clientRegistryUrl);
