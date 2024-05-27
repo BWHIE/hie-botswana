@@ -2,7 +2,7 @@ import { Module,forwardRef, Global } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {createConnection} from 'typeorm';
 import { immigrationDataSourceOptions } from '../config/ormconfig';
-import { ImmigrationRepository } from '../data/immigration-repository';
+import { ImmigrationRepository } from '../repositories/immigration-repository';
 
 @Module({
   imports: [

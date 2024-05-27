@@ -1,6 +1,6 @@
 import { Injectable, Logger, Inject } from '@nestjs/common';
 import { fhirR4 } from '@smile-cdr/fhirts';
-import { ImmigrationRepository } from '../data/immigration-repository';
+import { ImmigrationRepository } from '../repositories/immigration-repository';
 import { FhirAPIResponses } from '../models/fhir-responses';
 import { ImmigrationRecord } from '../models/immigration-record';
 import { Pager } from '../models/omang';

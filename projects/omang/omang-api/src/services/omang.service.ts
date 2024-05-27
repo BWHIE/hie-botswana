@@ -1,6 +1,6 @@
 import {Inject, Injectable,Logger } from "@nestjs/common";
 import { Pager } from "../models/omang";
-import { OmangRepository } from "../data/omang-repository";
+import { OmangRepository } from "../repositories/omang-repository";
 import { fhirR4 } from "@smile-cdr/fhirts";
 import { Omang } from "../models/omang";
 import { mapOmangToFhirPatient, mapOmangToSearchBundle } from "../utils/fhirmapper";

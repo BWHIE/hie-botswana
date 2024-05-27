@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { BDRSService } from '../../src/services/bdrs.service';
-import { DeathRepository, BirthRepository } from "../../src/data/bdrs-repositories";
+import { DeathRepository, BirthRepository } from "../../src/repositories/bdrs-repositories";
 import { ImmigrationService } from '../../src/services/immigration.service';
 import { PatientService } from '../../src/services/patient.service';
 import { OmangService } from '../../src/services/omang.service';

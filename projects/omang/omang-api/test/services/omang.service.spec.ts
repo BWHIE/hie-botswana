@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { OmangRepository } from '../../src/data/omang-repository';
+import { OmangRepository } from '../../src/repositories/omang-repository';
 import { OmangModule } from '../../src/modules/omang.module';
 import { OmangService } from '../../src/services/omang.service';
 import { MasterPatientIndex } from "../../src/services/mpi";

@@ -1,6 +1,6 @@
 import { Module,forwardRef, Global } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DeathRepository } from '../data/bdrs-repositories';
+import { DeathRepository } from '../repositories/bdrs-repositories';
 import {createConnection} from 'typeorm';
 import { deathDataSourceOptions } from '../config/ormconfig';
 @Module({

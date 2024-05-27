@@ -3,7 +3,7 @@ import { Pager } from "../models/omang";
 import { BirthRecord } from "../models/birth-record";
 import { DeathRecord } from "../models/death-record";
 import { BirthDeathRecord } from "../models/birthdeath-record";
-import { DeathRepository, BirthRepository } from "../data/bdrs-repositories";
+import { DeathRepository, BirthRepository } from "../repositories/bdrs-repositories";
 import { fhirR4 } from "@smile-cdr/fhirts";
 import { mapBirthDeathRecordToFhirPatient, mapBirthDeathRecordToSearchBundle, mapDeathRecordsToSearchBundle,mapBirthRecordsToSearchBundle } from "../utils/fhirmapper";
 import { FhirAPIResponses } from "../models/fhir-responses";

@@ -8,7 +8,7 @@ import { BDRSController } from './controllers/bdrs.controller';
 import { BDRSService } from './services/bdrs.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserService } from './services/user.service';
-import { DeathRepository, BirthRepository } from './data/bdrs-repositories';
+import { DeathRepository, BirthRepository } from './repositories/bdrs-repositories';
 import { AutomapperModule } from '@automapper/nestjs';
 import { MiddlewareConsumer } from '@nestjs/common';
 import { BirthRecord } from './models/birth-record';
@@ -16,7 +16,7 @@ import { DeathRecord } from './models/death-record';
 import { BirthModule } from './modules/birth.module';
 import { DeathModule } from './modules/death.module';
 import { OmangModule } from './modules/omang.module';
-import { OmangRepository } from './data/omang-repository';
+import { OmangRepository } from './repositories/omang-repository';
 import { OmangController } from './controllers/omang.controller';
 import { OmangService } from './services/omang.service';
 import ormconfig = require('./config/ormconfig'); //path mapping doesn't work here

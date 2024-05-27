@@ -1,6 +1,6 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { ImmigrationRecord } from "../../src/models/immigration-record";
-import { ImmigrationRepository } from "../../src/data/immigration-repository";
+import { ImmigrationRepository } from "../../src/repositories/immigration-repository";
 import { ImmigrationModule } from "../../src/modules/immigration.module";
 import { MasterPatientIndexModule } from "../../src/modules/mpi.module";
 import { UserModule } from "../../src/modules/user.module";
