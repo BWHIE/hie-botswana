@@ -1,0 +1,112 @@
+version: "3.8"
+
+services:
+  api:
+    container_name: omang-api
+    build:
+      context: ./omang-api
+    restart: always
+    ports:
+      - 5002:5002
+    networks:
+      - hie
+    environment:
+      - DB_HOST=oracle-db
+    volumes:
+      - ./omang-api/src:/app/src
+    depends_on:
+      oracle-db:
+        condition: service_healthy
+
+   
+  oracle-db:
+    hostname: oracle-db
+    container_name: oracle-db
+    image: gvenzl/oracle-xe
+    restart: always
+    environment:
+    - ORACLE_SID=XE 
+    - ORACLE_ALLOW_REMOTE=true
+    - TZ=GMT
+    - ORACLE_RANDOM_PASSWORD=yes
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    networks:
+      - hie
+    ports:
+      - "1521:1521"
+    healthcheck:
+      test: ["CMD-SHELL", "echo 'SELECT 1 FROM dual;' | sqlplus -s SYSTEM/oracle@//localhost:1521/XE"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+
+    ###
+  # OpenHIM
+  ##
+  openhim-core:
+    # profiles: ['openhim']
+    image: jembi/openhim-core:v7.1.0
+    container_name: openhim-core
+    hostname: openhim-core
+    restart: unless-stopped
+    environment:
+      mongo_url: "mongodb://mongo-db/openhim"
+      mongo_atnaUrl: "mongodb://mongo-db/openhim"
+      NODE_ENV: "development"
+      # NODE_TLS_REJECT_UNAUTHORIZED: 0
+    ports:
+      - "8080:8080"
+      - "5000:5000"
+      - "5001:5001"
+      - "5050:5050"
+      - "5051:5051"
+      - "5052:5052"
+    healthcheck:
+      test: "curl -sSk https://localhost:8080/heartbeat || exit 1"
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    networks:
+      - hie
+
+  mongo-db:
+    image: mongo:3.4
+    volumes:
+      - "mongo-data:/data/db"
+    restart: unless-stopped
+    networks:
+      - hie
+
+  # OpenHIM Config
+  openhim-config:
+    container_name: openhim-config
+    image: ghcr.io/i-tech-uw/openhim-config:v0.0.0
+    # restart: on-failure
+    volumes:
+      - ./openhim-config.json:/app/test-openhim-config.json
+    networks:
+      - hie
+   
+
+  # OpenHIM Console
+  openhim-console:
+    image: jembi/openhim-console:1.15.0
+    restart: unless-stopped
+    ports:
+      - "9000:80"
+    volumes:
+      - ./openhim-console.json:/usr/share/nginx/html/config/default.json
+    healthcheck:
+      test: "curl -sS http://localhost || exit 1"
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    networks:
+      - hie
+
+volumes:
+  mongo-data:
+
+networks:
+  hie:
