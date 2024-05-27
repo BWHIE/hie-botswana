@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  omang-api:
+    image: jembi/omangsvc:latest
+    hostname: omang-api
+    container_name: omang-api
+    restart: unless-stopped
+    networks:
+      - opencr
+      - hapi-fhir
+      - elasticsearch
+      - default
+      - openhim
+      - omangsvc
+    environment:
+      - DB_HOST=${OMANG_SERVICE_DB_HOST}
+  
+networks:
+  opencr:
+    name: opencr_public
+    external: true
+  hapi-fhir:
+    name: hapi-fhir_public
+    external: true
+  elasticsearch:
+    name: elastic_public
+    external: true
+  openhim:
+    name: openhim_public
+    external: true
+  omangsvc:
+    name: omangsvc_public
+    external: true
+  default:

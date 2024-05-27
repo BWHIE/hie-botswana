@@ -1,0 +1,14 @@
+{
+    "id": "omang-service-mediator",
+    "name": "Omang Service Mediator",
+    "description": "Omang Service is a OpenHIM Mediator to help communicate with registries (external Oracle DB)",
+    "type": "infrastructure",
+    "version": "0.0.1",
+    "dependencies": ["fhir-datastore-hapi-fhir", "analytics-datastore-elastic-search", "interoperability-layer-openhim", "client-registry-opencr"],
+    "environmentVariables": {    
+      "OMANG_SERVICE_DB_HOST": "oracle-db"
+    
+    }
+  }
+  
+  

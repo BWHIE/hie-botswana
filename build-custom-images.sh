@@ -16,6 +16,12 @@ docker build \
     packages/analytics-datastore-elastic-search \
     --no-cache
 
+docker build \
+    -t jembi/omangsvc:latest \
+    -f projects/omang-service-mediator/Dockerfile \
+    projects/omang-service-mediator/ \
+    --no-cache
+
 # Build the Platform to contain the above custom builds
 ./build-image.sh
 

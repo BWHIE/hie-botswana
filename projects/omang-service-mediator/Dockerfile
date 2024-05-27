@@ -27,6 +27,6 @@ WORKDIR /app
 COPY --from=installer /app/ .
 COPY ./ . 
 
-EXPOSE 5002
+EXPOSE 80
 
 CMD [ "npm", "run", "start:dev" ]

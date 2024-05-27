@@ -12,6 +12,7 @@ packages:
   - client-registry-opencr
   - analytics-datastore-elastic-search
   - message-bus-kafka
+  - omang-service-mediator
 
 profiles:
   - name: dev
@@ -24,6 +25,7 @@ profiles:
       - client-registry-opencr
       - analytics-datastore-elastic-search
       - message-bus-kafka
+      - omang-service-mediator
     envFiles:
       - .env.local
     dev: true
