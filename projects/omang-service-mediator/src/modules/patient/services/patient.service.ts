@@ -4,7 +4,7 @@ import { BDRSService } from '../../bdrs/services/bdrs.service';
 import { OmangService } from '../../omang/services/omang.service';
 import { MasterPatientIndex } from '../../mpi/services/mpi';
 import { fhirR4 } from '@smile-cdr/fhirts';
-import {ClientRegistry} from '../../../app-settings.json';
+import { ClientRegistry } from '../../../app-settings.json';
 import { Pager } from '../../../utils/pager';
 
 @Injectable()
@@ -20,7 +20,6 @@ export class PatientService {
     private readonly bdrs: BDRSService,
     @Inject(ImmigrationService)
     private readonly immigration: ImmigrationService,
-
   ) {}
 
   //@TODO retrieve Patient by applying FHIR compliant search ?
@@ -28,8 +27,12 @@ export class PatientService {
     throw new Error('Method not implemented');
   }
 
-  async getPatientByFullName(firstName: string, lastName: string, system: string, pager: Pager): Promise<fhirR4.Bundle> {
-
+  async getPatientByFullName(
+    firstName: string,
+    lastName: string,
+    system: string,
+    pager: Pager,
+  ): Promise<fhirR4.Bundle> {
     this.logger.log('Getting patient by Full Name');
 
     if (system === ClientRegistry.OmangSystem) {
@@ -38,23 +41,26 @@ export class PatientService {
       return this.immigration.getByFullName(firstName, lastName, pager);
     } else if (system === ClientRegistry.BdrsSystem) {
       return this.bdrs.findBirthByFullNameFHIR(firstName, lastName, pager);
-    } else throw new Error('System Not Supported')
+    } else throw new Error('System Not Supported');
   }
 
-  
-
-  async getPatientByID(identifier: string, system: string): Promise<fhirR4.Bundle> {
+  async getPatientByID(
+    identifier: string,
+    system: string,
+  ): Promise<fhirR4.Bundle> {
     this.logger.log('Getting patient by ID');
 
     if (system === ClientRegistry.OmangSystem) {
       return this.omang.getOmangByID([identifier], new Pager(1, 1));
     } else if (system === ClientRegistry.ImmigrationSystem) {
-      return this.immigration.getPatientByPassportNumber(identifier, new Pager(1, 1));
+      return this.immigration.getPatientByPassportNumber(
+        identifier,
+        new Pager(1, 1),
+      );
     } else if (system === ClientRegistry.BdrsSystem) {
       return this.bdrs.getBirthByID([identifier], new Pager(1, 1));
-    }  else throw new Error('System Not Supported')
+    } else throw new Error('System Not Supported');
   }
-  
 
   async isOnline(): Promise<boolean> {
     return this.immigration.isOnline();

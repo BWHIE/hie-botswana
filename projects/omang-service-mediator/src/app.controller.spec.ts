@@ -12,7 +12,7 @@ describe('AppController', () => {
     const app: TestingModule = await Test.createTestingModule({
       imports: [UserModule],
       controllers: [AppController],
-      providers: [AppService,IpWhitelistGuard,BasicAuthGuard],
+      providers: [AppService, IpWhitelistGuard, BasicAuthGuard],
     }).compile();
 
     appController = app.get<AppController>(AppController);

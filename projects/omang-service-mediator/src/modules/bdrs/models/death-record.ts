@@ -1,6 +1,4 @@
-
 export class DeathRecord {
-
   ID_NUMBER: string;
   DEATH_CERTIFICATE: string;
   DISTRICT_OF_REGISTRATION: string;
@@ -37,4 +35,4 @@ export class DeathRecord {
   constructor(init?: Partial<DeathRecord>) {
     Object.assign(this, init);
   }
-  }
+}

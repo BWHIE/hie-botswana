@@ -5,8 +5,8 @@ services:
     ports:
       - 5002:80
     volumes:
-      - ../projects/omang-service-mediator/src:/app/src
-      - ../projects/omang-service-mediator/node_modules:/app/node_modules
+      - ../../projects/omang-service-mediator/src:/app/src
+      - ../../projects/omang-service-mediator/node_modules:/app/node_modules
     depends_on:
       oracle-db:
         condition: service_healthy
@@ -22,7 +22,7 @@ services:
     - TZ=GMT
     - ORACLE_RANDOM_PASSWORD=yes
     volumes:
-      - ./db:/docker-entrypoint-initdb.d
+      - ../../projects/omang-service-mediator/db:/docker-entrypoint-initdb.d
     networks:
       - omangsvc
     ports:

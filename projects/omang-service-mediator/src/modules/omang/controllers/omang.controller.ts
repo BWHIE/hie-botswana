@@ -1,4 +1,12 @@
-import { Controller, Get, Query, Logger, BadRequestException, InternalServerErrorException, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Query,
+  Logger,
+  BadRequestException,
+  InternalServerErrorException,
+  UseGuards,
+} from '@nestjs/common';
 import { Pager } from '../../../utils/pager';
 import { OmangService } from '../services/omang.service';
 import { BasicAuthGuard } from '../../user/models/authentification';
@@ -8,12 +16,10 @@ import { BasicAuthGuard } from '../../user/models/authentification';
 export class OmangController {
   private readonly logger = new Logger(OmangController.name);
 
-  constructor(
-    private readonly omang: OmangService,
-  ) {}
+  constructor(private readonly omang: OmangService) {}
 
   @Get('Online')
-  async online(): Promise<Boolean> {
+  async online(): Promise<boolean> {
     try {
       return this.omang.isOnline();
     } catch (ex) {
@@ -31,11 +37,13 @@ export class OmangController {
     try {
       if (!ID || ID.length === 0) {
         throw new BadRequestException('ID parameter is required');
-    }
+      }
       const idArray = Array.isArray(ID) ? ID : [ID];
-      const bundle = await this.omang.getOmangByID(idArray, new Pager(pageNum, pageSize));
+      const bundle = await this.omang.getOmangByID(
+        idArray,
+        new Pager(pageNum, pageSize),
+      );
       return bundle;
-
     } catch (ex) {
       this.logger.error(ex);
       throw new InternalServerErrorException();
@@ -54,7 +62,10 @@ export class OmangController {
       }
 
       const idArray = Array.isArray(ID) ? ID : [ID];
-      const result = await this.omang.getOmangByIDNonFHIR(idArray, new Pager(pageNum, pageSize));
+      const result = await this.omang.getOmangByIDNonFHIR(
+        idArray,
+        new Pager(pageNum, pageSize),
+      );
 
       if (result) {
         return result;
@@ -81,8 +92,12 @@ export class OmangController {
 
       givenNames = givenNames.trim();
       lastName = lastName.trim();
-      
-      const bundle = await this.omang.findOmangByFullName(givenNames, lastName, new Pager(pageNum, pageSize));
+
+      const bundle = await this.omang.findOmangByFullName(
+        givenNames,
+        lastName,
+        new Pager(pageNum, pageSize),
+      );
       return bundle;
     } catch (ex) {
       this.logger.error(ex);
@@ -105,7 +120,11 @@ export class OmangController {
       givenNames = givenNames.trim();
       lastName = lastName.trim();
 
-      const result = await this.omang.findOmangByFullNameNonFHIR(givenNames, lastName, new Pager(pageNum, pageSize));
+      const result = await this.omang.findOmangByFullNameNonFHIR(
+        givenNames,
+        lastName,
+        new Pager(pageNum, pageSize),
+      );
 
       if (result) {
         return result;
@@ -130,9 +149,11 @@ export class OmangController {
       }
 
       lastName = lastName.trim();
-      const bundle = await this.omang.findOmangByLastName(lastName, new Pager(pageNum, pageSize));
+      const bundle = await this.omang.findOmangByLastName(
+        lastName,
+        new Pager(pageNum, pageSize),
+      );
       return bundle;
-
     } catch (ex) {
       this.logger.error(ex);
       throw new InternalServerErrorException();
@@ -152,7 +173,10 @@ export class OmangController {
 
       lastName = lastName.trim();
 
-      const result = await this.omang.findOmangByLastNameNonFHIR(lastName, new Pager(pageNum, pageSize));
+      const result = await this.omang.findOmangByLastNameNonFHIR(
+        lastName,
+        new Pager(pageNum, pageSize),
+      );
 
       if (result) {
         return result;
@@ -166,109 +190,122 @@ export class OmangController {
   }
 
   @Get('DeceasedNonFHIR')
-   async findDeceasedNonFHIR(
-        @Query('deceasedStartDate') startDate: string,
-        @Query('deceasedEndDate') endDate: string,
-        @Query('pageNum') pageNum: number = 1,
-        @Query('pageSize') pageSize: number = 100,
-    ): Promise<any> {
-        try {
-            if (!startDate) {
-                throw new BadRequestException('startDate parameter is required');
-            }
-            let start = new Date(startDate);
-            let end = endDate ? new Date(endDate) : new Date();
+  async findDeceasedNonFHIR(
+    @Query('deceasedStartDate') startDate: string,
+    @Query('deceasedEndDate') endDate: string,
+    @Query('pageNum') pageNum: number = 1,
+    @Query('pageSize') pageSize: number = 100,
+  ): Promise<any> {
+    try {
+      if (!startDate) {
+        throw new BadRequestException('startDate parameter is required');
+      }
+      const start = new Date(startDate);
+      const end = endDate ? new Date(endDate) : new Date();
 
-            const result = await this.omang.findOmangByDeceasedDateNonFHIR(start, end, new Pager(pageNum, pageSize));
-            if (result) {
-                return result;
-            } else {
-                return 'No record with parameters provided found.';
-            }
-        } catch (error) {
-            this.logger.error(error);
-            throw new InternalServerErrorException();
-        }
+      const result = await this.omang.findOmangByDeceasedDateNonFHIR(
+        start,
+        end,
+        new Pager(pageNum, pageSize),
+      );
+      if (result) {
+        return result;
+      } else {
+        return 'No record with parameters provided found.';
+      }
+    } catch (error) {
+      this.logger.error(error);
+      throw new InternalServerErrorException();
     }
+  }
 
+  @Get('ChangedNonFHIR')
+  async findChangedNonFHIR(
+    @Query('changeStartDate') startDate: string,
+    @Query('changeEndDate') endDate: string,
+    @Query('pageNum') pageNum: number = 1,
+    @Query('pageSize') pageSize: number = 100,
+  ): Promise<any> {
+    try {
+      if (!startDate) {
+        throw new BadRequestException('startDate parameter is required');
+      }
+      const start = new Date(startDate);
+      const end = endDate ? new Date(endDate) : new Date();
 
-    @Get('ChangedNonFHIR')
-    async findChangedNonFHIR(
-        @Query('changeStartDate') startDate: string,
-        @Query('changeEndDate') endDate: string,
-        @Query('pageNum') pageNum: number = 1,
-        @Query('pageSize') pageSize: number = 100,
-    ): Promise<any> {
-        try {
-            if (!startDate) {
-                throw new BadRequestException('startDate parameter is required');
-            }
-            let start = new Date(startDate);
-            let end = endDate ? new Date(endDate) : new Date();
-
-            const result = await this.omang.findOmangByChangeDateNonFHIR(start, end, new Pager(pageNum, pageSize));
-            if (result) {
-                return result;
-            } else {
-                return 'No record with parameters provided found.';
-            }
-        } catch (error) {
-            this.logger.error(error);
-            throw new InternalServerErrorException();
-        }
+      const result = await this.omang.findOmangByChangeDateNonFHIR(
+        start,
+        end,
+        new Pager(pageNum, pageSize),
+      );
+      if (result) {
+        return result;
+      } else {
+        return 'No record with parameters provided found.';
+      }
+    } catch (error) {
+      this.logger.error(error);
+      throw new InternalServerErrorException();
     }
+  }
 
-    @Get('Changed')
-    async findChangedFHIR(
-        @Query('changeStartDate') startDate: string,
-        @Query('changeEndDate') endDate: string,
-        @Query('pageNum') pageNum: number = 1,
-        @Query('pageSize') pageSize: number = 100,
-    ): Promise<any> {
-        try {
-            if (!startDate) {
-                throw new BadRequestException('startDate parameter is required');
-            }
-            let start = new Date(startDate);
-            let end = endDate ? new Date(endDate) : new Date();
+  @Get('Changed')
+  async findChangedFHIR(
+    @Query('changeStartDate') startDate: string,
+    @Query('changeEndDate') endDate: string,
+    @Query('pageNum') pageNum: number = 1,
+    @Query('pageSize') pageSize: number = 100,
+  ): Promise<any> {
+    try {
+      if (!startDate) {
+        throw new BadRequestException('startDate parameter is required');
+      }
+      const start = new Date(startDate);
+      const end = endDate ? new Date(endDate) : new Date();
 
-            const result = await this.omang.findOmangByChangeDate(start, end, new Pager(pageNum, pageSize));
-            if (result) {
-                return result;
-            } else {
-                return 'No record with parameters provided found.';
-            }
-        } catch (error) {
-            this.logger.error(error);
-            throw new InternalServerErrorException();
-        }
+      const result = await this.omang.findOmangByChangeDate(
+        start,
+        end,
+        new Pager(pageNum, pageSize),
+      );
+      if (result) {
+        return result;
+      } else {
+        return 'No record with parameters provided found.';
+      }
+    } catch (error) {
+      this.logger.error(error);
+      throw new InternalServerErrorException();
     }
+  }
 
+  @Get('Deceased')
+  async findDeceasedFHIR(
+    @Query('deceasedStartDate') startDate: string,
+    @Query('deceasedEndDate') endDate: string,
+    @Query('pageNum') pageNum: number = 1,
+    @Query('pageSize') pageSize: number = 100,
+  ): Promise<any> {
+    try {
+      if (!startDate) {
+        throw new BadRequestException('startDate parameter is required');
+      }
+      const start = new Date(startDate);
+      const end = endDate ? new Date(endDate) : new Date();
 
-    @Get('Deceased')
-    async findDeceasedFHIR(
-        @Query('deceasedStartDate') startDate: string,
-        @Query('deceasedEndDate') endDate: string,
-        @Query('pageNum') pageNum: number = 1,
-        @Query('pageSize') pageSize: number = 100,
-    ): Promise<any> {
-        try {
-            if (!startDate) {
-                throw new BadRequestException('startDate parameter is required');
-            }
-            let start = new Date(startDate);
-            let end = endDate ? new Date(endDate) : new Date();
-
-            const result = await this.omang.findOmangByDeceasedDate(start, end, new Pager(pageNum, pageSize));
-            if (result) {
-                return result;
-            } else {
-                return 'No record with parameters provided found.';
-            }
-        } catch (error) {
-            this.logger.error(error);
-            throw new InternalServerErrorException();
-        }
+      const result = await this.omang.findOmangByDeceasedDate(
+        start,
+        end,
+        new Pager(pageNum, pageSize),
+      );
+      if (result) {
+        return result;
+      } else {
+        return 'No record with parameters provided found.';
+      }
+    } catch (error) {
+      this.logger.error(error);
+      throw new InternalServerErrorException();
     }
-
+  }
 }

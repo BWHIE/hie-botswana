@@ -1,7 +1,7 @@
 // birth.module.ts
 import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import {createConnection } from 'typeorm';
+import { createConnection } from 'typeorm';
 import { BirthRepository } from '../repositories/bdrs-repositories';
 import { birthDataSourceOptions } from '../../../config/ormconfig';
 
@@ -14,10 +14,9 @@ import { birthDataSourceOptions } from '../../../config/ormconfig';
     {
       provide: 'birthConnectionDataSource',
       useFactory: async () => await createConnection(birthDataSourceOptions),
-
     },
-    BirthRepository, 
+    BirthRepository,
   ],
-  exports: [BirthRepository], 
+  exports: [BirthRepository],
 })
 export class BirthModule {}

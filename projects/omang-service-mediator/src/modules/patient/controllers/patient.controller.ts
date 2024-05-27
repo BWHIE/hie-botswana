@@ -1,4 +1,12 @@
-import { Controller, Get, Query, Logger, BadRequestException, InternalServerErrorException, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Query,
+  Logger,
+  BadRequestException,
+  InternalServerErrorException,
+  UseGuards,
+} from '@nestjs/common';
 import { Pager } from '../../../utils/pager';
 import { ImmigrationService } from '../../immigration/services/immigration.service';
 import { PatientService } from '../services/patient.service';
@@ -12,11 +20,11 @@ export class PatientController {
 
   constructor(
     private readonly immigration: ImmigrationService,
-    private readonly patients : PatientService,
+    private readonly patients: PatientService,
   ) {}
 
   @Get('Online')
-  async online(): Promise<Boolean> {
+  async online(): Promise<boolean> {
     try {
       return this.immigration.isOnline();
     } catch (ex) {
@@ -48,29 +56,36 @@ export class PatientController {
         throw new BadRequestException();
       }
 
-      const bundle = await this.immigration.getPatientByPassportNumber(ID, { pageNum: 1, pageSize: 1 });
+      const bundle = await this.immigration.getPatientByPassportNumber(ID, {
+        pageNum: 1,
+        pageSize: 1,
+      });
       return bundle;
     } catch (error) {
       this.logger.error(error);
       throw new InternalServerErrorException();
     }
   }
-
 
   @Get('GetPatientByFullName')
-  async getPatientByFullName( @Query('givenNames') givenNames: string,
-  @Query('lastName') lastName: string,
-  @Query('system') system: string,
-  @Query('pageNum') pageNum: number = 1,
-  @Query('pageSize') pageSize: number = 100,): Promise<fhirR4.Bundle> {
+  async getPatientByFullName(
+    @Query('givenNames') givenNames: string,
+    @Query('lastName') lastName: string,
+    @Query('system') system: string,
+    @Query('pageNum') pageNum: number = 1,
+    @Query('pageSize') pageSize: number = 100,
+  ): Promise<fhirR4.Bundle> {
     try {
-
-      const bundle = await this.patients.getPatientByFullName(givenNames,lastName,system, new Pager(pageNum,pageSize));
+      const bundle = await this.patients.getPatientByFullName(
+        givenNames,
+        lastName,
+        system,
+        new Pager(pageNum, pageSize),
+      );
       return bundle;
     } catch (error) {
       this.logger.error(error);
       throw new InternalServerErrorException();
     }
   }
-
 }

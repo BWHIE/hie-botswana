@@ -1,86 +1,94 @@
-import { Injectable, Logger } from "@nestjs/common";
-import { InjectConnection } from "@nestjs/typeorm";
-import { Connection } from "typeorm";
-import { Omang } from "../models/omang";
-import { Pager } from "../../../utils/pager";
+import { Injectable, Logger } from '@nestjs/common';
+import { InjectConnection } from '@nestjs/typeorm';
+import { Connection } from 'typeorm';
+import { Omang } from '../models/omang';
+import { Pager } from '../../../utils/pager';
 
 @Injectable()
 export class OmangRepository {
+  private readonly logger = new Logger(OmangRepository.name);
+  private readonly viewName = 'OMANG_CITIZEN';
 
-    private readonly logger = new Logger(OmangRepository.name);
-    private readonly viewName = 'OMANG_CITIZEN';
+  constructor(
+    @InjectConnection('omangConnection')
+    private readonly connection: Connection,
+  ) {}
 
-    constructor(
-        @InjectConnection('omangConnection')
-        private readonly connection: Connection,
-      
-      ) {}
+  async checkStatus(): Promise<boolean> {
+    try {
+    } catch (error) {
+      this.logger.error(`Error checking status: ${error.message}`);
+      return false;
+    }
+    const query = `SELECT 1 FROM ${this.viewName} WHERE ROWNUM = 1`;
 
-    async checkStatus(): Promise<boolean> {
-                
-        try {
+    let isOnline = false;
 
-        } catch (error) {
-        this.logger.error(`Error checking status: ${error.message}`);
-        return false;
-        }
-        const query = `SELECT 1 FROM ${this.viewName} WHERE ROWNUM = 1`;
+    try {
+      const result = await this.connection.query(query);
 
-        let isOnline = false;
-
-        try {
-        const result = await this.connection.query(query);
-
-        if (result.length > 0) {
-            this.logger.log(`Omang: ${this.viewName} is online`);
-            isOnline = true;
-        } else {
-            this.logger.error(`Omang: ${this.viewName} is offline`);
-        }
-        } catch (error) {
-        this.logger.error(error);
-        }
-
-        return isOnline;
+      if (result.length > 0) {
+        this.logger.log(`Omang: ${this.viewName} is online`);
+        isOnline = true;
+      } else {
+        this.logger.error(`Omang: ${this.viewName} is offline`);
+      }
+    } catch (error) {
+      this.logger.error(error);
     }
 
-    private getOmangFromReader(reader: any): Omang {
-        const result: Omang = new Omang();
-        {
-            result.IdNo= reader["ID_NO"]?.toString() ?? null;
-            result.FirstName= reader["FIRST_NME"]?.toString() ?? null;
-            result.Surname= reader["SURNME"]?.toString() ?? null;
-            result.BirthDate= reader["BIRTH_DTE"] !== null ? new Date(reader["BIRTH_DTE"]) : null;
-            result.BirthDateUnknown= reader["BIRTH_DTE_UNKNOWN"]?.toString();
-            result.BirthPlace= reader["BIRTH_PLACE_NME"]?.toString() ?? null;
-            result.DistrictName= reader["DISTRICT_NME"]?.toString() ?? null;
-            result.PersonStatus= reader["PERSON_STATUS"]?.toString() ?? null;
-            result.DistrictCode= reader["DISTRICT_CDE"]?.toString() ?? null;
-            result.Sex= reader["SEX"]?.toString() ?? null;
-            result.SpouseName= reader["SPOUSE_NME"]?.toString()?? null;
-            result.CitizenStatusCode= reader["CITIZEN_STATUS_CDE"]?.toString()?? null;
-            result.CitizenStatusDate= reader["CITIZEN_STATUS_DTE"] !== null ? new Date(reader["CITIZEN_STATUS_DTE"]) : null;
-            result.DeathCertificateNo= reader["DEATH_CERT_NO"]?.toString() ?? null;
-            result.DeceasedDate= reader["DECEASED_DTE"] !== null ? new Date(reader["DECEASED_DTE"]) : null;
-            result.DeceasedDateUnknown= reader["DECEASED_DTE_UNKNOWN"]?.toString() ?? null;
-            result.MaritalStatusCode= reader["MARITAL_STATUS_CDE"]?.toString() ?? null;
-            result.MaritalStatusDescription= reader["MARITAL_STATUS_DESCR"]?.toString() ?? null;
-            result.ChangeDate= reader["CHANGE_DTE"] !== null ? new Date(reader["CHANGE_DTE"]) : null;
-            result.ExpiryDate= reader["EXPIRY_DTE"] !== null ? new Date(reader["EXPIRY_DTE"]) : null;
-            result.PostalAddress= reader["POSTAL_ADDR"]?.toString() ?? null;
-            result.ResidentialAddress= reader["RESIDENTIAL_ADDR"]?.toString() ?? null;
-        };
-    
-        return result;
+    return isOnline;
+  }
+
+  private getOmangFromReader(reader: any): Omang {
+    const result: Omang = new Omang();
+    {
+      result.IdNo = reader['ID_NO']?.toString() ?? null;
+      result.FirstName = reader['FIRST_NME']?.toString() ?? null;
+      result.Surname = reader['SURNME']?.toString() ?? null;
+      result.BirthDate =
+        reader['BIRTH_DTE'] !== null ? new Date(reader['BIRTH_DTE']) : null;
+      result.BirthDateUnknown = reader['BIRTH_DTE_UNKNOWN']?.toString();
+      result.BirthPlace = reader['BIRTH_PLACE_NME']?.toString() ?? null;
+      result.DistrictName = reader['DISTRICT_NME']?.toString() ?? null;
+      result.PersonStatus = reader['PERSON_STATUS']?.toString() ?? null;
+      result.DistrictCode = reader['DISTRICT_CDE']?.toString() ?? null;
+      result.Sex = reader['SEX']?.toString() ?? null;
+      result.SpouseName = reader['SPOUSE_NME']?.toString() ?? null;
+      result.CitizenStatusCode =
+        reader['CITIZEN_STATUS_CDE']?.toString() ?? null;
+      result.CitizenStatusDate =
+        reader['CITIZEN_STATUS_DTE'] !== null
+          ? new Date(reader['CITIZEN_STATUS_DTE'])
+          : null;
+      result.DeathCertificateNo = reader['DEATH_CERT_NO']?.toString() ?? null;
+      result.DeceasedDate =
+        reader['DECEASED_DTE'] !== null
+          ? new Date(reader['DECEASED_DTE'])
+          : null;
+      result.DeceasedDateUnknown =
+        reader['DECEASED_DTE_UNKNOWN']?.toString() ?? null;
+      result.MaritalStatusCode =
+        reader['MARITAL_STATUS_CDE']?.toString() ?? null;
+      result.MaritalStatusDescription =
+        reader['MARITAL_STATUS_DESCR']?.toString() ?? null;
+      result.ChangeDate =
+        reader['CHANGE_DTE'] !== null ? new Date(reader['CHANGE_DTE']) : null;
+      result.ExpiryDate =
+        reader['EXPIRY_DTE'] !== null ? new Date(reader['EXPIRY_DTE']) : null;
+      result.PostalAddress = reader['POSTAL_ADDR']?.toString() ?? null;
+      result.ResidentialAddress =
+        reader['RESIDENTIAL_ADDR']?.toString() ?? null;
     }
-        
 
-    async get(IDNO: string): Promise<Omang | null> {
+    return result;
+  }
 
-        let result: Omang  = null;
-        const queryRunner = this.connection.createQueryRunner();
+  async get(IDNO: string): Promise<Omang | null> {
+    let result: Omang = null;
+    const queryRunner = this.connection.createQueryRunner();
 
-        const query = `
+    const query = `
             SELECT 
                 ID_NO,
                 FIRST_NME,
@@ -108,33 +116,33 @@ export class OmangRepository {
             WHERE ROWNUM = 1
             AND UPPER(ID_NO) = UPPER(:IDNO)
         `;
-        
-        const idParameter = IDNO;
 
-        try {
-            await queryRunner.connect();
-            const rows = await queryRunner.query(query, [idParameter]);
+    const idParameter = IDNO;
 
-            if (rows && rows.length > 0) {
-                result = this.getOmangFromReader(rows);
-            }
-        } finally {
-            await queryRunner.release();
-        }
+    try {
+      await queryRunner.connect();
+      const rows = await queryRunner.query(query, [idParameter]);
 
-        return result;
+      if (rows && rows.length > 0) {
+        result = this.getOmangFromReader(rows);
+      }
+    } finally {
+      await queryRunner.release();
     }
 
-    async getByLastName(lastName: string, pager: Pager): Promise<Omang[]> {
-        // First prepare the database query
-        lastName += "%";
-        const filter = "UPPER(SURNME) LIKE UPPER(:lastName)";
-        const lParameter = lastName;
+    return result;
+  }
 
-        const result: Omang[] = [];
-        const queryRunner = this.connection.createQueryRunner();
-    
-        const query = `
+  async getByLastName(lastName: string, pager: Pager): Promise<Omang[]> {
+    // First prepare the database query
+    lastName += '%';
+    const filter = 'UPPER(SURNME) LIKE UPPER(:lastName)';
+    const lParameter = lastName;
+
+    const result: Omang[] = [];
+    const queryRunner = this.connection.createQueryRunner();
+
+    const query = `
             SELECT *
             FROM (
                 SELECT a.*, rownum r
@@ -170,37 +178,41 @@ export class OmangRepository {
             )
             WHERE r >= (((${pager.pageNum} - 1) * ${pager.pageSize}) + 1)
         `;
-        
-        try {
-            await queryRunner.connect();
-            const rows = await queryRunner.query(query, [lParameter]);
 
-            if (rows && rows.length > 0) {
-                for (const row of rows) {
-                    result.push(this.getOmangFromReader(row));
-                }
-            }
-        } finally {
-            await queryRunner.release();
+    try {
+      await queryRunner.connect();
+      const rows = await queryRunner.query(query, [lParameter]);
+
+      if (rows && rows.length > 0) {
+        for (const row of rows) {
+          result.push(this.getOmangFromReader(row));
         }
-    
-        return result;
+      }
+    } finally {
+      await queryRunner.release();
     }
 
-    
-    async getByName(firstName: string, lastName: string, pager: Pager): Promise<Omang[]> {
-        // First prepare the database query
-        // Adding wildcard operator for less restrictive searches
-        firstName += "%";
-        lastName += "%";
-        const filter = "UPPER(FIRST_NME) LIKE UPPER(:firstName) AND UPPER(SURNME) LIKE UPPER(:lastName)";
-        const fParameter = firstName; // parameter to prevent SQL injection
-        const lParameter = lastName;
+    return result;
+  }
 
-        const result: Omang[] = [];
-        const queryRunner = this.connection.createQueryRunner();
-    
-        const query = `
+  async getByName(
+    firstName: string,
+    lastName: string,
+    pager: Pager,
+  ): Promise<Omang[]> {
+    // First prepare the database query
+    // Adding wildcard operator for less restrictive searches
+    firstName += '%';
+    lastName += '%';
+    const filter =
+      'UPPER(FIRST_NME) LIKE UPPER(:firstName) AND UPPER(SURNME) LIKE UPPER(:lastName)';
+    const fParameter = firstName; // parameter to prevent SQL injection
+    const lParameter = lastName;
+
+    const result: Omang[] = [];
+    const queryRunner = this.connection.createQueryRunner();
+
+    const query = `
             SELECT *
             FROM (
                 SELECT a.*, rownum r
@@ -236,44 +248,42 @@ export class OmangRepository {
             )
             WHERE r >= (((${pager.pageNum} - 1) * ${pager.pageSize}) + 1)
         `;
-        
-        try {
-            await queryRunner.connect();
-            const rows = await queryRunner.query(query, [fParameter,lParameter]);
 
-            if (rows && rows.length > 0) {
-                for (const row of rows) {
-                    result.push(this.getOmangFromReader(row));
-                }
-            }
-        } finally {
-            await queryRunner.release();
+    try {
+      await queryRunner.connect();
+      const rows = await queryRunner.query(query, [fParameter, lParameter]);
+
+      if (rows && rows.length > 0) {
+        for (const row of rows) {
+          result.push(this.getOmangFromReader(row));
         }
-    
-        return result;
+      }
+    } finally {
+      await queryRunner.release();
     }
 
-    async getMany(IDNO: string[], pager: Pager): Promise<Omang[]> {
-        // const parameters = IDNO.map((s, i) => `$${i + 1}`); // create parameter array
-        // const parameterStr = parameters.join(', '); // Get parameter string with comma delimiter
-        // const filter = `UPPER(ID_NO) IN (${parameterStr})`;
+    return result;
+  }
 
-        const parameters : any = {};
-        IDNO.forEach((id, index) => {
-            parameters[`ID${index}`] = id;
-        });
+  async getMany(IDNO: string[], pager: Pager): Promise<Omang[]> {
+    // const parameters = IDNO.map((s, i) => `$${i + 1}`); // create parameter array
+    // const parameterStr = parameters.join(', '); // Get parameter string with comma delimiter
+    // const filter = `UPPER(ID_NO) IN (${parameterStr})`;
 
-        const filter = IDNO.map((_, i) => `UPPER(ID_NO) = :ID${i}`).join(' OR ');
+    const parameters: any = {};
+    IDNO.forEach((id, index) => {
+      parameters[`ID${index}`] = id;
+    });
 
-    
-        // Creating the parameters
-        const valueAr: string[] = IDNO.map((id) => id.toUpperCase());
+    const filter = IDNO.map((_, i) => `UPPER(ID_NO) = :ID${i}`).join(' OR ');
 
+    // Creating the parameters
+    const valueAr: string[] = IDNO.map((id) => id.toUpperCase());
 
-        const result: Omang[] = [];
-        const queryRunner = this.connection.createQueryRunner();
-        
-        const query = `
+    const result: Omang[] = [];
+    const queryRunner = this.connection.createQueryRunner();
+
+    const query = `
             SELECT *
             FROM (
                 SELECT a.*, rownum r
@@ -309,36 +319,39 @@ export class OmangRepository {
             )
             WHERE r >= (((${pager.pageNum} - 1) * ${pager.pageSize}) + 1)
         `;
-    
-        try {
-            await queryRunner.connect();
-            const rows = await queryRunner.query(query, parameters);
-    
-            if (rows && rows.length > 0) {
-                for (const row of rows) {
-                    result.push(this.getOmangFromReader(row));
-                }
-            }
-        } finally {
-            await queryRunner.release();
+
+    try {
+      await queryRunner.connect();
+      const rows = await queryRunner.query(query, parameters);
+
+      if (rows && rows.length > 0) {
+        for (const row of rows) {
+          result.push(this.getOmangFromReader(row));
         }
-    
-        return result;
       }
+    } finally {
+      await queryRunner.release();
+    }
 
-      async getDeceased(startDate: Date | null, endDate: Date | null, pager: Pager): Promise<Omang[]> {
+    return result;
+  }
 
-        const filter = `DECEASED_DTE IS NOT NULL 
+  async getDeceased(
+    startDate: Date | null,
+    endDate: Date | null,
+    pager: Pager,
+  ): Promise<Omang[]> {
+    const filter = `DECEASED_DTE IS NOT NULL 
                         AND DECEASED_DTE >= :startDate
                         AND DECEASED_DTE <= :endDate`;
 
-        const sParameter = startDate ? startDate : null;
-        const eParameter =  endDate ? endDate : null;
+    const sParameter = startDate ? startDate : null;
+    const eParameter = endDate ? endDate : null;
 
-        const result: Omang[] = [];
-        const queryRunner = this.connection.createQueryRunner();
-    
-        const query = `
+    const result: Omang[] = [];
+    const queryRunner = this.connection.createQueryRunner();
+
+    const query = `
             SELECT *
             FROM (
                 SELECT a.*, rownum r
@@ -375,25 +388,28 @@ export class OmangRepository {
             WHERE r >= (((${pager.pageNum} - 1) * ${pager.pageSize}) + 1)
         `;
 
-        try {
-            await queryRunner.connect();
-            const rows = await queryRunner.query(query, [sParameter,eParameter]);
+    try {
+      await queryRunner.connect();
+      const rows = await queryRunner.query(query, [sParameter, eParameter]);
 
-            if (rows && rows.length > 0) {
-                for (const row of rows) {
-                    result.push(this.getOmangFromReader(row));
-                }
-            }
-        } finally {
-            await queryRunner.release();
+      if (rows && rows.length > 0) {
+        for (const row of rows) {
+          result.push(this.getOmangFromReader(row));
         }
-    
-        return result;
+      }
+    } finally {
+      await queryRunner.release();
     }
 
-    async getChanged(startDate: Date| null , endDate: Date | null, pager: Pager): Promise<Omang[]> {
-        
-        const filter = `(
+    return result;
+  }
+
+  async getChanged(
+    startDate: Date | null,
+    endDate: Date | null,
+    pager: Pager,
+  ): Promise<Omang[]> {
+    const filter = `(
             (DECEASED_DTE IS NOT NULL 
             AND DECEASED_DTE >= :startDateD
             AND DECEASED_DTE <= :endDateD) 
@@ -402,18 +418,15 @@ export class OmangRepository {
             AND CHANGE_DTE <= :endDateC) 
         )`;
 
+    const sParameterD = startDate ? startDate : null;
+    const eParameterD = endDate ? endDate : null;
+    const sParameterC = startDate ? startDate : null;
+    const eParameterC = endDate ? endDate : null;
 
-        
-        const sParameterD = startDate ? startDate : null;
-        const eParameterD = endDate ? endDate : null;
-        const sParameterC = startDate ? startDate : null;
-        const eParameterC = endDate ? endDate : null;
+    const result: Omang[] = [];
+    const queryRunner = this.connection.createQueryRunner();
 
-
-        const result: Omang[] = [];
-        const queryRunner = this.connection.createQueryRunner();
-        
-        const query = `
+    const query = `
             SELECT *
             FROM (
                 SELECT a.*, rownum r
@@ -450,19 +463,24 @@ export class OmangRepository {
             WHERE r >= (((${pager.pageNum} - 1) * ${pager.pageSize}) + 1)
         `;
 
-        try {
-            await queryRunner.connect();
-            const rows = await queryRunner.query(query, [sParameterD, eParameterD, sParameterC, eParameterC]);
+    try {
+      await queryRunner.connect();
+      const rows = await queryRunner.query(query, [
+        sParameterD,
+        eParameterD,
+        sParameterC,
+        eParameterC,
+      ]);
 
-            if (rows && rows.length > 0) {
-                for (const row of rows) {
-                    result.push(this.getOmangFromReader(row));
-                }
-            }
-        } finally {
-            await queryRunner.release();
+      if (rows && rows.length > 0) {
+        for (const row of rows) {
+          result.push(this.getOmangFromReader(row));
         }
-    
-        return result;
+      }
+    } finally {
+      await queryRunner.release();
     }
+
+    return result;
+  }
 }

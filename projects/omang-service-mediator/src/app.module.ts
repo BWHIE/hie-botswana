@@ -22,28 +22,47 @@ import { json, text } from 'express';
 
 @Module({
   imports: [
-
     UserModule,
     BirthModule,
     DeathModule,
     OmangModule,
     MasterPatientIndexModule,
     ImmigrationModule,
-    ],
+  ],
 
-  controllers: [AppController, BDRSController,OmangController,PatientController],
-  providers: [AppService, BDRSService,OmangService, ImmigrationService,PatientService,IpWhitelistGuard,BasicAuthGuard],
+  controllers: [
+    AppController,
+    BDRSController,
+    OmangController,
+    PatientController,
+  ],
+  providers: [
+    AppService,
+    BDRSService,
+    OmangService,
+    ImmigrationService,
+    PatientService,
+    IpWhitelistGuard,
+    BasicAuthGuard,
+  ],
 })
 export class AppModule {
-
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(json({ limit: '10Mb', type: ['application/fhir+json', 'application/json+fhir', 'application/json'] }))
+      .apply(
+        json({
+          limit: '10Mb',
+          type: [
+            'application/fhir+json',
+            'application/json+fhir',
+            'application/json',
+          ],
+        }),
+      )
       .forRoutes('*')
       .apply(text())
       .forRoutes('*')
       .apply(cookieParser())
       .forRoutes('*');
   }
-  
 }
