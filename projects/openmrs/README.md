@@ -77,13 +77,7 @@ Before running the Docker Compose scripts, some additional alterations are neede
 
 #### docker-compose.yml update
 
-Update the `openmrs-module-botswanaemr/docker/docker-compose.yml` script to include the database dump as a volume
-
-```
-volumes:
-    ...
-    - ./dbdump:/docker-entrypoint-initdb.d
-```
+Update the `openmrs-module-botswanaemr/docker/docker-compose.yml` as indicated in the [setup steps](https://docs.google.com/document/d/1xrSdsROGDm3H6KlAZ13G408doGsGDaG5071QktwVQcs/edit#heading=h.344rvhnirz4w) - Steps 7
 
 #### openmrs-distro.properties update
 
