@@ -1,34 +1,35 @@
 version: "3.8"
 
 services:
+  oracle-db:
+    image: ${OMANG_ORACLE_DOCKER_IMAGE}
+    environment:
+      - ORACLE_SID=${OMANG_ORACLE_SID}
+      - ORACLE_ALLOW_REMOTE=true
+      - TZ=GMT
+      - ORACLE_PASSWORD=${OMANG_ORACLE_PASSWORD}
+    configs:
+      - source: init_sql
+        target: /docker-entrypoint-initdb.d/init.sql
+    networks:
+      public:
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 30s
+    ports:
+      - "1521:1522"
+
   omang-api:
     ports:
       - 5002:80
     volumes:
-      - ../../projects/omang-service-mediator/src:/app/src
-      - ../../projects/omang-service-mediator/node_modules:/app/node_modules
-    depends_on:
-      oracle-db:
-        condition: service_healthy
-  
-  oracle-db:
-    image: gvenzl/oracle-xe
-    hostname: oracle-db
-    container_name: oracle-db
-    restart: always
-    environment:
-    - ORACLE_SID=XE 
-    - ORACLE_ALLOW_REMOTE=true
-    - TZ=GMT
-    - ORACLE_RANDOM_PASSWORD=yes
-    volumes:
-      - ../../projects/omang-service-mediator/db:/docker-entrypoint-initdb.d
-    networks:
-      - omangsvc
-    ports:
-      - "1521:1521"
-    healthcheck:
-      test: ["CMD-SHELL", "echo 'SELECT 1 FROM dual;' | sqlplus -s SYSTEM/oracle@//localhost:1521/XE"]
-      interval: 30s
-      timeout: 10s
-      retries: 10
+      - ${OMANG_DEV_MOUNT_FOLDER}/src:/app/src
+      - ${OMANG_DEV_MOUNT_FOLDER}/node_modules:/app/node_modules
+
+configs:
+  init_sql:
+    file: ./config/init.sql
+    name: init.sql-test1234
+    labels:
+      name: oracle

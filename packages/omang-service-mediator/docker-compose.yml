@@ -2,20 +2,37 @@ version: "3.8"
 
 services:
   omang-api:
-    image: jembi/omangsvc:latest
-    hostname: omang-api
-    container_name: omang-api
-    restart: unless-stopped
+    image: jembi/omangsvc:local
     networks:
-      - opencr
-      - hapi-fhir
-      - elasticsearch
-      - default
-      - openhim
-      - omangsvc
+      opencr:
+      hapi-fhir:
+      elasticsearch:
+      default:
+      openhim:
+      public:
     environment:
       - DB_HOST=${OMANG_SERVICE_DB_HOST}
-  
+      - DB_SID=${OMANG_ORACLE_SID}
+      - DB_PORT=${OMANG_ORACLE_PORT}
+      - CITIZEN_DB=${OMANG_ORACLE_CITIZEN_DB}
+      - CITIZEN_USERNAME=${OMANG_ORACLE_CITIZEN_USERNAME}
+      - CITIZEN_PASSWORD=${OMANG_ORACLE_CITIZEN_PASSWORD}
+      - BDRS_DB=${OMANG_ORACLE_BDRS_DB}
+      - BDRS_USERNAME=${OMANG_ORACLE_BDRS_USERNAME}
+      - BDRS_PASSWORD=${OMANG_ORACLE_BDRS_PASSWORD}
+      - IMMIGRATION_DB=${OMANG_ORACLE_IMMIGRATION_DB}
+      - IMMIGRATION_USERNAME=${OMANG_ORACLE_IMMIGRATION_USERNAME}
+      - IMMIGRATION_PASSWORD=${OMANG_ORACLE_IMMIGRATION_PASSWORD}
+    deploy:
+      replicas: 1
+      # resources:
+      #   limits:
+      #     memory: ${JEMPI_RATEL_MEMORY_LIMIT}
+      #   reservations:
+      #     memory: ${JEMPI_RATEL_MEMORY_RESERVE}
+      restart_policy:
+        condition: on-failure
+
 networks:
   opencr:
     name: opencr_public
@@ -29,7 +46,7 @@ networks:
   openhim:
     name: openhim_public
     external: true
-  omangsvc:
-    name: omangsvc_public
-    external: true
   default:
+  public:
+    name: omang-api_public
+    external: true

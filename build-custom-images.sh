@@ -17,7 +17,7 @@ docker build \
     --no-cache
 
 docker build \
-    -t jembi/omangsvc:latest \
+    -t jembi/omangsvc:local \
     -f projects/omang-service-mediator/Dockerfile \
     projects/omang-service-mediator/ \
     --no-cache

@@ -1,42 +1,51 @@
 import { DataSourceOptions } from 'typeorm';
+import config from './config';
 
-export const omangDataSourceOptions: DataSourceOptions = {
+const createOracleDataSourceOptions = (
+  name: string,
+  dbConfigKey: string,
+  userConfigKey: string,
+  passwordConfigKey: string,
+  synchronize: boolean = false,
+  hasServiceName: boolean = false
+): DataSourceOptions => ({
+  name,
   type: 'oracle',
-  username: 'omang',
-  password: 'some-password',
-  connectString:
-    '(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = oracle-db)(PORT = 1521))(CONNECT_DATA = (SID = XE)))',
-  database: 'OMANG_CITIZEN',
-};
+  database: config.get(dbConfigKey),
+  username: config.get(userConfigKey),
+  password: config.get(passwordConfigKey),
+  connectString: `(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = ${config.get('DB_HOST')})(PORT = ${config.get('DB_PORT')}))(CONNECT_DATA = (SID = ${config.get('DB_SID')})${hasServiceName ? `(SERVICE_NAME = ${config.get('DB_SID')})` : ''}))`,
+  synchronize,
+});
 
-export const birthDataSourceOptions: DataSourceOptions = {
-  name: 'birthConnection',
-  type: 'oracle',
-  username: 'bdr',
-  password: 'some-password',
-  connectString:
-    '(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = oracle-db)(PORT = 1521))(CONNECT_DATA = (SID = XE)(SERVICE_NAME = XE)))',
-  synchronize: true,
-};
+export const omangDataSourceOptions: DataSourceOptions = createOracleDataSourceOptions(
+  'omangConnection',
+  'CITIZEN_DB',
+  'CITIZEN_USERNAME',
+  'CITIZEN_PASSWORD'
+);
 
-export const deathDataSourceOptions: DataSourceOptions = {
-  name: 'deathConnection',
-  type: 'oracle',
-  username: 'bdr',
-  password: 'some-password',
-  database: 'V_DEATH',
-  connectString:
-    '(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = oracle-db)(PORT = 1521))(CONNECT_DATA = (SID = XE)))',
-  synchronize: true,
-};
+export const birthDataSourceOptions: DataSourceOptions = createOracleDataSourceOptions(
+  'birthConnection',
+  'BDRS_DB',
+  'BDRS_USERNAME',
+  'BDRS_PASSWORD',
+  true,
+  true
+);
 
-export const immigrationDataSourceOptions: DataSourceOptions = {
-  name: 'immigrationConnection',
-  type: 'oracle',
-  username: 'immigration',
-  password: 'some-password',
-  database: 'V_MOH',
-  connectString:
-    '(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = oracle-db)(PORT = 1521))(CONNECT_DATA = (SID = XE)))',
-  synchronize: true,
-};
+export const deathDataSourceOptions: DataSourceOptions = createOracleDataSourceOptions(
+  'deathConnection',
+  'BDRS_DB',
+  'BDRS_USERNAME',
+  'BDRS_PASSWORD',
+  true
+);
+
+export const immigrationDataSourceOptions: DataSourceOptions = createOracleDataSourceOptions(
+  'immigrationConnection',
+  'IMMIGRATION_DB',
+  'IMMIGRATION_USERNAME',
+  'IMMIGRATION_PASSWORD',
+  true
+);

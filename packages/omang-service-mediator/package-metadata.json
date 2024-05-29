@@ -5,9 +5,22 @@
     "type": "infrastructure",
     "version": "0.0.1",
     "dependencies": ["fhir-datastore-hapi-fhir", "analytics-datastore-elastic-search", "interoperability-layer-openhim", "client-registry-opencr"],
-    "environmentVariables": {    
-      "OMANG_SERVICE_DB_HOST": "oracle-db"
-    
+    "environmentVariables": {
+      "OMANG_ORACLE_DOCKER_IMAGE": "gvenzl/oracle-xe",
+      "OMANG_ORACLE_PASSWORD": "dev_password_only",
+      "OMANG_SERVICE_DB_HOST": "oracle-db",
+      "OMANG_ORACLE_PORT": "1521",
+      "OMANG_ORACLE_SID": "XE",
+      "OMANG_ORACLE_CITIZEN_DB": "OMANG_CITIZEN",
+      "OMANG_ORACLE_CITIZEN_USERNAME": "omang",
+      "OMANG_ORACLE_CITIZEN_PASSWORD": "some-password",
+      "OMANG_ORACLE_BDRS_DB": "V_DEATH",
+      "OMANG_ORACLE_BDRS_USERNAME": "bdr",
+      "OMANG_ORACLE_BDRS_PASSWORD": "some-password",
+      "OMANG_ORACLE_IMMIGRATION_DB": "V_MOH",
+      "OMANG_ORACLE_IMMIGRATION_USERNAME": "immigration",
+      "OMANG_ORACLE_IMMIGRATION_PASSWORD": "some-password",
+      "OMANG_DEV_MOUNT_FOLDER": ""
     }
   }
   
