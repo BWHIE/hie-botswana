@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectConnection } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { Omang } from '../models/omang';
-import { Pager } from '../../../utils/pager';
+import { Pager } from 'src/utils/pager';
 
 @Injectable()
 export class OmangRepository {

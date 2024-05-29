@@ -11,8 +11,8 @@ import { OmangModule } from '../../omang/omang.module';
 import { MasterPatientIndexModule } from '../../mpi/mpi.module';
 import { UserModule } from '../../user/user.module';
 import { fhirR4 } from '@smile-cdr/fhirts';
-import { FhirAPIResponses } from '../../../utils/fhir-responses';
-import { Pager } from '../../../utils/pager';
+import { FhirAPIResponses } from 'src/utils/fhir-responses';
+import { Pager } from 'src/utils/pager';
 
 /** Variables mock FHIR Patients  (expected output)*/
 

@@ -7,7 +7,7 @@ import {
   InternalServerErrorException,
   UseGuards,
 } from '@nestjs/common';
-import { Pager } from '../../../utils/pager';
+import { Pager } from 'src/utils/pager';
 import { BDRSService } from '../services/bdrs.service';
 import { BasicAuthGuard } from '../../user/models/authentification';
 

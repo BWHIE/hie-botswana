@@ -1,10 +1,10 @@
 import { Injectable, Logger, Inject } from '@nestjs/common';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { ImmigrationRepository } from '../repositories/immigration-repository';
-import { FhirAPIResponses } from '../../../utils/fhir-responses';
+import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { ImmigrationRecord } from '../models/immigration-record';
-import { Pager } from '../../../utils/pager';
-import { mapImmigrationRecordToSearchBundle } from '../../../utils/fhirmapper';
+import { Pager } from 'src/utils/pager';
+import { mapImmigrationRecordToSearchBundle } from 'src/utils/fhirmapper';
 import { BaseService } from '../../../services/base.service';
 import { MasterPatientIndex } from '../../mpi/services/mpi';
 

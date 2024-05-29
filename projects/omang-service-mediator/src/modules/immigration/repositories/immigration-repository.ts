@@ -1,5 +1,5 @@
 import { ImmigrationRecord } from '../models/immigration-record';
-import { Pager } from '../../../utils/pager';
+import { Pager } from 'src/utils/pager';
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectConnection } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';

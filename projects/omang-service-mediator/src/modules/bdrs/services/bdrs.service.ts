@@ -1,20 +1,18 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { Pager } from '../../../utils/pager';
+import { Pager } from 'src/utils/pager';
 import { BirthRecord } from '../models/birth-record';
 import { DeathRecord } from '../models/death-record';
 import { BirthDeathRecord } from '../models/birthdeath-record';
-import {
-  DeathRepository,
-  BirthRepository,
-} from '../repositories/bdrs-repositories';
+import { DeathRepository } from '../repositories/death.repository';
+import { BirthRepository } from '../repositories/birth.repository';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import {
   mapBirthDeathRecordToFhirPatient,
   mapBirthDeathRecordToSearchBundle,
   mapDeathRecordsToSearchBundle,
   mapBirthRecordsToSearchBundle,
-} from '../../../utils/fhirmapper';
-import { FhirAPIResponses } from '../../../utils/fhir-responses';
+} from 'src/utils/fhirmapper';
+import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { MasterPatientIndex } from '../../mpi/services/mpi';
 
 @Injectable()

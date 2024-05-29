@@ -5,7 +5,7 @@ import { OmangService } from '../../omang/services/omang.service';
 import { MasterPatientIndex } from '../../mpi/services/mpi';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { ClientRegistry } from '../../../app-settings.json';
-import { Pager } from '../../../utils/pager';
+import { Pager } from 'src/utils/pager';
 
 @Injectable()
 export class PatientService {

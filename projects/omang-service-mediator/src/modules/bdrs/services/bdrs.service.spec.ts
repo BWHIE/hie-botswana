@@ -3,16 +3,16 @@ import { BDRSService } from './bdrs.service';
 import {
   DeathRepository,
   BirthRepository,
-} from '../../bdrs/repositories/bdrs-repositories';
+} from '../repositories/death.repository';
 import { MasterPatientIndex } from '../../mpi/services/mpi';
-import { Pager } from '../../../utils/pager';
+import { Pager } from 'src/utils/pager';
 import { BirthModule } from '../birth/birth.module';
 import { DeathModule } from '../death/death.module';
 import { MasterPatientIndexModule } from '../../mpi/mpi.module';
 import { UserModule } from '../../user/user.module';
 import { BirthRecord } from '../models/birth-record';
 import { DeathRecord } from '../models/death-record';
-import { FhirAPIResponses } from '../../../utils/fhir-responses';
+import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { fhirR4 } from '@smile-cdr/fhirts';
 
 describe('BDRSService', () => {

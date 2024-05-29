@@ -1,10 +1,10 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { Pager } from '../../../utils/pager';
+import { Pager } from 'src/utils/pager';
 import { OmangRepository } from '../repositories/omang-repository';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { Omang } from '../models/omang';
-import { mapOmangToSearchBundle } from '../../../utils/fhirmapper';
-import { FhirAPIResponses } from '../../../utils/fhir-responses';
+import { mapOmangToSearchBundle } from 'src/utils/fhirmapper';
+import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { BaseService } from '../../../services/base.service';
 import { MasterPatientIndex } from '../../mpi/services/mpi';
 

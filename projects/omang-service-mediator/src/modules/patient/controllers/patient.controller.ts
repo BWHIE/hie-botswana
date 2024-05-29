@@ -7,7 +7,7 @@ import {
   InternalServerErrorException,
   UseGuards,
 } from '@nestjs/common';
-import { Pager } from '../../../utils/pager';
+import { Pager } from 'src/utils/pager';
 import { ImmigrationService } from '../../immigration/services/immigration.service';
 import { PatientService } from '../services/patient.service';
 import { fhirR4 } from '@smile-cdr/fhirts';

@@ -3,12 +3,12 @@ import { OmangRepository } from '../repositories/omang-repository';
 import { OmangService } from './omang.service';
 import { MasterPatientIndex } from '../../mpi/services/mpi';
 import { Omang } from '../models/omang';
-import { FhirAPIResponses } from '../../../utils/fhir-responses';
+import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { MasterPatientIndexModule } from '../../mpi/mpi.module';
 import { OmangModule } from '../omang.module';
 import { UserModule } from '../../user/user.module';
-import { Pager } from '../../../utils/pager';
+import { Pager } from 'src/utils/pager';
 
 /** Variables mock FHIR Patients  (expected output)*/
 

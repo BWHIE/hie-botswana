@@ -2,7 +2,7 @@
 import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { createConnection } from 'typeorm';
-import { BirthRepository } from '../repositories/bdrs-repositories';
+import { BirthRepository } from '../repositories/birth.repository';
 import { birthDataSourceOptions } from '../../../config/ormconfig';
 
 @Module({

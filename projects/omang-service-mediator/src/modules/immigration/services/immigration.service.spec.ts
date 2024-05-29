@@ -7,8 +7,8 @@ import { UserModule } from '../../user/user.module';
 import { ImmigrationService } from '../../immigration/services/immigration.service';
 import { MasterPatientIndex } from '../../mpi/services/mpi';
 import { fhirR4 } from '@smile-cdr/fhirts';
-import { FhirAPIResponses } from '../../../utils/fhir-responses';
-import { Pager } from '../../../utils//pager';
+import { FhirAPIResponses } from 'src/utils/fhir-responses';
+import { Pager } from 'src/utils//pager';
 
 /** Variables mock FHIR Patients  (expected output)*/
 
