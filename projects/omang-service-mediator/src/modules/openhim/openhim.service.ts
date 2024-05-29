@@ -42,7 +42,6 @@ export class OpenHimService implements OnModuleInit {
     };
     registerMediator(config, this.mediatorConfig, (error: Error) => {
       if (error) {
-        console.log("????", error)
         this.logger.error(`Failed to register mediator: ${error.message}`);
         throw new Error(`Failed to register mediator: ${error.message}`);
       }

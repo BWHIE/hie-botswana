@@ -278,9 +278,7 @@ describe('BDRSService', () => {
       endDate,
       pager,
     );
-
-    // console.log(result);
-
+    
     // Assert
     expect(result).toEqual(mockedBirthRecords);
     expect(mockBirthRepository.findBirthsByDate).toHaveBeenCalledWith(
