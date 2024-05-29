@@ -5,7 +5,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { Request } from 'express';
-import { SafeList } from '../app-settings.json';
+import config from 'src/config';
 
 @Injectable()
 export class IpWhitelistGuard implements CanActivate {
@@ -13,7 +13,7 @@ export class IpWhitelistGuard implements CanActivate {
     const request: Request = context.switchToHttp().getRequest();
     const clientIp = this.getClientIp(request);
 
-    const safelist = SafeList.IP.split(';');
+    const safelist = config.get('SafeList:IP').split(';');
     if (!safelist.includes(clientIp)) {
       throw new ForbiddenException(
         'Forbidden request from remote IP address: ' + clientIp,

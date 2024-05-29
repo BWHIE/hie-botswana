@@ -1,7 +1,7 @@
-import { Injectable, Logger, Inject } from '@nestjs/common';
-import { MasterPatientIndex } from '../modules/mpi/services/mpi';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import { fhirR4 } from '@smile-cdr/fhirts';
-import { ClientRegistry } from '../app-settings.json';
+import config from 'src/config';
+import { MasterPatientIndex } from '../modules/mpi/services/mpi';
 
 @Injectable()
 export abstract class BaseService {
@@ -43,7 +43,7 @@ export abstract class BaseService {
   protected needsUpdateOrIsEmpty(searchBundle: fhirR4.Bundle): boolean {
     if (!searchBundle || searchBundle.total === 0) return true;
 
-    const maxDays = Number(ClientRegistry.maxDaysBeforeUpdate);
+    const maxDays = Number(config.get('ClientRegistry:maxDaysBeforeUpdate'));
     const lastUpdated = searchBundle.meta?.lastUpdated;
     return (
       lastUpdated &&

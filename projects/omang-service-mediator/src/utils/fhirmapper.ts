@@ -1,14 +1,14 @@
-import { ClientRegistry } from '../app-settings.json';
 import { fhirR4 } from '@smile-cdr/fhirts';
 
-import { ImmigrationRecord } from '../modules/immigration/models/immigration-record';
 import { BirthDeathRecord } from '../modules/bdrs/models/birthdeath-record';
 import { DeathRecord } from '../modules/bdrs/models/death-record';
+import { ImmigrationRecord } from '../modules/immigration/models/immigration-record';
 import { Omang, OmangFHIRPatient } from '../modules/omang/models/omang';
 
-import { FhirAPIResponses } from './fhir-responses';
-import { BirthRecord } from 'src/modules/bdrs/models/birth-record';
 import { createHash } from 'crypto';
+import config from 'src/config';
+import { BirthRecord } from 'src/modules/bdrs/models/birth-record';
+import { FhirAPIResponses } from './fhir-responses';
 
 function calculateMD5Hash(input: string): string {
   const md5 = createHash('md5');
@@ -33,7 +33,7 @@ export function mapImmigrationRecordToFhirPatient(
 
   // Identifier
   const patIdentifier: fhirR4.Identifier = new fhirR4.Identifier();
-  patIdentifier.system = ClientRegistry.ImmigrationSystem;
+  patIdentifier.system = config.get('ClientRegistry:ImmigrationSystem');
   patIdentifier.value = immigrationRecord.PASSPORT_NO;
 
   // Hash Unique Internal ID
@@ -99,7 +99,7 @@ export function mapBirthDeathRecordToFhirPatient(
 
     // Identifier
     const patIdentifier = new fhirR4.Identifier();
-    patIdentifier.system = ClientRegistry.BdrsSystem;
+    patIdentifier.system = config.get('ClientRegistry:BdrsSystem');
     patIdentifier.value = br.ID_NUMBER;
     const hashedId = calculateMD5Hash(br.ID_NUMBER);
 
@@ -173,7 +173,7 @@ export function mapOmangToFhirPatient(omang: Omang): fhirR4.Patient | null {
 
     // Identifier
     const pat_identifier = new fhirR4.Identifier();
-    pat_identifier.system = ClientRegistry.OmangSystem;
+    pat_identifier.system = config.get('ClientRegistry:OmangSystem');
     pat_identifier.value = omang.IdNo;
 
     // Hash Unique Internal ID
@@ -262,7 +262,7 @@ export function mapOmangToSearchBundle(omangRecords: Omang[]): fhirR4.Bundle {
 
     const entry = new fhirR4.BundleEntry();
     entry.fullUrl =
-      ClientRegistry.OmangSystem + patient.constructor.name + patient.id;
+      config.get('ClientRegistry:OmangSystem') + patient.constructor.name + patient.id;
 
     entry.resource = patient;
     searchBundle.entry.push(entry);
@@ -281,7 +281,7 @@ export function mapImmigrationRecordToSearchBundle(
 
     const entry = new fhirR4.BundleEntry();
     entry.fullUrl =
-      ClientRegistry.ImmigrationSystem + patient.constructor.name + patient.id;
+      config.get('ClientRegistry:ImmigrationSystem') + patient.constructor.name + patient.id;
 
     entry.resource = patient;
     searchBundle.entry.push(entry);
@@ -291,25 +291,6 @@ export function mapImmigrationRecordToSearchBundle(
   return searchBundle;
 }
 
-export function mapBirthDeathRecordToSearchBundle(
-  birthDeathRecord: BirthDeathRecord[],
-): fhirR4.Bundle {
-  const searchBundle: fhirR4.Bundle = FhirAPIResponses.RecordInitialized;
-
-  for (const bdr of birthDeathRecord) {
-    const patient: fhirR4.Patient = mapBirthDeathRecordToFhirPatient(bdr);
-
-    const entry = new fhirR4.BundleEntry();
-    entry.fullUrl =
-      ClientRegistry.BdrsSystem + patient.constructor.name + patient.id;
-
-    entry.resource = patient;
-    searchBundle.entry.push(entry);
-    ++searchBundle.total;
-  }
-
-  return searchBundle;
-}
 
 export function prepareFhirPatient(omang: Omang): OmangFHIRPatient | null {
   let result: OmangFHIRPatient | null = null;
@@ -376,6 +357,7 @@ export function prepareFhirPatient(omang: Omang): OmangFHIRPatient | null {
 
   return result;
 }
+
 export function mapDeathRecordToFhirPatient(
   deathRecord: DeathRecord,
 ): fhirR4.Patient {
@@ -393,7 +375,7 @@ export function mapDeathRecordToFhirPatient(
   //Identifier
 
   const patIdentifier: fhirR4.Identifier = new fhirR4.Identifier();
-  patIdentifier.system = ClientRegistry.BdrsSystem;
+  patIdentifier.system = config.get('ClientRegistry:BdrsSystem');
   patIdentifier.value = deathRecord.ID_NUMBER;
   // Hash Unique Internal ID
   const hashedId: string = calculateMD5Hash(deathRecord.ID_NUMBER);
@@ -489,7 +471,7 @@ export function mapDeathRecordsToSearchBundle(
 
     const entry = new fhirR4.BundleEntry();
     entry.fullUrl =
-      ClientRegistry.BdrsSystem + patient.constructor.name + patient.id;
+      config.get('ClientRegistry:BdrsSystem') + patient.constructor.name + patient.id;
 
     entry.resource = patient;
     searchBundle.entry.push(entry);
@@ -517,7 +499,7 @@ export function mapBirthecordToFhirPatient(
   //Identifier
 
   const patIdentifier: fhirR4.Identifier = new fhirR4.Identifier();
-  patIdentifier.system = ClientRegistry.BdrsSystem;
+  patIdentifier.system = config.get('ClientRegistry:BdrsSystem');
   patIdentifier.value = birthRecord.ID_NUMBER;
   // Hash Unique Internal ID
   const hashedId: string = calculateMD5Hash(birthRecord.ID_NUMBER);
@@ -601,7 +583,7 @@ export function mapBirthRecordsToSearchBundle(
 
     const entry = new fhirR4.BundleEntry();
     entry.fullUrl =
-      ClientRegistry.BdrsSystem + patient.constructor.name + patient.id;
+      config.get('ClientRegistry:BdrsSystem') + patient.constructor.name + patient.id;
 
     entry.resource = patient;
     searchBundle.entry.push(entry);

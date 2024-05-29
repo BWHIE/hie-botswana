@@ -1,11 +1,11 @@
-import { Injectable, Logger, Inject } from '@nestjs/common';
-import { ImmigrationService } from '../../immigration/services/immigration.service';
-import { BDRSService } from '../../bdrs/services/bdrs.service';
-import { OmangService } from '../../omang/services/omang.service';
-import { MasterPatientIndex } from '../../mpi/services/mpi';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import { fhirR4 } from '@smile-cdr/fhirts';
-import { ClientRegistry } from '../../../app-settings.json';
+import { config } from 'src/config';
 import { Pager } from 'src/utils/pager';
+import { BDRSService } from '../../bdrs/services/bdrs.service';
+import { ImmigrationService } from '../../immigration/services/immigration.service';
+import { MasterPatientIndex } from '../../mpi/services/mpi';
+import { OmangService } from '../../omang/services/omang.service';
 
 @Injectable()
 export class PatientService {
@@ -36,11 +36,11 @@ export class PatientService {
   ): Promise<fhirR4.Bundle> {
     this.logger.log('Getting patient by Full Name');
 
-    if (system === ClientRegistry.OmangSystem) {
+    if (system === config.get('ClientRegistry:OmangSystem')) {
       return this.omang.findOmangByFullName(firstName, lastName, pager);
-    } else if (system === ClientRegistry.ImmigrationSystem) {
+    } else if (system === config.get('ClientRegistry:ImmigrationSystem')) {
       return this.immigration.getByFullName(firstName, lastName, pager);
-    } else if (system === ClientRegistry.BdrsSystem) {
+    } else if (system === config.get('ClientRegistry:BdrsSystem')) {
       return this.bdrs.findBirthByFullNameFHIR(firstName, lastName, pager);
     } else throw new Error('System Not Supported');
   }
@@ -51,14 +51,14 @@ export class PatientService {
   ): Promise<fhirR4.Bundle> {
     this.logger.log('Getting patient by ID');
 
-    if (system === ClientRegistry.OmangSystem) {
+    if (system === config.get('ClientRegistry:OmangSystem')) {
       return this.omang.getOmangByID([identifier], new Pager(1, 1));
-    } else if (system === ClientRegistry.ImmigrationSystem) {
+    } else if (system === config.get('ClientRegistry:ImmigrationSystem')) {
       return this.immigration.getPatientByPassportNumber(
         identifier,
         new Pager(1, 1),
       );
-    } else if (system === ClientRegistry.BdrsSystem) {
+    } else if (system === config.get('ClientRegistry:BdrsSystem')) {
       return this.bdrs.getBirthByID([identifier], new Pager(1, 1));
     } else throw new Error('System Not Supported');
   }

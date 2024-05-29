@@ -2,8 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { AxiosRequestConfig } from 'axios';
 import { Agent } from 'https';
-import { ClientRegistry } from '../../../app-settings.json';
 import FHIR from 'fhirclient';
+import { config } from 'src/config';
 
 @Injectable()
 export class MasterPatientIndex {
@@ -13,12 +13,12 @@ export class MasterPatientIndex {
   private readonly devMode: boolean;
 
   constructor(private readonly httpService: HttpService) {
-    this.clientRegistryUrl = `${ClientRegistry.OpenhimUrl}${ClientRegistry.CrChannel}`;
-    const client = ClientRegistry.OpenhimClient;
-    const password = ClientRegistry.OpenhimPassword;
+    this.clientRegistryUrl = `${config.get('ClientRegistry:OpenhimUrl')}${config.get('ClientRegistry:CrChannel')}`;
+    const client = config.get('ClientRegistry:OpenhimClient');
+    const password = config.get('ClientRegistry:OpenhimPassword');
     const authString = `${client}:${password}`;
     this.authHeader = `Basic ${Buffer.from(authString).toString('base64')}`;
-    this.devMode = ClientRegistry.devMode === 'true';
+    this.devMode = config.get('ClientRegistry:devMode') === 'true';
   }
 
   private getHttpOptions(): AxiosRequestConfig {

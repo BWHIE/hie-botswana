@@ -8,12 +8,12 @@ import { BirthRepository } from '../repositories/birth.repository';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import {
   mapBirthDeathRecordToFhirPatient,
-  mapBirthDeathRecordToSearchBundle,
   mapDeathRecordsToSearchBundle,
   mapBirthRecordsToSearchBundle,
 } from 'src/utils/fhirmapper';
 import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { MasterPatientIndex } from '../../mpi/services/mpi';
+import { config } from 'src/config';
 
 @Injectable()
 export class BDRSService {
@@ -132,10 +132,32 @@ export class BDRSService {
     } else return FhirAPIResponses.RecordInitialized;
   }
 
+  mapBirthDeathRecordToSearchBundle(
+    birthDeathRecord: BirthDeathRecord[],
+  ): fhirR4.Bundle {
+    const searchBundle: fhirR4.Bundle = FhirAPIResponses.RecordInitialized;
+
+    for (const bdr of birthDeathRecord) {
+      const patient: fhirR4.Patient = mapBirthDeathRecordToFhirPatient(bdr);
+
+      const entry = new fhirR4.BundleEntry();
+      entry.fullUrl =
+        config.get('ClientRegistry:BdrsSystem') +
+        patient.constructor.name +
+        patient.id;
+
+      entry.resource = patient;
+      searchBundle.entry.push(entry);
+      ++searchBundle.total;
+    }
+
+    return searchBundle;
+  }
+
   async getBirthByID(ids: string[], pager: Pager): Promise<fhirR4.Bundle> {
     const results: BirthDeathRecord[] = await this.births.getMany(ids, pager);
     if (results.length > 0) {
-      return mapBirthDeathRecordToSearchBundle(results);
+      return this.mapBirthDeathRecordToSearchBundle(results);
     } else return FhirAPIResponses.RecordInitialized;
   }
 
@@ -161,7 +183,7 @@ export class BDRSService {
         }
 
         // Return Search Bundle
-        return mapBirthDeathRecordToSearchBundle(results);
+        return this.mapBirthDeathRecordToSearchBundle(results);
       } else return null;
     }
   }
