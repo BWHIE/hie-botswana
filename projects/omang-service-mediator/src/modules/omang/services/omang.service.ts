@@ -255,7 +255,7 @@ export class OmangService extends BaseService {
           const patient: fhirR4.Patient = this.mapOmangToFhirPatient(result);
           await this.mpi.createPatient(patient);
         } catch (error) {
-          this.logger.error(`Error creating patient: ${error.message}`);
+          this.logger.error(`Error creating patient: `, error);
         }
       }
     }

@@ -19,5 +19,9 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": false,
     "resolveJsonModule": true
-  }
+  },
+  "include":[ 
+    "src/**/*",
+    "src/**/*.json",
+  ],
 }

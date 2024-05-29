@@ -20,9 +20,9 @@ export abstract class BaseService {
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
       try {
         return this.mpi.getSearchBundle(searchParams);
-      } catch (Exception) {
+      } catch (error) {
         this.logger.warn(
-          `Attempt ${attempt} to get search bundle failed: ${Exception.message}`,
+          `Attempt ${attempt} to get search bundle failed: ${error.message}`,
         );
         await new Promise((resolve) =>
           setTimeout(resolve, Math.pow(2, attempt) * 1000),

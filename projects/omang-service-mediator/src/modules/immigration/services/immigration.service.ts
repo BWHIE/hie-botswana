@@ -109,9 +109,9 @@ export class ImmigrationService extends BaseService {
           this.mapImmigrationRecordToSearchBundle(results);
         return bundle;
       } else return FhirAPIResponses.RecordInitialized;
-    } catch (Exception) {
+    } catch (error) {
       this.logger.error(
-        'Error retrieving records in FHIR format \n ' + Exception.message,
+        'Error retrieving records in FHIR format \n ' + error.message,
       );
     }
   }

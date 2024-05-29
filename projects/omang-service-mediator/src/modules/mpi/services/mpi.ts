@@ -13,7 +13,7 @@ export class MasterPatientIndex {
   private readonly devMode: boolean;
 
   constructor(private readonly httpService: HttpService) {
-    this.clientRegistryUrl = `${config.get('ClientRegistry:ApiUrl')}}`;
+    this.clientRegistryUrl = config.get('ClientRegistry:ApiUrl');
     const authString = ''; //`${client}:${password}`;
     this.authHeader = `Basic ${Buffer.from(authString).toString('base64')}`;
     this.devMode = config.get('ClientRegistry:devMode') === 'true';
@@ -39,21 +39,23 @@ export class MasterPatientIndex {
   async getSearchBundle(query): Promise<any> {
     try {
       const searchResponse = await this.httpService.axiosRef.get<Bundle>(
-        this.clientRegistryUrl,
+        `${this.clientRegistryUrl}/Patient`,
         {
+          params: { identifier: query },
           headers: {
             'Content-Type': 'application/fhir+json',
+            'x-openhim-clientid': 'OmangSvc'
           },
         },
       );
 
       return searchResponse.data;
-    } catch (Exception) {
+    } catch (error) {
       this.logger.error(
         'Could not get CR bundle for patient with ID ' +
           query +
           '\n' +
-          Exception,
+          error,
       );
     }
   }
@@ -69,18 +71,19 @@ export class MasterPatientIndex {
       delete patient.id;
 
       const response = await this.httpService.axiosRef.post(
-        this.clientRegistryUrl,
+        `${this.clientRegistryUrl}/Patient`,
         patient,
         {
           headers: {
             'Content-Type': 'application/fhir+json',
+            'x-openhim-clientid': 'OmangSvc'
           },
         },
       );
-      this.logger.debug('Created patient!\n' + JSON.stringify(response));
+      this.logger.debug('Created patient!\n' + JSON.stringify(response.data));
       return response.data;
     } catch (error) {
-      this.logger.error('Failed to create patient in CR:', error.stack);
+      this.logger.error('Failed to create patient in CR:', error);
       throw error;
     }
   }
