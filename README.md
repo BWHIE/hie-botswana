@@ -113,8 +113,8 @@ For dev environment you can access the admin console using the following credent
 For dev environment you can access the admin console and signin with Keycloak using the following credentials : 
 
 - URL : http://localhost:9000/
-- username : test
-- password : dev_password_only
+- username : root@openhim.org
+- password : instant101
 
 ### OpenCR
 

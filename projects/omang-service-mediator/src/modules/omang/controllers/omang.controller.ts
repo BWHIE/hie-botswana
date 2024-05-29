@@ -22,8 +22,8 @@ export class OmangController {
   async online(): Promise<boolean> {
     try {
       return this.omang.isOnline();
-    } catch (ex) {
-      this.logger.error(ex);
+    } catch (error) {
+      this.logger.error(error);
       throw new InternalServerErrorException();
     }
   }
@@ -44,8 +44,8 @@ export class OmangController {
         new Pager(pageNum, pageSize),
       );
       return bundle;
-    } catch (ex) {
-      this.logger.error(ex);
+    } catch (error) {
+      this.logger.error(error);
       throw new InternalServerErrorException();
     }
   }
@@ -72,8 +72,8 @@ export class OmangController {
       } else {
         return `No record with ID '${ID}' found.`;
       }
-    } catch (ex) {
-      this.logger.error(ex);
+    } catch (error) {
+      this.logger.error(error);
       throw new InternalServerErrorException();
     }
   }
@@ -99,8 +99,8 @@ export class OmangController {
         new Pager(pageNum, pageSize),
       );
       return bundle;
-    } catch (ex) {
-      this.logger.error(ex);
+    } catch (error) {
+      this.logger.error(error);
       throw new InternalServerErrorException();
     }
   }
@@ -131,8 +131,8 @@ export class OmangController {
       } else {
         return `No record with full name '${lastName}' '${givenNames}' found.`;
       }
-    } catch (ex) {
-      this.logger.error(ex);
+    } catch (error) {
+      this.logger.error(error);
       throw new InternalServerErrorException();
     }
   }
@@ -154,8 +154,8 @@ export class OmangController {
         new Pager(pageNum, pageSize),
       );
       return bundle;
-    } catch (ex) {
-      this.logger.error(ex);
+    } catch (error) {
+      this.logger.error(error);
       throw new InternalServerErrorException();
     }
   }
@@ -183,8 +183,8 @@ export class OmangController {
       } else {
         return `No record with last name '${lastName}' found.`;
       }
-    } catch (ex) {
-      this.logger.error(ex);
+    } catch (error) {
+      this.logger.error(error);
       throw new InternalServerErrorException();
     }
   }

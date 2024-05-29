@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
+import config from 'src/config';
 import { User } from '../models/authentification'; // Assuming you have defined the User entity
-import { Auth } from '../../../app-settings.json';
 
 @Injectable()
 export class UserService {
@@ -13,9 +13,9 @@ export class UserService {
         `Received an authentication request for user: ${username}`,
       );
 
-      const id: number = Auth.Basic.Id;
-      const configUsername: string = Auth.Basic.Username;
-      const configPassword: string = Auth.Basic.Password;
+      const id: number = config.get('Auth:Basic:Id');
+      const configUsername: string = config.get('Auth:Basic:Username');
+      const configPassword: string = config.get('Auth:Basic:Password');
 
       // Check if the password is correct and return the user object if so, null otherwise
       return username === configUsername && password === configPassword

@@ -8,7 +8,7 @@
     "environmentVariables": {
       "OMANG_ORACLE_DOCKER_IMAGE": "gvenzl/oracle-xe",
       "OMANG_ORACLE_PASSWORD": "dev_password_only",
-      "OMANG_SERVICE_DB_HOST": "oracle-db",
+      "OMANG_SERVICE_DB_HOST": "omang-service-mediator_oracle-db",
       "OMANG_ORACLE_PORT": "1521",
       "OMANG_ORACLE_SID": "XE",
       "OMANG_ORACLE_CITIZEN_DB": "OMANG_CITIZEN",

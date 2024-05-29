@@ -27,8 +27,8 @@ export class PatientController {
   async online(): Promise<boolean> {
     try {
       return this.immigration.isOnline();
-    } catch (ex) {
-      this.logger.error(ex);
+    } catch (error) {
+      this.logger.error(error);
       throw new InternalServerErrorException();
     }
   }

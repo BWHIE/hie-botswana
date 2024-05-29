@@ -57,9 +57,9 @@
   "mediatorConfig": {
     "openHimAuth": {
       "username": "root@openhim.org",
-      "password": "openhim",
+      "password": "instant101",
       "trustSelfSigned": true,
-      "apiUrl": "https://openhim-core:8080",
+      "apiURL": "https://openhim-core:8080",
       "rejectUnauthorized": false,
       "urn": "urn:uuid:3332e057-2ef5-4586-a437-105c9916147f"
     },

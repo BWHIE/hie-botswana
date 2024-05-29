@@ -19,9 +19,11 @@ import { BasicAuthGuard } from './modules/user/models/authentification';
 import { UserModule } from './modules/user/user.module';
 import * as cookieParser from 'cookie-parser';
 import { json, text } from 'express';
+import { OpenHimModule } from './modules/openhim/openhim.module';
 
 @Module({
   imports: [
+    OpenHimModule,
     UserModule,
     BirthModule,
     DeathModule,
