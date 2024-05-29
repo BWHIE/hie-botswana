@@ -5,7 +5,7 @@ import { fhirR4 } from '@smile-cdr/fhirts';
 import { Omang } from '../models/omang';
 import { mapOmangToSearchBundle } from 'src/utils/fhirmapper';
 import { FhirAPIResponses } from 'src/utils/fhir-responses';
-import { BaseService } from '../../../services/base.service';
+import { BaseService } from 'src/services/base.service';
 import { MasterPatientIndex } from '../../mpi/services/mpi';
 
 @Injectable()

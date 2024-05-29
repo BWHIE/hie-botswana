@@ -2,7 +2,7 @@ import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OmangRepository } from './repositories/omang-repository';
 import { createConnection } from 'typeorm';
-import { omangDataSourceOptions } from '../../config/ormconfig';
+import { omangDataSourceOptions } from 'src/config/ormconfig';
 
 @Module({
   imports: [

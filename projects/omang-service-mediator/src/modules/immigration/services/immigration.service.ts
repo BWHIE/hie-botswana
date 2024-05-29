@@ -5,7 +5,7 @@ import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { ImmigrationRecord } from '../models/immigration-record';
 import { Pager } from 'src/utils/pager';
 import { mapImmigrationRecordToSearchBundle } from 'src/utils/fhirmapper';
-import { BaseService } from '../../../services/base.service';
+import { BaseService } from 'src/services/base.service';
 import { MasterPatientIndex } from '../../mpi/services/mpi';
 
 @Injectable()

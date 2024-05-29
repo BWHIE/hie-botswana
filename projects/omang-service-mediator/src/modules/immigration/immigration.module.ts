@@ -1,7 +1,7 @@
 import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { createConnection } from 'typeorm';
-import { immigrationDataSourceOptions } from '../../config/ormconfig';
+import { immigrationDataSourceOptions } from 'src/config/ormconfig';
 import { ImmigrationRepository } from './repositories/immigration-repository';
 
 @Module({

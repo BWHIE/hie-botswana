@@ -70,7 +70,6 @@ export class MasterPatientIndex {
 
       const fhirClient = FHIR.client(this.clientRegistryUrl);
 
-      // );
       const response = fhirClient
         .create(patient)
         .then((response) => console.log(response));
