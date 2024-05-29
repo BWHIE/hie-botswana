@@ -4,6 +4,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Agent } from 'https';
 import FHIR from 'fhirclient';
 import { config } from 'src/config';
+import { Bundle } from 'fhir/r4';
 
 @Injectable()
 export class MasterPatientIndex {
@@ -13,10 +14,8 @@ export class MasterPatientIndex {
   private readonly devMode: boolean;
 
   constructor(private readonly httpService: HttpService) {
-    this.clientRegistryUrl = `${config.get('ClientRegistry:OpenhimUrl')}${config.get('ClientRegistry:CrChannel')}`;
-    const client = config.get('ClientRegistry:OpenhimClient');
-    const password = config.get('ClientRegistry:OpenhimPassword');
-    const authString = `${client}:${password}`;
+    this.clientRegistryUrl = `${config.get('ClientRegistry:ApiUrl')}}`;
+    const authString = '';//`${client}:${password}`;
     this.authHeader = `Basic ${Buffer.from(authString).toString('base64')}`;
     this.devMode = config.get('ClientRegistry:devMode') === 'true';
   }
@@ -40,14 +39,16 @@ export class MasterPatientIndex {
 
   async getSearchBundle(query): Promise<any> {
     try {
-      // const fhirClient = new Client({ baseUrl: this.clientRegistryUrl });
-      const fhirClient = FHIR.client(this.clientRegistryUrl);
-      // const client = new FHIR.client(this.clientRegistryUrl);
+      const searchResponse = await this.httpService.axiosRef.get<Bundle>(
+        this.clientRegistryUrl,
+        {
+          headers: {
+            'Content-Type': 'application/fhir+json',
+          },
+        },
+      );
 
-      const searchResponse = await fhirClient.patient.read({
-        identifier: query,
-      });
-      console.log(searchResponse);
+      return searchResponse.data;
     } catch (Exception) {
       this.logger.error(
         'Could not get CR bundle for patient with ID ' +
@@ -68,13 +69,17 @@ export class MasterPatientIndex {
       }
       delete patient.id;
 
-      const fhirClient = FHIR.client(this.clientRegistryUrl);
-
-      const response = fhirClient
-        .create(patient)
-        .then((response) => console.log(response));
-      this.logger.log('Created patient!\n' + JSON.stringify(response));
-      return response;
+      const response = await this.httpService.axiosRef.post(
+        this.clientRegistryUrl,
+        patient,
+        {
+          headers: {
+            'Content-Type': 'application/fhir+json',
+          },
+        },
+      );
+      this.logger.debug('Created patient!\n' + JSON.stringify(response));
+      return response.data;
     } catch (error) {
       this.logger.error('Failed to create patient in CR:', error.stack);
       throw error;

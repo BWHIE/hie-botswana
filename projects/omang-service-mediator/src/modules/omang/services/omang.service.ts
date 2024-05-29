@@ -3,10 +3,14 @@ import { Pager } from 'src/utils/pager';
 import { OmangRepository } from '../repositories/omang-repository';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { Omang } from '../models/omang';
-import { mapOmangToSearchBundle } from 'src/utils/fhirmapper';
+import {
+  mapOmangToFhirPatient,
+  mapOmangToSearchBundle,
+} from 'src/utils/fhirmapper';
 import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { BaseService } from 'src/services/base.service';
 import { MasterPatientIndex } from '../../mpi/services/mpi';
+import config from 'src/config';
 
 @Injectable()
 export class OmangService extends BaseService {
@@ -25,9 +29,15 @@ export class OmangService extends BaseService {
     const results = await this.repo.getMany(ID, pager);
     if (results.length > 0) {
       const omangBundle: fhirR4.Bundle = mapOmangToSearchBundle(results);
-      // await this.updateClientRegistryAsync(results, ID, ClientRegistry.OmangSystem);
+      await this.updateClientRegistryAsync(
+        results,
+        ID,
+        config.get('ClientRegistry:OmangSystem'),
+      );
       return omangBundle;
-    } else return FhirAPIResponses.RecordInitialized;
+    } else {
+      return FhirAPIResponses.RecordInitialized;
+    }
   }
 
   async isOnline(): Promise<boolean> {
@@ -121,27 +131,27 @@ export class OmangService extends BaseService {
     return this.repo.getMany(ID, pager);
   }
 
-  // private async updateClientRegistryAsync<T>(
-  //   results: Omang[],
-  //   identifiers: string[],
-  //   configKey: string,
-  // ): Promise<void> {
-  //   const searchParamValue = `${configKey}|${identifiers[0]}`;
-  //   const searchBundle = await this.retryGetSearchBundleAsync(searchParamValue);
-  //   console.log(searchBundle);
+  private async updateClientRegistryAsync<T>(
+    results: Omang[],
+    identifiers: string[],
+    configKey: string,
+  ): Promise<void> {
+    const searchParamValue = `${configKey}|${identifiers[0]}`;
+    const searchBundle = await this.retryGetSearchBundleAsync(searchParamValue);
+    console.log(searchBundle);
 
-  //   if (this.needsUpdateOrIsEmpty(searchBundle)) {
-  //     for (const result of results) {
-  //       try {
-  //         const patient: fhirR4.Patient = mapOmangToFhirPatient(result);
-  //         console.log('our patient is as follows ' + patient);
-  //         await this.mpi.createPatient(patient);
-  //       } catch (error) {
-  //         this.logger.error(`Error creating patient: ${error.message}`);
-  //       }
-  //     }
-  //   }
-  // }
+    if (this.needsUpdateOrIsEmpty(searchBundle)) {
+      for (const result of results) {
+        try {
+          const patient: fhirR4.Patient = mapOmangToFhirPatient(result);
+          this.logger.debug('Our patient is as follows ', JSON.stringify(patient));
+          await this.mpi.createPatient(patient);
+        } catch (error) {
+          this.logger.error(`Error creating patient: ${error.message}`);
+        }
+      }
+    }
+  }
   // private async updateClientRegistryAsync<T>(
   //   results: Omang[],
   //   identifiers: string[],

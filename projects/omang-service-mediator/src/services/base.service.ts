@@ -30,8 +30,6 @@ export abstract class BaseService {
       }
     }
 
-    {
-    }
     this.logger.error(
       'All attempts to get search bundle failed after ' +
         maxAttempts +

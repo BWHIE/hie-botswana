@@ -1,12 +1,9 @@
 {
 "ClientRegistry": {
-    "OpenhimUrl": "https://openhim-core:5000",
-    "CrChannel": "/CR/fhir",
+    "ApiUrl": "http://client-registry-opencr_opencr:3000/fhir",
     "OmangSystem": "http://moh.bw.org/ext/identifier/omang",
     "BdrsSystem": "http://moh.bw.org/ext/identifier/bcn",
     "ImmigrationSystem": "http://moh.bw.org/ext/identifier/ppn",
-    "OpenhimClient": "sigdep3",
-    "OpenhimPassword": "sigdep3",
     "maxDaysBeforeUpdate": 2,
     "devMode": "true"
   },
