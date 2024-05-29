@@ -43,7 +43,27 @@ The BDRS Registry is comprised of two views (Births and Deaths). The values retr
 The Omang Registry is comprised of a single view and an owner. The values retrieved can either be in FHIR format or Immigration Record. 
 
 #### Sidenote:
-In the present Schema, each view can be understood
+In the present Schema, each view can be understood as a seperate table corresponding to a given national registry.
+
+## Potential Enhancements: 
+Although the present work responds to the required specification, some improvements can be made. The current mapping to the FHIR standard only retrieves
+basic information about the different mapped entities and doesn't take into account potential valuable insights that could be extracted from the Schema.
+One way to surmount this inconvenience is to enhance the FHIR mapping by including more details about the entities into the FHIR patient schema, taking into consideration reference resources or adding custom extensions to the FHIR resource itself.
+
+
+
+## Issues 
+In order to secure connections to multiple databases, a shared connection among multiple databases is not possible in our context since each registry
+has a different owner. For each view, we need to instance a new connection in order to be able to run queries appropriately 
+
+## Database Connectvity 
+
+A system identifier (SID) identifies each Oracle database instance for internal connectivity on the Oracle server itself.
+In the older implementation, the SID for the different Oracle databases is XE (Express edition). The default value for most OracleDB Docker images for the SID variable is PDB (Pluggable Database) and some Docker images may not support the XE service. This has to be taken into consideration if the OracleDB docker image is to be changed in the future.
+
+Moreover, there has been an upgrade in the OracleDB version because the older version's driver isn't compatible with NodeJS and database connections cannot be instantiated. 
+
+
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation

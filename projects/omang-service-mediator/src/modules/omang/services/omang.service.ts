@@ -3,10 +3,7 @@ import { Pager } from 'src/utils/pager';
 import { OmangRepository } from '../repositories/omang-repository';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { Omang } from '../models/omang';
-import {
-  mapOmangToFhirPatient,
-  mapOmangToSearchBundle,
-} from 'src/utils/fhirmapper';
+import { calculateMD5Hash } from 'src/utils/hash';
 import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { BaseService } from 'src/services/base.service';
 import { MasterPatientIndex } from '../../mpi/services/mpi';
@@ -28,7 +25,7 @@ export class OmangService extends BaseService {
   async getOmangByID(ID: string[], pager: Pager): Promise<fhirR4.Bundle> {
     const results = await this.repo.getMany(ID, pager);
     if (results.length > 0) {
-      const omangBundle: fhirR4.Bundle = mapOmangToSearchBundle(results);
+      const omangBundle: fhirR4.Bundle = this.mapOmangToSearchBundle(results);
       await this.updateClientRegistryAsync(
         results,
         ID,
@@ -56,7 +53,7 @@ export class OmangService extends BaseService {
       pager,
     );
     if (results.length > 0) {
-      return mapOmangToSearchBundle(results);
+      return this.mapOmangToSearchBundle(results);
     } else return FhirAPIResponses.RecordInitialized;
   }
 
@@ -79,7 +76,7 @@ export class OmangService extends BaseService {
       pager,
     );
     if (results.length > 0) {
-      return mapOmangToSearchBundle(results);
+      return this.mapOmangToSearchBundle(results);
     } else return FhirAPIResponses.RecordInitialized;
   }
 
@@ -98,7 +95,7 @@ export class OmangService extends BaseService {
   ): Promise<fhirR4.Bundle> {
     const results = await this.repo.getByName(firstName, lastName, pager);
     if (results.length > 0) {
-      return mapOmangToSearchBundle(results);
+      return this.mapOmangToSearchBundle(results);
     } else return FhirAPIResponses.RecordInitialized;
   }
 
@@ -116,7 +113,7 @@ export class OmangService extends BaseService {
   ): Promise<fhirR4.Bundle> {
     const results = await this.repo.getByLastName(lastName, pager);
     if (results.length > 0) {
-      return mapOmangToSearchBundle(results);
+      return this.mapOmangToSearchBundle(results);
     } else return FhirAPIResponses.RecordInitialized;
   }
 
@@ -131,20 +128,131 @@ export class OmangService extends BaseService {
     return this.repo.getMany(ID, pager);
   }
 
-  private async updateClientRegistryAsync<T>(
+  private mapOmangToFhirPatient(omang: Omang): fhirR4.Patient | null {
+    // let fhirPatient: fhirR4.Patient | null = null;
+
+    const fhirPatient = new fhirR4.Patient();
+    if (omang.IdNo) {
+      // Resource Type
+      fhirPatient.resourceType = 'Patient';
+      //Id
+      fhirPatient.id = omang.IdNo;
+
+      // Identifier
+      const pat_identifier = new fhirR4.Identifier();
+      pat_identifier.system = config.get('ClientRegistry:OmangSystem');
+      pat_identifier.value = omang.IdNo;
+
+      // Hash Unique Internal ID
+      const hashedId = calculateMD5Hash(omang.IdNo);
+      const internal_identifier = new fhirR4.Identifier();
+      internal_identifier.system =
+        'http://omang.bw.org/ext/identifier/internalid';
+      internal_identifier.value = hashedId;
+      fhirPatient.identifier = [pat_identifier, internal_identifier];
+
+      //Active
+      fhirPatient.active = true;
+      // Name
+      const pat_name = new fhirR4.HumanName();
+      pat_name.family = omang.Surname;
+      pat_name.given = omang.FirstName.split(' ');
+      fhirPatient.name = [pat_name];
+
+      // Gender
+      switch (omang.Sex) {
+        case 'F':
+          fhirPatient.gender = fhirR4.Patient.GenderEnum.Female;
+          break;
+        case 'M':
+          fhirPatient.gender = fhirR4.Patient.GenderEnum.Male;
+          break;
+      }
+
+      // Birthdate
+      fhirPatient.birthDate = omang.BirthDate?.toISOString().slice(0, 10);
+
+      // Deceased
+      if (omang.DeceasedDate) {
+        fhirPatient.deceasedDateTime = omang.DeceasedDate.toISOString().slice(
+          0,
+          10,
+        );
+      }
+
+      // Address
+      const address = new fhirR4.Address();
+      address.district = omang.DistrictName;
+      address.postalCode = omang.DistrictCode;
+
+      fhirPatient.address = [address];
+
+      // Marital Status
+
+      const system_url = 'http://hl7.org/fhir/R4/valueset-marital-status.html';
+      fhirPatient.maritalStatus = new fhirR4.CodeableConcept();
+      fhirPatient.maritalStatus.coding = [];
+      const theCoding = new fhirR4.Coding();
+      theCoding.system = system_url;
+      switch (omang.MaritalStatusCode) {
+        case 'MAR':
+          theCoding.code = 'M';
+          break;
+        case 'SGL':
+          theCoding.code = 'S';
+          break;
+        case 'WDW':
+          theCoding.code = 'W';
+          break;
+        case 'DIV':
+          theCoding.code;
+          break;
+        case 'SEP':
+          theCoding.code;
+          break;
+        case 'WHD':
+          theCoding.code = 'UNK';
+          break;
+      }
+
+      fhirPatient.maritalStatus.coding.push(theCoding);
+    }
+
+    return fhirPatient;
+  }
+
+  private mapOmangToSearchBundle(omangRecords: Omang[]): fhirR4.Bundle {
+    const searchBundle: fhirR4.Bundle = FhirAPIResponses.RecordInitialized;
+
+    for (const omang of omangRecords) {
+      const patient: fhirR4.Patient = this.mapOmangToFhirPatient(omang);
+
+      const entry = new fhirR4.BundleEntry();
+      entry.fullUrl =
+        config.get('ClientRegistry:OmangSystem') +
+        patient.constructor.name +
+        patient.id;
+
+      entry.resource = patient;
+      searchBundle.entry.push(entry);
+      ++searchBundle.total;
+    }
+
+    return searchBundle;
+  }
+
+  private async updateClientRegistryAsync(
     results: Omang[],
     identifiers: string[],
     configKey: string,
   ): Promise<void> {
     const searchParamValue = `${configKey}|${identifiers[0]}`;
     const searchBundle = await this.retryGetSearchBundleAsync(searchParamValue);
-    console.log(searchBundle);
 
     if (this.needsUpdateOrIsEmpty(searchBundle)) {
       for (const result of results) {
         try {
-          const patient: fhirR4.Patient = mapOmangToFhirPatient(result);
-          this.logger.debug('Our patient is as follows ', JSON.stringify(patient));
+          const patient: fhirR4.Patient = this.mapOmangToFhirPatient(result);
           await this.mpi.createPatient(patient);
         } catch (error) {
           this.logger.error(`Error creating patient: ${error.message}`);
@@ -152,25 +260,4 @@ export class OmangService extends BaseService {
       }
     }
   }
-  // private async updateClientRegistryAsync<T>(
-  //   results: Omang[],
-  //   identifiers: string[],
-  //   configKey: string,
-  // ): Promise<void> {
-  //   const searchParamValue = `${configKey}|${identifiers[0]}`;
-  //   const searchBundle = await this.retryGetSearchBundleAsync(searchParamValue);
-  //   console.log(searchBundle);
-
-  //   if (this.needsUpdateOrIsEmpty(searchBundle)) {
-  //     for (const result of results) {
-  //       try {
-  //         const patient: fhirR4.Patient = mapOmangToFhirPatient(result);
-  //         console.log('our patient is as follows ' + patient);
-  //         await this.mpi.createPatient(patient);
-  //       } catch (error) {
-  //         this.logger.error(`Error creating patient: ${error.message}`);
-  //       }
-  //     }
-  //   }
-  // }
 }

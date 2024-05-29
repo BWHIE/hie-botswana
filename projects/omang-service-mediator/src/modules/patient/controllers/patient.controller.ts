@@ -6,6 +6,7 @@ import {
   BadRequestException,
   InternalServerErrorException,
   UseGuards,
+  Header,
 } from '@nestjs/common';
 import { Pager } from 'src/utils/pager';
 import { ImmigrationService } from '../../immigration/services/immigration.service';
@@ -34,6 +35,7 @@ export class PatientController {
   }
 
   @Get('Get')
+  @Header('Content-Type', 'application/fhir+json')
   async get(@Query('identifier') identifier: string): Promise<fhirR4.Bundle> {
     try {
       if (!identifier || !identifier.includes('|')) {
@@ -50,6 +52,7 @@ export class PatientController {
   }
 
   @Get('GetByID')
+  @Header('Content-Type', 'application/fhir+json')
   async getByID(@Query('ID') ID: string): Promise<fhirR4.Bundle> {
     try {
       if (!ID) {
@@ -68,6 +71,7 @@ export class PatientController {
   }
 
   @Get('GetPatientByFullName')
+  @Header('Content-Type', 'application/fhir+json')
   async getPatientByFullName(
     @Query('givenNames') givenNames: string,
     @Query('lastName') lastName: string,

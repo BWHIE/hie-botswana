@@ -8,8 +8,7 @@ import config from 'src/config';
 @Injectable()
 export class OmangRepository {
   private readonly logger = new Logger(OmangRepository.name);
-  private readonly viewName = "OMANG_CITIZEN"; //config.get('CITIZEN_VIEW');
-
+  private readonly viewName = 'OMANG_CITIZEN'; //config.get('CITIZEN_VIEW');
 
   constructor(
     @InjectConnection('omangConnection')

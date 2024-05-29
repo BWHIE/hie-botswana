@@ -1,9 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { BDRSService } from './bdrs.service';
-import {
-  DeathRepository,
-  BirthRepository,
-} from '../repositories/death.repository';
+import { DeathRepository } from '../repositories/death.repository';
+import { BirthRepository } from '../repositories/birth.repository';
 import { MasterPatientIndex } from '../../mpi/services/mpi';
 import { Pager } from 'src/utils/pager';
 import { BirthModule } from '../birth/birth.module';
@@ -278,7 +276,7 @@ describe('BDRSService', () => {
       endDate,
       pager,
     );
-    
+
     // Assert
     expect(result).toEqual(mockedBirthRecords);
     expect(mockBirthRepository.findBirthsByDate).toHaveBeenCalledWith(

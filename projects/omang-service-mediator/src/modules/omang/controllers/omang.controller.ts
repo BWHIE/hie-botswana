@@ -30,6 +30,7 @@ export class OmangController {
   }
 
   @Get('GetByID')
+  @Header('Content-Type', 'application/fhir+json')
   async getByID(
     @Query('ID') ID: string[],
     @Query('pageNum') pageNum = 1,
@@ -80,6 +81,7 @@ export class OmangController {
   }
 
   @Get('findByFullName')
+  @Header('Content-Type', 'application/fhir+json')
   async findByFullName(
     @Query('givenNames') givenNames: string,
     @Query('lastName') lastName: string,
@@ -139,6 +141,7 @@ export class OmangController {
   }
 
   @Get('FindByLastName')
+  @Header('Content-Type', 'application/fhir+json')
   async findByLastName(
     @Query('lastName') lastName: string,
     @Query('pageSize') pageSize = 100,
@@ -251,6 +254,7 @@ export class OmangController {
   }
 
   @Get('Changed')
+  @Header('Content-Type', 'application/fhir+json')
   async findChangedFHIR(
     @Query('changeStartDate') startDate: string,
     @Query('changeEndDate') endDate: string,
@@ -281,6 +285,7 @@ export class OmangController {
   }
 
   @Get('Deceased')
+  @Header('Content-Type', 'application/fhir+json')
   async findDeceasedFHIR(
     @Query('deceasedStartDate') startDate: string,
     @Query('deceasedEndDate') endDate: string,

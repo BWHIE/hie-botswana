@@ -2,7 +2,6 @@ import { Injectable, Logger } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { AxiosRequestConfig } from 'axios';
 import { Agent } from 'https';
-import FHIR from 'fhirclient';
 import { config } from 'src/config';
 import { Bundle } from 'fhir/r4';
 
@@ -15,7 +14,7 @@ export class MasterPatientIndex {
 
   constructor(private readonly httpService: HttpService) {
     this.clientRegistryUrl = `${config.get('ClientRegistry:ApiUrl')}}`;
-    const authString = '';//`${client}:${password}`;
+    const authString = ''; //`${client}:${password}`;
     this.authHeader = `Basic ${Buffer.from(authString).toString('base64')}`;
     this.devMode = config.get('ClientRegistry:devMode') === 'true';
   }

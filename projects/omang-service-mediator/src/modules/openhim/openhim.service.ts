@@ -4,7 +4,11 @@ import {
   Logger,
   OnModuleInit,
 } from '@nestjs/common';
-import { activateHeartbeat, fetchConfig, registerMediator } from 'openhim-mediator-utils';
+import {
+  activateHeartbeat,
+  fetchConfig,
+  registerMediator,
+} from 'openhim-mediator-utils';
 import { config } from 'src/config';
 import { IncomingHttpHeaders } from 'http';
 import { HttpService } from '@nestjs/axios';

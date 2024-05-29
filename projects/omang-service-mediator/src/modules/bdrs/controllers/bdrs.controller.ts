@@ -6,6 +6,7 @@ import {
   BadRequestException,
   InternalServerErrorException,
   UseGuards,
+  Header,
 } from '@nestjs/common';
 import { Pager } from 'src/utils/pager';
 import { BDRSService } from '../services/bdrs.service';
@@ -29,6 +30,7 @@ export class BDRSController {
   }
 
   @Get('GetByID')
+  @Header('Content-Type', 'application/fhir+json')
   async getBirthByID(
     @Query('ID') ID: string[],
     @Query('pageNum') pageNum: number = 1,
@@ -51,6 +53,7 @@ export class BDRSController {
   }
 
   @Get('GetDeathByID')
+  @Header('Content-Type', 'application/fhir+json')
   async getDeathByID(
     @Query('ID') ID: string[],
     @Query('pageNum') pageNum: number = 1,
