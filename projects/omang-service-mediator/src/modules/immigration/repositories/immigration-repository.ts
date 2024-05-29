@@ -3,11 +3,12 @@ import { Pager } from 'src/utils/pager';
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectConnection } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
+import { config } from 'src/config';
 
 @Injectable()
 export class ImmigrationRepository {
   private readonly logger = new Logger(ImmigrationRepository.name);
-  private readonly viewName = 'V_MOH';
+  private readonly viewName = config.get('IMMIGRATION_VIEW');
 
   constructor(
     @InjectConnection('immigrationConnection')

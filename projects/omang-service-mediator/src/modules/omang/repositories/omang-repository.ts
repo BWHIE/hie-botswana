@@ -3,11 +3,12 @@ import { InjectConnection } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { Omang } from '../models/omang';
 import { Pager } from 'src/utils/pager';
+import config from 'src/config';
 
 @Injectable()
 export class OmangRepository {
   private readonly logger = new Logger(OmangRepository.name);
-  private readonly viewName = 'OMANG_CITIZEN';
+  private readonly viewName = config.get('CITIZEN_VIEW');
 
   constructor(
     @InjectConnection('omangConnection')

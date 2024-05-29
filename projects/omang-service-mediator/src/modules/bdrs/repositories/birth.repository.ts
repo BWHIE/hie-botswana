@@ -5,6 +5,7 @@ import { Pager } from 'src/utils/pager';
 import { Connection } from 'typeorm';
 import { BirthRecord } from '../models/birth-record';
 import { BirthDeathRecord } from '../models/birthdeath-record';
+import config from 'src/config';
 
 @Injectable()
 export class BirthRepository {
@@ -62,8 +63,8 @@ export class BirthRepository {
     'MOTHER_MARITAL_STATUS',
   ];
   private readonly logger = new Logger(BirthRepository.name);
-  private readonly viewName = 'V_BIRTH';
-  private readonly _death_viewName = 'V_DEATH';
+  private readonly viewName = config.get('BDRS_BIRTH_VIEW');
+  private readonly _death_viewName = config.get('BDRS_DEATH_VIEW');
 
   constructor(
     @InjectConnection('birthConnection')

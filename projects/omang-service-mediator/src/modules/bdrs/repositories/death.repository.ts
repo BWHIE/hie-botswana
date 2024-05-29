@@ -3,6 +3,7 @@ import { InjectConnection } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { Pager } from 'src/utils/pager';
 import { DeathRecord } from '../models/death-record';
+import config from 'src/config';
 
 @Injectable()
 export class DeathRepository {
@@ -41,7 +42,7 @@ export class DeathRepository {
   ];
 
   private readonly logger = new Logger(DeathRepository.name);
-  private readonly viewName = 'V_DEATH';
+  private readonly viewName = config.get('BDRS_DEATH_VIEW');
 
   constructor(
     @InjectConnection('deathConnection')
