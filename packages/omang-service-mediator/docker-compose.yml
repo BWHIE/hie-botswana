@@ -26,11 +26,6 @@ services:
       - IMMIGRATION_PASSWORD=${OMANG_ORACLE_IMMIGRATION_PASSWORD}
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: ${JEMPI_RATEL_MEMORY_LIMIT}
-      #   reservations:
-      #     memory: ${JEMPI_RATEL_MEMORY_RESERVE}
       restart_policy:
         condition: on-failure
 
