@@ -11,6 +11,7 @@ packages:
   - identity-access-manager-keycloak
   - client-registry-opencr
   - analytics-datastore-elastic-search
+  - message-bus-kafka
 
 profiles:
   - name: dev
@@ -22,6 +23,7 @@ profiles:
       - identity-access-manager-keycloak
       - client-registry-opencr
       - analytics-datastore-elastic-search
+      - message-bus-kafka
     envFiles:
       - .env.local
     dev: true

@@ -144,3 +144,19 @@ For dev environment you can access the Grafana UI and signin using the following
 - URL : http://localhost:3000
 - username : test
 - password : dev_password_only
+
+### Kafka (Kafdrop)
+
+For dev environment you can access the kafka (Kafdrop) UI viewer at the below endpoint:
+
+- URL : http://localhost:9013
+
+#### Kafka Pub/Sub testing
+
+For dev environment, you will need need to define an alias for the defined broker (kafka-01)
+
+Add the below alias to your `/etc/hosts`
+
+```
+0.0.0.0      kafka-01
+```
