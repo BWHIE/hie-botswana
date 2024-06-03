@@ -26,11 +26,6 @@ export class OmangService extends BaseService {
     const results = await this.repo.getMany(ID, pager);
     if (results.length > 0) {
       const omangBundle: fhirR4.Bundle = this.mapOmangToSearchBundle(results);
-      await this.updateClientRegistryAsync(
-        results,
-        ID,
-        config.get('ClientRegistry:OmangSystem'),
-      );
       return omangBundle;
     } else {
       return FhirAPIResponses.RecordInitialized;
@@ -241,23 +236,4 @@ export class OmangService extends BaseService {
     return searchBundle;
   }
 
-  private async updateClientRegistryAsync(
-    results: Omang[],
-    identifiers: string[],
-    configKey: string,
-  ): Promise<void> {
-    const searchParamValue = `${configKey}|${identifiers[0]}`;
-    const searchBundle = await this.retryGetSearchBundleAsync(searchParamValue);
-
-    if (this.needsUpdateOrIsEmpty(searchBundle)) {
-      for (const result of results) {
-        try {
-          const patient: fhirR4.Patient = this.mapOmangToFhirPatient(result);
-          await this.mpi.createPatient(patient);
-        } catch (error) {
-          this.logger.error(`Error creating patient: `, error);
-        }
-      }
-    }
-  }
 }

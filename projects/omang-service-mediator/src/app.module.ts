@@ -58,6 +58,7 @@ export class AppModule {
             'application/fhir+json',
             'application/json+fhir',
             'application/json',
+            'application/json+openhim',
           ],
         }),
       )

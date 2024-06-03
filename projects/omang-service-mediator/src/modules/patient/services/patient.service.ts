@@ -6,21 +6,22 @@ import { BDRSService } from '../../bdrs/services/bdrs.service';
 import { ImmigrationService } from '../../immigration/services/immigration.service';
 import { MasterPatientIndex } from '../../mpi/services/mpi';
 import { OmangService } from '../../omang/services/omang.service';
+import { BaseService } from 'src/services/base.service';
 
 @Injectable()
-export class PatientService {
-  private readonly logger = new Logger(PatientService.name);
+export class PatientService extends BaseService {
+  protected readonly logger = new Logger(PatientService.name);
 
   constructor(
     @Inject(MasterPatientIndex)
-    private readonly mpi: MasterPatientIndex,
+    protected readonly mpi: MasterPatientIndex,
     @Inject(OmangService)
     private readonly omang: OmangService,
     @Inject(BDRSService)
     private readonly bdrs: BDRSService,
     @Inject(ImmigrationService)
     private readonly immigration: ImmigrationService,
-  ) {}
+  ) {super(mpi)}
 
   //@TODO retrieve Patient by applying FHIR compliant search ?
 
@@ -55,7 +56,7 @@ export class PatientService {
       return this.omang.getOmangByID([identifier], new Pager(1, 1));
     } else if (system === config.get('ClientRegistry:ImmigrationSystem')) {
       return this.immigration.getPatientByPassportNumber(
-        identifier,
+        [identifier],
         new Pager(1, 1),
       );
     } else if (system === config.get('ClientRegistry:BdrsSystem')) {

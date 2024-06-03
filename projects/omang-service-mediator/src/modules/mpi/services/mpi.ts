@@ -52,15 +52,12 @@ export class MasterPatientIndex {
       return searchResponse.data;
     } catch (error) {
       this.logger.error(
-        'Could not get CR bundle for patient with ID ' +
-          query +
-          '\n' +
-          error,
+        `Could not get CR bundle for patient with ID ${query} \n ${error}`
       );
     }
   }
 
-  async createPatient(patient: any): Promise<any> {
+  async createPatient(patient: any, clientId:string): Promise<any> {
     try {
       // Fix for date default formatting issue in FHIR SDK
       if (patient.birthDate) {
@@ -76,14 +73,14 @@ export class MasterPatientIndex {
         {
           headers: {
             'Content-Type': 'application/fhir+json',
-            'x-openhim-clientid': 'OmangSvc'
+            'x-openhim-clientid': clientId,
           },
         },
       );
-      this.logger.debug('Created patient!\n' + JSON.stringify(response.data));
+      this.logger.debug(`Created patient!\n ${JSON.stringify(response.data)}`);
       return response.data;
     } catch (error) {
-      this.logger.error('Failed to create patient in CR:', error);
+      this.logger.error(`Failed to create patient in CR: ${error} `);
       throw error;
     }
   }

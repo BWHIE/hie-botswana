@@ -6,11 +6,12 @@ import {
   BadRequestException,
   InternalServerErrorException,
   UseGuards,
-  Header,
+  Header,Headers
 } from '@nestjs/common';
 import { Pager } from 'src/utils/pager';
 import { BDRSService } from '../services/bdrs.service';
 import { BasicAuthGuard } from '../../user/models/authentification';
+import config from 'src/config';
 
 @Controller('api/bdrs')
 @UseGuards(BasicAuthGuard)
@@ -35,6 +36,7 @@ export class BDRSController {
     @Query('ID') ID: string[],
     @Query('pageNum') pageNum: number = 1,
     @Query('pageSize') pageSize: number = 100,
+    @Headers('x-openhim-clientid') clientId = 'OmangSvc'
   ): Promise<any> {
     try {
       if (!ID || ID.length === 0) {
@@ -44,6 +46,12 @@ export class BDRSController {
       const bundle = await this.bdrsService.getBirthByID(
         idArray,
         new Pager(pageNum, pageSize),
+      );
+      await this.bdrsService.updateClientRegistryAsync(
+        bundle,
+        ID,      
+        config.get('ClientRegistry:BdrsSystem'),
+        clientId
       );
       return bundle;
     } catch (error) {

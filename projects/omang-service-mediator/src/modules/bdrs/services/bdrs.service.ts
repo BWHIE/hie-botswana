@@ -45,11 +45,6 @@ export class BDRSService extends BaseService {
     if (results.length > 0) {
       const bundle: fhirR4.Bundle =
         this.mapBirthDeathRecordToSearchBundle(results);
-      await this.updateClientRegistryAsync(
-        results,
-        ids,
-        config.get('ClientRegistry:BdrsSystem'),
-      );
       return bundle;
     } else return FhirAPIResponses.RecordInitialized;
   }
@@ -484,6 +479,7 @@ export class BDRSService extends BaseService {
     ids: string[],
     pager: Pager,
     search_bundle: fhirR4.Bundle,
+    clientId: string,
   ): Promise<fhirR4.Bundle> {
     if (search_bundle != null && search_bundle.total > 0) {
       // If exists, return search bundle
@@ -498,33 +494,12 @@ export class BDRSService extends BaseService {
         // TODO: Exception handling
         for (const result of results) {
           const pat = this.mapBirthDeathRecordToFhirPatient(result);
-          this.mpi.createPatient(pat);
+          this.mpi.createPatient(pat,clientId);
         }
 
         // Return Search Bundle
         return this.mapBirthDeathRecordToSearchBundle(results);
       } else return null;
-    }
-  }
-
-  private async updateClientRegistryAsync(
-    results: BirthDeathRecord[],
-    identifiers: string[],
-    configKey: string,
-  ): Promise<void> {
-    const searchParamValue = `${configKey}|${identifiers[0]}`;
-    const searchBundle = await this.retryGetSearchBundleAsync(searchParamValue);
-
-    if (this.needsUpdateOrIsEmpty(searchBundle)) {
-      for (const result of results) {
-        try {
-          const patient: fhirR4.Patient =
-            this.mapBirthDeathRecordToFhirPatient(result);
-          await this.mpi.createPatient(patient);
-        } catch (error) {
-          this.logger.error(`Error creating patient: ${error.message}`);
-        }
-      }
     }
   }
 }

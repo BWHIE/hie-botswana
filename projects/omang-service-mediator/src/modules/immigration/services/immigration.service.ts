@@ -23,18 +23,14 @@ export class ImmigrationService extends BaseService {
   }
 
   async getPatientByPassportNumber(
-    ppn: string,
+    ppn: string[],
     pager: Pager,
   ): Promise<fhirR4.Bundle> {
-    const results: ImmigrationRecord[] = await this.repo.getMany([ppn], pager);
+
+    const results: ImmigrationRecord[] = await this.repo.getMany(ppn, pager);
     if (results.length > 0) {
       const bundle: fhirR4.Bundle =
         this.mapImmigrationRecordToSearchBundle(results);
-      await this.updateClientRegistryAsync(
-        results,
-        [ppn],
-        config.get('ClientRegistry:ImmigrationSystem'),
-      );
       return bundle;
     } else return FhirAPIResponses.RecordInitialized;
   }
@@ -132,27 +128,6 @@ export class ImmigrationService extends BaseService {
 
   async isOnline(): Promise<boolean> {
     return this.repo.checkStatus();
-  }
-
-  private async updateClientRegistryAsync(
-    results: ImmigrationRecord[],
-    identifiers: string[],
-    configKey: string,
-  ): Promise<void> {
-    const searchParamValue = `${configKey}|${identifiers[0]}`;
-    const searchBundle = await this.retryGetSearchBundleAsync(searchParamValue);
-
-    if (this.needsUpdateOrIsEmpty(searchBundle)) {
-      for (const result of results) {
-        try {
-          const patient: fhirR4.Patient =
-            this.mapImmigrationRecordToFhirPatient(result);
-          await this.mpi.createPatient(patient);
-        } catch (error) {
-          this.logger.error(`Error creating patient: ${error.message}`);
-        }
-      }
-    }
   }
 
   private mapImmigrationRecordToSearchBundle(

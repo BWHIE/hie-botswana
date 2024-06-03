@@ -16,7 +16,6 @@ export abstract class BaseService {
     searchParams: any,
   ): Promise<fhirR4.Bundle | null> {
     const maxAttempts = 5;
-    // let acc = 0;
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
       try {
         return this.mpi.getSearchBundle(searchParams);
@@ -31,9 +30,7 @@ export abstract class BaseService {
     }
 
     this.logger.error(
-      'All attempts to get search bundle failed after ' +
-        maxAttempts +
-        ' retries.',
+      `All attempts to get search bundle failed after ${maxAttempts} retries. `
     );
     return null;
   }
@@ -48,5 +45,26 @@ export abstract class BaseService {
       new Date().getTime() - new Date(lastUpdated).getTime() >
         maxDays * 24 * 60 * 60 * 1000
     );
+  }
+
+
+   async updateClientRegistryAsync(
+    bundle: fhirR4.Bundle,
+    identifiers: string[],
+    configKey: string,
+    clientId: string,
+  ): Promise<void> {
+    const searchParamValue = `${configKey}|${identifiers[0]}`;
+    const searchBundle = await this.retryGetSearchBundleAsync(searchParamValue);
+
+    if (this.needsUpdateOrIsEmpty(searchBundle)) {
+      for (const entry of bundle.entry) {
+        try {
+          await this.mpi.createPatient(entry.resource,clientId);
+        } catch (error) {
+          this.logger.error(`Error creating patient:   ${error}`);
+        }
+      }
+    }
   }
 }

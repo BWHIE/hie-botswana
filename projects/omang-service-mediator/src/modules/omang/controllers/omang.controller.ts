@@ -7,10 +7,12 @@ import {
   InternalServerErrorException,
   UseGuards,
   Header,
+  Headers,
 } from '@nestjs/common';
 import { Pager } from 'src/utils/pager';
 import { OmangService } from '../services/omang.service';
 import { BasicAuthGuard } from '../../user/models/authentification';
+import config from 'src/config';
 
 @Controller('api/omang')
 @UseGuards(BasicAuthGuard)
@@ -35,6 +37,7 @@ export class OmangController {
     @Query('ID') ID: string[],
     @Query('pageNum') pageNum = 1,
     @Query('pageSize') pageSize = 100,
+    @Headers('x-openhim-clientid') clientId = 'OmangSvc'
   ): Promise<any> {
     try {
       if (!ID || ID.length === 0) {
@@ -44,6 +47,11 @@ export class OmangController {
       const bundle = await this.omang.getOmangByID(
         idArray,
         new Pager(pageNum, pageSize),
+      );
+      await this.omang.updateClientRegistryAsync(
+        bundle,
+        ID,
+        config.get('ClientRegistry:OmangSystem'),clientId
       );
       return bundle;
     } catch (error) {
