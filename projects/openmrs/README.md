@@ -20,7 +20,7 @@ A few prerequistes are needed to be able to build the dockerfiles. These are che
 
 ### Maven Configuration
 
-Configure the maven setting found under `~/.m2.setting.xml` by including the below in the `profiles` and `activeProfiles` section
+Configure the maven setting found under `~/.m2/setting.xml` by including the below in the `profiles` and `activeProfiles` section
 
 Add the additional `profile`
 
