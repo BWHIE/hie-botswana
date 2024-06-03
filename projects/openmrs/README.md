@@ -69,13 +69,13 @@ You should see the below output once the build has completed successfully
 
 Before running the Docker Compose scripts, some additional alterations are needed for the setup and configuration of the project
 
-#### docker-compose.yml update
+#### docker-compose.yml update (Automatically done from the build-openmrs.sh script)
 
 Update the `openmrs-module-botswanaemr/docker/docker-compose.yml` as indicated in the [setup steps](https://docs.google.com/document/d/1xrSdsROGDm3H6KlAZ13G408doGsGDaG5071QktwVQcs/edit#heading=h.344rvhnirz4w) - Steps 7
 
 Additionally, updte the OpenMRS exposed port from 8080 -> 8085. This is due to a port conflict with OpenHIM API
 
-#### Temp: Update the openmrs-distro-properties
+#### Temp: Update the openmrs-distro-properties (Automatically done from the build-openmrs.sh script)
 
 An issue is noted with the labonfhir module which makes the initial setup take very long (+40min).
 We can temporarily disable this module to speed up the initial setup. Within the openmrs-distro.properties file, comment out the `omod.labonfhir` module
