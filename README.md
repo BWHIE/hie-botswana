@@ -124,6 +124,16 @@ For dev environment you can access the OpenCR UI and signin using the following 
 - username : root@intrahealth.org
 - password : intrahealth
 
+### OpenMRS
+
+For dev environment of OpenMRS, please follow the [setup instructions here](https://github.com/BWHIE/hie-botswana/blob/main/projects/openmrs)
+
+Once OpenMRS is properly configured locally, you can access it with the following credentials
+
+- URL: http://localhost:8085/openmrs
+- Username: admin
+- Password: Y3z44AH2
+
 ### Elastic Search
 For dev environment you can access the ES and sign in using the following credentials:
 
