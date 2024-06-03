@@ -1,18 +1,3 @@
 [submodule "projects/openmrs/openmrs-module-botswanaemr"]
 	path = projects/openmrs/openmrs-module-botswanaemr
 	url = https://bitbucket.org/botswana-emrs/openmrs-module-botswanaemr.git
-[submodule "projects/openmrs/openmrs-module-botswanaemr-reports"]
-	path = projects/openmrs/openmrs-module-botswanaemr-reports
-	url = https://bitbucket.org/botswana-emrs/openmrs-module-botswanaemr-reports.git
-[submodule "projects/openmrs/openmrs-module-botswanaemr.inventory"]
-	path = projects/openmrs/openmrs-module-botswanaemr.inventory
-	url = https://bitbucket.org/botswana-emrs/openmrs-module-botswanaemr.inventory.git
-[submodule "projects/openmrs/openmrs-module-labonfhir"]
-	path = projects/openmrs/openmrs-module-labonfhir
-	url = https://bitbucket.org/botswana-emrs/openmrs-module-labonfhir.git
-[submodule "projects/openmrs/openmrs-module-locationbasedaccess"]
-	path = projects/openmrs/openmrs-module-locationbasedaccess
-	url = https://bitbucket.org/botswana-emrs/openmrs-module-locationbasedaccess.git
-[submodule "projects/openmrs/openmrs-module-patientqueueing"]
-	path = projects/openmrs/openmrs-module-patientqueueing
-	url = https://bitbucket.org/botswana-emrs/openmrs-module-patientqueueing.git
