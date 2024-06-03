@@ -41,3 +41,9 @@ cd openmrs-module-botswanaemr || {
 rm -r ~/openmrs/botswanaemr
 
 mvn openmrs-sdk:build-distro -DdbSql=./db/initial_db.sql -Ddir=docker -Dreset
+
+# copy the updated docker-compose template to use
+cp ../docker-compose.yml.tpl docker/docker-compose.yml
+
+# TEMP: Comment out the labonfhir module - currently has a loading time issue
+sed -i -r 's/^(omod\.labonfhir=).*/#&/' openmrs-distro.properties
