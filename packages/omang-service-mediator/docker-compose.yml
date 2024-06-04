@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  omang-api:
+    image: jembi/omangsvc:local
+    networks:
+      opencr:
+      hapi-fhir:
+      elasticsearch:
+      default:
+      openhim:
+      public:
+    environment:
+      - DB_HOST=${OMANG_SERVICE_DB_HOST}
+      - DB_SID=${OMANG_ORACLE_SID}
+      - DB_PORT=${OMANG_ORACLE_PORT}
+      - CITIZEN_VIEW=${OMANG_ORACLE_CITIZEN_VIEW}
+      - CITIZEN_USERNAME=${OMANG_ORACLE_CITIZEN_USERNAME}
+      - CITIZEN_PASSWORD=${OMANG_ORACLE_CITIZEN_PASSWORD}
+      - BDRS_BIRTH_VIEW=${OMANG_ORACLE_BDRS_BIRTH_VIEW}
+      - BDRS_DEATH_VIEW=${OMANG_ORACLE_BDRS_DEATH_VIEW}
+      - BDRS_USERNAME=${OMANG_ORACLE_BDRS_USERNAME}
+      - BDRS_PASSWORD=${OMANG_ORACLE_BDRS_PASSWORD}
+      - IMMIGRATION_VIEW=${OMANG_ORACLE_IMMIGRATION_VIEW}
+      - IMMIGRATION_USERNAME=${OMANG_ORACLE_IMMIGRATION_USERNAME}
+      - IMMIGRATION_PASSWORD=${OMANG_ORACLE_IMMIGRATION_PASSWORD}
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+networks:
+  opencr:
+    name: opencr_public
+    external: true
+  hapi-fhir:
+    name: hapi-fhir_public
+    external: true
+  elasticsearch:
+    name: elastic_public
+    external: true
+  openhim:
+    name: openhim_public
+    external: true
+  default:
+  public:
+    name: omang-api_public
+    external: true

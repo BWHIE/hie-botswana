@@ -113,8 +113,8 @@ For dev environment you can access the admin console using the following credent
 For dev environment you can access the admin console and signin with Keycloak using the following credentials : 
 
 - URL : http://localhost:9000/
-- username : test
-- password : dev_password_only
+- username : root@openhim.org
+- password : instant101
 
 ### OpenCR
 
@@ -160,3 +160,7 @@ Add the below alias to your `/etc/hosts`
 ```
 0.0.0.0      kafka-01
 ```
+
+### Deploy Omang Service in dev mode
+
+When seeking to make changes to the Omang Service Mediator without having to repeatedly start and stop the service, one can set the `OMANG_DEV_MOUNT_FOLDER` env var in your .env.local file to the absolute path of the project to attach the service's source code files to those on your local machine. You have to set the `OMANG_DEV_MOUNT_FOLDER` variable with the absolute path to the omang-service-mediator project folder on your local machine, i.e., `OMANG_DEV_MOUNT_FOLDER=/Users/username/hie-botswana/projects/omang-service-mediator/`.
