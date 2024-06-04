@@ -1,8 +1,13 @@
 services:
   shared-health-record:
     entrypoint: node --inspect=0.0.0.0:9230 /app/dist/app.js
-    
+    volumes:
+      - /Users/lapin/Workspace/Jembi/hie-botswana/projects/shared-health-record/dist:/app/dist
     ports:
       - target: 9230
         published: 9230
         mode: host
+      - target: 3000
+        published: 3000
+        mode: host
+@
