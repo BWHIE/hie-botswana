@@ -10,7 +10,7 @@
 ## Quick Start for devs (local single node)
 
 1. If running into an error `invalid mount config for type "bind": bind source path does not exist: /tmp/logs` on running the CLI binary, run the following command: `sudo mkdir -p /tmp/logs/`.
-1. `./build-image.sh` - builds the platform image
+1. `./build-custom-images.sh` - builds project images as well as the platform image
 1. Initialise Docker Swarm mode: `docker swarm init`
 1. Run `go cli` binary to launch the project:
 
@@ -24,7 +24,7 @@
 To set up a remote cluster environment, see [readme](https://github.com/jembi/cloud/blob/main/aws/mercury-team/README.md) in the [cloud repo](https://github.com/jembi/cloud).
 
 1. Ensure that you have the latest instant repository checked out in the same folder that this repo is in.
-1. `./build-image.sh` - builds the platform image
+1. `./build-custom-images.sh` - builds the platform image
 1. Add `.env.prod` file with your remote env vars option set.
 
     > Each Package contains a `metadata.json` file which lists the configurable Env vars and their default values
