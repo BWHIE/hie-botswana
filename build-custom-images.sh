@@ -28,6 +28,12 @@ docker build \
     projects/omang-service-mediator/ \
     --no-cache
 
+docker build \
+    -t itechuw/shared-health-record:local \
+    -f projects/shared-health-record/Dockerfile \
+    projects/shared-health-record/ \
+    --no-cache
+
 # Build the Platform to contain the above custom builds
 ./build-image.sh
 
