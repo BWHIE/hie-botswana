@@ -19,7 +19,7 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
+    it('should return "Omang Service!"', () => {
       expect(appController.healthCheck()).toBe('Omang Service!');
     });
   });
