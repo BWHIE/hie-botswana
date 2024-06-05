@@ -13,6 +13,7 @@ packages:
   - analytics-datastore-elastic-search
   - message-bus-kafka
   - omang-service-mediator
+  - openhim-mediator-fhir-converter
 
 profiles:
   - name: dev
@@ -26,6 +27,7 @@ profiles:
       - analytics-datastore-elastic-search
       - message-bus-kafka
       - omang-service-mediator
+      - openhim-mediator-fhir-converter
     envFiles:
       - .env.local
     dev: true

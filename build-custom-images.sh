@@ -11,6 +11,12 @@ docker build \
 mkdir /tmp/backups
 
 docker build \
+    -t itechuw/openhim-mediator-fhir-converter:local \
+    -f projects/openhim-mediator-fhir-converter/Dockerfile \
+    projects/openhim-mediator-fhir-converter/ \
+    --no-cache
+
+docker build \
     -t docker.elastic.co/elasticsearch/elasticsearch:local \
     -f packages/analytics-datastore-elastic-search/Dockerfile \
     packages/analytics-datastore-elastic-search \
