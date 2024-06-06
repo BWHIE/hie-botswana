@@ -161,6 +161,16 @@ Add the below alias to your `/etc/hosts`
 0.0.0.0      kafka-01
 ```
 
+Useful commands : 
+- SSH into container and list kafka topics : `kafka-topics.sh --bootstrap-server localhost:9092 --list`
+- SSH into container and create kafka topics : `kafka-topics.sh --bootstrap-server localhost:9092 --create --topic send-orm-to-ipms --partitions 3 --replication-factor 1`
+
 ### Deploy Omang Service in dev mode
 
 When seeking to make changes to the Omang Service Mediator without having to repeatedly start and stop the service, one can set the `OMANG_DEV_MOUNT_FOLDER` env var in your .env.local file to the absolute path of the project to attach the service's source code files to those on your local machine. You have to set the `OMANG_DEV_MOUNT_FOLDER` variable with the absolute path to the omang-service-mediator project folder on your local machine, i.e., `OMANG_DEV_MOUNT_FOLDER=/Users/username/hie-botswana/projects/omang-service-mediator/`.
+
+
+### Useful links and commands : 
+
+- Run vscode remote debugger for Node.js to debug the mediators (converter and SHR) : https://code.visualstudio.com/docs/editor/debugging
+- Setting Up Oracle Database 19c Enterprise Edition for ARM (M1/M2 Macs) : https://gist.github.com/miccheng/8120d2e17818ba2a2d227554b70cd34e

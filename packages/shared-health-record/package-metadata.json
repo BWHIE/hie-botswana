@@ -15,6 +15,7 @@
     "FHIR_STORE_URL": "http://hapi-fhir:8080/fhir",
     "CLIENT_REGISTRY_CHANNEL": "/CR/fhir",
     "FHIR_COVERTER_CHANNEL": "/72f",
-    "KAFKA_URL": "kafka-01:9092"
+    "KAFKA_URL": "kafka-01:9092",
+    "SHR_DEV_MOUNT_FOLDER": ""
   }
 }

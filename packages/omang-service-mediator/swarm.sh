@@ -72,7 +72,7 @@ main() {
 
     # Define the omangsvc docker image name and tag
     IMAGE_NAME="jembi/omangsvc"
-    IMAGE_TAG="latest"
+    IMAGE_TAG="local"
 
     # Check if the Docker image exists
     if ! docker images "$IMAGE_NAME:$IMAGE_TAG" | grep -q "$IMAGE_TAG"; then

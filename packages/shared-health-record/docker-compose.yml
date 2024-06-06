@@ -7,6 +7,8 @@ services:
       - shr
       - kafka
       - opencr
+      - openhim
+      - converter
       - ocl
     ports:
       - "3001:3001"
@@ -55,11 +57,15 @@ networks:
   shr:
     name: shr_public
     external: true
+    attachable: true
   opencr:
     name: opencr
     external: true
   openhim:
     name: openhim_public
+    external: true
+  converter:
+    name: converter_public
     external: true
   ocl:
     name: reverse-proxy-ocl_public
