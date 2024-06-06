@@ -1,0 +1,3 @@
+[submodule "projects/openmrs/openmrs-module-botswanaemr"]
+	path = projects/openmrs/openmrs-module-botswanaemr
+	url = https://bitbucket.org/botswana-emrs/openmrs-module-botswanaemr.git
