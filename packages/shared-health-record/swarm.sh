@@ -4,7 +4,8 @@ declare ACTION=""
 declare MODE=""
 declare COMPOSE_FILE_PATH=""
 declare UTILS_PATH=""
-declare STACK="omang-service-mediator"
+declare SERVICE_NAMES=()
+declare STACK="shared-health-record"
 
 function init_vars() {
   ACTION=$1
@@ -17,10 +18,15 @@ function init_vars() {
 
   UTILS_PATH="${COMPOSE_FILE_PATH}/../utils"
 
+  SERVICE_NAMES=(
+    "shared-health-record"
+  )
+
   readonly ACTION
   readonly MODE
   readonly COMPOSE_FILE_PATH
   readonly UTILS_PATH
+  readonly SERVICE_NAMES
   readonly STACK
 }
 
@@ -33,35 +39,27 @@ function import_sources() {
 
 function initialize_package() {
   local package_dev_compose_filename=""
-
-  if [ "${MODE}" == "dev" ]; then
+  if [[ "${MODE}" == "dev" ]]; then
     log info "Running package in DEV mode"
     package_dev_compose_filename="docker-compose.dev.yml"
-    if [[ -z "${OMANG_DEV_MOUNT_FOLDER}" ]]; then
-      log error "ERROR: OMANG_DEV_MOUNT_FOLDER environment variable not specified. Please specify OMANG_DEV_MOUNT_FOLDER as stated in the README."
-      exit 1
-    fi
   else
     log info "Running package in PROD mode"
   fi
- 
+  
+  log info "Deploying package with compose file: ${COMPOSE_FILE_PATH}/docker-compose.yml ${package_dev_compose_filename}"
+  
   (
-    docker::deploy_service "$STACK" "${COMPOSE_FILE_PATH}" "docker-compose.yml" "$package_dev_compose_filename"
-  ) ||
-    {
-      log error "Failed to deploy package"
-      docker stack deploy --compose-file "${COMPOSE_FILE_PATH}/docker-compose.yml" --compose-file "${COMPOSE_FILE_PATH}/docker-compose.dev.yml" omang-service-mediator
-      exit 1
-    }
+    docker::deploy_service $STACK "${COMPOSE_FILE_PATH}" "docker-compose.yml" "$package_dev_compose_filename"
+  ) || {
+    log error "Failed to deploy package"
+    exit 1
+  }
 }
 
 function destroy_package() {
-  docker::stack_destroy "$STACK"
+  docker::stack_destroy $STACK
 
-  if [[ "${CLUSTERED_MODE}" == "true" ]]; then
-    log warn "Volumes are only deleted on the host on which the command is run. Postgres volumes on other nodes are not deleted"
-  fi
-
+  docker::prune_configs "shr"
 }
 
 main() {
@@ -69,21 +67,15 @@ main() {
   import_sources
 
   if [[ "${ACTION}" == "init" ]] || [[ "${ACTION}" == "up" ]]; then
+    log info "Running package in Single node mode"
 
-    # Define the omangsvc docker image name and tag
-    IMAGE_NAME="jembi/omangsvc"
+    IMAGE_NAME="itechuw/shared-health-record"
     IMAGE_TAG="local"
 
     # Check if the Docker image exists
     if ! docker images "$IMAGE_NAME:$IMAGE_TAG" | grep -q "$IMAGE_TAG"; then
       log error "Image $IMAGE_NAME:$IMAGE_TAG does not exist. Please build it locally ..."
       exit
-    fi
-
-    if [[ "${CLUSTERED_MODE}" == "true" ]]; then
-      log info "Running package in Cluster node mode"
-    else
-      log info "Running package in Single node mode"
     fi
 
     initialize_package
@@ -93,6 +85,7 @@ main() {
     docker::scale_services "$STACK" 0
   elif [[ "${ACTION}" == "destroy" ]]; then
     log info "Destroying package"
+
     destroy_package
   else
     log error "Valid options are: init, up, down, or destroy"
