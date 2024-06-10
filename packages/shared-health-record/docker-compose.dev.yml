@@ -8,5 +8,5 @@ services:
         published: 9230
         mode: host
       - target: 3000
-        published: 3003
+        published: 3004
         mode: host
