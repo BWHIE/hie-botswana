@@ -37,6 +37,7 @@ profiles:
 
   - name: qa
     packages:
+      - reverse-proxy-nginx
       - interoperability-layer-openhim
       - database-postgres
       - fhir-datastore-hapi-fhir
