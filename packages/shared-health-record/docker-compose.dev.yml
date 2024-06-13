@@ -1,8 +1,6 @@
 services:
   shared-health-record:
     entrypoint: node --inspect=0.0.0.0:9230 /app/dist/app.js
-    volumes:
-      - ${SHR_DEV_MOUNT_FOLDER}:/app/dist
     ports:
       - target: 9230
         published: 9230
