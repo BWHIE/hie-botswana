@@ -7,6 +7,7 @@ import { ImmigrationService } from '../../immigration/services/immigration.servi
 import { MasterPatientIndex } from '../../mpi/services/mpi';
 import { OmangService } from '../../omang/services/omang.service';
 import { BaseService } from 'src/services/base.service';
+import { FhirAPIResponses } from 'src/utils/fhir-responses';
 
 @Injectable()
 export class PatientService extends BaseService {
@@ -45,6 +46,24 @@ export class PatientService extends BaseService {
       return this.bdrs.findBirthByFullNameFHIR(firstName, lastName, pager);
     } else throw new Error('System Not Supported');
   }
+
+  async getPatientByDemographicData(
+    firstName: string,
+    lastName: string,
+    gender: string,
+    birthDate: string,
+    pager: Pager,
+  ): Promise<fhirR4.Bundle> {
+    this.logger.log('Getting patient by demographic data');
+
+    const searchBundle: fhirR4.Bundle = FhirAPIResponses.RecordInitialized;
+
+    searchBundle.entry.push(await this.omang.findOmangByDemographicData(firstName, lastName, gender, birthDate, pager));
+    searchBundle.entry.push(await this.immigration.getByFullName(firstName, lastName, pager));
+    searchBundle.entry.push(await this.bdrs.findBirthByFullNameFHIR(firstName, lastName, pager));
+
+    return searchBundle;
+  } 
 
   async getPatientByID(
     identifier: string,

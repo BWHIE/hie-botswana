@@ -107,4 +107,30 @@ export class PatientController {
       throw new InternalServerErrorException();
     }
   }
+
+  @Get('GetPatientByDemographicData')
+  @Header('Content-Type', 'application/fhir+json')
+  async getPatientByDemographicData(
+    @Query('givenNames') givenNames: string,
+    @Query('lastName') lastName: string,
+    @Query('gender') gender: string,
+    @Query('birthDate') birthDate: string,
+    @Query('pageNum') pageNum: number = 1,
+    @Query('pageSize') pageSize: number = 100,
+  ): Promise<fhirR4.Bundle> {
+    try {
+      const bundle = await this.patients.getPatientByDemographicData(
+        givenNames,
+        lastName,
+        gender,
+        birthDate,
+        new Pager(pageNum, pageSize),
+      );
+      return bundle;
+    } catch (error) {
+      this.logger.error(error);
+      throw new InternalServerErrorException();
+    }
+  }
 }
+
