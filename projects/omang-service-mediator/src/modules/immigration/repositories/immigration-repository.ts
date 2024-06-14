@@ -275,6 +275,55 @@ export class ImmigrationRepository {
     return result;
   }
 
+  async getByDemographicData(
+    firstName: string,
+    lastName: string,
+    gender: string,
+    birthDate: string,
+    pager: Pager,
+  ): Promise<ImmigrationRecord[]> {
+    const filter =
+      'UPPER(FIRST_NAME) LIKE UPPER(:firstName) AND UPPER(SURNAME) LIKE UPPER(:lastName) AND GENDER = :gender AND BIRTH_DATE = :birthDate';
+    const fParameter = firstName + '%';
+    const lParameter = lastName + '%';
+    const gParameter = gender;
+    const bParameter = birthDate;
+
+    const result: ImmigrationRecord[] = [];
+    const queryRunner = this.connection.createQueryRunner();
+
+    const query = `
+            SELECT *
+            FROM (
+                SELECT a.*, rownum r
+                FROM (
+                    SELECT DISTINCT ${this.getQueryColumns()}
+                    FROM ${this.viewName}
+                    WHERE ${filter}
+                    ORDER BY PASSPORT_NO
+                ) a
+                WHERE rownum < ((${pager.pageNum} * ${pager.pageSize}) + 1)
+            )
+            WHERE r >= (((${pager.pageNum} - 1) * ${pager.pageSize}) + 1)
+        `;
+
+    try {
+      await queryRunner.connect();
+      const rows = await queryRunner.query(query, [fParameter, lParameter, gParameter, bParameter]);
+
+      if (rows && rows.length > 0) {
+        for (const row of rows) {
+          result.push(this.getImmigrationRecordFromRow(row));
+        }
+      }
+    } finally {
+      await queryRunner.release();
+    }
+
+    return result;
+  }
+
+
   async getMany(
     passportNo: string[],
     pager: Pager,

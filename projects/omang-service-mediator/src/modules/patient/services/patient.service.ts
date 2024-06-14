@@ -1,5 +1,5 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { fhirR4 } from '@smile-cdr/fhirts';
+import { BundleUtils, fhirR4 } from '@smile-cdr/fhirts';
 import { config } from 'src/config';
 import { Pager } from 'src/utils/pager';
 import { BDRSService } from '../../bdrs/services/bdrs.service';
@@ -58,9 +58,23 @@ export class PatientService extends BaseService {
 
     const searchBundle: fhirR4.Bundle = FhirAPIResponses.RecordInitialized;
 
-    searchBundle.entry.push(await this.omang.findOmangByDemographicData(firstName, lastName, gender, birthDate, pager));
-    searchBundle.entry.push(await this.immigration.getByFullName(firstName, lastName, pager));
-    searchBundle.entry.push(await this.bdrs.findBirthByFullNameFHIR(firstName, lastName, pager));
+    const omangPatients = (await this.omang.findOmangByDemographicData(firstName, lastName, gender, birthDate, pager)).entry;
+
+    const immigrationPatients = (await this.immigration.getByDemographicData(firstName, lastName, gender, birthDate, pager)).entry;
+
+    const bdrsPatients = (await this.bdrs.findBirthByFullNameFHIR(firstName, lastName, pager)).entry;
+
+    if(omangPatients.length > 0) {
+      searchBundle.entry.push(omangPatients[0]);
+    }
+
+    if(immigrationPatients.length > 0) {
+      searchBundle.entry.push(immigrationPatients[0]);
+    }
+
+    if(bdrsPatients.length > 0) {
+      searchBundle.entry.push(bdrsPatients[0]);
+    }
 
     return searchBundle;
   } 

@@ -89,6 +89,22 @@ export class ImmigrationService extends BaseService {
     }
   }
 
+  async getByDemographicDataNonFHIR(
+    firstName: string,
+    lastName: string,
+    gender: string,
+    birthDate: string,
+    pager: Pager,
+  ): Promise<ImmigrationRecord[]> {
+    return this.repo.getByDemographicData(
+      firstName,
+      lastName,
+      gender,
+      birthDate,
+      pager,
+    );
+  }
+
   async getByFullName(
     firstName: string,
     lastName: string,
@@ -98,6 +114,33 @@ export class ImmigrationService extends BaseService {
       const results = await this.getByFullNameNonFHIR(
         firstName,
         lastName,
+        pager,
+      );
+      if (results.length > 0) {
+        const bundle: fhirR4.Bundle =
+          this.mapImmigrationRecordToSearchBundle(results);
+        return bundle;
+      } else return FhirAPIResponses.RecordInitialized;
+    } catch (error) {
+      this.logger.error(
+        'Error retrieving records in FHIR format \n ' + error.message,
+      );
+    }
+  }
+
+  async getByDemographicData(
+    firstName: string,
+    lastName: string,
+    gender: string,
+    birthDate: string,
+    pager: Pager,
+  ): Promise<fhirR4.Bundle> {
+    try {
+      const results = await this.getByDemographicDataNonFHIR(
+        firstName,
+        lastName,
+        gender,
+        birthDate,
         pager,
       );
       if (results.length > 0) {
