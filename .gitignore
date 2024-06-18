@@ -11,6 +11,11 @@ yarn-error.log*
 .yarn
 dist/
 
+#Python 
+__pycache__/
+*.venv 
+venv/
+
 # Runtime data
 pids
 *.pid
