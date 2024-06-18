@@ -10,7 +10,7 @@
 ## Quick Start for devs (local single node)
 
 1. If running into an error `invalid mount config for type "bind": bind source path does not exist: /tmp/logs` on running the CLI binary, run the following command: `sudo mkdir -p /tmp/logs/`.
-1. `./build-image.sh` - builds the platform image
+1. `./build-custom-images.sh` - builds project images as well as the platform image
 1. Initialise Docker Swarm mode: `docker swarm init`
 1. Run `go cli` binary to launch the project:
 
@@ -24,7 +24,7 @@
 To set up a remote cluster environment, see [readme](https://github.com/jembi/cloud/blob/main/aws/mercury-team/README.md) in the [cloud repo](https://github.com/jembi/cloud).
 
 1. Ensure that you have the latest instant repository checked out in the same folder that this repo is in.
-1. `./build-image.sh` - builds the platform image
+1. `./build-custom-images.sh` - builds the platform image
 1. Add `.env.prod` file with your remote env vars option set.
 
     > Each Package contains a `metadata.json` file which lists the configurable Env vars and their default values
@@ -81,6 +81,22 @@ Tests that execute platform-linux with parameters and observe docker to assert e
 
 View `/test/cucumber/README.md` for more information
 
+## Local Development Setup steps
+
+Due the use of custom packages within the project, we need to ensure we have built the relevant docker images as well as building a new Platform image containing these packages.
+
+Run the below command to create the custom images and rebuild a new Platform image
+
+```
+./build-custom-images.sh
+```
+
+Once the custom images have been built, you can initilize the project with the below command
+
+```
+./instant-linux package init -p dev
+```
+
 ## Access to services in the dev environement
 
 ### Keycloak
@@ -97,8 +113,8 @@ For dev environment you can access the admin console using the following credent
 For dev environment you can access the admin console and signin with Keycloak using the following credentials : 
 
 - URL : http://localhost:9000/
-- username : test
-- password : dev_password_only
+- username : root@openhim.org
+- password : instant101
 
 ### OpenCR
 
@@ -108,6 +124,15 @@ For dev environment you can access the OpenCR UI and signin using the following 
 - username : root@intrahealth.org
 - password : intrahealth
 
+### OpenMRS
+
+For dev environment of OpenMRS, please follow the [setup instructions here](https://github.com/BWHIE/hie-botswana/blob/main/projects/openmrs)
+
+Once OpenMRS is properly configured locally, you can access it with the following credentials
+
+- URL: http://localhost:8085/openmrs
+- Username: admin
+- Password: Y3z44AH2
 
 ### Elastic Search
 For dev environment you can access the ES and sign in using the following credentials:
@@ -116,8 +141,7 @@ For dev environment you can access the ES and sign in using the following creden
 - username : elastic
 - password : dev_password_only
 
-Note: Consider creating the ES_BACKUPS folder away from tmp since it will be deleted on system retart. The default value set inside .``env.local`` is ``/tmp/backups``
-
+Note: Consider creating the ES_BACKUPS folder away from tmp since it will be deleted on system restart. The default value set inside `.env.local` is `/tmp/backups`
 
 ### HAPI FHIR UI
 
@@ -130,3 +154,33 @@ For dev environment you can access the Grafana UI and signin using the following
 - URL : http://localhost:3000
 - username : test
 - password : dev_password_only
+
+### Kafka (Kafdrop)
+
+For dev environment you can access the kafka (Kafdrop) UI viewer at the below endpoint:
+
+- URL : http://localhost:9013
+
+#### Kafka Pub/Sub testing
+
+For dev environment, you will need need to define an alias for the defined broker (kafka-01)
+
+Add the below alias to your `/etc/hosts`
+
+```
+0.0.0.0      kafka-01
+```
+
+Useful commands : 
+- SSH into container and list kafka topics : `kafka-topics.sh --bootstrap-server localhost:9092 --list`
+- SSH into container and create kafka topics : `kafka-topics.sh --bootstrap-server localhost:9092 --create --topic send-orm-to-ipms --partitions 3 --replication-factor 1`
+
+### Deploy Omang Service in dev mode
+
+When seeking to make changes to the Omang Service Mediator without having to repeatedly start and stop the service, one can set the `OMANG_DEV_MOUNT_FOLDER` env var in your .env.local file to the absolute path of the project to attach the service's source code files to those on your local machine. You have to set the `OMANG_DEV_MOUNT_FOLDER` variable with the absolute path to the omang-service-mediator project folder on your local machine, i.e., `OMANG_DEV_MOUNT_FOLDER=/Users/username/hie-botswana/projects/omang-service-mediator/`.
+
+
+### Useful links and commands : 
+
+- Run vscode remote debugger for Node.js to debug the mediators (converter and SHR) : https://code.visualstudio.com/docs/editor/debugging
+- Setting Up Oracle Database 19c Enterprise Edition for ARM (M1/M2 Macs) : https://gist.github.com/miccheng/8120d2e17818ba2a2d227554b70cd34e

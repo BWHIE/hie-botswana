@@ -1,0 +1,10 @@
+services:
+  shared-health-record:
+    entrypoint: node --inspect=0.0.0.0:9230 /app/dist/app.js
+    ports:
+      - target: 9230
+        published: 9230
+        mode: host
+      - target: 3000
+        published: 3004
+        mode: host
