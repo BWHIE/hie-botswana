@@ -68,6 +68,16 @@ export class BDRSService extends BaseService {
     }
   }
 
+  async findBirthByDemographicData(
+    firstName: string,
+    lastName: string,
+    gender: string,
+    birthDate: string,
+    pager: Pager,
+  ): Promise<BirthRecord[]> {
+    return this.births.getByDemographicData(firstName, lastName, gender, birthDate, pager);
+  }
+
   async findBirthByFullNameFHIR(
     firstName: string,
     lastName: string,
@@ -77,6 +87,33 @@ export class BDRSService extends BaseService {
       const results = await this.findBirthByFullName(
         firstName,
         lastName,
+        pager,
+      );
+      if (results.length > 0) {
+        const bundle: fhirR4.Bundle =
+          this.mapBirthRecordsToSearchBundle(results);
+        return bundle;
+      } else return FhirAPIResponses.RecordInitialized;
+    } catch (error) {
+      this.logger.error(
+        'Error retrieving records in FHIR format \n ' + error.message,
+      );
+    }
+  }
+
+  async findBirthByDemographicDataFHIR(
+    firstName: string,
+    lastName: string,
+    gender: string,
+    birthDate: string,
+    pager: Pager,
+  ): Promise<fhirR4.Bundle> {
+    try {
+      const results = await this.findBirthByDemographicData(
+        firstName,
+        lastName,
+        gender,
+        birthDate,
         pager,
       );
       if (results.length > 0) {

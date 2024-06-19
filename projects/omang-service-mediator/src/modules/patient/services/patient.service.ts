@@ -62,7 +62,7 @@ export class PatientService extends BaseService {
 
     const immigrationPatients = (await this.immigration.getByDemographicData(firstName, lastName, gender, birthDate, pager)).entry;
 
-    const bdrsPatients = (await this.bdrs.findBirthByFullNameFHIR(firstName, lastName, pager)).entry;
+    const bdrsPatients = (await this.bdrs.findBirthByDemographicDataFHIR(firstName, lastName, gender, birthDate, pager)).entry;
 
     if(omangPatients.length > 0) {
       searchBundle.entry.push(omangPatients[0]);

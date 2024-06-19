@@ -317,6 +317,59 @@ export class BirthRepository {
     return result;
   }
 
+  async getByDemographicData(
+    firstName: string,
+    lastName: string,
+    gender: string,
+    birthDate: string,
+    pager: Pager,
+  ): Promise<BirthRecord[]> {
+    firstName += '%';
+    lastName += '%';
+    birthDate += '%';
+    gender += '%';
+    const filter =
+      'UPPER(FORENAME) LIKE UPPER(:firstName) AND UPPER(SURNAME) LIKE UPPER(:lastName) AND UPPER(SEX) LIKE UPPER(:gender) AND DATE_OF_BIRTH LIKE :birthDate';
+    const fParameter = firstName; // parameter to prevent SQL injection
+    const lParameter = lastName; // parameter to prevent SQL injection
+    const gParameter = gender;
+    const bParameter = birthDate;
+
+    const query = `
+        SELECT *
+        FROM (
+            SELECT a.*, rownum r
+            FROM (
+                SELECT ${this._birthSelectColumns}
+                FROM ${this.viewName}
+                WHERE ${filter}
+                ORDER BY ID_NUMBER
+            ) a
+            WHERE rownum < ((${pager.pageNum} * ${pager.pageSize}) + 1)
+        )
+        WHERE r >= (((${pager.pageNum} - 1) * ${pager.pageSize}) + 1)
+    `;
+
+    const result: BirthRecord[] = [];
+
+    const queryRunner = this.connection.createQueryRunner();
+
+    try {
+      await queryRunner.connect();
+      const rows = await queryRunner.query(query, [fParameter, lParameter, gParameter, bParameter]);
+
+      if (rows && rows.length > 0) {
+        for (const row of rows) {
+          result.push(this.getBirthFromRow(row));
+        }
+      }
+    } finally {
+      await queryRunner.release();
+    }
+
+    return result;
+  }
+
   async getByNameWithMiddleName(
     firstName: string,
     middleName: string,

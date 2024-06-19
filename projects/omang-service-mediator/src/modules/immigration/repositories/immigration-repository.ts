@@ -283,11 +283,11 @@ export class ImmigrationRepository {
     pager: Pager,
   ): Promise<ImmigrationRecord[]> {
     const filter =
-      'UPPER(FIRST_NAME) LIKE UPPER(:firstName) AND UPPER(SURNAME) LIKE UPPER(:lastName) AND GENDER = :gender AND BIRTH_DATE = :birthDate';
+      'UPPER(FIRST_NAME) LIKE UPPER(:firstName) AND UPPER(SURNAME) LIKE UPPER(:lastName) AND UPPER(GENDER) LIKE UPPER(:gender) AND BIRTH_DATE LIKE :birthDate';
     const fParameter = firstName + '%';
     const lParameter = lastName + '%';
-    const gParameter = gender;
-    const bParameter = birthDate;
+    const gParameter = gender + '%';
+    const bParameter = birthDate + '%';
 
     const result: ImmigrationRecord[] = [];
     const queryRunner = this.connection.createQueryRunner();

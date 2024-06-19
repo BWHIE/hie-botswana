@@ -280,7 +280,7 @@ export class OmangRepository {
     gender += '%';
     birthDate += '%';
     const filter =
-      'UPPER(FIRST_NME) LIKE UPPER(:firstName) AND UPPER(SURNME) LIKE UPPER(:lastName) AND UPPER(SEX) LIKE UPPER(:gender) AND UPPER(BIRTH_DTE) LIKE UPPER(:birthDate)';
+      'UPPER(FIRST_NME) LIKE UPPER(:firstName) AND UPPER(SURNME) LIKE UPPER(:lastName) AND UPPER(SEX) LIKE UPPER(:gender) AND BIRTH_DTE LIKE :birthDate';
     const fParameter = firstName; // parameter to prevent SQL injection
     const lParameter = lastName;
     const gParameter = gender;
