@@ -1,5 +1,4 @@
 import {
-  BadRequestException,
   Controller,
   Get,
   Header,
@@ -8,10 +7,11 @@ import {
   InternalServerErrorException,
   Logger,
   Query,
-  UseGuards,
+  UseGuards
 } from '@nestjs/common';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { MpiService } from 'src/modules/mpi/services/mpi.service';
+import { FhirSearchParamsValidationPipe, FhirSearchParams } from 'src/utils/fhir-search.pipe';
 import { Pager } from 'src/utils/pager';
 import { ImmigrationService } from '../../immigration/services/immigration.service';
 import { BasicAuthGuard } from '../../user/models/authentification';
@@ -42,25 +42,16 @@ export class PatientController {
   @Get('Get')
   @Header('Content-Type', 'application/fhir+json')
   async get(
-    @Query('identifier') identifier: string,
-    @Query('given') givenNames: string, // Aligned with FHIR search parameters
-    @Query('family') lastName: string, // Aligned with FHIR search parameters
-    @Query('gender') gender: string,
-    @Query('birthdate') birthDate: string,
-    @Query('_page') pageNum: number = 1,
-    @Query('_count') pageSize: number = 100,
     @Headers('x-openhim-clientid') clientId = 'OmangSvc',
+    @Query(new FhirSearchParamsValidationPipe()) queryParams: FhirSearchParams,
   ): Promise<fhirR4.Bundle> {
+    const { identifier, given, family, gender, birthdate, _page = 1, _count = 25 } = queryParams;
     if (identifier) {
       // Search by identifier
       try {
-        if (!identifier.includes('|')) {
-          throw new BadRequestException();
-        }
-
         const searchBundle =
-          await this.patientService.retrySearchPatientByIdentifier(
-            identifier,
+          await this.patientService.retrySearchPatient(
+            {identifier, _page, _count},
             clientId,
           );
 
@@ -72,11 +63,13 @@ export class PatientController {
           const result = await this.patientService.getPatientByID(
             id,
             system,
-            pageNum,
-            pageSize,
+            _page,
+            _count,
           );
 
-          await this.mpi.pushToClientRegistry(result, clientId);
+          // Async push to openCR
+          this.mpi.pushToClientRegistry(result, clientId);
+          
           return result;
         }
       } catch (error) {
@@ -84,22 +77,44 @@ export class PatientController {
         throw new InternalServerErrorException();
       }
     } else {
-      // Search by demographics
-      if (!givenNames && !lastName && !gender && !birthDate) {
-        throw new BadRequestException(
-          'At least one search parameter must be provided',
-        );
-      }
-
+      // Search by demographics in both OpenCR and national registries
       try {
-        const bundle = await this.patientService.getPatientByDemographicData(
-          givenNames,
-          lastName,
-          gender,
-          birthDate,
-          new Pager(pageNum, pageSize),
-        );
-        return bundle;
+        const [openCrBundle, registriesBundle] = await Promise.all([
+          this.patientService.retrySearchPatient(
+            {identifier, given, family, gender, birthdate, _page, _count},
+            clientId,
+          ),
+          this.patientService.getPatientByDemographicData(
+            given,
+            family,
+            gender,
+            birthdate,
+            new Pager(_page, _count),
+          )
+        ]);
+
+        // Deduplicate
+        registriesBundle.entry = registriesBundle.entry?.filter(registryEntry => {
+          return !openCrBundle.entry?.find(openCrEntry => {
+              const openCrIdentifiers = (openCrEntry.resource as fhirR4.Patient).identifier || [];
+              const registryIdentifiers = (registryEntry.resource as fhirR4.Patient).identifier || [];
+              return registryIdentifiers.some(({ system, value }) =>
+                  openCrIdentifiers.some(({ system: s, value: v }) => s === system && v === value)
+              );
+          });
+        }) || [];
+        registriesBundle.total = registriesBundle.entry.length;
+        
+        // Async push to OpenCR
+        if (registriesBundle.total > 0) {
+          this.mpi.pushToClientRegistry(registriesBundle, clientId);
+        }
+
+        // Concat results
+        openCrBundle.entry = (openCrBundle.entry || []).concat(registriesBundle.entry);
+        openCrBundle.total = openCrBundle.total + registriesBundle.total;
+
+        return openCrBundle;
       } catch (error) {
         this.logger.error(error);
         throw new InternalServerErrorException();

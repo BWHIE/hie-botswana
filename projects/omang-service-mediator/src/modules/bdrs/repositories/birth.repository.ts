@@ -338,7 +338,7 @@ export class BirthRepository {
     }
     if (gender) {
       conditions.push('UPPER(SEX) LIKE UPPER(:gender)');
-      parameters['gender'] = gender + '%';
+      parameters['gender'] = (gender === 'male' ? 'M' : 'F') + '%';
     }
     if (birthDate) {
       conditions.push('DATE_OF_BIRTH LIKE :birthDate');

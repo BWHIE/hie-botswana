@@ -2,6 +2,7 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import config from 'src/config';
 import { MpiService } from '../modules/mpi/services/mpi.service';
+import { FhirSearchParams } from 'src/utils/fhir-search.pipe';
 
 @Injectable()
 export abstract class BaseService {
@@ -12,14 +13,14 @@ export abstract class BaseService {
     protected readonly mpi: MpiService,
   ) {}
 
-  public async retrySearchPatientByIdentifier(
-    identifier: any,
+  public async retrySearchPatient(
+    params: FhirSearchParams,
     clientId: string,
   ): Promise<fhirR4.Bundle | null> {
     const maxAttempts = 5;
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
       try {
-        return this.mpi.searchPatientByIdentifier(identifier, clientId);
+        return this.mpi.searchPatientByIdentifier(params, clientId);
       } catch (error) {
         this.logger.warn(
           `Attempt ${attempt} to get search bundle failed: ${error.message}`,

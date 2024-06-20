@@ -5,6 +5,7 @@ import { Agent } from 'https';
 import { config } from 'src/config';
 import { Bundle } from 'fhir/r4';
 import { fhirR4 } from '@smile-cdr/fhirts';
+import { FhirSearchParams } from 'src/utils/fhir-search.pipe';
 
 
 @Injectable()
@@ -38,12 +39,12 @@ export class MpiService {
     return options;
   }
 
-  async searchPatientByIdentifier(identifier: string, clientId: string): Promise<any> {
+  async searchPatientByIdentifier(params: FhirSearchParams, clientId: string): Promise<any> {
     try {
       const searchResponse = await this.httpService.axiosRef.get<Bundle>(
         `${this.clientRegistryUrl}/Patient`,
         {
-          params: { identifier: identifier },
+          params,
           headers: {
             'Content-Type': 'application/fhir+json',
             'x-openhim-clientid': clientId
@@ -54,7 +55,7 @@ export class MpiService {
       return searchResponse.data;
     } catch (error) {
       this.logger.error(
-        `Could not get CR bundle for patient with ID ${identifier} \n ${error}`
+        `Could not get CR bundle for patient with ${JSON.stringify(params)} \n ${error}`
       );
     }
   }
