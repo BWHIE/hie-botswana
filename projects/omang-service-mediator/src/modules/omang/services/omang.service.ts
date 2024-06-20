@@ -94,6 +94,20 @@ export class OmangService extends BaseService {
     } else return FhirAPIResponses.RecordInitialized;
   }
 
+
+  async findOmangByDemographicData(
+    firstName: string,
+    lastName: string,
+    gender: string,
+    birthDate: string,
+    pager: Pager,
+  ): Promise<fhirR4.Bundle> {
+    const results = await this.repo.getByDemographicData(firstName, lastName, gender, birthDate, pager);
+    if (results.length > 0) {
+      return this.mapOmangToSearchBundle(results);
+    } else return FhirAPIResponses.RecordInitialized;
+  }
+
   async findOmangByFullNameNonFHIR(
     firstName: string,
     lastName: string,

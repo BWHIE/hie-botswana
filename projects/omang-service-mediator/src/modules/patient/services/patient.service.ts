@@ -1,5 +1,5 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { fhirR4 } from '@smile-cdr/fhirts';
+import { BundleUtils, fhirR4 } from '@smile-cdr/fhirts';
 import { config } from 'src/config';
 import { Pager } from 'src/utils/pager';
 import { BDRSService } from '../../bdrs/services/bdrs.service';
@@ -7,6 +7,7 @@ import { ImmigrationService } from '../../immigration/services/immigration.servi
 import { MasterPatientIndex } from '../../mpi/services/mpi';
 import { OmangService } from '../../omang/services/omang.service';
 import { BaseService } from 'src/services/base.service';
+import { FhirAPIResponses } from 'src/utils/fhir-responses';
 
 @Injectable()
 export class PatientService extends BaseService {
@@ -46,21 +47,57 @@ export class PatientService extends BaseService {
     } else throw new Error('System Not Supported');
   }
 
+  async getPatientByDemographicData(
+    firstName: string,
+    lastName: string,
+    gender: string,
+    birthDate: string,
+    pager: Pager,
+  ): Promise<fhirR4.Bundle> {
+    this.logger.log('Getting patient by demographic data');
+
+    const searchBundle: fhirR4.Bundle = FhirAPIResponses.RecordInitialized;
+
+    // Execute all promises in parallel and destructure their resolved values
+    const [omangResponse, immigrationResponse, bdrsResponse] = await Promise.all([
+      this.omang.findOmangByDemographicData(firstName, lastName, gender, birthDate, pager),
+      this.immigration.getByDemographicData(firstName, lastName, gender, birthDate, pager),
+      this.bdrs.findBirthByDemographicDataFHIR(firstName, lastName, gender, birthDate, pager)
+    ]);
+
+    // Combine all entries into one array
+    const allEntries = [
+      ...omangResponse.entry,
+      ...immigrationResponse.entry,
+      ...bdrsResponse.entry
+    ];
+
+    // Adding all found entries to the searchBundle
+    searchBundle.entry = allEntries;
+
+    // Include total count of entries in the bundle
+    searchBundle.total = allEntries.length;
+
+    return searchBundle;
+  } 
+
   async getPatientByID(
     identifier: string,
     system: string,
+    pageNum: number,
+    pageSize: number,
   ): Promise<fhirR4.Bundle> {
     this.logger.log('Getting patient by ID');
 
     if (system === config.get('ClientRegistry:OmangSystem')) {
-      return this.omang.getOmangByID([identifier], new Pager(1, 1));
+      return this.omang.getOmangByID([identifier], new Pager(pageNum, pageSize));
     } else if (system === config.get('ClientRegistry:ImmigrationSystem')) {
       return this.immigration.getPatientByPassportNumber(
         [identifier],
-        new Pager(1, 1),
+        new Pager(pageNum, pageSize),
       );
     } else if (system === config.get('ClientRegistry:BdrsSystem')) {
-      return this.bdrs.getBirthByID([identifier], new Pager(1, 1));
+      return this.bdrs.getBirthByID([identifier], new Pager(pageNum, pageSize));
     } else throw new Error('System Not Supported');
   }
 
