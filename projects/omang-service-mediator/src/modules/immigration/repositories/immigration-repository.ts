@@ -130,11 +130,11 @@ export class ImmigrationRepository {
       if (rows && rows.length > 0) {
         result = this.getImmigrationRecordFromRow(rows);
       }
+      return result;
     } finally {
       await queryRunner.release();
     }
 
-    return result;
   }
 
   async getByLastName(
@@ -173,11 +173,11 @@ export class ImmigrationRepository {
           result.push(this.getImmigrationRecordFromRow(row));
         }
       }
+      return result;
     } finally {
       await queryRunner.release();
     }
 
-    return result;
   }
 
   async getByName(
@@ -217,11 +217,11 @@ export class ImmigrationRepository {
           result.push(this.getImmigrationRecordFromRow(row));
         }
       }
+      return result;
     } finally {
       await queryRunner.release();
     }
 
-    return result;
   }
 
   async getByNameWithMiddleName(
@@ -268,61 +268,70 @@ export class ImmigrationRepository {
           result.push(this.getImmigrationRecordFromRow(row));
         }
       }
+      return result;
     } finally {
       await queryRunner.release();
     }
 
-    return result;
   }
 
   async getByDemographicData(
-    firstName: string,
-    lastName: string,
-    gender: string,
-    birthDate: string,
+    firstName: string | null,
+    lastName: string | null,
+    gender: string | null,
+    birthDate: string | null,
     pager: Pager,
   ): Promise<ImmigrationRecord[]> {
-    const filter =
-      'UPPER(FIRST_NAME) LIKE UPPER(:firstName) AND UPPER(SURNAME) LIKE UPPER(:lastName) AND UPPER(GENDER) LIKE UPPER(:gender) AND BIRTH_DATE LIKE :birthDate';
-    const fParameter = firstName + '%';
-    const lParameter = lastName + '%';
-    const gParameter = gender + '%';
-    const bParameter = birthDate + '%';
-
-    const result: ImmigrationRecord[] = [];
-    const queryRunner = this.connection.createQueryRunner();
-
+    // Build dynamic SQL conditions based on input values
+    let conditions = [];
+    let parameters = {};
+  
+    if (firstName) {
+      conditions.push('UPPER(FIRST_NAME) LIKE UPPER(:firstName)');
+      parameters['firstName'] = firstName + '%';
+    }
+    if (lastName) {
+      conditions.push('UPPER(SURNAME) LIKE UPPER(:lastName)');
+      parameters['lastName'] = lastName + '%';
+    }
+    if (gender) {
+      conditions.push('UPPER(GENDER) LIKE UPPER(:gender)');
+      parameters['gender'] = gender + '%';
+    }
+    if (birthDate) {
+      conditions.push('BIRTH_DATE LIKE :birthDate');
+      parameters['birthDate'] = birthDate + '%';
+    }
+  
+    const whereClause = conditions.length > 0 ? conditions.join(' AND ') : '1=1'; // If no conditions, select all
     const query = `
-            SELECT *
-            FROM (
-                SELECT a.*, rownum r
-                FROM (
-                    SELECT DISTINCT ${this.getQueryColumns()}
-                    FROM ${this.viewName}
-                    WHERE ${filter}
-                    ORDER BY PASSPORT_NO
-                ) a
-                WHERE rownum < ((${pager.pageNum} * ${pager.pageSize}) + 1)
-            )
-            WHERE r >= (((${pager.pageNum} - 1) * ${pager.pageSize}) + 1)
-        `;
-
+      SELECT *
+      FROM (
+          SELECT a.*, rownum r
+          FROM (
+              SELECT DISTINCT ${this.getQueryColumns()}
+              FROM ${this.viewName}
+              WHERE ${whereClause}
+              ORDER BY PASSPORT_NO
+          ) a
+          WHERE rownum < ((${pager.pageNum} * ${pager.pageSize}) + 1)
+      )
+      WHERE r >= (((${pager.pageNum} - 1) * ${pager.pageSize}) + 1)
+    `;
+  
+    const queryRunner = this.connection.createQueryRunner();
+  
     try {
       await queryRunner.connect();
-      const rows = await queryRunner.query(query, [fParameter, lParameter, gParameter, bParameter]);
-
-      if (rows && rows.length > 0) {
-        for (const row of rows) {
-          result.push(this.getImmigrationRecordFromRow(row));
-        }
-      }
-    } finally {
+      const rows = await queryRunner.query(query, Object.values(parameters));
       await queryRunner.release();
+  
+      return rows.map(row => this.getImmigrationRecordFromRow(row));
+    } catch (error) {
+      await queryRunner.release();
+      throw error; // Rethrow to maintain stack trace
     }
-
-    return result;
   }
-
 
   async getMany(
     passportNo: string[],
@@ -373,11 +382,11 @@ export class ImmigrationRepository {
           result.push(this.getImmigrationRecordFromRow(row));
         }
       }
+      return result;
     } finally {
       await queryRunner.release();
     }
 
-    return result;
   }
 
   async findByBirthDate(
@@ -420,11 +429,11 @@ export class ImmigrationRepository {
           result.push(this.getImmigrationRecordFromRow(row));
         }
       }
+      return result;
     } finally {
       await queryRunner.release();
     }
 
-    return result;
   }
 
   async findByEntryDate(
@@ -466,11 +475,11 @@ export class ImmigrationRepository {
           result.push(this.getImmigrationRecordFromRow(row));
         }
       }
+      return result;
     } finally {
       await queryRunner.release();
     }
 
-    return result;
   }
 
   async findByPassportExpiryDate(
@@ -512,11 +521,11 @@ export class ImmigrationRepository {
           result.push(this.getImmigrationRecordFromRow(row));
         }
       }
+
+      return result;
     } finally {
       await queryRunner.release();
     }
-
-    return result;
   }
 
   async findBySex(sex: string, pager: Pager): Promise<ImmigrationRecord[]> {
@@ -551,11 +560,11 @@ export class ImmigrationRepository {
           result.push(this.getImmigrationRecordFromRow(row));
         }
       }
+
+      return result;
     } finally {
       await queryRunner.release();
     }
-
-    return result;
   }
 
   async findByCountry(
@@ -593,10 +602,10 @@ export class ImmigrationRepository {
           result.push(this.getImmigrationRecordFromRow(row));
         }
       }
+
+      return result;
     } finally {
       await queryRunner.release();
     }
-
-    return result;
   }
 }

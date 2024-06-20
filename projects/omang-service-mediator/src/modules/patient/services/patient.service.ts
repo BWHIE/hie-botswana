@@ -58,23 +58,25 @@ export class PatientService extends BaseService {
 
     const searchBundle: fhirR4.Bundle = FhirAPIResponses.RecordInitialized;
 
-    const omangPatients = (await this.omang.findOmangByDemographicData(firstName, lastName, gender, birthDate, pager)).entry;
+    // Execute all promises in parallel and destructure their resolved values
+    const [omangResponse, immigrationResponse, bdrsResponse] = await Promise.all([
+      this.omang.findOmangByDemographicData(firstName, lastName, gender, birthDate, pager),
+      this.immigration.getByDemographicData(firstName, lastName, gender, birthDate, pager),
+      this.bdrs.findBirthByDemographicDataFHIR(firstName, lastName, gender, birthDate, pager)
+    ]);
 
-    const immigrationPatients = (await this.immigration.getByDemographicData(firstName, lastName, gender, birthDate, pager)).entry;
+    // Combine all entries into one array
+    const allEntries = [
+      ...omangResponse.entry,
+      ...immigrationResponse.entry,
+      ...bdrsResponse.entry
+    ];
 
-    const bdrsPatients = (await this.bdrs.findBirthByDemographicDataFHIR(firstName, lastName, gender, birthDate, pager)).entry;
+    // Adding all found entries to the searchBundle
+    searchBundle.entry = allEntries;
 
-    if(omangPatients.length > 0) {
-      searchBundle.entry.push(omangPatients[0]);
-    }
-
-    if(immigrationPatients.length > 0) {
-      searchBundle.entry.push(immigrationPatients[0]);
-    }
-
-    if(bdrsPatients.length > 0) {
-      searchBundle.entry.push(bdrsPatients[0]);
-    }
+    // Include total count of entries in the bundle
+    searchBundle.total = allEntries.length;
 
     return searchBundle;
   } 
@@ -82,18 +84,20 @@ export class PatientService extends BaseService {
   async getPatientByID(
     identifier: string,
     system: string,
+    pageNum: number,
+    pageSize: number,
   ): Promise<fhirR4.Bundle> {
     this.logger.log('Getting patient by ID');
 
     if (system === config.get('ClientRegistry:OmangSystem')) {
-      return this.omang.getOmangByID([identifier], new Pager(1, 1));
+      return this.omang.getOmangByID([identifier], new Pager(pageNum, pageSize));
     } else if (system === config.get('ClientRegistry:ImmigrationSystem')) {
       return this.immigration.getPatientByPassportNumber(
         [identifier],
-        new Pager(1, 1),
+        new Pager(pageNum, pageSize),
       );
     } else if (system === config.get('ClientRegistry:BdrsSystem')) {
-      return this.bdrs.getBirthByID([identifier], new Pager(1, 1));
+      return this.bdrs.getBirthByID([identifier], new Pager(pageNum, pageSize));
     } else throw new Error('System Not Supported');
   }
 

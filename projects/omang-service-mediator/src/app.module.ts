@@ -31,7 +31,6 @@ import { OpenHimModule } from './modules/openhim/openhim.module';
     MasterPatientIndexModule,
     ImmigrationModule,
   ],
-
   controllers: [
     AppController,
     BDRSController,

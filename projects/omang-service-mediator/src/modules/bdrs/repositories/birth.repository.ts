@@ -263,11 +263,11 @@ export class BirthRepository {
           result.push(this.getBirthFromRow(row));
         }
       }
+
+      return result;
     } finally {
       await queryRunner.release();
     }
-
-    return result;
   }
 
   async getByName(
@@ -310,65 +310,71 @@ export class BirthRepository {
           result.push(this.getBirthFromRow(row));
         }
       }
+
+      return result;
     } finally {
       await queryRunner.release();
     }
-
-    return result;
   }
 
   async getByDemographicData(
-    firstName: string,
-    lastName: string,
-    gender: string,
-    birthDate: string,
+    firstName: string | null,
+    lastName: string | null,
+    gender: string | null,
+    birthDate: string | null,
     pager: Pager,
   ): Promise<BirthRecord[]> {
-    firstName += '%';
-    lastName += '%';
-    birthDate += '%';
-    gender += '%';
-    const filter =
-      'UPPER(FORENAME) LIKE UPPER(:firstName) AND UPPER(SURNAME) LIKE UPPER(:lastName) AND UPPER(SEX) LIKE UPPER(:gender) AND DATE_OF_BIRTH LIKE :birthDate';
-    const fParameter = firstName; // parameter to prevent SQL injection
-    const lParameter = lastName; // parameter to prevent SQL injection
-    const gParameter = gender;
-    const bParameter = birthDate;
-
+    // Build dynamic SQL conditions based on input values
+    let conditions = [];
+    let parameters = {};
+  
+    if (firstName) {
+      conditions.push('UPPER(FORENAME) LIKE UPPER(:firstName)');
+      parameters['firstName'] = firstName + '%';
+    }
+    if (lastName) {
+      conditions.push('UPPER(SURNAME) LIKE UPPER(:lastName)');
+      parameters['lastName'] = lastName + '%';
+    }
+    if (gender) {
+      conditions.push('UPPER(SEX) LIKE UPPER(:gender)');
+      parameters['gender'] = gender + '%';
+    }
+    if (birthDate) {
+      conditions.push('DATE_OF_BIRTH LIKE :birthDate');
+      parameters['birthDate'] = birthDate + '%';
+    }
+  
+    const whereClause = conditions.length > 0 ? conditions.join(' AND ') : '1=1'; // If no conditions, default to a condition that's always true
     const query = `
-        SELECT *
-        FROM (
-            SELECT a.*, rownum r
-            FROM (
-                SELECT ${this._birthSelectColumns}
-                FROM ${this.viewName}
-                WHERE ${filter}
-                ORDER BY ID_NUMBER
-            ) a
-            WHERE rownum < ((${pager.pageNum} * ${pager.pageSize}) + 1)
-        )
-        WHERE r >= (((${pager.pageNum} - 1) * ${pager.pageSize}) + 1)
+      SELECT *
+      FROM (
+          SELECT a.*, rownum r
+          FROM (
+              SELECT ${this._birthSelectColumns.join(',')}
+              FROM ${this.viewName}
+              WHERE ${whereClause}
+              ORDER BY ID_NUMBER
+          ) a
+          WHERE rownum < ((${pager.pageNum} * ${pager.pageSize}) + 1)
+      )
+      WHERE r >= (((${pager.pageNum} - 1) * ${pager.pageSize}) + 1)
     `;
-
-    const result: BirthRecord[] = [];
-
+  
     const queryRunner = this.connection.createQueryRunner();
-
+  
     try {
       await queryRunner.connect();
-      const rows = await queryRunner.query(query, [fParameter, lParameter, gParameter, bParameter]);
-
-      if (rows && rows.length > 0) {
-        for (const row of rows) {
-          result.push(this.getBirthFromRow(row));
-        }
-      }
-    } finally {
+      const rows = await queryRunner.query(query, Object.values(parameters));
       await queryRunner.release();
+  
+      return rows.map(row => this.getBirthFromRow(row));
+    } catch (error) {
+      await queryRunner.release();
+      throw error; // Rethrow to maintain stack trace
     }
-
-    return result;
   }
+  
 
   async getByNameWithMiddleName(
     firstName: string,
@@ -417,11 +423,11 @@ export class BirthRepository {
           result.push(this.getBirthFromRow(row));
         }
       }
+
+      return result;
     } finally {
       await queryRunner.release();
     }
-
-    return result;
   }
 
   async getMany(IDNO: string[], pager: Pager): Promise<BirthDeathRecord[]> {
@@ -463,11 +469,11 @@ export class BirthRepository {
           result.push(this.getBirthDeathFromRow(row));
         }
       }
+
+      return result;
     } finally {
       await queryRunner.release();
     }
-
-    return result;
   }
 
   async findBirthsByDate(
@@ -510,10 +516,10 @@ export class BirthRepository {
           result.push(this.getBirthFromRow(row));
         }
       }
+
+      return result;
     } finally {
       await queryRunner.release();
     }
-
-    return result;
   }
 }

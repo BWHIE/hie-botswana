@@ -201,7 +201,7 @@ describe('PatientService', () => {
     mockBundle.total = 1;
 
     // Act
-    const result = await patientService.getPatientByID(id, system);
+    const result = await patientService.getPatientByID(id, system, 1, 1);
 
     // Assert
     expect(result.entry).toEqual(mockBundle.entry);
@@ -228,7 +228,7 @@ describe('PatientService', () => {
     mockBundle.total = 1;
 
     // Act
-    const result = await patientService.getPatientByID(id, system);
+    const result = await patientService.getPatientByID(id, system, 1, 1);
 
     // Assert
     expect(result.entry).toEqual(mockBundle.entry);
@@ -257,7 +257,7 @@ describe('PatientService', () => {
     mockBundle.total = 1;
 
     // Act
-    const result = await patientService.getPatientByID(id, system);
+    const result = await patientService.getPatientByID(id, system, 1, 1);
 
     // Assert
     expect(result.entry).toEqual(mockBundle.entry);
@@ -278,7 +278,7 @@ describe('PatientService', () => {
     // Act
     let result;
     try {
-      result = await patientService.getPatientByID(id, system);
+      result = await patientService.getPatientByID(id, system, 1, 1);
     } catch (error) {
       result = error;
     }
