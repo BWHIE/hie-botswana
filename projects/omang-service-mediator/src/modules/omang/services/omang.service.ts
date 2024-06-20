@@ -145,7 +145,7 @@ export class OmangService extends BaseService {
       // Resource Type
       fhirPatient.resourceType = 'Patient';
       //Id
-      fhirPatient.id = omang.IdNo;
+      // fhirPatient.id = omang.IdNo;
 
       // Identifier
       const pat_identifier = new fhirR4.Identifier();
@@ -227,6 +227,15 @@ export class OmangService extends BaseService {
       fhirPatient.maritalStatus.coding.push(theCoding);
     }
 
+    fhirPatient.meta = {
+      tag: [
+        {
+          system: 'http://openclientregistry.org/fhir/source',
+          code: 'omang',
+        },
+      ],
+    };
+
     return fhirPatient;
   }
 
@@ -240,7 +249,7 @@ export class OmangService extends BaseService {
       entry.fullUrl =
         config.get('ClientRegistry:OmangSystem') +
         patient.constructor.name +
-        patient.id;
+        (patient.identifier[0].value);
 
       entry.resource = patient;
       searchBundle.entry.push(entry);

@@ -122,14 +122,12 @@ A successful request will return a FHIR `Bundle` containing the matching patient
 
 ```bash
 curl -X GET "http://example.com/Get?identifier=http://moh.bw.org/ext/identifier/omang|237720129" \
-     -H "Content-Type: application/fhir+json" \
-     -H "x-openhim-clientid: OmangSvc"
+     -H "Content-Type: application/fhir+json" 
 ```
 
 
 ##### Search by Demographics
 ```bash
 curl -X GET "http://example.com/Get?given=ARABANG" \
-     -H "Content-Type: application/fhir+json" \
-     -H "x-openhim-clientid: OmangSvc"
+     -H "Content-Type: application/fhir+json" 
 ```

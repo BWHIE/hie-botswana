@@ -20,6 +20,7 @@ import { UserModule } from './modules/user/user.module';
 import * as cookieParser from 'cookie-parser';
 import { json, text } from 'express';
 import { OpenHimModule } from './modules/openhim/openhim.module';
+import { ImmigrationController } from './modules/immigration/controllers/immigration.controller';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { OpenHimModule } from './modules/openhim/openhim.module';
     AppController,
     BDRSController,
     OmangController,
+    ImmigrationController,
     PatientController,
   ],
   providers: [

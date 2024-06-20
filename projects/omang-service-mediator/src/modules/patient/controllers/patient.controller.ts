@@ -1,20 +1,21 @@
 import {
+  BadRequestException,
   Controller,
   Get,
-  Query,
-  Logger,
-  BadRequestException,
-  InternalServerErrorException,
-  UseGuards,
   Header,
   Headers,
+  Inject,
+  InternalServerErrorException,
+  Logger,
+  Query,
+  UseGuards,
 } from '@nestjs/common';
+import { fhirR4 } from '@smile-cdr/fhirts';
+import { MasterPatientIndex } from 'src/modules/mpi/services/mpi';
 import { Pager } from 'src/utils/pager';
 import { ImmigrationService } from '../../immigration/services/immigration.service';
-import { PatientService } from '../services/patient.service';
-import { fhirR4 } from '@smile-cdr/fhirts';
 import { BasicAuthGuard } from '../../user/models/authentification';
-import config from 'src/config';
+import { PatientService } from '../services/patient.service';
 
 @Controller('api/patient')
 @UseGuards(BasicAuthGuard)
@@ -23,7 +24,9 @@ export class PatientController {
 
   constructor(
     private readonly immigration: ImmigrationService,
-    private readonly patients: PatientService,
+    private readonly patientService: PatientService,
+    @Inject(MasterPatientIndex)
+    protected readonly mpi: MasterPatientIndex,
   ) {}
 
   @Get('Online')
@@ -54,30 +57,42 @@ export class PatientController {
         if (!identifier.includes('|')) {
           throw new BadRequestException();
         }
-  
-        const [system, id] = identifier.split('|');
-        const result = await this.patients.getPatientByID(id, system, pageNum, pageSize);
-        await this.patients.updateClientRegistryAsync(
-          result,
-          [id],
-          system,
-          clientId,
-        );
-        return result;
+
+        const searchBundle =
+          await this.patientService.retrySearchPatientByIdentifier(
+            identifier,
+            clientId,
+          );
+
+        // Return results from client registry, otherwise search in national registries
+        if (searchBundle.total > 0) {
+          return searchBundle;
+        } else {
+          const [system, id] = identifier.split('|');
+          const result = await this.patientService.getPatientByID(
+            id,
+            system,
+            pageNum,
+            pageSize,
+          );
+
+          await this.mpi.pushToClientRegistry(result, clientId);
+          return result;
+        }
       } catch (error) {
         this.logger.error(error);
         throw new InternalServerErrorException();
       }
     } else {
-      // Search by demographics 
+      // Search by demographics
       if (!givenNames && !lastName && !gender && !birthDate) {
         throw new BadRequestException(
           'At least one search parameter must be provided',
         );
       }
-  
+
       try {
-        const bundle = await this.patients.getPatientByDemographicData(
+        const bundle = await this.patientService.getPatientByDemographicData(
           givenNames,
           lastName,
           gender,
@@ -92,38 +107,6 @@ export class PatientController {
     }
   }
 
-  @Get('GetByID')
-  @Header('Content-Type', 'application/fhir+json')
-  async getByID(
-    @Query('ID') ID: string[],
-    @Headers('x-openhim-clientid') clientId = 'OmangSvc',
-  ): Promise<fhirR4.Bundle> {
-    try {
-      if (!ID) {
-        throw new BadRequestException();
-      }
-
-      const idArray = Array.isArray(ID) ? ID : [ID];
-      const bundle = await this.immigration.getPatientByPassportNumber(
-        idArray,
-        {
-          pageNum: 1,
-          pageSize: 1,
-        },
-      );
-      await this.immigration.updateClientRegistryAsync(
-        bundle,
-        idArray,
-        config.get('ClientRegistry:ImmigrationSystem'),
-        clientId,
-      );
-      return bundle;
-    } catch (error) {
-      this.logger.error(error);
-      throw new InternalServerErrorException();
-    }
-  }
-
   @Get('GetPatientByFullName')
   @Header('Content-Type', 'application/fhir+json')
   async getPatientByFullName(
@@ -134,7 +117,7 @@ export class PatientController {
     @Query('pageSize') pageSize: number = 100,
   ): Promise<fhirR4.Bundle> {
     try {
-      const bundle = await this.patients.getPatientByFullName(
+      const bundle = await this.patientService.getPatientByFullName(
         givenNames,
         lastName,
         system,

@@ -33,25 +33,19 @@ export class BDRSController {
   @Get('GetByID')
   @Header('Content-Type', 'application/fhir+json')
   async getBirthByID(
-    @Query('ID') ID: string[],
+    @Query('ID') id: string[],
     @Query('pageNum') pageNum: number = 1,
     @Query('pageSize') pageSize: number = 100,
     @Headers('x-openhim-clientid') clientId = 'OmangSvc'
   ): Promise<any> {
     try {
-      if (!ID || ID.length === 0) {
+      if (!id || id.length === 0) {
         throw new BadRequestException('ID parameter is required');
       }
-      const idArray = Array.isArray(ID) ? ID : [ID];
+      const idArray = Array.isArray(id) ? id : [id];
       const bundle = await this.bdrsService.getBirthByID(
         idArray,
         new Pager(pageNum, pageSize),
-      );
-      await this.bdrsService.updateClientRegistryAsync(
-        bundle,
-        ID,      
-        config.get('ClientRegistry:BdrsSystem'),
-        clientId
       );
       return bundle;
     } catch (error) {

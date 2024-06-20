@@ -185,7 +185,7 @@ export class ImmigrationService extends BaseService {
       entry.fullUrl =
         config.get('ClientRegistry:ImmigrationSystem') +
         patient.constructor.name +
-        patient.id;
+        (patient.identifier[0].value);
 
       entry.resource = patient;
       searchBundle.entry.push(entry);
@@ -208,7 +208,7 @@ export class ImmigrationService extends BaseService {
     fhirPatient.resourceType = 'Patient';
 
     // Id
-    fhirPatient.id = immigrationRecord.PASSPORT_NO;
+    // fhirPatient.id = immigrationRecord.PASSPORT_NO;
 
     // Identifier
     const patIdentifier: fhirR4.Identifier = new fhirR4.Identifier();
@@ -258,6 +258,15 @@ export class ImmigrationService extends BaseService {
     address.postalCode = immigrationRecord.BIRTH_COUNTRY_CODE;
 
     fhirPatient.address = [address];
+
+    fhirPatient.meta = {
+      tag: [
+        {
+          system: 'http://openclientregistry.org/fhir/source',
+          code: 'immigration',
+        },
+      ],
+    };
 
     return fhirPatient;
   }

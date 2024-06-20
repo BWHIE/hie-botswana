@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DeathRepository } from '../repositories/death.repository';
 import { createConnection } from 'typeorm';
 import { deathDataSourceOptions } from '../../../config/ormconfig';
+
 @Module({
   imports: [
     TypeOrmModule.forFeature([], 'deathConnection'),

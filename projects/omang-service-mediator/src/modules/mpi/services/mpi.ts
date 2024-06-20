@@ -4,6 +4,7 @@ import { AxiosRequestConfig } from 'axios';
 import { Agent } from 'https';
 import { config } from 'src/config';
 import { Bundle } from 'fhir/r4';
+import { fhirR4 } from '@smile-cdr/fhirts';
 
 @Injectable()
 export class MasterPatientIndex {
@@ -36,15 +37,15 @@ export class MasterPatientIndex {
     return options;
   }
 
-  async getSearchBundle(query): Promise<any> {
+  async searchPatientByIdentifier(identifier: string, clientId: string): Promise<any> {
     try {
       const searchResponse = await this.httpService.axiosRef.get<Bundle>(
         `${this.clientRegistryUrl}/Patient`,
         {
-          params: { identifier: query },
+          params: { identifier: identifier },
           headers: {
             'Content-Type': 'application/fhir+json',
-            'x-openhim-clientid': 'OmangSvc'
+            'x-openhim-clientid': clientId
           },
         },
       );
@@ -52,12 +53,25 @@ export class MasterPatientIndex {
       return searchResponse.data;
     } catch (error) {
       this.logger.error(
-        `Could not get CR bundle for patient with ID ${query} \n ${error}`
+        `Could not get CR bundle for patient with ID ${identifier} \n ${error}`
       );
     }
   }
 
-  async createPatient(patient: any, clientId:string): Promise<any> {
+  public async pushToClientRegistry(
+    bundle: fhirR4.Bundle,
+    clientId: string,
+  ): Promise<void> {
+    for (const entry of bundle.entry) {
+      try {
+        await this.createPatient(entry.resource as fhirR4.Patient, clientId);
+      } catch (error) {
+        this.logger.error(`Error creating patient:   ${error}`);
+      }
+    }
+  }
+
+  async createPatient(patient: fhirR4.Patient, clientId:string): Promise<any> {
     try {
       // Fix for date default formatting issue in FHIR SDK
       if (patient.birthDate) {
@@ -65,7 +79,6 @@ export class MasterPatientIndex {
           .toISOString()
           .split('T')[0];
       }
-      delete patient.id;
 
       const response = await this.httpService.axiosRef.post(
         `${this.clientRegistryUrl}/Patient`,
@@ -80,7 +93,7 @@ export class MasterPatientIndex {
       this.logger.debug(`Created patient!\n ${JSON.stringify(response.data)}`);
       return response.data;
     } catch (error) {
-      this.logger.error(`Failed to create patient in CR: ${error} `);
+      this.logger.error(`Failed to create patient in CR`, error);
       throw error;
     }
   }
