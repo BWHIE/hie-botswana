@@ -1,15 +1,15 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import config from 'src/config';
-import { MasterPatientIndex } from '../modules/mpi/services/mpi';
+import { MpiService } from '../modules/mpi/services/mpi.service';
 
 @Injectable()
 export abstract class BaseService {
   protected readonly logger = new Logger(BaseService.name);
 
   constructor(
-    @Inject(MasterPatientIndex)
-    protected readonly mpi: MasterPatientIndex,
+    @Inject(MpiService)
+    protected readonly mpi: MpiService,
   ) {}
 
   public async retrySearchPatientByIdentifier(

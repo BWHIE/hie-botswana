@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Global, Injectable, Logger } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { AxiosRequestConfig } from 'axios';
 import { Agent } from 'https';
@@ -6,9 +6,10 @@ import { config } from 'src/config';
 import { Bundle } from 'fhir/r4';
 import { fhirR4 } from '@smile-cdr/fhirts';
 
+
 @Injectable()
-export class MasterPatientIndex {
-  private readonly logger = new Logger(MasterPatientIndex.name);
+export class MpiService {
+  private readonly logger = new Logger(MpiService.name);
   private readonly clientRegistryUrl: string;
   private readonly authHeader: string;
   private readonly devMode: boolean;

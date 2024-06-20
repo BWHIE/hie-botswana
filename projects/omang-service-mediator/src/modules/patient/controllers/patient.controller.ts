@@ -11,7 +11,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { fhirR4 } from '@smile-cdr/fhirts';
-import { MasterPatientIndex } from 'src/modules/mpi/services/mpi';
+import { MpiService } from 'src/modules/mpi/services/mpi.service';
 import { Pager } from 'src/utils/pager';
 import { ImmigrationService } from '../../immigration/services/immigration.service';
 import { BasicAuthGuard } from '../../user/models/authentification';
@@ -25,8 +25,8 @@ export class PatientController {
   constructor(
     private readonly immigration: ImmigrationService,
     private readonly patientService: PatientService,
-    @Inject(MasterPatientIndex)
-    protected readonly mpi: MasterPatientIndex,
+    @Inject(MpiService)
+    protected readonly mpi: MpiService,
   ) {}
 
   @Get('Online')

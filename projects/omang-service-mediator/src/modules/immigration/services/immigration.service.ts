@@ -6,7 +6,7 @@ import { ImmigrationRecord } from '../models/immigration-record';
 import { Pager } from 'src/utils/pager';
 import { calculateMD5Hash } from 'src/utils/hash';
 import { BaseService } from 'src/services/base.service';
-import { MasterPatientIndex } from '../../mpi/services/mpi';
+import { MpiService } from '../../mpi/services/mpi.service';
 import config from 'src/config';
 
 @Injectable()
@@ -16,8 +16,8 @@ export class ImmigrationService extends BaseService {
   constructor(
     @Inject(ImmigrationRepository)
     private readonly repo: ImmigrationRepository,
-    @Inject(MasterPatientIndex)
-    protected readonly mpi: MasterPatientIndex,
+    @Inject(MpiService)
+    protected readonly mpi: MpiService,
   ) {
     super(mpi);
   }

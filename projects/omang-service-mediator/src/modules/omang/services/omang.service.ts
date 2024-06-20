@@ -6,7 +6,7 @@ import { Omang } from '../models/omang';
 import { calculateMD5Hash } from 'src/utils/hash';
 import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { BaseService } from 'src/services/base.service';
-import { MasterPatientIndex } from '../../mpi/services/mpi';
+import { MpiService } from '../../mpi/services/mpi.service';
 import config from 'src/config';
 
 @Injectable()
@@ -16,8 +16,8 @@ export class OmangService extends BaseService {
   constructor(
     @Inject(OmangRepository)
     private readonly repo: OmangRepository,
-    @Inject(MasterPatientIndex)
-    protected readonly mpi: MasterPatientIndex,
+    @Inject(MpiService)
+    protected readonly mpi: MpiService,
   ) {
     super(mpi);
   }

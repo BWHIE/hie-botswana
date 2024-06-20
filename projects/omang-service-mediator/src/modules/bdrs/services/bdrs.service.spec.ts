@@ -2,11 +2,11 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { BDRSService } from './bdrs.service';
 import { DeathRepository } from '../repositories/death.repository';
 import { BirthRepository } from '../repositories/birth.repository';
-import { MasterPatientIndex } from '../../mpi/services/mpi';
+import { MpiService } from '../../mpi/services/mpi.service';
 import { Pager } from 'src/utils/pager';
 import { BirthModule } from '../birth/birth.module';
 import { DeathModule } from '../death/death.module';
-import { MasterPatientIndexModule } from '../../mpi/mpi.module';
+import { MpiModule } from '../../mpi/mpi.module';
 import { UserModule } from '../../user/user.module';
 import { BirthRecord } from '../models/birth-record';
 import { DeathRecord } from '../models/death-record';
@@ -17,16 +17,16 @@ describe('BDRSService', () => {
   let bdrsService: BDRSService;
   let mockDeathRepository: DeathRepository;
   let mockBirthRepository: BirthRepository;
-  let mockMpi: MasterPatientIndex;
+  let mockMpi: MpiService;
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [UserModule, BirthModule, DeathModule, MasterPatientIndexModule],
+      imports: [UserModule, BirthModule, DeathModule, MpiModule],
     }).compile();
 
     mockDeathRepository = module.get<DeathRepository>(DeathRepository);
     mockBirthRepository = module.get<BirthRepository>(BirthRepository);
-    mockMpi = module.get<MasterPatientIndex>(MasterPatientIndex);
+    mockMpi = module.get<MpiService>(MpiService);
     bdrsService = new BDRSService(
       mockDeathRepository,
       mockBirthRepository,

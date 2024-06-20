@@ -8,7 +8,7 @@ import { BirthRepository } from '../repositories/birth.repository';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { calculateMD5Hash } from 'src/utils/hash';
 import { FhirAPIResponses } from 'src/utils/fhir-responses';
-import { MasterPatientIndex } from '../../mpi/services/mpi';
+import { MpiService } from '../../mpi/services/mpi.service';
 import { config } from 'src/config';
 import { BaseService } from 'src/services/base.service';
 
@@ -21,8 +21,8 @@ export class BDRSService extends BaseService {
     @Inject(BirthRepository)
     private readonly births: BirthRepository,
 
-    @Inject(MasterPatientIndex)
-    protected readonly mpi: MasterPatientIndex,
+    @Inject(MpiService)
+    protected readonly mpi: MpiService,
   ) {
     super(mpi);
   }

@@ -4,7 +4,7 @@ import { config } from 'src/config';
 import { Pager } from 'src/utils/pager';
 import { BDRSService } from '../../bdrs/services/bdrs.service';
 import { ImmigrationService } from '../../immigration/services/immigration.service';
-import { MasterPatientIndex } from '../../mpi/services/mpi';
+import { MpiService } from '../../mpi/services/mpi.service';
 import { OmangService } from '../../omang/services/omang.service';
 import { BaseService } from 'src/services/base.service';
 import { FhirAPIResponses } from 'src/utils/fhir-responses';
@@ -14,8 +14,8 @@ export class PatientService extends BaseService {
   protected readonly logger = new Logger(PatientService.name);
 
   constructor(
-    @Inject(MasterPatientIndex)
-    protected readonly mpi: MasterPatientIndex,
+    @Inject(MpiService)
+    protected readonly mpi: MpiService,
     @Inject(OmangService)
     private readonly omang: OmangService,
     @Inject(BDRSService)

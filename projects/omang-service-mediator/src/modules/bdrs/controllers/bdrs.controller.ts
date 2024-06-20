@@ -1,17 +1,16 @@
 import {
+  BadRequestException,
   Controller,
   Get,
-  Query,
-  Logger,
-  BadRequestException,
+  Header, Headers,
   InternalServerErrorException,
-  UseGuards,
-  Header,Headers
+  Logger,
+  Query,
+  UseGuards
 } from '@nestjs/common';
 import { Pager } from 'src/utils/pager';
-import { BDRSService } from '../services/bdrs.service';
 import { BasicAuthGuard } from '../../user/models/authentification';
-import config from 'src/config';
+import { BDRSService } from '../services/bdrs.service';
 
 @Controller('api/bdrs')
 @UseGuards(BasicAuthGuard)
