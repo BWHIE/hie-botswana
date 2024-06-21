@@ -286,7 +286,7 @@ export class OmangRepository {
     }
     if (gender) {
       conditions.push('UPPER(SEX) LIKE UPPER(:gender)');
-      parameters['gender'] = gender + '%';
+      parameters['gender'] = (gender === 'male' ? 'M' : 'F') + '%';
     }
     if (birthDate) {
       conditions.push('BIRTH_DTE LIKE :birthDate');

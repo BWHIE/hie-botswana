@@ -296,7 +296,7 @@ export class ImmigrationRepository {
     }
     if (gender) {
       conditions.push('UPPER(GENDER) LIKE UPPER(:gender)');
-      parameters['gender'] = gender + '%';
+      parameters['gender'] = (gender === 'male' ? 'Male' : 'Female') + '%';
     }
     if (birthDate) {
       conditions.push('BIRTH_DATE LIKE :birthDate');
