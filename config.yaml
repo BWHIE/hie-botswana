@@ -20,17 +20,17 @@ packages:
 profiles:
   - name: dev
     packages:
-      # - interoperability-layer-openhim
-      # - database-postgres
-      # - fhir-datastore-hapi-fhir
-      # - monitoring
-      # - identity-access-manager-keycloak
-      # - client-registry-opencr
-      # - analytics-datastore-elastic-search
-      # - message-bus-kafka
-      # - omang-service-mediator
-      # - openhim-mediator-fhir-converter
-      # - shared-health-record
+      - interoperability-layer-openhim
+      - database-postgres
+      - fhir-datastore-hapi-fhir
+      - monitoring
+      - identity-access-manager-keycloak
+      - client-registry-opencr
+      - analytics-datastore-elastic-search
+      - message-bus-kafka
+      - omang-service-mediator
+      - openhim-mediator-fhir-converter
+      - shared-health-record
       - dashboard-visualiser-kibana
     envFiles:
       - .env.local
