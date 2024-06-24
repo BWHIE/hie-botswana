@@ -6,7 +6,7 @@ import { ImmigrationRecord } from '../models/immigration-record';
 import { Pager } from 'src/utils/pager';
 import { calculateMD5Hash } from 'src/utils/hash';
 import { BaseService } from 'src/services/base.service';
-import { MasterPatientIndex } from '../../mpi/services/mpi';
+import { MpiService } from '../../mpi/services/mpi.service';
 import config from 'src/config';
 
 @Injectable()
@@ -16,8 +16,8 @@ export class ImmigrationService extends BaseService {
   constructor(
     @Inject(ImmigrationRepository)
     private readonly repo: ImmigrationRepository,
-    @Inject(MasterPatientIndex)
-    protected readonly mpi: MasterPatientIndex,
+    @Inject(MpiService)
+    protected readonly mpi: MpiService,
   ) {
     super(mpi);
   }
@@ -89,6 +89,22 @@ export class ImmigrationService extends BaseService {
     }
   }
 
+  async getByDemographicDataNonFHIR(
+    firstName: string,
+    lastName: string,
+    gender: string,
+    birthDate: string,
+    pager: Pager,
+  ): Promise<ImmigrationRecord[]> {
+    return this.repo.getByDemographicData(
+      firstName,
+      lastName,
+      gender,
+      birthDate,
+      pager,
+    );
+  }
+
   async getByFullName(
     firstName: string,
     lastName: string,
@@ -98,6 +114,33 @@ export class ImmigrationService extends BaseService {
       const results = await this.getByFullNameNonFHIR(
         firstName,
         lastName,
+        pager,
+      );
+      if (results.length > 0) {
+        const bundle: fhirR4.Bundle =
+          this.mapImmigrationRecordToSearchBundle(results);
+        return bundle;
+      } else return FhirAPIResponses.RecordInitialized;
+    } catch (error) {
+      this.logger.error(
+        'Error retrieving records in FHIR format \n ' + error.message,
+      );
+    }
+  }
+
+  async getByDemographicData(
+    firstName: string,
+    lastName: string,
+    gender: string,
+    birthDate: string,
+    pager: Pager,
+  ): Promise<fhirR4.Bundle> {
+    try {
+      const results = await this.getByDemographicDataNonFHIR(
+        firstName,
+        lastName,
+        gender,
+        birthDate,
         pager,
       );
       if (results.length > 0) {
@@ -142,7 +185,7 @@ export class ImmigrationService extends BaseService {
       entry.fullUrl =
         config.get('ClientRegistry:ImmigrationSystem') +
         patient.constructor.name +
-        patient.id;
+        (patient.identifier[0].value);
 
       entry.resource = patient;
       searchBundle.entry.push(entry);
@@ -165,7 +208,7 @@ export class ImmigrationService extends BaseService {
     fhirPatient.resourceType = 'Patient';
 
     // Id
-    fhirPatient.id = immigrationRecord.PASSPORT_NO;
+    // fhirPatient.id = immigrationRecord.PASSPORT_NO;
 
     // Identifier
     const patIdentifier: fhirR4.Identifier = new fhirR4.Identifier();
@@ -215,6 +258,15 @@ export class ImmigrationService extends BaseService {
     address.postalCode = immigrationRecord.BIRTH_COUNTRY_CODE;
 
     fhirPatient.address = [address];
+
+    fhirPatient.meta = {
+      tag: [
+        {
+          system: 'http://openclientregistry.org/fhir/source',
+          code: 'immigration',
+        },
+      ],
+    };
 
     return fhirPatient;
   }

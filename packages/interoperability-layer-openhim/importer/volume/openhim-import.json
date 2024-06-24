@@ -528,6 +528,33 @@
         "allow": [
           "test"
         ]
+      },
+      {
+        "methods": [
+          "GET"
+        ],
+        "name": "Patient",
+        "urlPattern": "^/CR/search/Patient.*$",
+        "type": "http",
+        "routes": [
+          {
+            "type": "http",
+            "status": "enabled",
+            "forwardAuthHeader": false,
+            "name": "Patient API",
+            "host": "omang-api",
+            "port": 80,
+            "path": "/api/Patient/getPatientByDemographicData",
+            "pathTransform": "",
+            "primary": true,
+            "secured": false,
+            "username": "omanghie",
+            "password": "omanghie"
+          }
+        ],
+        "allow": [
+          "test"
+        ]
       }
     ]
   }

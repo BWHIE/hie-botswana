@@ -3,12 +3,12 @@ import { BDRSService } from '../../bdrs/services/bdrs.service';
 import { ImmigrationService } from '../../immigration/services/immigration.service';
 import { PatientService } from './patient.service';
 import { OmangService } from '../../omang/services/omang.service';
-import { MasterPatientIndex } from '../../mpi/services/mpi';
+import { MpiService } from '../../mpi/services/mpi.service';
 import { BirthModule } from '../../bdrs/birth/birth.module';
 import { DeathModule } from '../../bdrs/death/death.module';
 import { ImmigrationModule } from '../../immigration/immigration.module';
 import { OmangModule } from '../../omang/omang.module';
-import { MasterPatientIndexModule } from '../../mpi/mpi.module';
+import { MpiModule } from '../../mpi/mpi.module';
 import { UserModule } from '../../user/user.module';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { FhirAPIResponses } from 'src/utils/fhir-responses';
@@ -144,7 +144,7 @@ describe('PatientService', () => {
   let mockBdrsService: BDRSService;
   let mockImmigrationService: ImmigrationService;
   let mockOmangService: OmangService;
-  let mockMpi: MasterPatientIndex;
+  let mockMpi: MpiService;
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -154,14 +154,14 @@ describe('PatientService', () => {
         DeathModule,
         OmangModule,
         ImmigrationModule,
-        MasterPatientIndexModule,
+        MpiModule,
       ],
       providers: [BDRSService, ImmigrationService, OmangService],
     }).compile();
 
     mockBdrsService = module.get<BDRSService>(BDRSService);
     mockImmigrationService = module.get<ImmigrationService>(ImmigrationService);
-    mockMpi = module.get<MasterPatientIndex>(MasterPatientIndex);
+    mockMpi = module.get<MpiService>(MpiService);
     mockOmangService = module.get<OmangService>(OmangService);
     patientService = new PatientService(
       mockMpi,
@@ -201,7 +201,7 @@ describe('PatientService', () => {
     mockBundle.total = 1;
 
     // Act
-    const result = await patientService.getPatientByID(id, system);
+    const result = await patientService.getPatientByID(id, system, 1, 1);
 
     // Assert
     expect(result.entry).toEqual(mockBundle.entry);
@@ -228,7 +228,7 @@ describe('PatientService', () => {
     mockBundle.total = 1;
 
     // Act
-    const result = await patientService.getPatientByID(id, system);
+    const result = await patientService.getPatientByID(id, system, 1, 1);
 
     // Assert
     expect(result.entry).toEqual(mockBundle.entry);
@@ -257,7 +257,7 @@ describe('PatientService', () => {
     mockBundle.total = 1;
 
     // Act
-    const result = await patientService.getPatientByID(id, system);
+    const result = await patientService.getPatientByID(id, system, 1, 1);
 
     // Assert
     expect(result.entry).toEqual(mockBundle.entry);
@@ -278,7 +278,7 @@ describe('PatientService', () => {
     // Act
     let result;
     try {
-      result = await patientService.getPatientByID(id, system);
+      result = await patientService.getPatientByID(id, system, 1, 1);
     } catch (error) {
       result = error;
     }

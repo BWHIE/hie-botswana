@@ -2,10 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ImmigrationRecord } from '../models/immigration-record';
 import { ImmigrationRepository } from '../../immigration/repositories/immigration-repository';
 import { ImmigrationModule } from '../immigration.module';
-import { MasterPatientIndexModule } from '../../mpi/mpi.module';
+import { MpiModule } from '../../mpi/mpi.module';
 import { UserModule } from '../../user/user.module';
 import { ImmigrationService } from '../../immigration/services/immigration.service';
-import { MasterPatientIndex } from '../../mpi/services/mpi';
+import { MpiService } from '../../mpi/services/mpi.service';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { Pager } from 'src/utils//pager';
@@ -112,17 +112,17 @@ mockImmigrationRecordTwo.SPOUSE_SURNAME = 'TRAN';
 describe('ImmigrationService', () => {
   let immigrationService: ImmigrationService;
   let mockImmigrationRepository: ImmigrationRepository;
-  let mockMpi: MasterPatientIndex;
+  let mockMpi: MpiService;
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [UserModule, ImmigrationModule, MasterPatientIndexModule],
+      imports: [UserModule, ImmigrationModule, MpiModule],
     }).compile();
 
     mockImmigrationRepository = module.get<ImmigrationRepository>(
       ImmigrationRepository,
     );
-    mockMpi = module.get<MasterPatientIndex>(MasterPatientIndex);
+    mockMpi = module.get<MpiService>(MpiService);
     immigrationService = new ImmigrationService(
       mockImmigrationRepository,
       mockMpi,

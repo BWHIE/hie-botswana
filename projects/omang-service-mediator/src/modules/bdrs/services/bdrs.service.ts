@@ -8,7 +8,7 @@ import { BirthRepository } from '../repositories/birth.repository';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { calculateMD5Hash } from 'src/utils/hash';
 import { FhirAPIResponses } from 'src/utils/fhir-responses';
-import { MasterPatientIndex } from '../../mpi/services/mpi';
+import { MpiService } from '../../mpi/services/mpi.service';
 import { config } from 'src/config';
 import { BaseService } from 'src/services/base.service';
 
@@ -21,8 +21,8 @@ export class BDRSService extends BaseService {
     @Inject(BirthRepository)
     private readonly births: BirthRepository,
 
-    @Inject(MasterPatientIndex)
-    protected readonly mpi: MasterPatientIndex,
+    @Inject(MpiService)
+    protected readonly mpi: MpiService,
   ) {
     super(mpi);
   }
@@ -68,6 +68,22 @@ export class BDRSService extends BaseService {
     }
   }
 
+  async findBirthByDemographicData(
+    firstName: string,
+    lastName: string,
+    gender: string,
+    birthDate: string,
+    pager: Pager,
+  ): Promise<BirthRecord[]> {
+    return this.births.getByDemographicData(
+      firstName,
+      lastName,
+      gender,
+      birthDate,
+      pager,
+    );
+  }
+
   async findBirthByFullNameFHIR(
     firstName: string,
     lastName: string,
@@ -77,6 +93,33 @@ export class BDRSService extends BaseService {
       const results = await this.findBirthByFullName(
         firstName,
         lastName,
+        pager,
+      );
+      if (results.length > 0) {
+        const bundle: fhirR4.Bundle =
+          this.mapBirthRecordsToSearchBundle(results);
+        return bundle;
+      } else return FhirAPIResponses.RecordInitialized;
+    } catch (error) {
+      this.logger.error(
+        'Error retrieving records in FHIR format \n ' + error.message,
+      );
+    }
+  }
+
+  async findBirthByDemographicDataFHIR(
+    firstName: string,
+    lastName: string,
+    gender: string,
+    birthDate: string,
+    pager: Pager,
+  ): Promise<fhirR4.Bundle> {
+    try {
+      const results = await this.findBirthByDemographicData(
+        firstName,
+        lastName,
+        gender,
+        birthDate,
         pager,
       );
       if (results.length > 0) {
@@ -153,7 +196,7 @@ export class BDRSService extends BaseService {
       entry.fullUrl =
         config.get('ClientRegistry:BdrsSystem') +
         patient.constructor.name +
-        patient.id;
+        (patient.identifier[0].value);
 
       entry.resource = patient;
       searchBundle.entry.push(entry);
@@ -173,7 +216,7 @@ export class BDRSService extends BaseService {
       entry.fullUrl =
         config.get('ClientRegistry:BdrsSystem') +
         patient.constructor.name +
-        patient.id;
+        (patient.identifier[0].value);
 
       entry.resource = patient;
       searchBundle.entry.push(entry);
@@ -193,7 +236,7 @@ export class BDRSService extends BaseService {
       entry.fullUrl =
         config.get('ClientRegistry:BdrsSystem') +
         patient.constructor.name +
-        patient.id;
+        (patient.identifier[0].value);
 
       entry.resource = patient;
       searchBundle.entry.push(entry);
@@ -215,7 +258,7 @@ export class BDRSService extends BaseService {
       fhirPatient.resourceType = 'Patient';
 
       // ID
-      fhirPatient.id = br.ID_NUMBER;
+      // fhirPatient.id = br.ID_NUMBER;
 
       // Identifier
       const patIdentifier = new fhirR4.Identifier();
@@ -279,6 +322,15 @@ export class BDRSService extends BaseService {
       fhirPatient.address = [address];
     }
 
+    fhirPatient.meta = {
+      tag: [
+        {
+          system: 'http://openclientregistry.org/fhir/source',
+          code: 'bdrs',
+        }
+      ],
+    };
+
     return fhirPatient;
   }
 
@@ -294,7 +346,7 @@ export class BDRSService extends BaseService {
     // Resource Type
     fhirPatient.resourceType = 'Patient';
     //Id
-    fhirPatient.id = deathRecord.ID_NUMBER;
+    // fhirPatient.id = deathRecord.ID_NUMBER;
 
     //Identifier
 
@@ -382,6 +434,19 @@ export class BDRSService extends BaseService {
 
     // fhirPatient.extension = []
 
+    fhirPatient.meta = {
+      tag: [
+        {
+          system: 'http://openclientregistry.org/fhir/source',
+          code: 'bdrs',
+        },
+        {
+          system: 'http://openclientregistry.org/fhir/bdrs',
+          code: 'death',
+        },
+      ],
+    };
+
     return fhirPatient;
   }
 
@@ -396,7 +461,7 @@ export class BDRSService extends BaseService {
     fhirPatient.resourceType = 'Patient';
 
     //Id
-    fhirPatient.id = birthRecord.ID_NUMBER;
+    // fhirPatient.id = birthRecord.ID_NUMBER;
 
     //Identifier
 
@@ -471,6 +536,18 @@ export class BDRSService extends BaseService {
     // Extensions
 
     // fhirPatient.extension = []
+    fhirPatient.meta = {
+      tag: [
+        {
+          system: 'http://openclientregistry.org/fhir/source',
+          code: 'bdrs',
+        },
+        {
+          system: 'http://openclientregistry.org/fhir/bdrs',
+          code: 'birth',
+        },
+      ],
+    };
 
     return fhirPatient;
   }
@@ -494,7 +571,7 @@ export class BDRSService extends BaseService {
         // TODO: Exception handling
         for (const result of results) {
           const pat = this.mapBirthDeathRecordToFhirPatient(result);
-          this.mpi.createPatient(pat,clientId);
+          this.mpi.createPatient(pat, clientId);
         }
 
         // Return Search Bundle
