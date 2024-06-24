@@ -1,20 +1,16 @@
 import os
-import uuid
-import datetime
 import logging
-import time
-import socket
-from threading import Thread
-from hl7apy import load_message_profile
-from hl7apy.core import Message
 from hl7apy.parser import parse_message
 from hl7apy.v2_5 import DTM
-from hl7apy.mllp import MLLPServer, AbstractHandler, UnsupportedMessageType, InvalidHL7Message
-import pprint
+from hl7apy.mllp import MLLPServer, AbstractHandler, UnsupportedMessageType
+from hl7apy import parser
 
 from handle_adt_a04 import handle_adt_a04
 from handle_orm_o01 import handle_orm_o01
 from helper import create_error_response
+
+from datastore import DataStore
+datastore = DataStore()
 
 # Set up basic configuration for logging
 logging.basicConfig(level=logging.DEBUG,
@@ -26,33 +22,67 @@ SERVER_PORT = int(os.getenv('SERVER_PORT', '2575'))
 
 _ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-in_memory_db = {}
+def process_hl7_message(hl7_message_string):
+    try:
+        # 1. Sanitize the message
+        hl7_message_string = hl7_message_string.strip()
+
+        # 2. Check if message starts with MSH segment
+        if not hl7_message_string.startswith('MSH'):
+            logging.warning("Invalid HL7 message: Does not start with MSH segment.")
+            return None
+
+        # 3. Parse the HL7 message
+        hl7_object = parser.parse_message(hl7_message_string, None, False)
+
+        # 4. Extract segments with their key-value components using field names
+        extracted_data = {}
+        extracted_segment_string = """"""
+        for segment in hl7_object.children:
+            segment_data = {}
+            extracted_segment_string += "\n" + segment.value
+            for field in segment.children:
+                field_key = field.name.lower()  # Get the property name (e.g., msh_1)
+                field_value = field.value  # Get the field value
+                if hasattr(field, 'long_name') and field.long_name is not None:
+                    long_name = field.long_name.replace(" ", "_").replace("/", "").lower()  
+
+                    # if key exists, value is part of an list - append
+                    if long_name in segment_data:
+                        segment_data[long_name] += f"~{field_value}" # concat the extra list item with tilde seperated
+                    else:
+                        segment_data[long_name] = field_value # Use the long name as the key
+                else:
+                    segment_data[field_key] = field_value # Use the property name as the key
+            extracted_data[segment.name.lower()] = segment_data
+
+        # (Optional) Log the extracted data as JSON
+        logging.info(f"Incoming HL7 message: {extracted_segment_string}")
+
+        return extracted_data
+    
+    except Exception as e:
+        logging.error(f"Error parsing HL7 message: {e}")
+        return None
 
 class HL7Handler(AbstractHandler):
     def __init__(self, message):
-        # Parse incoming message based on the message profile
-        msg = parse_message(message)
-        super(HL7Handler, self).__init__(msg)
-        # self.client_address = client_address
-        # self.server = server
-
-        logging.info("Handler initialized for message: %s", message[:500])
+        parsed_message = process_hl7_message(message)
+        super(HL7Handler, self).__init__(parsed_message)
 
     def reply(self):
-        logging.info('Received message: %s', self.incoming_message.to_er7())
+        logging.info(f"Parsed HL7 message: {self.incoming_message}")
+
         try:
-            # Properly extract message_code and trigger_event
-            message_type = self.incoming_message.msh.msh_9.msg_1.value
-            trigger_event = self.incoming_message.msh.msh_9.msg_2.value
-            full_message_type = f'{message_type}^{trigger_event}'
+            # Properly extract message_type
+            full_message_type = self.incoming_message['msh']['message_type']
 
             logging.info('Handling message type: %s', full_message_type)
 
-            if message_type == 'ORM' and trigger_event == 'O01':
-                response = handle_orm_o01(self.incoming_message)
-            elif message_type == 'ADT' and trigger_event == 'A04':
-
-                response = handle_adt_a04(self.incoming_message)
+            if full_message_type == 'ORM^O01':
+                response = handle_orm_o01(self.incoming_message, datastore)
+            elif full_message_type == 'ADT^A04':
+                response = handle_adt_a04(self.incoming_message, datastore)
             else:
                 raise UnsupportedMessageType(
                     f"Unsupported message type: {full_message_type}")
@@ -60,13 +90,6 @@ class HL7Handler(AbstractHandler):
             logging.error("Error handling message: %s", str(e))
             response = create_error_response(str(e))
         return response
-
-    # def create_error_response(self, error_msg):
-    #     logging.warning("Creating error response: %s", error_msg)
-    #     response = self.create_ack_response()
-    #     response.msa.msa_1 = 'AE'  # Error acknowledgment code
-    #     response.err.err_1 = error_msg
-    #     return response.to_mllp()
 
 if __name__ == '__main__':
     # Define handlers for each message type expected

@@ -1,12 +1,13 @@
 import os
-from mllp_client import MLLPClient
 import uuid
-from hl7apy.core import Message
 import logging
+import random
+import string
+from mllp_client import MLLPClient
+from hl7apy.core import Message
 
 CLIENT_PORT = int(os.getenv('CLIENT_PORT', '2576'))  # Default client port to send ADT A04/ORU message
 
-# class Helper:
 def create_error_response(self, error_msg):
     logging.warning("Creating error response: %s", error_msg)
     response = self.create_ack_response()
@@ -20,10 +21,16 @@ def create_ack_response(incoming_message):
     response.msh.msh_9 = 'ACK'
     response.msh.msh_10 = uuid.uuid4().hex
     response.msa.msa_1 = 'AA'  # Acknowledgment code
-    response.msa.msa_2 = incoming_message.msh.msh_10
+    response.msa.msa_2 = incoming_message['msh']['message_control_id']
     return response
 
 def send_message_to_client(message):
     client = MLLPClient('host.docker.internal', CLIENT_PORT)
     client.send_message(message)
     return
+
+def generate_code(letters=2, zeros=3, digits=5):
+    letters_part = ''.join(random.choices(string.ascii_uppercase, k=letters))
+    zeros_part = "0" * zeros  # Create a string of zeros
+    digits_part = ''.join(random.choices(string.digits, k=digits))
+    return f"{letters_part}{zeros_part}{digits_part}"
