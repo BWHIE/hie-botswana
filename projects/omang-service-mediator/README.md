@@ -76,3 +76,58 @@ $ npm run test:cov
 ## NOTE
 If the Omang Service Mediator fails to start as a container inside a platform package, consider restarting the NestJs app container manually because sometimes the app is mounted before the database ever gets seeded. 
 
+## API Documentation 
+
+### Get Patient
+
+Retrieves a FHIR-compliant `Bundle` of patient data based on the specified search criteria. This action can search by patient identifier or by demographic details such as given names, family name, gender, and birthdate.
+
+#### HTTP Request
+
+`GET /api/patient/Get`
+
+#### Headers
+
+- `Content-Type`: application/fhir+json
+- `x-openhim-clientid`: Identifies the client making the request. Default is 'OmangSvc'.
+
+#### Query Parameters
+
+| Parameter    | Description | Required |
+|--------------|-------------|----------|
+| `identifier` | A unique identifier for the patient. Must be a combination of a system and an ID, separated by a pipe (`|`). For example, `system|ID`. | No |
+| `given`      | The patient's given names (aligned with FHIR search parameters). | No |
+| `family`     | The patient's family name (aligned with FHIR search parameters). | No |
+| `gender`     | The patient's gender. | No |
+| `birthdate`  | The patient's birthdate in the format YYYY-MM-DD. | No |
+| `_page`      | The page number of the results to return, defaults to 1 if not specified. | No |
+| `_count`     | The number of results per page, defaults to 100 if not specified. | No |
+
+#### Success Response
+
+A successful request will return a FHIR `Bundle` containing the matching patient records.
+
+- **Content-Type:** application/fhir+json
+- **Status Code:** 200 OK
+
+#### Error Response
+
+- **Content-Type:** application/json
+- **Status Code:** 400 Bad Request (if the query parameters are missing or malformed)
+- **Status Code:** 500 Internal Server Error (if an unexpected error occurs)
+
+#### Example Requests
+
+##### Search by Identifier
+
+```bash
+curl -X GET "http://example.com/Get?identifier=http://moh.bw.org/ext/identifier/omang|237720129" \
+     -H "Content-Type: application/fhir+json" 
+```
+
+
+##### Search by Demographics
+```bash
+curl -X GET "http://example.com/Get?given=ARABANG" \
+     -H "Content-Type: application/fhir+json" 
+```

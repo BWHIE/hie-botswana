@@ -1,15 +1,18 @@
-import { Module, forwardRef } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { createConnection } from 'typeorm';
 import { immigrationDataSourceOptions } from 'src/config/ormconfig';
+import { createConnection } from 'typeorm';
+import { ImmigrationController } from './controllers/immigration.controller';
 import { ImmigrationRepository } from './repositories/immigration-repository';
+import { ImmigrationService } from './services/immigration.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([], 'immigrationConnection'),
-    forwardRef(() => ImmigrationModule),
   ],
-
+  controllers: [
+    ImmigrationController,
+  ],
   providers: [
     {
       provide: 'immigrationConnectionDataSource',
@@ -17,7 +20,8 @@ import { ImmigrationRepository } from './repositories/immigration-repository';
         await createConnection(immigrationDataSourceOptions),
     },
     ImmigrationRepository,
+    ImmigrationService
   ],
-  exports: [ImmigrationRepository],
+  exports: [ImmigrationService],
 })
 export class ImmigrationModule {}

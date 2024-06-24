@@ -13,6 +13,8 @@ packages:
   - analytics-datastore-elastic-search
   - message-bus-kafka
   - omang-service-mediator
+  - openhim-mediator-fhir-converter
+  - shared-health-record
 
 profiles:
   - name: dev
@@ -26,7 +28,28 @@ profiles:
       - analytics-datastore-elastic-search
       - message-bus-kafka
       - omang-service-mediator
+      - openhim-mediator-fhir-converter
+      - shared-health-record
     envFiles:
       - .env.local
+    dev: true
+    only: false
+
+  - name: qa
+    packages:
+      - reverse-proxy-nginx
+      - interoperability-layer-openhim
+      - database-postgres
+      - fhir-datastore-hapi-fhir
+      - monitoring
+      - identity-access-manager-keycloak
+      - client-registry-opencr
+      - analytics-datastore-elastic-search
+      - message-bus-kafka
+      - omang-service-mediator
+      - openhim-mediator-fhir-converter
+      - shared-health-record
+    envFiles:
+      - .env.qa
     dev: true
     only: false

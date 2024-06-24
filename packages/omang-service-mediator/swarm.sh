@@ -33,24 +33,24 @@ function import_sources() {
 
 function initialize_package() {
   local package_dev_compose_filename=""
+  local package_mnt_compose_filename=""
 
   if [ "${MODE}" == "dev" ]; then
     log info "Running package in DEV mode"
     package_dev_compose_filename="docker-compose.dev.yml"
-    if [[ -z "${OMANG_DEV_MOUNT_FOLDER}" ]]; then
-      log error "ERROR: OMANG_DEV_MOUNT_FOLDER environment variable not specified. Please specify OMANG_DEV_MOUNT_FOLDER as stated in the README."
-      exit 1
+    if [[ -n "${OMANG_DEV_MOUNT_FOLDER}" ]]; then
+      log info "Mounting dev volumes"
+      package_mnt_compose_filename="docker-compose.mnt.yml"
     fi
   else
     log info "Running package in PROD mode"
   fi
  
   (
-    docker::deploy_service "$STACK" "${COMPOSE_FILE_PATH}" "docker-compose.yml" "$package_dev_compose_filename"
+    docker::deploy_service "$STACK" "${COMPOSE_FILE_PATH}" "docker-compose.yml" "$package_dev_compose_filename" "$package_mnt_compose_filename"
   ) ||
     {
       log error "Failed to deploy package"
-      docker stack deploy --compose-file "${COMPOSE_FILE_PATH}/docker-compose.yml" --compose-file "${COMPOSE_FILE_PATH}/docker-compose.dev.yml" omang-service-mediator
       exit 1
     }
 }
@@ -72,7 +72,7 @@ main() {
 
     # Define the omangsvc docker image name and tag
     IMAGE_NAME="jembi/omangsvc"
-    IMAGE_TAG="latest"
+    IMAGE_TAG="local"
 
     # Check if the Docker image exists
     if ! docker images "$IMAGE_NAME:$IMAGE_TAG" | grep -q "$IMAGE_TAG"; then

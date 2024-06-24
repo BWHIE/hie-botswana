@@ -1,10 +1,9 @@
-import { Module, forwardRef } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { UserService } from './services/user.service';
 
+@Global()
 @Module({
-  imports: [forwardRef(() => UserModule)],
-
   providers: [UserService],
-  exports: [UserService], // Export BirthRepository to be used in other modules
+  exports: [UserService],
 })
 export class UserModule {}

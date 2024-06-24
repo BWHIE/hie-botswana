@@ -1,19 +1,21 @@
 import {
   Controller,
   Get,
-  Query,
-  Logger,
-  BadRequestException,
+  Header,
+  Headers,
+  Inject,
   InternalServerErrorException,
-  UseGuards,
-  Header,Headers
+  Logger,
+  Query,
+  UseGuards
 } from '@nestjs/common';
+import { fhirR4 } from '@smile-cdr/fhirts';
+import { MpiService } from 'src/modules/mpi/services/mpi.service';
+import { FhirSearchParamsValidationPipe, FhirSearchParams } from 'src/utils/fhir-search.pipe';
 import { Pager } from 'src/utils/pager';
 import { ImmigrationService } from '../../immigration/services/immigration.service';
-import { PatientService } from '../services/patient.service';
-import { fhirR4 } from '@smile-cdr/fhirts';
 import { BasicAuthGuard } from '../../user/models/authentification';
-import config from 'src/config';
+import { PatientService } from '../services/patient.service';
 
 @Controller('api/patient')
 @UseGuards(BasicAuthGuard)
@@ -22,7 +24,9 @@ export class PatientController {
 
   constructor(
     private readonly immigration: ImmigrationService,
-    private readonly patients: PatientService,
+    private readonly patientService: PatientService,
+    @Inject(MpiService)
+    protected readonly mpi: MpiService,
   ) {}
 
   @Get('Online')
@@ -37,51 +41,84 @@ export class PatientController {
 
   @Get('Get')
   @Header('Content-Type', 'application/fhir+json')
-  async get(@Query('identifier') identifier: string,
-  @Headers('x-openhim-clientid') clientId = 'OmangSvc'): Promise<fhirR4.Bundle> {
-    try {
-      if (!identifier || !identifier.includes('|')) {
-        throw new BadRequestException();
+  async get(
+    @Headers('x-openhim-clientid') clientId = 'OmangSvc',
+    @Query(new FhirSearchParamsValidationPipe()) queryParams: FhirSearchParams,
+  ): Promise<fhirR4.Bundle> {
+    const { identifier, given, family, gender, birthdate, _page = 1, _count = 25 } = queryParams;
+    if (identifier) {
+      // Search by identifier
+      try {
+        const searchBundle =
+          await this.patientService.retrySearchPatient(
+            {identifier, _page, _count},
+            clientId,
+          );
+
+        // Return results from client registry, otherwise search in national registries
+        if (searchBundle.total > 0) {
+          return searchBundle;
+        } else {
+          const [system, id] = identifier.split('|');
+          const result = await this.patientService.getPatientByID(
+            id,
+            system,
+            _page,
+            _count,
+          );
+
+          // Async push to openCR
+          this.mpi.pushToClientRegistry(result, clientId);
+          
+          return result;
+        }
+      } catch (error) {
+        this.logger.error(error);
+        throw new InternalServerErrorException();
       }
+    } else {
+      // Search by demographics in both OpenCR and national registries
+      try {
+        const [openCrBundle, registriesBundle] = await Promise.all([
+          this.patientService.retrySearchPatient(
+            {identifier, given, family, gender, birthdate, _page, _count},
+            clientId,
+          ),
+          this.patientService.getPatientByDemographicData(
+            given,
+            family,
+            gender,
+            birthdate,
+            new Pager(_page, _count),
+          )
+        ]);
 
-      const [system, id] = identifier.split('|');
-      const result = await this.patients.getPatientByID(id, system);
-      await this.patients.updateClientRegistryAsync(
-        result,
-        [id],
-        system,clientId
-      );
-      return result;
-    } catch (error) {
-      this.logger.error(error);
-      throw new InternalServerErrorException();
-    }
-  }
+        // Deduplicate
+        registriesBundle.entry = registriesBundle.entry?.filter(registryEntry => {
+          return !openCrBundle.entry?.find(openCrEntry => {
+              const openCrIdentifiers = (openCrEntry.resource as fhirR4.Patient).identifier || [];
+              const registryIdentifiers = (registryEntry.resource as fhirR4.Patient).identifier || [];
+              return registryIdentifiers.some(({ system, value }) =>
+                  openCrIdentifiers.some(({ system: s, value: v }) => s === system && v === value)
+              );
+          });
+        }) || [];
+        registriesBundle.total = registriesBundle.entry.length;
+        
+        // Async push to OpenCR
+        if (registriesBundle.total > 0) {
+          this.mpi.pushToClientRegistry(registriesBundle, clientId);
+        }
 
-  @Get('GetByID')
-  @Header('Content-Type', 'application/fhir+json')
-  async getByID(@Query('ID') ID: string[],   
-   @Headers('x-openhim-clientid') clientId = 'OmangSvc'): Promise<fhirR4.Bundle> {
+        // Concat results
+        openCrBundle.entry = (openCrBundle.entry || []).concat(registriesBundle.entry);
+        openCrBundle.total = openCrBundle.total + registriesBundle.total;
 
-    try {
-      if (!ID) {
-        throw new BadRequestException();
+        return openCrBundle;
+      } catch (error) {
+        this.logger.error(error);
+        throw new InternalServerErrorException();
       }
-
-      const idArray = Array.isArray(ID) ? ID : [ID];
-      const bundle = await this.immigration.getPatientByPassportNumber(idArray, {
-        pageNum: 1,
-        pageSize: 1,
-      });
-      await this.immigration.updateClientRegistryAsync(
-        bundle,
-        idArray,
-        config.get('ClientRegistry:ImmigrationSystem'),clientId);
-      return bundle;
-
-    } catch (error) {
-      this.logger.error(error);
-      throw new InternalServerErrorException();
     }
   }
 
@@ -95,7 +132,7 @@ export class PatientController {
     @Query('pageSize') pageSize: number = 100,
   ): Promise<fhirR4.Bundle> {
     try {
-      const bundle = await this.patients.getPatientByFullName(
+      const bundle = await this.patientService.getPatientByFullName(
         givenNames,
         lastName,
         system,

@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Attach to Docker Node",
+        "type": "node",
+        "request": "attach",
+        "address": "localhost",
+        "port": 9230,
+        "restart": true,
+        "localRoot": "${workspaceFolder}/projects/shared-health-record/dist/",
+        "remoteRoot": "/app/dist",
+        "sourceMaps": true,
+        "skipFiles": ["<node_internals>/**"]
+      }
+    ]
+  }
+  

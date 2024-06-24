@@ -1,8 +1,9 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
-import { MasterPatientIndex } from './services/mpi';
+import { MpiService } from './services/mpi.service';
 
+@Global()
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -10,7 +11,7 @@ import { MasterPatientIndex } from './services/mpi';
     }),
     HttpModule,
   ],
-  providers: [MasterPatientIndex],
-  exports: [MasterPatientIndex],
+  providers: [MpiService],
+  exports: [MpiService],
 })
-export class MasterPatientIndexModule {}
+export class MpiModule {}
