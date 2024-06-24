@@ -15,11 +15,12 @@ packages:
   - omang-service-mediator
   - openhim-mediator-fhir-converter
   - shared-health-record
+  - dashboard-visualiser-kibana
 
 profiles:
   - name: dev
     packages:
-      - interoperability-layer-openhim
+      # - interoperability-layer-openhim
       # - database-postgres
       # - fhir-datastore-hapi-fhir
       # - monitoring
@@ -30,6 +31,7 @@ profiles:
       # - omang-service-mediator
       # - openhim-mediator-fhir-converter
       # - shared-health-record
+      - dashboard-visualiser-kibana
     envFiles:
       - .env.local
     dev: true
