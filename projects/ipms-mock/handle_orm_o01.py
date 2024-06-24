@@ -2,117 +2,50 @@ import logging
 import time
 import uuid
 from threading import Thread
-from hl7apy import load_message_profile
-from hl7apy.core import Message
-from hl7apy.parser import parse_message
-from hl7apy.v2_5 import DTM
-from hl7apy.mllp import MLLPServer, AbstractHandler, UnsupportedMessageType, InvalidHL7Message
-from hl7apy.parser import parse_message
+from hl7apy.core import Message, Field
 import pprint
 
 from helper import create_ack_response, send_message_to_client
 
-def parse_orm_o01_message(message):
-    """
-    Parses an ADT A04 HL7 message using hl7apy.
+def extract_omang(identifiers_list):
+    for identifier in identifiers_list.split("~"):
+        logging.debug(identifier)
+        # if identifier.startswith("OMANG"):
+        if identifier.endswith("^^^^SS^GGC"): # Omang Identifier codes
+            logging.debug("Is OMANG ID")
+            return identifier.split("^^^^")[0]  # Extract value before component separator
+    return None  # Return None if no OMANG identifier is found
 
-    Args:
-    hl7_message (str): The HL7 message to parse.
+def fetch_patient(patient_omang_id, datastore):    
+    existing_patient = datastore.get(patient_omang_id)
+    if existing_patient:
+        logging.info(f"Found existing Patient for '{patient_omang_id}'")
+        return existing_patient
+    else:
+        logging.error(f"Patient not found for '{patient_omang_id}'")
+        raise Exception(f"Patient not found for '{patient_omang_id}'")
 
-    Returns:
-    dict: Parsed data from the HL7 message.
-    """
-    parsed_data = {}
-    
-    # Prints the nicely formatted dictionary
-    pprint.pprint(message)
-    try:
-        # Extract MSH segment
-        msh = message.MSH
-        parsed_data['MSH'] = {
-            'field_separator': msh.field_separator.value,
-            'encoding_characters': msh.encoding_characters.value,
-            'sending_application': msh.sending_application.value,
-            'sending_facility': msh.sending_facility.value,
-            'message_datetime': msh.date_time_of_message.value,
-            'message_type': msh.message_type.value,
-            'message_control_id': msh.message_control_id.value,
-            'processing_id': msh.processing_id.value,
-            'version_id': msh.version_id.value,
-            'accept_ack_type': msh.accept_acknowledgment_type.value,
-            'application_ack_type': msh.application_acknowledgment_type.value
-        }
+def handle_orm_o01(incoming_message, datastore):
+    # extract omang ID from identifiers list
+    omang_id = extract_omang(incoming_message["pid"]['patient_identifier_list'])
+    # find (or store) patient in datastore if already processed
+    patient = fetch_patient(omang_id, datastore)
+    logging.debug(f"Found patient: {patient}")
 
-        # Extract EVN segment
-        evn = message.EVN
-        parsed_data['EVN'] = {
-            'event_type_code': evn.event_type_code.value,
-            'recorded_datetime': evn.recorded_date_time.value,
-            'event_facility': evn.event_facility.value
-        }
+    # update patient with IPMS stored details
+    incoming_message['pid'] = patient
 
-        # Extract PID segment
-        pid = message.PID
-        parsed_data['PID'] = {
-            'set_id': pid.set_id.value,
-            'patient_id': pid.patient_id.value,
-            'patient_identifier_list': pid.patient_identifier_list.value,
-            'patient_name': pid.patient_name.value,
-            'date_of_birth': pid.date_time_of_birth.value,
-            'administrative_sex': pid.administrative_sex.value,
-            'patient_address': pid.patient_address.value,
-            'phone_number_home': pid.phone_number_home.value,
-            'phone_number_business': pid.phone_number_business.value,
-            'primary_language': pid.primary_language.value,
-            'marital_status': pid.marital_status.value,
-            'patient_account_number': pid.patient_account_number.value,
-            'ssn_number_patient': pid.ssn_number_patient.value
-        }
-
-        # Extract PV1 segment
-        pv1 = message.PV1
-        parsed_data['PV1'] = {
-            'set_id': pv1.set_id.value,
-            'patient_class': pv1.patient_class.value,
-            'assigned_patient_location': pv1.assigned_patient_location.value,
-            'admission_type': pv1.admission_type.value,
-            'attending_doctor': pv1.attending_doctor.value,
-            'visit_number': pv1.visit_number.value,
-            'admit_datetime': pv1.admit_date_time.value
-        }
-
-        # Extract ROL segment
-        rol = message.ROL
-        parsed_data['ROL'] = {
-            'role_instance_id': rol.role_instance_id.value,
-            'role_action_reason': rol.role_action_reason.value,
-            'role': rol.role.value,
-            'provider_type': rol.provider_type.value,
-            'provider_id_number': rol.provider_id_number.value
-        }
-
-    except Exception as e:
-        print(f"Error parsing HL7 message: {e}")
-    
-    return parsed_data
-
-def handle_orm_o01(message):
-    # Process ORM message and prepare response
-    logging.debug("Handling ORM message")
-    # data = parse_adt_a04_message(self.incoming_message)
-
-    # logging.debug(data)
     logging.debug("Received ORM^O01, scheduling ORU^O01 response in 10 seconds")
-    Thread(target=schedule_oru_o01_response).start()
-    response = create_ack_response(message)
+    Thread(target=schedule_oru_o01_response(incoming_message)).start()
+    response = create_ack_response(incoming_message)
     return response.to_mllp()
 
-def schedule_oru_o01_response():
+def schedule_oru_o01_response(data):
     time.sleep(10)
-    orm_a01_response_message = create_oru_r01_response_message()
+    orm_a01_response_message = create_oru_r01_response_message(data)
     send_message_to_client(orm_a01_response_message)
 
-def create_oru_r01_response_message():
+def create_oru_r01_response_message(data):
     # def create_oru_r01_response_message(self):
     oru_r01 = Message()
 
@@ -124,41 +57,80 @@ def create_oru_r01_response_message():
     oru_r01.msh.MSH_9.MSH_9_1.value = "ORU"
     oru_r01.msh.MSH_9.MSH_9_2.value = "R01"
     oru_r01.msh.MSH_10.value = uuid.uuid4().hex  # Generate a unique message control ID
-    oru_r01.msh.MSH_11.value = "P"
-    oru_r01.msh.MSH_12.value = "2.4"  # Adjust if you're using a different version
+    oru_r01.msh.MSH_11.value = "D"
+    # oru_r01.msh.MSH_12.value = "2.4"  # Adjust if you're using a different version
 
     # PID Segment (Copy from ORM^O01)
-    oru_r01.pid = oru_r01.add_segment("PID")
-    # oru_r01.pid.PID_1.value = parsed_msg.PID.PID_1.value  # Copy from ORM^O01
+    # oru_r01.pid = oru_r01.add_segment("PID")
+    oru_r01.pid = add_pid_segment(oru_r01, data)
 
 
-
-    # logging.info("Incoming Message...: %s", self.parsed_msg.PID[:50])
-    # for field in self.parsed_msg.PID.children:
-    #     oru_r01.pid.add_field(field.name, field.to_er7())
-
-    # # OBR Segment (Copy from ORM^O01 with modifications)
-    # obr = oru_r01.add_segment("OBR")
-    # for field in orm_o01_message.OBR.children:
-    #     obr.add_field(field.name, field.to_er7())
-
-    # # Update OBR-25 with the new value
-    # obr.OBR_25.value = "F"
-    
-    # # OBX Segments
-    # for obx_segment in orm_o01_message.OBX.children:
-    #     obx = oru_r01.add_segment("OBX")
-    #     for field in obx_segment.children:
-    #         obx.add_field(field.name, field.to_er7())
-    
-    # # NTE Segments
-    # for nte_segment in orm_o01_message.NTE.children:
-    #     nte = oru_r01.add_segment("NTE")
-    #     for field in nte_segment.children:
-    #         nte.add_field(field.name, field.to_er7())
     
     # Manual MLLP encoding
     er7_message = oru_r01.to_er7()
     mllp_message = f"{chr(11)}{er7_message}{chr(28)}{chr(13)}"
 
     return mllp_message
+
+def add_pid_segment(oru_r01, data):
+    # Create a PID segment
+    pid = oru_r01.add_segment("PID")
+
+    # PID-1: Set ID - PID (SI)
+    pid.PID_1.value = "1"  # Sequence number of this PID segment (usually 1)
+    
+    logging.debug(data["pid"].get("identifiers", {}).get("mr", ""))
+    # PID-2: Patient ID - PID (Internal) - MRN
+    pid.PID_2.value = data["pid"].get("identifiers", {}).get("mr", "")
+
+    # PID-3: Patient Identifier List (CX)
+    # Create PID-3 field
+    identifiers_list_string = data["pid"].get("patient_identifier_list", "")
+    # Split the string into individual identifiers
+    identifiers = identifiers_list_string.split("~")
+    # Iterate over the identifiers and add them as repetitions to the PID-3 field
+    for identifier in identifiers:
+        cx = pid.add_field('PID_3')
+        cx.value = identifier
+
+    # PID-5: Patient Name (XPN)
+    pid.PID_5.PID_5_1.value = "Murambi"   # Patient's Family Name
+    pid.PID_5.PID_5_2.value = "Tawanda"   # Patient's Given Name
+
+    # PID-6: Mother's Maiden Name (XPN)
+    pid.PID_6.PID_6_1.value = ""  # Mother's maiden name (family name)
+
+    # PID-7: Date/Time of Birth (DTM)
+    pid.PID_7.value = "19880616"  # Patient's birth date (YYYYMMDD)
+
+    # PID-8: Administrative Sex (IS)
+    pid.PID_8.value = "M"  # M = Male, F = Female, O = Other, U = Unknown
+
+    # PID-10: Race (CE)
+    pid.PID_10.value = "CT"  # Race code (check HL7 tables)
+
+    # PID-11: Patient Address (XAD)
+    pid.PID_11.XAD_1.value = "Plot 1011"   # Street Address
+    pid.PID_11.XAD_3.value = "Gaborone"     # City
+    pid.PID_11.XAD_4.value = "Botswana"    # State/Province
+    pid.PID_11.XAD_5.value = "00267"      # Zip or Postal Code
+
+    # PID-13: Phone Number - Home (XTN)
+    pid.PID_13.value = ""  # Patient's home phone number
+
+    # PID-14: Phone Number - Business (XTN)
+    pid.PID_14.value = ""  # Patient's business phone number
+
+    # PID-16: Marital Status (CE)
+    pid.PID_16.value = "M"  # Marital status code (check HL7 tables)
+
+    # PID-17: Religion (CE)
+    pid.PID_17.value = ""  # Religion code (check HL7 tables)
+
+    # PID-18: Patient Account Number (CX)
+    pid.PID_18.value = ""
+
+    # PID-19: SSN Number - Patient (ST)
+    pid.PID_19.value = "ZG0000044218"  # Social Security Number
+
+    return pid
