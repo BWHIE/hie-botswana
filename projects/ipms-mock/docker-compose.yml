@@ -3,6 +3,8 @@ version: '3.8'
 services:
   hl7-mock-server:
     image: hl7-mock-server
+    container_name: ipms-server
+    hostname: ipms-server
     build:
       context: .
       args:
