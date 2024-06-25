@@ -1,0 +1,6 @@
+MSH|^~\&|ADM||||202404251509||ADT^A04|294218|D|2.4|||AL|NE|
+EVN||202404251509|||INFCE^INTERFACE|202404250000|
+PID|1||DM00002114^^^^MR^DM~041611859^^^^SS^DM~DM2052^^^^PI^DM~TEST0106758^^^^HUB^DM||makwatse^thomas^^^^^L||19760716|M||CT||||||||DA0000002954|
+PV1|1|O|XMORWAC||||ZZHIEPROV^Provider^HIE^^^^^^^^^^XX|||||||||||CLI||U|||||||||||||||||||DM||REG|||202404250000|
+PV2|||||||||||1|||||||||||||||||||||||||N|
+ROL|1|AD|AT|ZZHIEPROV^Provider^HIE^^^^^^^^^^XX|
