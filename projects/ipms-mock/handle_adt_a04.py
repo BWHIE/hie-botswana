@@ -58,13 +58,24 @@ def schedule_adt_a04_response(data):
 
 def create_adt_a04_response_message(data):
     adt_a04 = Message()
-    datetime_now = datetime.now().strftime("%Y%m%d%H%M")
 
+    add_msh_segments(adt_a04)
+    add_evn_segments(adt_a04)
+    add_pid_segments(adt_a04, data)
+
+    # Convert to ER7 and manually add MLLP characters
+    er7_message = adt_a04.to_er7()
+    # # Manual MLLP encoding
+    mllp_message = f"{chr(11)}{er7_message}{chr(28)}{chr(13)}" 
+
+    return mllp_message
+
+def add_msh_segments(adt_a04):
     # MSH Segment (Updated)
     adt_a04.msh.MSH_3.value = "ADM"      # Sending Application (Added)
     adt_a04.msh.MSH_5.value = ""         # Receiving Application 
     # adt_a04.msh.MSH_7.value = "202209220713"  # Date/Time of Message
-    adt_a04.msh.MSH_7.value = datetime_now  # Date/Time of Message
+    adt_a04.msh.MSH_7.value = datetime.now().strftime("%Y%m%d%H%M")  # Date/Time of Message
     adt_a04.msh.MSH_9.MSH_9_1.value = "ADT"   # Message Type
     adt_a04.msh.MSH_9.MSH_9_2.value = "A04"   # Trigger Event
     adt_a04.msh.MSH_10.value = "279085"       # Message Control ID (Specific value)
@@ -73,17 +84,18 @@ def create_adt_a04_response_message(data):
     adt_a04.msh.MSH_15.value = "AL"       # Accept Acknowledgment Type (Added)
     adt_a04.msh.MSH_16.value = "NE"       # Application Acknowledgment Type (Added)
 
+def add_evn_segments(adt_a04):
     # EVN Segment (Updated)
     evn = adt_a04.add_segment("EVN")
     evn.EVN_1.value = ""
-    evn.EVN_2.value = datetime_now
+    evn.EVN_2.value = datetime.now().strftime("%Y%m%d%H%M")
     evn.EVN_3.value = ""
     evn.EVN_4.value = ""
     evn.EVN_5.value = "INFCE^INTERFACE"
-    evn.EVN_6.value = datetime_now
+    evn.EVN_6.value = datetime.now().strftime("%Y%m%d%H%M")
     evn.EVN_7.value = ""
 
-    # PID Segment (Updated)
+def add_pid_segments(adt_a04, data):
     pid = adt_a04.add_segment("PID")
     pid.PID_1.value = "1" #Set ID
 
@@ -97,10 +109,3 @@ def create_adt_a04_response_message(data):
         cx.CX_1.value = identifier[0]
         cx.CX_5.value = identifier[1]
         cx.CX_6.value = identifier[2]
-
-    # Convert to ER7 and manually add MLLP characters
-    er7_message = adt_a04.to_er7()
-    # # Manual MLLP encoding
-    mllp_message = f"{chr(11)}{er7_message}{chr(28)}{chr(13)}" 
-
-    return mllp_message
