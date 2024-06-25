@@ -47,7 +47,7 @@ def handle_adt_a04(incoming_message, datastore):
     incoming_message['pid'] = patient
 
     logging.debug("Received ADT^A04, scheduling updated ADT^A04 response in 10 seconds")
-    Thread(target=schedule_adt_a04_response(incoming_message)).start()
+    Thread(target=schedule_adt_a04_response, args=(incoming_message,)).start()
     response = create_ack_response(incoming_message)
     return response.to_mllp()
 
