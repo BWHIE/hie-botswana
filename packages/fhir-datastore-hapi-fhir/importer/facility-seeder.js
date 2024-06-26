@@ -33,7 +33,6 @@ async function postWithRetry(fhirUrl, options, retryLimit = 5, timeout = 30000) 
 
 async function saveBundle(bundle) {
   try {
-    // const ret = await postWithRetry("http://localhost:3447/fhir", { json: bundle });
     const ret = await postWithRetry("http://hapi-fhir:8080/fhir", { json: bundle });
     console.log(`Saved bundle to FHIR store!`);
     return ret;

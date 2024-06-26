@@ -29,19 +29,6 @@ function import_sources() {
   source "${UTILS_PATH}/log.sh"
 }
 
-# function check_service_status() {
-#   local stack_name="$1"
-#   local service_name="$2"
-
-#   # Check if the service is running
-#   if docker service ps "${stack_name}_${service_name}" --format "{{.CurrentState}}" | grep -q "Running"; then
-#     return 0  # Service is running
-#   else
-#     return 1  # Service is not running
-#   fi
-# }
-
-
 function initialize_package() {
   local hapi_fhir_dev_compose_filename=""
 

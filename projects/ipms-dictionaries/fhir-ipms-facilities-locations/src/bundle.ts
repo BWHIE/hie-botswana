@@ -71,6 +71,8 @@ export function generateFacilityBundle(facilities:any[]){
   myBundle.resourceType = 'Bundle';
   myBundle.type = 'transaction';
   const orgEntries: fhirR4.BundleEntry[] = []
+
+  // Create a new Bundle entry for each facility 
   facilities.forEach(facility => {
     const orgEntry = new fhirR4.BundleEntry();
     orgEntry.resource = generateOrganization(facility);
@@ -93,7 +95,7 @@ export function generateLocationBundle(locations:any[] , facilities:any[]){
 
   locations.forEach(location => {
 
-    // Create a new Bundle entry for each facility and location combination
+    // Create a new Bundle entry for each location 
     const entry = new fhirR4.BundleEntry();
     entry.resource = generateLocation(location, facilities);
     const theRequest = new fhirR4.BundleRequest();

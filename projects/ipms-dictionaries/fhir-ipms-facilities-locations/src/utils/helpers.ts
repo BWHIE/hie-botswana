@@ -23,7 +23,6 @@ export function readCsv(filePath: string): any {
         skipEmptyLines: true,
         complete: (results) => {
             outputs.push(results.data)
-            // console.log(results.data);  // Handle the parsed data
         },
         error: (error: { message: any; }) => {
             console.error(error.message);  // Handle any errors
