@@ -95,10 +95,6 @@ if __name__ == '__main__':
     # Define handlers for each message type expected
     handlers = {
         'ORM^O01': (HL7Handler,),
-        # 'ORU^R01': (HL7Handler,),
-        # 'ADT^A01': (HL7Handler,),  # Admit a patient
-        # 'ADT^A02': (HL7Handler,),  # Transfer a patient
-        # 'ADT^A03': (HL7Handler,),   # Discharge a patient
         'ADT^A04': (HL7Handler,)   # Register a patient
     }
 
