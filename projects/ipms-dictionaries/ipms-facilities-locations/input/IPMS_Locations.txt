@@ -1,0 +1,3061 @@
+DATE: 22/05/24 @ 1229  MIS Database                        TEST            PAGE 1
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+   012.00  LEKCLI      Lekganyane Clinic               Y    O
+  1000.00  PMANTNO     PM Ante-Natal O/F Ward          N    I
+  1010.00  PMANTNW     PM Ante-Natal Ward              Y    I
+  1020.00  PMFMEDO     PM Female Medical O/F Ward      N    I
+  1030.00  PMFMEDW     PM Female Medical Ward          Y    I
+  1040.00  PMFORTO     PM Female Orthopaedic O/F       N    I
+  1050.00  PMFORTW     PM Female Orthopaedic Ward      Y    I
+  1060.00  PMFSURO     PM Female Surgical O/F Ward     N    I
+  1070.00  PMFSURW     PM Female Surgical Ward         Y    I
+  1080.00  PMGICUO     PM Intensive Care Unit O/F      N    I
+  1090.00  PMGICUW     PM Intensive Care Unit Ward     Y    I
+  1100.00  PMGYNEO     PM Gynaecology O/F Ward         N    I
+  1110.00  PMGYNEW     PM Gynaecology Ward             Y    I
+  1120.00  PMLABOW     PM Labour Ward                  Y    I
+  1130.00  PMLABOWO    PM Labour Ward O/F              N    I
+  1140.00  PMMMEDO     PM Male Medical O/F Ward        N    I
+  1150.00  PMMMEDW     PM Male Medical Ward            Y    I
+  1160.00  PMMORTO     PM Male Orthopaedic O/F         N    I
+  1170.00  PMMORTW     PM Male Orthopaedic Ward        Y    I
+  1180.00  PMMSURO     PM Male Surgical O/F Ward       N    I
+  1190.00  PMMSURW     PM Male Surgical Ward           Y    I
+  1200.00  PMNEONO     PM Neo-Natal O/F Ward (SCBU)    N    I
+  1210.00  PMNEONW     PM Neo-Natal Ward (SCBU)        Y    I
+  1220.00  PMONCO      PM Oncology O/F                 N    I
+  1230.00  PMONCW      PM Oncology Ward                Y    I
+  1240.00  PMOPHTO     PM Ophthalmology O/F Ward       N    I
+  1250.00  PMOPHTW     PM Ophthalmology Ward           Y    I
+  1260.00  PMPAEMO     PM Paeds Medical O/F Ward       N    I
+  1270.00  PMPAEMW     PM Paeds Medical Ward           Y    I
+  1280.00  PMPAESO     PM Paeds Surgical O/F Ward      N    I
+  1290.00  PMPAESW     PM Paeds Surgical Ward          Y    I
+  1300.00  PMPOSNO     PM Post-Natal O/F Ward          N    I
+  1310.00  PMPOSNW     PM Post-Natal Ward              Y    I
+  1320.00  PMPRIVW     PM Private Ward                 Y    I
+  1400.00  PMCONC      PM Oncology Clinic              Y    O
+  1450.00  PMPIDCCC    PM Paeds IDCC Clinic            Y    O
+  1455.00  XBANATR     Bana Trial                  GA  Y    O
+  1455.30  XKHIHP      khisa Health Post               Y    O
+  1456.10  XBAMALH     Bamalete Lutheren Hos  17-1-01  Y    O
+  1458.00  ZCGABAY     Baylor Children's COE           Y    O
+  1460.00  XGBOTUS     Botusa                      GA  Y    O
+  1461.00  XNHL        National Health Laboratory      Y    O
+  1462.00  XIHS        Institute of Health Sciences    Y    O
+  1500.00  XSEBELE     Sebele Clinic               GA  Y    O
+  1501.00  XLESIRC     Lesirane Clinic        05-3-22  Y    O
+  1510.00  XPOLICE     Police College              GA  Y    O
+  1513.00  XBLOCK6     Block 6                     GA  Y    O
+  1515.00  XBLOCK8     Block 8 / Kgatelopele  15-3-25  Y    O
+  1516.00  XKAATEL     Kgatelopele                 GA  N    O
+  1520.00  XONALED     Old Naledi                  GA  Y    O
+  1525.00  XTLOKMC     Tlokweng Main Clinic   17-3-07  Y    O
+  1525.01  XTLOKWE     Tlokweng                    GA  Y    O
+  1525.20  XMAFITC     Mafitlhakgosi Clinic   17-3-10  Y    O
+  1525.30  XKHAYAHP    Khayakholo Health Post 17-4-01  Y    O
+  1525.34  XNKAIKHP    Nkaikela Health Post   17-4-05  Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST            PAGE 2
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+  1525.35  XNKAIKE     Nkaikela                    GA  N    O
+  1526.00  XKHAYAK     Khayakholo             17-4-01  Y    O
+  1527.00  XSBRANA     Sbrana Psychiatric Hospital     Y    O
+  1530.00  XJMBLK9     Julia Molefhe (Block 9)     GA  Y    O
+  1535.00  XMOGODI     Mogoditshane Clinic    05-3-12  Y    O
+  1536.00  XNKOYAC     Nkoyaphiri Clinic      05-3-16  Y    O
+  1536.01  XNKOYAP     Nkoyaphiri Clinic      05-3-16  N    O
+  1540.00  XBROAD3     Broadhurst 3 (Tsholofelo)   GA  Y    O
+  1545.00  XBROAD2     Broadhurst 2                GA  Y    O
+  1550.00  XEXTE15     Extention 15                GA  Y    O
+  1555.00  XEXTE14     Extention 14                GA  Y    O
+  1556.00  XTSHOLC     Tsholofelo Clinic      15-3-10  Y    O
+  1560.00  XMMOPAN     Mmopane Health Post    05-4-12  Y    O
+  1565.00  XBROAD1     Broadhurst 1                GA  Y    O
+  1570.00  XBDFSSK     BDF (SSKB) Clinic      05-3-11  Y    O
+  1571.00  XBDFGLV     BDF (Glen Valley) Clinic    GA  Y    O
+  1572.00  XBDFTHE     BDF Thebephatshwa           PM  Y    O
+  1575.00  XEXTE02     Extention 2 Clinic     15-3-16  Y    O
+  1580.00  XKOPON      Kopong Clinic          05-3-06  Y    O
+  1582.00  XMETSIM     Metsimotlhabe Clinic   05-3-09  Y    O
+  1585.00  XGABAN      Gabane Clinic          05-3-04  Y    O
+  1590.00  XPRISON     Prisons                     GA  Y    O
+  1595.00  XGABWES     Gaborone West               GA  Y    O
+  1600.00  XUNBOTS     University of Botswana      GA  Y    O
+  1605.00  XBFWASS     Bot Family Welfare Assoc    GA  Y    O
+  1610.00  XSTDCLI     STD Clinic                  GA  Y    O
+  1615.00  XINSDMA     Inst. Develop. Management   GA  Y    O
+  1620.00  XVILLAG     Village Clinic              GA  Y    O
+  1624.00  XBTACLI     BTA                         GA  Y    O
+  1625.00  XGPRIVAT    LAB Private Patient OPD     GA  Y    O
+  1627.00  XSTJOSE     St Josephs                  GA  Y    O
+  1630.00  XHEACEN     Health Centre               GA  Y    O
+  1634.50  XTBHIVF     TB/HIV Clinic Francistown       Y    O
+  1634.60  XTBHIVG     TB/HIV Clinic Gaborone          Y    O
+  1635.00  XTBLOC      TB Location                 GA  Y    O
+  1640.00  XGUMAPH     Gumare Primary Hosp    14-2-01  Y    O
+  1640.05  XSERONG     Seronga Clinic         14-3-02  Y    O
+  1640.10  XXAKSHA     Xakau Shakawe               PM  Y    O
+  1640.15  XETSHA6     Etsha 6 Clinic         14-3-01  Y    O
+  1640.20  XNOKANE     Nokaneng Clinic        14-3-04  Y    O
+  1640.22  XXAKAOC     Xakao Clinic           14-3-06  Y    O
+  1640.25  XGUMAC      Gumare Clinic          14-3-07  Y    O
+  1640.30  XQANGC      Qangwa Clinic          14-3-05  Y    O
+  1640.35  XETSH13C    Etsha 13 Clinic        14-3-08  Y    O
+  1640.40  XSEPOC      Sepopa Clinic          14-3-09  Y    O
+  1640.41  XBEETHP     Beetsha Health Post    14-4-10  Y    O
+  1640.43  XGUNUTHP    Gunutsoga Health Post  14-4-03  Y    O
+  1640.45  XKAUXHP     Kauxwi Health Post     14-4-04  Y    O
+  1640.47  XMOGOTHP    Mogotho Health Post    14-4-05  Y    O
+  1640.50  XHABUHP     Habu Health Post       14-4-06  Y    O
+  1640.51  XNXAUNHP    Nxaunxau Health Post   14-4-07  Y    O
+  1640.52  XNXOMHP     Nxomokao Health Post   14-4-08  Y    O
+  1640.54  XNGARHP     Ngarange Health Post   14-4-12  Y    O
+  1640.55  XNXAMHP     Nxamasere Health Post  14-4-14  Y    O
+  1640.56  XKAJAJHP    Kajaja Health Post              Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST            PAGE 3
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+  1640.58  XIKOGAHP    Ikoga Health Post      14-4-15  Y    O
+  1640.61  XXAXAHP     Xaxa Health Post       14-4-16  Y    O
+  1640.64  XTJUKUHP    Tjukumuchu H. Post     14-4-17  Y    O
+  1640.67  XGHANHP     Ghani Health Post      14-4-18  Y    O
+  1640.70  XGUDIHP     Gudigwa Health Post    14-4-19  Y    O
+  1642.00  XSHAKWC     Shakawe Clinic         14-3-03  Y    O
+  1642.50  XNYARAHP    NGARANGE HEALTH POST            N    O
+  1645.00  XHUKUPH     Hukuntsi Primary Hosp  24-2-01  Y    O
+  1645.05  XKANG       Kang Clinic            24-3-02  Y    O
+  1645.10  XHUKUNT     Hukuntsi Clinic        24-3-01  Y    O
+  1645.15  XMAKEHP     Make Health Post 24-4-05        Y    O
+  1645.20  XNCAAHP     Ncaang Health Post    24-4-01   Y    O
+  1645.25  XINALEHP    Inalegolo Health Post  24-4-02  Y    O
+  1645.30  XLEHUTHP    Lehututu Health Post   24-4-03  Y    O
+  1645.35  XLOKGWHP    Lokgwabe Health Post   24-4-04  Y    O
+  1645.40  XHUNHC      Hunhukwe Clinic                 Y    O
+  1645.45  XMONOHP     Monong Health Post    24-4-06   Y    O
+  1645.50  XTSHANEHP   Tshane Health Post     24-4-07  Y    O
+  1645.53  XTSHAPHP    Tshane Prison Health Post 24-4  Y    O
+  1645.55  XPHUDHP     Phuduhudu Health Post  24-4-08  Y    O
+  1645.60  XUKHWHP     Ukhwi Health Post     24-4-09   Y    O
+  1645.65  XZUTSHHP    Zutshwa Health Post   24.4.10   Y    O
+  1645.70  XHUKUHP     Hukuntsi West H Post   24-4-11  Y    O
+  1645.75  XMOSELHP    Moselebe Health Post   24-4-    Y    O
+  1645.80  XNGWATHP    Ngwatle Health Post 24-4-13     Y    O
+  1650.00  XGOODPH     Goodhope Primary Hosp  23-2-01  Y    O
+  1650.02  XDIGAWC     Digawana Clinic        23-3-01  Y    O
+  1650.03  XKANGWHP    Kangwe H Post                   Y    O
+  1650.05  XPHIMOL     Phitshane Molopo Clinic 23-3-6  Y    O
+  1650.10  XPITSAN     Pitsane Clinic         23-3-07  Y    O
+  1650.15  XMMATHE     Mmathethe Clinic       23-3-05  Y    O
+  1650.20  XMABULE     Mabule Clinic          23-3-03  Y    O
+  1650.25  XHEBRON     Hebron Clinic          23-3-02  Y    O
+  1650.30  XMETLOC     Metlobo Clinic         23-3-04  Y    O
+  1650.38  XGOODHP     Goodhope Clinic                 Y    O
+  1650.40  XRAMAC      Ramatlabama Clinic     23-3-08  Y    O
+  1650.42  XTSHIDIC    Tshidilamolomo Clinic  23-3-09  Y    O
+  1650.44  XCWAANHP    Cwaanyaneng H Post              Y    O
+  1650.48  XDIKHUKHP   Dikhukhung H post               Y    O
+  1650.50  XDITLHHP    Ditlharapa Health Post 23-4-04  Y    O
+  1650.52  XGATHWHP    Gathwane Health Post   23-4-05  Y    O
+  1650.58  XLEPORHP    Leporung H post                 Y    O
+  1650.60  XLOROLHP    Lorolwane H Post                Y    O
+  1650.62  XMAGORHP    Magoriapitse H. Post   23-4-10  Y    O
+  1650.64  XMMAKHP     Mmakgori Health Post   23-4-11  Y    O
+  1650.66  XMOGOJHP    Mogojogojwe H Post     23-4-12  Y    O
+  1650.68  XMOKATHP    Mokatako Health Post            Y    O
+  1650.70  XMOKGOMAHP  Mokgomane Health Post 23-4-14   Y    O
+  1650.72  XKGOROHP    Kgoro H Post                    Y    O
+  1650.74  XSHEEPHP    Sheepfarm H Post                Y    O
+  1650.76  XRAKHUHP    Rakhuna Health Post    23-4-17  Y    O
+  1650.78  XRAKMILCC   Rakhuna Military Clinic         Y    O
+  1650.82  XPAPATHP    Papatlo H Post                  Y    O
+  1650.84  XSEKHUHP    Sekhutlane Health Post 23-4-21  Y    O
+  1650.86  XTLHARESHP  TLHARESELEELE H POST            Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST            PAGE 4
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+  1650.88  XSEDIBHP    Sedibeng H Post                 Y    O
+  1650.90  XPHITSHP    Phitshane Potlokwe H.P 23-4-24  Y    O
+  1650.92  XPHIHEHP    Phihetswane H Post              Y    O
+  1650.94  XSEGWAHP    Segwagwa H Post                 Y    O
+  1650.96  XGAMAJHP    Gamajaalela H Post    23-4-     Y    O
+  1650.99  XMETLOHP    Metlojane H Post       23-4-26  Y    O
+  1655.00  XTHAMPH     Thamaga Primary Hospital 5-2-1  Y    O
+  1655.05  XMMANKC     Mmankgodi Clinic       05-3-10  Y    O
+  1655.10  XTHAMAC     Thamaga Clinic         05-3-20  Y    O
+  1655.15  XMANYAC     Manyana Clinic        06-03-05  Y    O
+  1655.19  XTHAMPH-PM  Thamaga Primary Hospital 5-2-1  Y    O
+  1655.20  XGAKGHP     Gakgatla Health Post   05-4-02  Y    O
+  1655.22  XKUBANHP    Kubung Health Post     05-4-07  Y    O
+  1655.24  XKUMAKC     Kumakwane Health Post  05-4-08  Y    O
+  1655.26  XPHUTIC     Phuting Health Post    05-4-13  Y    O
+  1655.28  XRUNGHP     Rungwana Health Post   05-4-24  Y    O
+  1660.00  XLOBATH     Lobatse Athlone Hosp   18-1-02  Y    O
+  1660.02  XMENTAH     Mental Referal Hosp   18-1-02   Y    O
+  1660.05  XTSOPEC     Tsopeng Clinic         18-3-07  Y    O
+  1660.08  XPELCEC     Peleng Central Clinic  18-3-03  Y    O
+  1660.10  XPELEAC     Peleng East Clinic     18-3-04  Y    O
+  1660.15  XWOODHC     Woodhall Clinic        18-3-05  Y    O
+  1660.20  XATHOLON    Athlone Hospital                N    O
+  1660.25  XMOLAPC     Molapowabojang Clinic  06-3-06  Y    O
+  1660.30  XMOTSWC     Motswedi Clinic       13-3-08   Y    O
+  1665.18  XKGSOIN     Kgosing Clinic         05-3-05  Y    O
+  1665.79  XMOGOKHP    Magokotswane H Post    05-4-20  Y    O
+  1670.00  XKANSDH     Kanye S.D.A.Hospital   06-1-01  Y    O
+  1670.05  XMAFHIC     Mafhikana Clinic       06-3-04  Y    O
+  1670.10  XKGWATC     Kgwatlheng Clinic      06-3-02  Y    O
+  1670.12  XLOTLHC     Lotlhakane East Clinic   6-3-3  Y    O
+  1670.15  XKANYMC     Kanye Main Clinic      06-3-01  Y    O
+  1670.20  XMOSHCC     Moshupa Council Clinic 06-3-07  Y    O
+  1670.25  XMOSHUSDAC  Moshupa SDA Clinic              Y    O
+  1670.27  XNTLHAC     Ntlhantlhe Clinic      06-3-09  Y    O
+  1670.28  XPITSEC     Pitseng Clinic         06-3-10  Y    O
+  1670.30  XRANAKAC    Ranaka Clinic         06-03-11  Y    O
+  1670.35  XDADAC      Joosub Dada Clinic              Y    O
+  1670.37  XMMAMOC     Mmamokhasi Clinic      06-3-14  Y    O
+  1670.42  XDIABOHP    Diabo Health Post      06-4-01  Y    O
+  1670.44  XGASITHP    Gasita Health Post     06-4-02  Y    O
+  1670.45  XRALHP      Ralekgetho Health Post 06-4-09  Y    O
+  1670.48  XKGOMOKHP   Kgomokasitwa H Post    06-4-04  Y    O
+  1670.49  XMAGOTH     Magotlhwane Hospital            Y    O
+  1670.50  XLEKGOHP    Lekgolobotlo H Post    06-4-05  Y    O
+  1670.51  XLOBATPC    Lobatse Prison Clinic 18-3-01   Y    O
+  1670.52  XLOTLHP     Lotlhakane W H Post    06-4-06  Y    O
+  1670.53  XBMCIC      BMC I Clinic  18-3-01           Y    O
+  1670.54  XMOSHAHP    Moshaneng Health Post  06-4-07  Y    O
+  1670.55  XLOTHECL    Letlhakane Clininc   13-3-01    Y    O
+  1670.56  XMOSHUHP    Moshupa Health Post    06-4-08  Y    O
+  1670.60  XSEBHP      Sebego Health Post     06-4-11  Y    O
+  1670.62  XSELOKHP    Selokolela H Post      06-4-12  Y    O
+  1670.64  XSESE       Sese Health Post       06-4-13  Y    O
+  1670.70  XTSHWAANHP  Tshwaane Health Post   06-4-16  Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST            PAGE 5
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+  1670.74  XMOGOTLHP   Mogotlhwane H Post     06-4-18  Y    O
+  1670.76  XDILOLHP    Dilolwe Health Post    06-4-19  Y    O
+  1670.78  XMOGONHP    Mogonye Health Post    06-4-20  Y    O
+  1670.82  XSEHERHP    Seherelela H Post      06-4-22  Y    O
+  1675.00  XMOCDRH     Mochudi Deborah Retief Hosp 9-  Y    O
+  1675.01  XDEBORH     Deborah Retief Hospital  9-1-1  N    O
+  1675.03  XARTEC      Artesia Clinic         09-3-01  Y    O
+  1675.04  XBOKAC      Bokaa Clinic (Kgatleng) 9-3-02  Y    O
+  1675.05  XMMATHC     Mmathubudukwane Clinic  09-3-3  Y    O
+  1675.10  XOODICL     Oodi Clinic            09-3-07  Y    O
+  1675.15  XMORWAC     Morwa Clinic           09-3-11  Y    O
+  1675.20  XMAKAKC     Makakatlela Clinic     09-3-09  Y    O
+  1675.25  XMOCH1C     Mochudi I Clinic       09-3-04  Y    O
+  1675.30  XMOCHIIC    Mochudi II Clinic      09-3-05  Y    O
+  1675.31  XOLIPHC     Oliphants Drift Clinic  09-3-6  Y    O
+  1675.32  BOJEIC      Bojesa I Clinic        09-3-08  N    O
+  1675.33  XBOSE1C     Boseja I Clinic        09-3-08  Y    O
+  1675.35  XPHAPC      Phaphane Clinic        09-3-10  Y    O
+  1675.40  XBOSEIIC    Boseja II Clinic       09-3-12  Y    O
+  1675.50  XBODUNHP    Bodungwane H Post      09-4-01  Y    O
+  1675.52  XRAMONHP    Ramonaka Health Post   09-4-02  Y    O
+  1675.54  XDIKGOHP    Dikgonnye Health Post  09-4-03  Y    O
+  1675.56  XDIKWHP     Dikwididi Health Post  09-4-04  Y    O
+  1675.58  XKGOMOHP    Kgomodiatshaba H Post  09-4-05  Y    O
+  1675.60  XKHURUHP    Khurutshe Health Post  09-4-06  Y    O
+  1675.62  XLESHHP     Leshibitse Health Post 09-4-07  Y    O
+  1675.64  XMALOHP     Malolwane Health Post  09-4-08  Y    O
+  1675.66  XMALOTHP    Malotwana Health Post  09-4-09  Y    O
+  1675.68  XMATEBHP    Matebele Health Post   09-4-10  Y    O
+  1675.69  XMAKOPH     Makopane Hospital               Y    O
+  1675.70  XMODIHP     Modipane Health Post   09-4-11  Y    O
+  1675.71  XMORHP      Morwa H Post                    Y    O
+  1675.72  XMORWAHP    Morwa Health Post      09-4-12  Y    O
+  1675.74  XPILANHP    Pilane Health Post     09-4-13  Y    O
+  1675.76  XRAMOTHP    Ramotlabaki H. Post    09-4-14  Y    O
+  1675.78  XRASHP      Rasesa Health Post     09-4-15  Y    O
+  1675.80  XSIKWHP     Sikwane Health Post    09-4-16  Y    O
+  1675.84  XMAKGOHP    Makgophana H Post      09-4-18  Y    O
+  1675.85  XMOCHPRHP   Mochudi Prisons HP 09-4-17      Y    O
+  1685.00  XRAMBLH     Ramotswa Bamalete Luth Hosp 17  Y    O
+  1685.03  XMOGOBC     Mogobane Clinic        17-3-01  Y    O
+  1685.10  XLESETC     Lesetlhana Clinic      17-3-08  Y    O
+  1685.15  XTAUNCL     Taung Clinic           17-3-03  Y    O
+  1685.17  XRAMSTC     Ramotswa Station Clinic 17-3-3  Y    O
+  1685.20  XOTSECL     Otse Clinic            17-3-02  Y    O
+  1685.25  XSIGAC      Siga Clinic            17-3-04  Y    O
+  1685.30  XSTCONC     St.Conrad's Clinic     17-3-05  Y    O
+  1685.40  XPOLIC      Police Clinic-Otse     17-3-09  Y    O
+  1685.59  XMETSIHP    Metsimaswaane H Post   17-4-03  Y    O
+  1685.60  XMOGOBHP    Mogobane Health Post   17-4-04  Y    O
+  1690.00  XTSABOPH    Tsabong Primary Hosp   11-2-01  Y    O
+  1690.01  XBOKSC      Bokspits Clinic        11-3-01  Y    O
+  1690.02  XHEREFC     Hereford Clinic        11-3-02  Y    O
+  1690.05  XMIDDLC     Middlepits Clinic      11-3-03  Y    O
+  1690.07  XMAKOPC     Makopong Clinic        11-3-04  Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST            PAGE 6
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+  1690.08  XKHUIHP     Khuis Health Post 11-4-04       Y    O
+  1690.10  XTSABOC     Tsabong Clinic         11-3-06  Y    O
+  1690.13  XKOLONHP    Kolonkwaneng Health Post 11-04  Y    O
+  1690.15  XVERDAC     Verda Clinic           11-3-05  Y    O
+  1690.16  XWERDAC     Werda Clinic           11-3-05  Y    O
+  1690.40  XVAALHP     Vaalhoek Health Post 11-4-16    Y    O
+  1690.58  XOMAWEHP    Omaweneno Helath Post  11-4-05  Y    O
+  1690.62  XGAKHIHP    Gakhibane Health Post 11-4-01   Y    O
+  1690.64  XSTRUIHP    Struizendam H Post     11-4-08  Y    O
+  1690.66  XDRIEHHP    Draiehoek Health Post  11-4-09  Y    O
+  1690.68  XMAUBHP     Maubelo Health Post    11-4-10  Y    O
+  1690.70  XMARAHP     Maralaleng Health Post 11-4-11  Y    O
+  1690.72  XKHAWHP     Khawa Health Post      11-4-12  Y    O
+  1690.74  XKOKOTHP    Kokotsha Health Post   11-4-13  Y    O
+  1690.76  XMALEHP     Maleshe Health Post    11-4-14  Y    O
+  1690.78  XBOGOHP     Bogogobo Health Post   11-4-15  Y    O
+  1690.80  XRAPPEHP    Rappel'span HealthPost 11-4-07  Y    O
+  1695.00  XJWANMH     Jwaneng Mine Hospital  22-1-01  Y    O
+  1695.05  XJWATCC     Jwaneng Town Council Clinic 22  Y    O
+  1695.10  XMABUTC     Mabutsane Clinic       21-3-02  Y    O
+  1695.15  XKHAKHC     Khakhea Clinic         21-3-01  Y    O
+  1695.20  XDITSWC     Ditsweletse Clinic     22-3-04  Y    O
+  1695.25  XUNIT7C     Unit 7 Clinic          22-3-05  Y    O
+  1695.27  XTSHIMC     Tshimologo Clinic      22-3-03  Y    O
+  1695.30  XMAOKAC     Maokane Clinic         06-3-13  Y    O
+  1695.35  XSAMAHP     Samane Health Post     06-4-10  Y    O
+  1695.40  XTHANHP     Thankane Health Post   06-4-15  Y    O
+  1695.45  XMOKHHP     Mokhomma Health Post   06-4-21  Y    O
+  1695.50  XMORWC      Morwamusu Clinic       21-3-03  Y    O
+  1695.55  XKENGHP     Keng Health Post       21-4-01  Y    O
+  1695.60  XKHONHP     Khonkhwa Health Post   21-4-02  Y    O
+  1695.65  XKOKOHP     Kokong Health Post     21-4-03  Y    O
+  1695.70  XITHOLHP    Itholoke Health Post   21-4-04  Y    O
+  1695.72  XTSONYHP    Tsonyane Health Post   06-4-17  Y    O
+  1695.75  XMAHOHP     Mahotshwane Health Post 21-4-5  Y    O
+  1695.80  XSEKOHP     Sekoma Health Post     21-4-06  Y    O
+  1700.00  GGCJULLAB   GGC Julia Molefe Clinic BLK9    Y    I
+  1701.00  GGCLESLAB   GGC Lesirane Laboratory         Y    I
+  1702.00  GGCNKALAB   GGC Nkaikela Laboratory         Y    I
+  1705.00  XLETLPH     Letlhakane Primary Hosp 13-2-2  Y    O
+  1705.02  XLETLHC     Letlhakane Clinc       13-3-01  Y    O
+  1705.05  XTAWANC     Tawana Clinic          13-3-09  Y    O
+  1705.10  XKHUMAC     Khumaga Health Post    13-4-02  Y    O
+  1705.15  XMOKIBC     Mokubilo Health Post   13-4-11  Y    O
+  1705.20  XXHUMOC     Xhumo Clinic           13-3-08  Y    O
+  1705.25  XMMATSC     Mmatshumo Clinic       13-3-12  Y    O
+  1710.00  XRAKOPH     Rakops Primary Hosp    13-2-01  Y    O
+  1710.05  XMOPIPC     Mopipi Clinic          13-3-02  Y    O
+  1710.06  XMOTOC      Motopi Clinic          13-3-03  Y    O
+  1710.28  XKEDIAHP    Kedia Health Post      13-4-01  Y    O
+  1710.30  XRAKOPC     Rakops Health Post     13-4-03  Y    O
+  1710.31  XRAILHP     Railways Health Post        NY  Y    O
+  1710.32  XMMADIHP    Mmadikola Health Post  13-4-04  Y    O
+  1710.34  XKWEEHP     Kwee Health Post       13-4-05  Y    O
+  1710.36  XMOREHP     Moreomaoto Health Post 13-4-06  Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST            PAGE 7
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+  1710.38  XMOSUHP     Mosu Health Post       13-4-07  Y    O
+  1710.40  XMOKOHP     Makoboxane Health Post  13-4-8  Y    O
+  1710.42  XTOROHP     Toromoja Health Post   13-4-09  Y    O
+  1710.44  XMMEYAHP    Mmeya Health Post      13-4-10  Y    O
+  1710.46  XXEREHP     Xere Health Post       13-4-12  Y    O
+  1710.48  XMASAC      Orapa Masa Clinic 13-3-13       Y    O
+  1715.00  XPALAPH     Palapye Primary Hospital 3-2-1  Y    O
+  1715.01  XLOTSAC     Lotsane Clinic         03-3-13  Y    O
+  1715.02  XKEDIRC     Kediretswe Clinic      03-3-19  Y    O
+  1715.03  XEXTE3C     Extension 3 Clinic     03-3-20  Y    O
+  1715.04  XKHURUC     Khurumela Clinic       03-3-22  Y    O
+  1715.06  XMORUPC     Morupule Colliary Clinic 3-3-6  Y    O
+  1715.10  XLECHC      Lecheng Clinic         03-3-16  Y    O
+  1715.11  XGOOTHP     Gootau Health Post     03-4-01  Y    O
+  1715.12  XGOOSHP     Goosekgweng H Post     03-4-03  Y    O
+  1715.13  XMALAHP     Malaka Health Post    03-4-08   Y    O
+  1715.14  XMANAHP     Manaledi Health Post   03-4-09  Y    O
+  1715.15  XMATHP      Matlhakola H Post      03-4-10  Y    O
+  1715.16  XMOKUHP     Mokungwana Health Post 03-4-12  Y    O
+  1715.17  XMOENGHP    Moeng College HP       03-4-06  Y    O
+  1715.20  XTOPIHP     Topisi Health Post     03-4-18  Y    O
+  1715.21  XMOREOMHP   Moreomabele H Post     03-4-05  Y    O
+  1715.22  XMOREMHP    Moremi Health Post     03-4-22  Y    O
+  1715.30  XLERAC      Lerala Clinic          03-3-03  Y    O
+  1715.31  XMAJWHP     Majwaneng Health Post  03-4-07  Y    O
+  1715.32  XRATHHP     Ratholo Health Post    03-4-14  Y    O
+  1715.40  XMAOKC      Maokatumo Clinic       03-3-10  Y    O
+  1715.41  XTAMAHP     Tamasane Health Post   03-4-16  Y    O
+  1715.42  XDILOHP     Diloro Health Post     03-4-29  Y    O
+  1715.43  XMOGAHP     Mogapinyana H Post    03-4-     Y    O
+  1715.50  XMAUNAHP    Maunatlala Clinic      03-3-04  Y    O
+  1715.51  XSEOLWHP    Seolwane Health Post   03-4-15  Y    O
+  1715.52  XMOKOKHP    Mokokwana-mosweu H P   03-4-22  Y    O
+  1715.54  XMATOLHP    Matolwana Health Post  03-4-    Y    O
+  1715.60  XRADIC      Radisele Clinic        03-3-15  Y    O
+  1715.61  XMADIHP     Madiaela Health Post   03-4-20  Y    O
+  1715.62  XMOGOHP     Mogome Health Post     03-4-23  Y    O
+  1715.63  XMOKHP      Mokgware Health Post   03-4-24  Y    O
+  1725.00  XSELPGH     Selibe Phikwe Gov Hosp 19-1-02  Y    O
+  1725.21  XLESOLC     A.N.Lesole Clinic      19-3-05  Y    O
+  1725.30  XLEPHP      Lepokole Health Post   04-4-02  Y    O
+  1725.40  XMABHP      Mabolwe Health Post    04-4-14  Y    O
+  1735.21  XPRISMAC    Mahalapye Prisons Clinic 8-3-3  Y    O
+  1740.20  XTNATAC     Nata Clinic(Tutume)         PM  N    O
+  1740.72  XTSOKOHP    Tsokatshaa Health Post 12-4-12  Y    O
+  1745.05  XGNATAC     Nata Clinic(Gweta)          PM  Y    O
+  1760.80  XMANTSHW    Mantshwabisi Health Post 20-4-  Y    O
+  1770.10  XORAPAH     Orapa Mine Hospital    13-1-01  Y    O
+  1770.11  XLEPOHP     Leporong H Post 23-4-08         Y    O
+  1770.12  XLORWHP     Lorwana H Post 23-3-10          Y    O
+  2000.00  NYANTNO     NY Ante Natal O/F               N    I
+  2000.18  XRAILWC     Railway Clinic         08-3-09  Y    O
+  2010.00  NYANTNW     NY Antenatal Ward               Y    I
+  2020.00  NYFMEDO     NY Female Medical O/F Ward      N    I
+  2030.00  NYFMEDW     NY Female Medical Ward          Y    I
+DATE: 22/05/24 @ 1229  MIS Database                        TEST            PAGE 8
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+  2040.00  NYFPSYO     NY Female Psychiatric O/F       N    I
+  2050.00  NYFPSYW     NY Female Psychiatric Ward      Y    I
+  2060.00  NYFSURO     NY Female Surgical O/F Ward     N    I
+  2066.22  XMATSHC     Matshelagabedi Clinic  02-3-11  Y    O
+  2070.00  NYFSURW     NY Female Surgical Ward         Y    I
+  2080.00  NYGICUW     NY Intensive Care Unit          Y    I
+  2090.00  NYGPSYW     NY Psychiatric Ward Seclusion   Y    I
+  2100.00  NYGYNEO     NY Gynaecology O/F Ward         N    I
+  2110.00  NYGYNEW     NY Gynaecology Ward             Y    I
+  2120.00  NYISOLW     NY Isolation Ward               Y    I
+  2130.00  NYLABOO     NY Labour O/F Ward              N    I
+  2140.00  NYLABOW     NY Labour Ward                  Y    I
+  2150.00  NYMMEDO     NY Male Medical O/F Ward        N    I
+  2160.00  NYMMEDW     NY Male Medical Ward            Y    I
+  2170.00  NYMPSYO     NY Male Psychiatric O/F Ward    N    I
+  2180.00  NYMPSYW     NY Male Psychiatric Ward        Y    I
+  2190.00  NYMSURO     NY Male Surgical O/F Ward       N    I
+  2200.00  NYMSURW     NY Male Surgical Ward           Y    I
+  2210.00  NYPAEMO     NY Paeds Medical O/F Ward       N    I
+  2220.00  NYPAEMW     NY Paeds Medical Ward           Y    I
+  2230.00  NYPAESO     NY Paeds Surgical O/F Ward      N    I
+  2240.00  NYPAESW     NY Paeds Surgical Ward          Y    I
+  2250.00  NYPOSNOW    NY Post Natal O/F Ward          N    I
+  2260.00  NYPOSNW     NY Post Natal Ward              Y    I
+  2270.00  NYPRIVW     NY Private Ward                 Y    I
+  2280.00  NYSCBU      NY Special Care Baby Unit       Y    I
+  2290.00  NYSCBUO     NY Special Care Baby Unity O/F  N    I
+  2300.00  NYSHSTOW    NY Short Stay O/F Ward          N    I
+  2310.00  NYMORTW     NY Male Orthopaedic Ward        N    I
+  2320.00  NYTBW       NY TB Ward                      Y    I
+  2500.00  XTONOTA     Tonota Clinic               NY  Y    O
+  2510.00  XMATHAN     Mathangwane                 FR  Y    O
+  2512.00  XBOTSHEC    Botshelo Clinic             NY  Y    O
+  2520.00  XMARAPO     Marapong                    FR  Y    O
+  2530.00  XSOWACL     Sowa                        FR  Y    O
+  2535.00  XMASUNG     Masunga                     FR  Y    O
+  2540.00  XFBDFCL     BDF Clinic Ftown            NY  Y    O
+  2540.01  XBDFFC      BDF Clinic Francistown 16-3-01  Y    O
+  2545.00  XBMCCLI     BMC Clinic                  FR  Y    O
+  2550.00  XPOLANI     Polani                      FR  Y    O
+  2555.00  XFPRISO     Prisons Clinic        16-3-04   Y    O
+  2600.00  XMASUPH     Masunga Primary Hospital 2-2-1  Y    O
+  2600.02  XMAKALC     Makaleng Clinic        02-3-01  Y    O
+  2600.04  XMAPOKC     Mapoka Clinic          02-3-02  Y    O
+  2600.06  XMASUNC     Masunga Clinic         02-3-03  Y    O
+  2600.08  XMATSIL     Matsiloje Clinic       02-3-04  Y    O
+  2600.10  XTSAMC      Tsamaya Clinic         02-3-05  Y    O
+  2600.12  XSELKIC     Selkirk Clinic         02-3-06  Y    O
+  2600.14  XSEKAKC     Sekakangwe Clinic      02-3-07  Y    O
+  2600.16  XTATSIC     Tati Siding Clinic     02-3-08  Y    O
+  2600.18  XTHEMAC     Themashanga Clinic     02-3-09  Y    O
+  2600.20  XNLAPHC     Nlaphwane Clinic       02-3-10  Y    O
+  2600.24  XRAMAKC     Ramakgwebana Clinic    02-3-12  Y    O
+  2600.26  XMOROKC     Moroka Clinic          02-3-13  Y    O
+  2600.28  XTSHEC      Tshesebe Clinic        02-3-14  Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST            PAGE 9
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+  2600.32  XGUNGHP     Gungwe Health Post 02-4-08      Y    O
+  2600.56  XBUTALHP    Butale Health Post     02-4-01  Y    O
+  2600.58  XGAMHP      Gambule Health Post    02-4-02  Y    O
+  2600.62  XJACKAHP    Jackalas I Health Post 02-4-04  Y    O
+  2600.64  XJACKHP     Jackalas II H Post     02-4-05  Y    O
+  2600.66  XKALAKHP    Kalakamati Health Post 02-4-06  Y    O
+  2600.68  XMBALAHP    Mbalambi Health Post   02-4-07  Y    O
+  2600.72  XMOSOC      Mosojane Health Post   02-4-09  Y    O
+  2600.74  XMATENHP    Matenge Helath Post    02-4-10  Y    O
+  2600.78  XSECHEHP    Sechele Health Post    02-4-12  Y    O
+  2600.80  XMATOHP     Matopi Health Post     02-4-13  Y    O
+  2600.82  XSENYAHP    Senyawe Health Post    02-4-14  Y    O
+  2600.84  XSIVIYHP    Siviya Health Post     02-4-15  Y    O
+  2600.86  XPOLEHP     Pole Health Post       02-4-16  Y    O
+  2600.87  XMASUKHP    Masukwane H Post       02-4-17  Y    O
+  2600.88  XMABUDHP    Mabudzani Health Post  02-4-18  Y    O
+  2600.89  XZWENSHP    Zwenshambe Health Post 02-4-19  Y    O
+  2600.90  XSHASHEBHP  Shashe Bridge H,Post   02-4-20  Y    O
+  2600.91  XDITLAHP    Ditladi Health Post    02-4-21  Y    O
+  2600.92  XBOTAHP     Botalaote/Toteng H P   02-4-22  Y    O
+  2600.93  XLETSHP     Letsholathebe H Post   02-4-23  Y    O
+  2600.94  XMASINHP    Masingwaneng H Post    02-4-24  Y    O
+  2600.95  XKGARIHP    Kgari Health Post      02-4-25  Y    O
+  2600.96  XMULAMHP    Mulambakwena H Post    02-4-26  Y    O
+  2600.97  XMAMBOHP    Mambo Health Post      02-4-27  Y    O
+  2600.98  XMOWAHP     Mowana Health Post     02-4-28  Y    O
+  2700.00  XTONOC      Tonota Clinic          25-3-01  Y    O
+  2700.07  XTONOCOLC   Tonota College         25-3-03  Y    O
+  2700.10  XBOROLHP    Borolong Helath Post   25-4-06  Y    O
+  2700.20  XNATALHP    Natale Health Post     25-4-07  Y    O
+  2700.25  XSHASHMHP   Shashe Mooke H Post    25-4-09  Y    O
+  2790.00  XPALAPHNY   Palapye Primary Hosp NY 3-2-1   Y    O
+  2800.00  XTSHWAR     Tshwaragano Clinic     16-3-03  Y    O
+  2805.00  XTATTOW     Tatitown Clinic        16-3-08  Y    O
+  2807.00  XBOTSAC     Botsalano Clinic       16-3-05  Y    O
+  2810.00  XMASEGO     Masego Clinic          16-3-11  Y    O
+  2812.00  XKAGIFC     Kagiso Clinic (Ftown)  16-3-09  Y    O
+  2815.00  XITEKEN     Itekeng (Area W)Clinic 16-3-14  N    O
+  2815.08  XAREAWCNY   Itekeng (Area W Clinic)         Y    O
+  2815.10  XAREAWC     Itekeng (Area W)Clinic 16-3-14  Y    O
+  2816.00  XGERALC     Gerald Estate Clinic        FR  Y    O
+  2820.00  XBOIKHU     Boikhutso Clinic       16-3-13  Y    O
+  2823.00  XBOITC      Boitekanelo Clinic          FR  Y    O
+  2825.00  XAERODR     Aerodrome                   FR  Y    O
+  2826.00  XMANYHP     Manyanda Health Post   25-4-03  Y    O
+  2827.00  XNTSHEC     Ntshe Clinic           16-3-16  Y    O
+  2830.00  XLAPOLO     Lapologang Clinic      16-3-07  Y    O
+  2835.00  XTSHOLO     Tsholofelo                  FR  Y    O
+  2840.00  XAREASC     Area S Clinic               FR  Y    O
+  2841.00  XAREALC     Area L Clinic               FR  Y    O
+  2845.00  XBOTUSA     Botusa                      FR  Y    O
+  2846.00  XFIHS       Francistown IHS             FR  Y    O
+  2849.00  XBOBOPH     Bobonong Primary Hospital  4-2  Y    O
+  2850.00  NYPOPD      LAB Private Patient OPD  FR     Y    O
+  2851.00  XTUTUPH     Tutume Primary Hosp    12-2-01  Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 10
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+  2851.05  XNATAC      Nata Clinic (Tutume)   12-3-05  Y    O
+  2851.06  XNKANGC     Nkange Clinic          12-3-06  Y    O
+  2851.08  XSEBINC     Sebina Clinic          12-3-07  Y    O
+  2851.09  XSEPAKHP    Sepako Health post 18-11-2021   Y    O
+  2851.10  XMMADPH     Mmadinare Primary Hospital 4-2  Y    O
+  2851.12  XMATHAC     Mathathane Clinic      04-3-01  Y    O
+  2851.13  XTHIIC      Thini Clinic           12-3-10  Y    O
+  2851.14  XSELOHP     Selolwane Health Post 4-12-32   Y    O
+  2851.15  XCHANGC     Changate Clinic        12-3-15  Y    O
+  2851.16  XLEPASHP    Lepashe Health Post 12-4-05     Y    O
+  2851.17  XSENETC     Senete Clinic          12-3-16  Y    O
+  2851.18  XSEMOLC     Semolale Clinic        04-3-05  Y    O
+  2851.19  XNSWAZC     Nswazwi Clinic         12-3-17  Y    O
+  2851.20  XTSETSC     Tsetsejwe Clinic       04-3-06  Y    O
+  2851.21  XGOSHWC     Goshwe Health Post     12-4-04  Y    O
+  2851.22  XSEMIHP     Semitwe Health Post 12-4-28     Y    O
+  2851.23  XMATOBHP    Matobo Health Post     12-4-09  Y    O
+  2851.24  XMANGAC     Manga Clinic           04-3-07  Y    O
+  2851.25  XMATSIHP    Matsitama Health Post  12-4-10  Y    O
+  2851.26  XBOROTC     Borotsi Clinic         04-3-08  Y    O
+  2851.27  XDAGWHP     Dagwi Health Post 12-4-02       Y    O
+  2851.28  XMABELHP    Mabeleng Health Post   04-4-01  Y    O
+  2851.29  XTHALOHP    Thalogong / Chadibe HP 12-4-19  Y    O
+  2851.31  XMAGAPHP    Magapatona H Post      12-4-24  Y    O
+  2851.32  XKUTAMHP    Kutamogore Health Post 12-4-27  Y    O
+  2851.35  XMMADUHP    Mmadunyane Health Post 25-4-02  Y    O
+  2851.36  XGOBOHP     Gobojango Health Post  04-4-04  Y    O
+  2851.37  XSHASSTHP   Shashe Station H Post  25-4-01  Y    O
+  2851.38  XLENTSWHP   Lentswelemoriti H Post 04-4-05  Y    O
+  2851.39  XMADISHP    Madisakwane H Post     25-4-04  Y    O
+  2851.40  XROBELHP    Robelela Health Post   04-4-06  Y    O
+  2851.41  XMAKOBHP    Makobo Health Post     25-4-08  Y    O
+  2851.43  XMOREOHP    Moremabele H Post      25-4-10  Y    O
+  2851.44  XDAMUHP     Damuchujenaa Health Post 4-4-8  Y    O
+  2851.46  XMOLAHP     Molalatau Health Post  04-4-09  Y    O
+  2851.48  XMOLEHP     Moletemane Health Post 04-4-10  Y    O
+  2851.54  XMOTLHP     Motlhabaneng H Post    4-4-13   Y    O
+  2851.56  XMOBOLHP    Mobolwe Health Post    04-4-14  Y    O
+  2852.00  XGWETPH     Gweta Primary Hospital 12-2-02  Y    O
+  2852.02  XGWETAC     Gweta Clinic           12-3-02  Y    O
+  2852.05  XMAPOSHP    Maposa Health post 18-11-2021   Y    O
+  2852.06  XMAITEC     Maitengwe Clinic       12-3-03  Y    O
+  2852.08  XZOROHP     Zoroga Health Post     12-4-03  Y    O
+  2852.10  XGULUBHP    Gulubane Health Post   02-4-03  Y    O
+  2852.13  XSELPGHNY   Selibe Phikwe Gov Hosp (NY) 19  Y    O
+  2852.14  XTOBANEHP   Tobane Health Post     04-4-12  Y    O
+  2852.15  XTSHOHP     Tshokwe Health Post    04-4-11  Y    O
+  2852.16  XSEFHOC     Sefhophe Clinic        04-3-02  Y    O
+  2852.22  XANLESC     A.N.Lesole Clinic      19-3-05  Y    O
+  2852.24  XBOTSHC     Botshabelo Clinic      19-3-06  Y    O
+  2852.26  XKAGISC     Kagiso Clinic (S/Phikwe)19-3-7  Y    O
+  2852.28  XSESAMC     Sesame Clinic          19-3-08  Y    O
+  2852.30  XMANXHP     Manxoxae Health Post 18-11-202  Y    O
+  2852.32  XSOUTC      South East Ext Clinic  19-3-10  Y    O
+  2852.34  XINDUSC     Industrial Clinic      19-3-11  Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 11
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+  2852.36  XTAPOLC     Tapologong Clinic      19-3-12  Y    O
+  2852.37  XMOGHP      Mogapi Health Post 03-4-32      Y    O
+  2852.38  XSERUC      Serule Clinic          25-3-02  Y    O
+  2852.39  XGOJWHP     Gojwane Health Post 03-4-30     Y    O
+  2852.40  XBDFSPC     BDF Selebi Phikwe      04-2-02  Y    O
+  2852.41  XBAINDPHP   Baines Drift Prisons HP 04-4-3  Y    O
+  2852.42  XSELPPCL    Selibi Phikwe Prisons C 04-3-4  Y    O
+  2853.00  XKASAH      Kasane Primary Hospital 10-2-1  Y    O
+  2853.02  XKACHIC     Kachikau Clinic        10-3-01  Y    O
+  2853.04  XPANDAMC    Pandamatenga Clinic    10-3-02  Y    O
+  2853.08  XPANDAC     Pandamatenga BDF Cl    10-3-03  Y    O
+  2853.10  XPRIKASHP   Kasane "Prisons" H P   10-4-01  Y    O
+  2853.12  XLESOMHP    Leesoma Health Post    10-4-02  Y    O
+  2853.14  XKAVIMHP    Kavimba Health Post    10-4-03  Y    O
+  2853.16  XMABALHP    Mabale Health Post     10-4-04  Y    O
+  2853.18  XKAZUNHP    Kazungula Health Post  10-4-05  Y    O
+  2853.20  XKWANBDFHP  Kwando BDF H Post      10-6-06  Y    O
+  2853.22  XSATAUHP    Satau Health Post      10-4-07  Y    O
+  2853.24  XPARAKHP    Parakarangu H Post     10-4-08  Y    O
+  2853.26  XKASHP      Kasane Health Post     10-4-09  Y    O
+  2853.28  XKAZBDFHP   Kazungula BDF H Post   10-4-10  Y    O
+  2853.30  XPLATHP     Plateau Health Post    10-4-11  Y    O
+  2853.32  XLENYBDFHP  Lenyanti BDF H Post    10-4-12  Y    O
+  2855.00  XFGENLOC    Francistown General Loc     FR  N    O
+  2870.00  XROYALC     RCPARoyal College of Australia  Y    O
+  3000.00  MAFGENW     MA Female General Ward          N    I
+  3010.00  MAGMEDO     MA General Medical O/F          N    I
+  3020.00  MAGMEDW     MA General Medical Ward         N    I
+  3030.00  MAGPAEO     MA Peadiatrics O/F              N    I
+  3040.00  MAGPAEW     MA Paediatrics Ward             N    I
+  3050.00  MAGPSYO     MA Psychiatric O/F              N    I
+  3060.00  MAGPSYW     MA Psychiatric Ward             N    I
+  3070.00  MAMATEO     MA Maternity O/F                N    I
+  3080.00  MAMATEW     MA Maternity Ward               N    I
+  3090.00  MAMGENO     MA Male General O/F             N    I
+  3100.00  MAMGENW     MA Male General Ward            N    I
+  3500.00  XTHITOC     Thito                       MA  Y    O
+  3501.02  XSHASHP     Shashe Health Post     01-4-19  Y    O
+  3510.01  XSHASHHP    Shashe Health Post     01-4-19  N    O
+  3580.00  XMOTLOP     Motlopi                     MA  Y    O
+  3600.00  XMAUNH      Letsholathebe II Memorial 01-1  Y    O
+  3600.02  XDELTMC     Delta Medical Centre   01-1-02  Y    O
+  3600.04  XMPRISO     Maun Prison Clinic     01-3-02  Y    O
+  3600.08  XMAUSSC     Maun Sec School Clinic 01-3-03  Y    O
+  3600.10  XMAUNC      Maun Clinic            01-3-04  Y    O
+  3600.12  XSEHITL     Sehitlhwa Clinic       01-3-05  Y    O
+  3600.14  XMBDFCL     Maun BDF Clinic        01-3-06  Y    O
+  3600.16  XSHOROC     Shorobe Clinic         01-3-07  Y    O
+  3600.18  XBOYEIC     Boyei Clinic           01-3-08  Y    O
+  3600.20  XMAKALA     Makalamabedi Clinic    01-3-09  Y    O
+  3600.22  XBOSEJC     Boseja Clinic Maun     01-3-10  Y    O
+  3600.24  XTSAUCL     Tsau Clinic            01-3-11  Y    O
+  3600.26  XSEDIEC     Sedie Clinic           01-3-12  Y    O
+  3600.40  XBOTHHP     Bothatogo Health Post  01-4-01  Y    O
+  3600.42  XBODIBE     Bodibeng Health Post   01-4-02  Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 12
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+  3600.44  XCHANOG     Chanoga Health Post    01-4-03  Y    O
+  3600.46  XKUBUNG     Kubung Health Post     01-4-04  Y    O
+  3600.48  XMABABE     Mababe Health Post     01-4-05  Y    O
+  3600.50  XSEMBOY     Semboyo Health Post    01-4-06  Y    O
+  3600.52  XKARENG     Kareng Health Post     01-4-07  Y    O
+  3600.54  XTOTENG     Toteng Health Post     01-4-08  Y    O
+  3600.56  XKOMAHP     Komana Health Post     01-4-09  Y    O
+  3600.58  XMAKAKU     Makakung Health Post   01-4-10  Y    O
+  3600.60  XMATLAP     Matlapana Health Post  01-4-11  Y    O
+  3600.62  XPHUDUH     Phuduhudu Health Post  01-4-12  Y    O
+  3600.64  XSANKOY     Sankoyo Health Post    01-4-13  Y    O
+  3600.66  XBOSEJAKHP  Boseja Kubung H Post   01-4-14  Y    O
+  3600.68  XSOMELO     Somelo Health Post     01-4-15  Y    O
+  3600.70  XTHITOHP    Thitoyamokodi H  Post  01-4-16  Y    O
+  3600.72  XBOROHP     Boro Prison H Post     01-4-17  Y    O
+  3600.74  XDISANHP    Disana Health Post     01-4-18  Y    O
+  3690.00  XKHWAIC     Khwai                       MA  Y    O
+  3700.00  XMOREOM     Moreomaoto                  MA  Y    O
+  3710.00  XBOFWAC     Bofwa                       MA  Y    O
+  3720.00  XMAUNCC     Maun Counselling Centre     MA  Y    O
+  3760.00  XMAPOPD     LAB Private Patient OPD     MA  Y    O
+  3770.00  XSHASHE     Shashe                      MA  N    O
+  3800.00  XCOVEMC     Covenant Medical Centre     MA  Y    O
+  3820.00  XGLOMIS     Global Mission              MA  Y    O
+  3830.00  XMAUSUR     Maun Surgery                MA  Y    O
+  3840.00  XOFAMIC     Okavango Fam Informatory Cl MA  Y    O
+  3850.00  XJOOMCL     Doctor Jooma's Clinic       MA  Y    O
+  3860.00  XDAVECL     Davenine Clinic             MA  Y    O
+  4000.00  SEFGENOW    SE Female General O/F Ward      N    I
+  4010.00  SEFGENW     SE Female General Ward          N    I
+  4012.00  SEFMEDW     SE Female Medical Ward          Y    I
+  4020.00  SEGTBW      SE General TB Ward              N    I
+  4030.00  SEMATEO     SE Maternity O/F                N    I
+  4040.00  SEMATEW     SE Maternity Ward               N    I
+  4045.00  SESCBU      SE Special Care Baby Unit       Y    I
+  4050.00  SEMGENW     SE Male General Ward            N    I
+  4052.00  SEMMEDW     SE Male Medical Ward            Y    I
+  4060.00  SEPAEW      SE Paediatric Ward              N    I
+  4065.00  SEPSYW      SE Psychiatric Ward             N    I
+  4070.00  XSEPOPD     LAB Private Patient OPD     SE  Y    O
+  4500.00  XMMASHO     Mmashoro Clinic       03-03-05  Y    O
+  4500.20  XMABUHP     Mabuo Health Post               Y    O
+  4505.00  XKADIMC     Kadimo Samson Clinic   03-3-01  Y    O
+  4505.02  XSEROWC     Serowe Clinic          03-3-02  Y    O
+  4505.06  XMAUCL      Maunatlala Clinic               Y    O
+  4505.08  XMMASHC     Mmashoro Clinic        03-3-05  Y    O
+  4505.12  XNEWTOC     New Town Clinic        03-3-07  Y    O
+  4505.14  XNUTRC      Nutrition Clinic       03-3-08  Y    O
+  4505.15  XBOIPC      Boipelego Clinic       03-3-    Y    O
+  4505.16  XRUSSEC     Russel May Clinic      03-3-09  Y    O
+  4505.46  XMODIKHP    Modikwane H Post       03-4-02  Y    O
+  4505.64  XMOGORHP    Mogorosi Health Post   03-4-11  Y    O
+  4505.81  XMADIAHP    Madiaele Health Post   03-4-20  Y    O
+  4506.06  XMAMAHP     Malatswai Health Post  03-4-31  N    O
+  4510.00  XMABELE     Mabeleapudi 29-3-08             Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 13
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+  4515.00  XKEDICL     Kediretswe Clinic           NY  Y    O
+  4525.00  XTSHIMO     Tshimoyapula                SE  Y    O
+  4525.01  XTSHIHP     Tshimoyapula Health Post  3-4-  Y    O
+  4530.00  XPAJCLI     Paje Clinic                 SE  Y    O
+  4540.00  XPAJBDF     Paje BDF Clinic             SE  Y    O
+  4550.00  XMALAT      Malatswai                   SE  Y    O
+  4560.00  XMOIYAB     Moiyabana                   SE  Y    O
+  4560.10  XMOIYAC     Moiyabana Clinic       03-3-11  Y    O
+  4570.00  XTHABAL     Thabala                     SE  Y    O
+  4570.10  XTHABAC     Thabala Clinic         03-3-20  Y    O
+  4580.00  XRUSMAY     Russel May Clinic           SE  Y    O
+  4590.00  XDIMAJW     Dimajwe                     SE  Y    O
+  4600.00  XMAJWAN     Majwanadipitse        03-3      Y    O
+  4605.00  XKHURU      Khurumela                   SE  N    O
+  4610.00  XSPRISO     Prison                      SE  Y    O
+  4615.00  XLUSAN      Lusane                      SE  Y    O
+  4620.00  XJUMEDC     Juliana Medical Clinic      SE  Y    O
+  4625.00  XEXT3C      Extention 3                     Y    O
+  4628.10  XMAUKAC     Maokatumo Clinic       03-3-10  Y    O
+  4628.20  XMABEC      Mabeleapudi Clinic     03-3-17  Y    O
+  4630.00  XTMCOMP     Teemane Manufacturing Co.   SE  Y    O
+  6000.00  XMAHALH     Mahalapye Hospital     08-1-01  Y    O
+  6000.02  XXHOSAC     Xhosa Clinic           08-3-01  Y    O
+  6000.06  XMAHPRIC    Mahalapye Prisons Cl   08-3-03  Y    O
+  6000.08  XMOOKAC     Mookane Clinic         08-3-04  Y    O
+  6000.14  XKALAMC     Kalamare Clinic        08-3-07  Y    O
+  6000.16  XSHOSHC     Shoshong Clinic        08-3-08  Y    O
+  6000.20  XAIRSTC     Airstrip Clinic        08-3-10  Y    O
+  6000.22  XBAITIC     Baitiredi Clinic       08-3-11  Y    O
+  6000.24  XPRISMACC   Machaneng Prison Clinic 8-3-13  Y    O
+  6000.28  XSHELEC     Sheleketla Clinic      08-3-14  Y    O
+  6000.32  XTEWANHP    Tewane Health Post     08-4-01  Y    O
+  6000.34  XBONWHP     Bonwapitse Health Post 08-4-02  Y    O
+  6000.36  XMORALHP    Moralane H Post        08-4-03  Y    O
+  6000.38  XDIBETHP    Dibete Health Post     08-4-04  Y    O
+  6000.40  XDOVEDHP    Dovedale Health Post   08-4-05  Y    O
+  6000.42  XMOWANHP    Mowana Health Post     08-4-06  Y    O
+  6000.44  XIKONGHP    Ikongwe Health Post    08-4-07  Y    O
+  6000.46  XMOKGEHP    Mokgenene Health Post  08-4-08  Y    O
+  6000.48  XKODIHP     Kodibeleng Health Post 08-4-09  Y    O
+  6000.50  XKUDUMHP    Kudumatse Health Post  08-4-10  Y    O
+  6000.52  XBDFMALHP   BDF Mahalapye H Post   08-4-11  Y    O
+  6000.54  XLEETHP     Leetile Health Post    08-4-12  Y    O
+  6000.58  XMAKWHP     Makwate Health Post    08-4-14  Y    O
+  6000.60  XMADIBHP    Madiba Health Post     08-4-15  Y    O
+  6000.62  XMMAPHHP    Mmaphashalala HP       08-4-16  Y    O
+  6000.64  XMMUTHP     Mmutlane Health Post   08-4-17  Y    O
+  6000.66  XMHALHP     Mhalapitsa Health Post 08-4-18  Y    O
+  6000.68  XMOKOSWHP   Mokoswane H Post       08-4-19  Y    O
+  6000.70  XMOKOBHP    Mokobeng Health Post   08-4-20  Y    O
+  6000.72  XMOSHHP     Moshopha Health Post   08-4-21  Y    O
+  6000.74  XMOSOLHP    Mosolotshane H Post    08-4-22  Y    O
+  6000.76  XNGWAHP     Ngwapa Health Post     08-4-23  Y    O
+  6000.78  XPALLAHP    Palla Road Health Post 08-4-24  Y    O
+  6000.80  XPOLOHP     Poloka Health Post     08-4-25  Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 14
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+  6000.82  XOTSEHP     Otse Health Post       08-4-26  Y    O
+  6000.86  XSHAKHP     Shakwe Health Post     08-4-28  Y    O
+  6000.88  XTAUPHP     Taupye Health Post     08-4-29  Y    O
+  6001.00  XSEFHPH     Sefhare Primary Hospital 8-2-1  Y    O
+  6001.05  XMACHAC     Machaneng Clinic       08-3-02  Y    O
+  6001.10  XPILIKC     Pilikwe Clinic         08-3-05  Y    O
+  6001.12  XRAMOKC     Ramokgonami Clinic     08-3-06  Y    O
+  6001.15  XSELEC      Seleka Clinic          08-3-12  Y    O
+  6001.30  XCHADIC     Chadibe Clinic         08-3-15  Y    O
+  6001.32  XTEWCL      Tewane Health Post     08-4-01  N    O
+  6001.60  XMAAPEHP    Maape Health Post      08-4-13  Y    O
+  6001.61  XLETORHP    Letoreng Health Post            Y    O
+  6001.99  XMATLHP     Matlhako Health Post   08-4-27  Y    O
+  6003.00  XGANPH      Gantsi Primary Hospital 07-2-1  Y    O
+  6003.02  XCHARLC     Charleshill Clinic     07-3-01  Y    O
+  6003.03  XMORAMC     Morama Clinic    07-03-06       Y    O
+  6003.04  XKALKFC     Kalkfontein Clinic     07-3-02  Y    O
+  6003.05  XTSOOTC     Tsootsha Clinic        07-3-02  N    O
+  6003.06  XNCOJAC     Ncojane Clinic         07-3-03  Y    O
+  6003.07  XCHARLCPM   Charleshill Clinic              Y    O
+  6003.09  XGANTC      Gantsi Clinic   07-3-04         Y    O
+  6003.10  XNOJAC      Nojane Clinic   07-3-03         Y    O
+  6003.11  XNEWXAC     New Xade Clinic        07-3-04  Y    O
+  6003.12  XBEREHP     Bere Health Post       07-4-01  Y    O
+  6003.14  XDEKARHP    D'kar Health Post      07-4-02  Y    O
+  6003.16  XKACGAHP    Kacgae Health Post     07-4-03  Y    O
+  6003.18  XKARAKHP    Karakubis Health Post  07-4-04  Y    O
+  6003.20  XKUKEHP     Kuke Heath Post        07-4-05  Y    O
+  6003.22  XKOLEHP     Kole Health Post       07-4-06  Y    O
+  6003.24  XMAKUNHP    Makunda Health Post    07-4-07  Y    O
+  6003.26  XWESTHHP    West Hanahai Health Post 7-4-8  Y    O
+  6003.28  XEASTHHP    East Hanahai Health Post 7-4-9  Y    O
+  6003.30  XXANAGHP    Xanagas Health Post    07-4-10  Y    O
+  6003.32  XNEWXANHP   New Xanagas/Tsawe HP   07-4-11  Y    O
+  6003.34  XMETSIMAHP  Metsimantso H Post     07-4-12  Y    O
+  6003.36  XGROOTHP    Grootlaagte Health Post 7-4-13  Y    O
+  6003.38  XCHOBHP     Chobokwane Health Post 07-4-14  Y    O
+  6003.40  XQABOHP     Qabo Health Post       07-4-15  Y    O
+  6003.42  XXADEHP     Xade Health Post       07-4-16  Y    O
+  6003.44  XSHAAHP     SHAA Health Post       07-4-17  Y    O
+  6003.46  XPRISHP     Prison Health Post     07-4-18  Y    O
+  6007.00  XSCOTIC     Scottish Livingstone Hosp  5-1  Y    O
+  6007.01  XGUDHP      Gudigwa Health Post 14-4-19     N    O
+  6007.02  XSERIHP     Serinane Health Post            Y    O
+  6007.08  XBHPMOLC    BHP Clinic Molepolole           Y    O
+  6007.10  XBOKAAC     Bokaa Clinic (Kweneng) 05-3-01  Y    O
+  6007.12  XBORAKC     Borakalalo Clinic      05-3-02  Y    O
+  6007.14  XBORIBC     Boribamo Clinic        05-3-03  Y    O
+  6007.18  XKGOSIC     Kgosing Clinic         05-3-05  Y    O
+  6007.22  XLENTC      Lentsweletau Clinic    05-3-07  Y    O
+  6007.24  XLEPHEC     Lephephe Clinic        05-3-08  Y    O
+  6007.32  XMOLCOC     Molepolole Council Cl  05-3-13  Y    O
+  6007.34  XLAZANC     Lazane Kaplan Clinic   06-3-14  Y    O
+  6007.36  XMOLCOEC    MolepololeCollege of Education  Y    O
+  6007.40  XMOLEPC     Molepolole Prison Cl   05-3-17  Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 15
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+  6007.42  XPHUTHC     Phuthadikobo Clinic    05-3-18  Y    O
+  6007.44  XSOJWEC     Sojwe Clinic           05-3-19  Y    O
+  6007.46  XIKAGOC     Ikago Clinic           05-3-21  Y    O
+  6007.50  XBORAKNC    Borakalalo New Clinic  05-3-23  Y    O
+  6007.52  XMMOKOC     Mmokolodi Clinic       05-3-24  Y    O
+  6007.54  XLOOLHP     Loologane Clinic       05-3-25  Y    O
+  6007.56  XNTSWEC     Ntsweletau Clinic       05-3-   Y    O
+  6007.57  XBOSWEC     Boswelakoko Clinic     05-3-    Y    O
+  6007.58  XBOATLHP    Boatlaname Health Post 05-4-01  Y    O
+  6007.60  XGAKUTHP    Gakutlo Health Post    05-4-03  Y    O
+  6007.62  XGAMODHP    Gamodubu Health Post   05-4-04  Y    O
+  6007.64  XHATSHP     Hatsalatladi H Post    05-4-05  Y    O
+  6007.66  XKGOPEHP    Kgope Health Post      05-4-06  Y    O
+  6007.68  XLESILHP    Lesilakgokong H Post    5-4-09  Y    O
+  6007.70  XMAHETHP    Mahetwe Health Post    05-4-10  Y    O
+  6007.72  XMEDIEHP    Medie Health Post      05-4-11  Y    O
+  6007.76  XSHADHP     Shadisshadi H Post     05-4-14  Y    O
+  6007.78  XGABAHP     Gabane Health Post     05-4-15  Y    O
+  6007.80  XMOGONOHP   Mogonono Health Post   05-4-16  Y    O
+  6007.82  XDITSHHP    Ditshukudu Health Post 05-4-17  Y    O
+  6007.84  XKWENHP     Kweneng Health Post    05-4-18  Y    O
+  6007.86  XLEKGWHP    Lekgwapeng Health Post 05-4-19  Y    O
+  6007.88  XMAGOKHP    Magokotswane H Post  05-4-20    Y    O
+  6007.90  XMMANHP     Mmanoko Health Post    05-4-21  Y    O
+  6007.92  XMMATHP     Mmatseta Health Post   05-4-22  Y    O
+  6007.94  XTLOOWHP    Tloowaneng H Post      05-4-23  Y    O
+  6008.00  XTHEBEH     Thebephatswa Hospital  20-2-01  Y    O
+  6008.02  XLETHCL     Letlhakeng Clinic      20-3-01  Y    O
+  6008.04  XMOTOKWC    Motokwe Clinic         20-3-02  Y    O
+  6008.06  XNGWAREC    Ngware Clinic          20-3-03  Y    O
+  6008.08  XSALAC      Salajwe Clinic         20-3-04  Y    O
+  6008.10  XTAKATOKC   Takatokwane Clinic     20-3-05  Y    O
+  6008.12  XMOSHAWC    Moshaweng Clinic       20-3-06  Y    O
+  6008.14  XKHUDC      Khudumelapye Clinic    20-3-07  Y    O
+  6008.16  XBOTLHAPC   Botlhapatlou Clinic    20-3-08  Y    O
+  6008.20  XMALWELHP   Malwelwe Health Post   20-4-07  Y    O
+  6008.30  XKHEKHP     Khekhenye Health Post  20-4-01  Y    O
+  6008.32  XDITSC      Ditshegwane Health Post 20-4-2  Y    O
+  6008.34  XDUTLWHP    Dutlwe Health Post     20-4-03  Y    O
+  6008.36  XDIPHUHP    Diphuduhudu Health Post 20-4-4  Y    O
+  6008.38  XKOTOHP     Kotolaname Health Post 20-4-05  Y    O
+  6008.40  XMABOAHP    Maboane Health Post    20-4-06  Y    O
+  6008.54  XMONWHP     Monwane Health Post    20-4-09  Y    O
+  6008.56  XKAUDHP     Kaudwane Health Post   20-4-10  Y    O
+  6008.58  XSESUHP     Sesung Health Post     20-4-11  Y    O
+  6008.60  XTSETSHP    Tsetseng Health Post   20-4-12  Y    O
+  6008.62  XSHORHP     Sorilatholo H Post    20-4-13   Y    O
+  6008.64  XTSHWAHP    Tshwaane Health Post   20-4-14  Y    O
+  9000.00  ZCGABON     Bontleng Clinic             GA  Y    O
+  9005.00  ZCGABRT     Broadhurst Traditional Cl   GA  Y    O
+  9010.00  ZCGAE15     Village Ext. 15 Clinic      GA  Y    O
+  9015.00  ZCGAP02     Phase II Clinic             GA  Y    O
+  9020.00  ZCGAPMI     Princess Marina Hosp IDCC   GA  Y    O
+  9100.00  ZCFRARW     Area W Clinic               FR  Y    O
+  9105.00  ZCFRBOT     Botswelelo Clinic           FR  Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 16
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+  9105.50  XBOTSWC     Botswelelo Clinic      16-3-06  Y    O
+  9110.00  ZCFRGEE     Gerald Estate Clinic        FR  Y    O
+  9113.00  XNTSWC      Ntswe Clinic           16-3-    Y    O
+  9115.00  ZCFRJUB     Jubilee Clinic         16-3-10  Y    O
+  9115.10  XJUBIC      Jubilee Clinic         16-3-10  Y    O
+  9120.00  ZCFRNYI     Nyangabwe Hospital IDCC     FR  Y    O
+  9210.00  ZCNGMAC     Maun Council Clinic         MA  Y    O
+  9220.00  ZCNGMAI     Maun General Hospital IDCC  MA  Y    O
+  9300.00  ZCSPKAS     Kadimo Samson Clinic        SE  Y    O
+  9305.00  ZCSPNEW     Newtown Clinic              SE  Y    O
+  9310.00  ZCSPNUT     Nutrition Clinic            SE  Y    O
+  9315.00  ZCSPSER     Serowe Clinic               SE  Y    O
+  9320.00  ZCSPSEI     Sekgoma Hospital IDCC       SE  Y    O
+  9320.10  XSEKGOH     Sekgoma Memorial Hospital  3-1  Y    O
+
+           ASPC        Serowe                          N    O
+           ATANTNW     AT AnteNatal and Delivery ward  N    I
+           ATCAER      AT Accident & Emergency Room    Y    O
+           ATCDEN      AT Dental Dept                  Y    O
+           ATCDIA      AT Diabetic Clinic              Y    O
+           ATCDIE      AT Dietetics Clinic             Y    O
+           ATCEYE      AT Eye Clinic                   Y    O
+           ATCGYN      AT Gynaecology Clinic           Y    O
+           ATCHYP      AT Hypertensive Clinic          Y    O
+           ATCOPD      AT OUTPATIENT DEP CLINIC        Y    O
+           ATCPEAD     AT Paediatric Clinic            Y    O
+           ATCPHY      AT Physiotherapy                Y    O
+           ATCPHYS     AT Physician Clinic             Y    O
+           ATCPSY      AT Psychiatric Clinic           Y    O
+           ATCRAD      AT Radiology Dept               Y    O
+           ATCSCW      AT Social Workers               Y    O
+           ATCSRH      AT Sexual Reproductive Health   Y    O
+           ATCSTA      AT Staff Clinic                 Y    O
+           ATCSUR      AT General Surgery Clinic       Y    O
+           ATCTB       AT TB Clinic                    Y    O
+           ATCYOU      AT Youth Friendly Clinic        Y    O
+           ATDHIS      Athlone DHIS                    Y    O
+           ATDLAB      AT Laboratory                   Y    O
+           ATDOPD      AT Outpatient Department        Y    O
+           ATDPHA      AT Pharmacy                     Y    O
+           ATFGENW     AT Female General Ward          Y    I
+           ATFMEDW     AT Female Medical Ward          N    I
+           ATFTBW      AT Female TB Ward               N    I
+           ATMATH      AT Major Theatre                Y    O
+           ATMATWD     AT Maternity Ward               Y    I
+           ATMAVPR     MAVAIVAI CLINIC                 Y    O
+           ATMGENW     AT Male General Ward            Y    I
+           ATMITH      AT Minor Theatre                Y    O
+           ATMMEDW     AT Male Medical Ward            N    I
+           ATMTBW      AT Male TB Ward                 N    I
+           ATNURW      AT Nursery Ward                 N    I
+           ATONCOLOGY  AT Oncology Ward                Y    I
+           ATPAEDW     AT Paediatric Ward              Y    I
+           ATPECIDCC   AT Peleng East Clinic IDCC      Y    O
+           ATPECSRH    AT Peleng East Clinic SRH       Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 17
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           ATPECTB     AT Peleng East TB Clinic        Y    O
+           ATPOSTW     AT Post Natal Ward              N    I
+           ATREVENUE   AT Athlone Revenue Office       Y    O
+           ATSCBU      AT Special Care Baby Unit       N    I
+           ATTBWD      AT TB Ward                      Y    I
+           ATTHCIDCC   THEMA CLINIC                    Y    O
+           ATWHCOPD    AT Woodhall Clinic OPD          Y    O
+           ATWHCSRH    AT Woodhall SRH                 Y    O
+           ATWHIDCC    AT WOODHALL IDCC                Y    O
+           BLANTNW     BL Ante Natal Ward              Y    I
+           BLCAUD      BL Audiology Clinic             Y    O
+           BLCCWC      BL Child Welfare Care Clinic    Y    O
+           BLCDEN      BL Dental Clinic                Y    O
+           BLCDIE      BL Dietetics Clinic             Y    O
+           BLCENT      BL ENT Clinic                   Y    O
+           BLCEYE      BL Eye Clinic                   Y    O
+           BLCFRA      BL Fracture Clinic              Y    O
+           BLCGYN      BL Gynaecology Clinic           Y    O
+           BLCMED      BL Diabetic Clinic              Y    O
+           BLCPAE      BL Paediatric Clinic            Y    O
+           BLCPAS      BL Pastoral Care Dept           Y    O
+           BLCPHY      BL Physiotherapy Clinic         Y    O
+           BLCPSY      BL Psychiatric Clinic           Y    O
+           BLCPSYC     BL Psychology Clinic            Y    O
+           BLCSPC      BL Speech Therapy Clinic        Y    O
+           BLCSRH      BL Sexual Reproductive Health   Y    O
+           BLCSROM     BL Caesarian Room               Y    I
+           BLCSUR      BL Surgical Clinic              Y    O
+           BLCTB       BL Tubercolosis Clinic          Y    O
+           BLCYOU      BL Youth Friendly Services Cli  Y    O
+           BLDAER      BL Accident & Emergency         Y    O
+           BLDHIS      Bamalete DHIS                   Y    O
+           BLDHOS      BL Hospice Department           Y    O
+           BLDLAB      BL Laboratory                   Y    O
+           BLDOPD      BL Outpatient Department        Y    O
+           BLDPHA      BL Pharmacy                     Y    O
+           BLDPRO      BL Prosthetic & Orthotic Dept   Y    O
+           BLDRAD      BL Radiology Department         Y    O
+           BLDSOC      BL Social Work Department       Y    O
+           BLFCUB1     BL Female - Lerato              N    I
+           BLFCUB2     BL Female - Boikanyo            N    I
+           BLFCUB3     BL Female - Tsholofelo          N    I
+           BLFHDWD     BL High Depandancy              N    I
+           BLFMEDW     BL Female Ward                  Y    I
+           BLFPRVT     BL Female Private Ward          Y    I
+           BLFTBWD     BL Female TB Ward               Y    I
+           BLISOMT     BL Maternity - Isolation Ward   Y    I
+           BLKANGA     BL Kangaroo Ward                Y    I
+           BLLABOW     BL Labour Ward                  Y    I
+           BLMATNW     BL Maternity Ward               Y    I
+           BLMCUB1     BL Pholo Ward                   N    I
+           BLMCUB2     BL Thuso Ward                   N    I
+           BLMCUB3     BL Tshwaragano Ward             N    I
+           BLMCUB4     BL Tsholofelo Ward              N    I
+           BLMCUB5     BL Kagiso Ward                  N    I
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 18
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           BLMMEDW     BL Male Ward                    Y    I
+           BLMPRVT     BL Male Private Ward            N    I
+           BLMTBWD     BL Male TB Ward                 Y    I
+           BLNEONW     BL Neo-Natal Ward               Y    I
+           BLPAEDW     BL Paediatrics Ward             Y    I
+           BLPAEGR     BL Paediatrics - Greeny         N    I
+           BLPAEPI     BL Paediatrics - Pinky          N    I
+           BLPAEYL     BL Paediatrics - Yellowy        N    I
+           BLPOSTW     BL Post Natal Ward              Y    I
+           BLPRVTW     BL Maternity - Private Ward     Y    I
+           BLREVENUE   BL Saundry Revenue              Y    O
+           BLTBISO1    BL TB Isolation 1 Ward          N    I
+           BLTBISO2    BL TB Isolation 2 Ward          N    I
+           BLTBISO3    BL TB Isolation 3 Ward          N    I
+           BLTBISO4    BL TB Isolation 4 Ward          N    I
+           BLTBWRD     BL TB Ward                      Y    I
+           BLTHEA      BL Theatre Department           Y    O
+           BPANTNW     BP Ante & Post Ward             Y    I
+           BPCDEN      BP Dental Clinic                Y    O
+           BPCDIA      BP Diabetic Clinic              Y    O
+           BPCEYE      BP Eye Clinic                   Y    O
+           BPCHYP      BP Hypertension Clinic          Y    O
+           BPCPSY      BP Psychiatric Clinic           Y    O
+           BPCSRH      BP Sexual Reproductive Health   Y    O
+           BPCVIA      BP VIA Clinic                   Y    O
+           BPCYOU      BP Youth Clinic                 Y    O
+           BPDHIS      Bobonong DHIS                   Y    O
+           BPDOPD      BP Outpatient Department        Y    O
+           BPDRAD      BP Radiology Dept               Y    O
+           BPDSOC      BP Social Work Dept             Y    O
+           BPFGENW     BP Female Ward                  Y    I
+           BPHDGEN     BP High Dependency General W    Y    I
+           BPHIGHD     BP High Dependency - Maternity  Y    I
+           BPISOLW     BP Isolation (Psych)            Y    I
+           BPLAB       BP Laboratory                   Y    I
+           BPLABOW     BP Delivery Ward                Y    I
+           BPMATH      BP Main Theatre                 Y    O
+           BPMGENW     BP Male Ward                    Y    I
+           BPMITH      BP Minor Theatre                Y    O
+           BPPAEDW     BP Paediatric Ward              Y    I
+           BPPSYCH     BP Psychiatric Ward             Y    I
+           BPTBWRD     BP TB Ward                      Y    I
+           CBBBPI      Bobonong P. Hospital IDCC       Y    O
+           CBBMDI      Mmadinare P. Hospital IDCC      Y    O
+           CBOLHI      Letlhakane P. Hospital IDCC     Y    O
+           CBORKI      Rakops P. Hospital IDCC         Y    O
+           CCEGWI      Gweta P. Hospital IDCC          Y    O
+           CCETTI      Tutume P. Hospital IDCC         Y    O
+           CCHKAI      Kasane P. Hospital IDCC         Y    O
+           CEXTE14     Extention 14 Clinic             Y    O
+           CFRARW      Area W Clinic                   Y    O
+           CFRBOT      Botswelelo Clinic               Y    O
+           CFRGEE      Gerald Estate Clinic            Y    O
+           CFRJUB      Jubilee Clinic                  Y    O
+           CFRNYI      Nyangabgwe Hospital IDCC        Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 19
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           CGABAY      Baylor Children's Clinical COE  Y    O
+           CGABON      Bontleng Clinic                 Y    O
+           CGABRT      Broadhurst Traditional Clinic   Y    O
+           CGAE15      Village Ext. 15 Clinic          Y    O
+           CGAP02      Phase II Clinic                 Y    O
+           CGAPMI      Princess Marina Hosp IDCC       Y    O
+           CGGBRHS3    GGC Broadhurst 3 Clinic IDCC    N    O
+           CGGNKOYA    GGC Nkoyaphiri Clinic IDCC      N    O
+           CGGTLOKN    GGC Tlokweng Main Clinic IDCC   N    O
+           CGHGHI      GoodHope P. Hospital IDCC       Y    O
+           CGHGPI      Gantsi Primary Hospital IDCC    Y    O
+           CHCCHA      Charleshill Clinic              Y    O
+           CKESLI      Scottish Livingstone IDCC       Y    O
+           CKETHI      Thamaga P. Hospital IDCC        Y    O
+           CKNHKI      Hukuntsi P. Hospital IDCC       Y    O
+           CKSTSI      Tsabong P. Hospital IDCC        Y    O
+           CMHMHI      Mahalapye Hospital IDCC         Y    O
+           CMHSFI      Sefhare P. Hospital IDCC        Y    O
+           CNEMSI      Masunga P. Hospital IDCC        Y    O
+           CNGBOS      Boseja Clinic                   Y    O
+           CNGBOY      Boyei Clinic                    Y    O
+           CNGGUI      Gumare P. Hospital IDCC         Y    O
+           CNGJPKI     JP Kavindama P. Hospital IDCC   Y    O
+           CNGJPKIU    JP Kavindama P. Hospital IDCC   N    O
+           CNGMAC      Maun Council Clinic             Y    O
+           CNGMAI      Maun General Hospital IDCC      Y    O
+           CNGSED      Sedie Clinic                    Y    O
+           CSEBLI      Bamalete Lutheran Hosp. IDCC    Y    O
+           CSOKSI      Kanye Adventist Hospital IDCC   Y    O
+           CSONEW      Newton Clinic              SER  N    O
+           CSPKAD      Kadimo Samason Clinic       SE  N    O
+           CSPKAS      Kadimo Samson Clinic            Y    O
+           CSPMOD      Modikwane Clinic                Y    O
+           CSPNEW      Newtown Clinic                  Y    O
+           CSPNUT      Nutrition Clinic                Y    O
+           CSPSEI      Sekgoma Hospital IDCC           Y    O
+           CSPSER      Serowe Clinic                   Y    O
+           CXAEROD     Aerodrome                       Y    O
+           CXAFRA      Att Fund Admin(F/town)          Y    O
+           CXAGAF      Att Fund Admin(Gaborone)        Y    O
+           CXAIRSC     Airstrip Clinic                 Y    O
+           CXAMNA      Att Fund Admin(Maun)            Y    O
+           CXANLEC     A.N. Lesole Clinic              Y    O
+           CXAREAC     Area L Clinic                   Y    O
+           CXAREASC    Area S Clinic                   Y    O
+           CXAREWC     Itekeng ( Area W) Clinic        Y    O
+           CXARTEC     Artesia Clinic                  Y    O
+           CXASPA      Att Fund Admin(Serowe)          Y    O
+           CXBAITC     Baitiredi Clinic                Y    O
+           CXBANTR     Bana Trial                      Y    O
+           CXBBBO      Bobonong Primary Hospital       Y    O
+           CXBBSE      Selibe Phikwe Hospital          Y    O
+           CXBDFFC     BDF Clinic Franscistown         Y    O
+           CXBDFGL     BDF Clinic Glen valley          Y    O
+           CXBDFSP     BDF Clinic Selebi Phikwe        Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 20
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           CXBDFSS     BDF Clinic SSKB                 Y    O
+           CXBDFTH     BDF Thebephatswe                Y    O
+           CXBEETH     Beetsha Health post             Y    O
+           CXBEREH     Bere Health Post                Y    O
+           CXBFWAS     Bot Familiy Welfare Associatio  Y    O
+           CXBLOK6     Block 6                         Y    O
+           CXBLOK8     Block 8                         Y    O
+           CXBMCLI     BMC Clinic                      Y    O
+           CXBOATL     Boatlaname Health Post          Y    O
+           CXBODIB     Bodibeng Health Post            Y    O
+           CXBODUN     Bodungwane Health Post          Y    O
+           CXBOFWA     Bofwa                           Y    O
+           CXBOGOH     Bogogobo Health Post            Y    O
+           CXBOIKH     Boikhutso clinic                Y    O
+           CXBOIPC     Boipelego Clinic                Y    O
+           CXBOITC     Boitekanelo Clinic              Y    O
+           CXBOKAAC    Bokaa Clinic Kweneng            Y    O
+           CXBOKAC     Bokaa Clinic Kgatleng           Y    O
+           CXBOKSC     Bokspits Clinic                 Y    O
+           CXBOLE      Letlhakane Primary Hospital     Y    O
+           CXBOMM      Mmadinare Primary Hospital      Y    O
+           CXBONWP     Bonwapitse Health Post          Y    O
+           CXBOOR      Orapa Mine Hospital             Y    O
+           CXBORA      Rakops Primary Hospital         Y    O
+           CXBORAK     Borakalalo Clinic               Y    O
+           CXBORAKN    Borakalalo New Clinic           Y    O
+           CXBORIB     Boribamo Clinic                 Y    O
+           CXBOROH     Boro Prison Health Post         Y    O
+           CXBOROL     Borolong Health Post            Y    O
+           CXBOROTC    Borotsi Clinic                  Y    O
+           CXBOSE1     Boseja 1 Clinic                 Y    O
+           CXBOSE11C   Boseja 11 Clinic                Y    O
+           CXBOSEKP    Boseja Kubung Health Post       Y    O
+           CXBOSWEC    Boswelakoko Clinic              Y    O
+           CXBOTAHP    Botalaote/Toteng Health Post    Y    O
+           CXBOTHHP    Bothatogo Health Post           Y    O
+           CXBOTLHA    Botlhapatlou Clinic             Y    O
+           CXBOTSAC    Botsalano Clinic                Y    O
+           CXBOTSHC    Botshabelo Clinic               Y    O
+           CXBOTSHE    Botshelo Clinic                 Y    O
+           CXBOTSW     Botswelelo Clinic               Y    O
+           CXBOTUS     Botusa Clinic                   Y    O
+           CXBOTUSA    Botusa Clinic                   Y    O
+           CXBROAD1     Broadhurst 1                   Y    O
+           CXBROAD2    Braoadhurst 2                   Y    O
+           CXBROAD3    Broadhurst 3 Tsholofelo         Y    O
+           CXBSEL      Selebi Phikwe Hospital IDCC     N    O
+           CXBTACL     BTA                             Y    O
+           CXBUTAL     Butale Health Post              Y    O
+           CXCHADIC    Chadibe Clinic                  Y    O
+           CXCHANG     Changate Clinic                 Y    O
+           CXCHANOG    Chanoga Health Post             Y    O
+           CXCHARLC    Charleshill Clinic              Y    O
+           CXCHKA      Kasane Hospital                 Y    O
+           CXCHOBHP    Chobokwane Health Post          Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 21
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           CXCOEMOL    College of Education Clinic     Y    O
+           CXCOVEMC    Covenant medical Centre         Y    O
+           CXDADAC     Joosub Dada Clinic              Y    O
+           CXDAMUHP    Damuchujenaa Health Post        Y    O
+           CXDAVECL    Davenine Clinic                 Y    O
+           CXDEKARH    Dekar Health Post               Y    O
+           CXDELTMC    Delta Medical Centre            Y    O
+           CXDIABOH    Diabo Health Post               Y    O
+           CXDIBETH    Dibete Health Post              Y    O
+           CXDIGAWC    Digawana Clinic                 Y    O
+           CXDIKGOH    Dikgonnye Health Post           Y    O
+           CXDIKWHP    Dikwididi Health Post           Y    O
+           CXDILOHP    Diloro Health Post              Y    O
+           CXDILOLH    Dilolwe Health Post             Y    O
+           CXDIMAJW    Dimajwe Clinic                  Y    O
+           CXDIPHUH    Diphuduhudu Health Post         Y    O
+           CXDISANH    Disana Health Post              Y    O
+           CXDITLAH    Ditladi Health Post             Y    O
+           CXDITLHH    Ditlharapa Health Post          Y    O
+           CXDITSC     Ditshegwane Health Post         Y    O
+           CXDITSHHP   Ditshukudu Health Post          Y    O
+           CXDITSWC    Ditsweletse Clinic              Y    O
+           CXDOVEHP    Dovedale Health Post            Y    O
+           CXDRIEHP    Draiehoek Health Post           Y    O
+           CXDUKWIC    Dukwi Clinic                    Y    O
+           CXDUTLWH    Dutlwe Health Post              Y    O
+           CXEASTHP    East Hanahai Health Post        Y    O
+           CXETSH13    Etsha 13 Clinic                 Y    O
+           CXETSHA6    Etsha 6 Clinic                  Y    O
+           CXEXT02     Extention 2 Clinic              Y    O
+           CXEXTE15    Extention 15 Clinic             Y    O
+           CXEXTE3C    Extention 3 Clinic              Y    O
+           CXFBDFC     BDF Clinic Franscistown         N    O
+           CXFIHS      Franscistown IHS                Y    O
+           CXFPRISO    Prisons Clinic                  Y    O
+           CXFRBD      Francistown BDF                 Y    O
+           CXFRFR      Francistown BDF                 N    O
+           CXGABAHP    Gabane Health Post              Y    O
+           CXGABAN     Gabane Clinic                   Y    O
+           CXGABWES    Gaborone West Clinic            Y    O
+           CXGAKGHP    Gakgatla Health Post            Y    O
+           CXGAKH      Kanye SDA Hospital              Y    O
+           CXGAKUTH    Gakutlo Health Post             Y    O
+           CXGAMAJH    Gamajaalela Health Post         Y    O
+           CXGAMHP     Gambule Health Post             Y    O
+           CXGAMODH    Gamodubu Health Post            Y    O
+           CXGASITH    Gasita Health Post              Y    O
+           CXGASS      Sir Seretse Khama Base          Y    O
+           CXGATHWH    Gathwane Health Post            Y    O
+           CXGHANHP    Ghani Health Post               Y    O
+           CXGLOMI     Global Mission                  Y    O
+           CXGNATAC    Nata Clinic Gweta               Y    O
+           CXGOBOH     Gobojango Health Post           Y    O
+           CXGOGO      Good Hope  Primary Hospital     Y    O
+           CXGOJWHP    Gojwane Health Post             Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 22
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           CXGOOSH     Goosekgweng Health Post         Y    O
+           CXGOOTH     Gootau Health Post              Y    O
+           CXGOSHW     Goshwe Health Post              Y    O
+           CXGROOT     Grootlaagte Health Post         Y    O
+           CXGUDIHP    Gudingwa Health Post            Y    O
+           CXGULUBH    Gulubane Health Post            Y    O
+           CXGUMAC     Gumare Clinic                   Y    O
+           CXGUMHOS    Gumare Hospital                 Y    O
+           CXGUNUTH    Gunutsoga Health Post           Y    O
+           CXGWETAC    Gweta Clinic                    Y    O
+           CXGWETPH    Gweta Primary Hospital          Y    O
+           CXHABUHP    Habu Health Post                Y    O
+           CXHATSHP    Hatsalatladi Health Post        Y    O
+           CXHAVA      Harvard Studies                 Y    O
+           CXHEACEN    Health Centre                   Y    O
+           CXHEBRO     Hebron Clinic                   Y    O
+           CXHEREFC    Hereford Clinic                 Y    O
+           CXHUHU      Hukuntsi Primary Hospital       Y    O
+           CXHUKUN     Hukuntsi Clinic                 Y    O
+           CXIHS       Institute of Health Sciences    Y    O
+           CXIKAGO     Ikago Clinic                    Y    O
+           CXIKOGHP    Ikoga Health Post               Y    O
+           CXIKONGH    Ikongwe Health Psot             Y    O
+           CXINALEH    Inalegolo Health Post           Y    O
+           CXINDUS     Industrial Clinic               Y    O
+           CXINSDMA    Institute of Develo Management  Y    O
+           CXITHOLH    Itholoke Health Post            Y    O
+           CXJACKAH    Jackalas 1 Health Post          Y    O
+           CXJACKHP    Jackalas 11 Health Post         Y    O
+           CXJMBLK9    Julia Molefhe Block 9           Y    O
+           CXJOOMCL    Doctor Jooma's Clinic           Y    O
+           CXJUMEDC    Juliana Medical Clinic          Y    O
+           CXJWATCC    Jwaneng Town Council Clinic     Y    O
+           CXJWJW      Jwaneng Mine Hospital           Y    O
+           CXKAATEL    Kgatelopele                     Y    O
+           CXKACGAH    Kacgae Health Post              Y    O
+           CXKACHIC    Kachikau Clinic                 Y    O
+           CXKAGIFC    Kagiso Clinic Franscistown      Y    O
+           CXKAGISC    Kagiso Clinic Selebi Phikwe     Y    O
+           CXKALAKH    Kalakamati Health Post          Y    O
+           CXKALAMC    Kalamare Clinic                 Y    O
+           CXKALKFC    Kalkfontein Clinic              Y    O
+           CXKANG      Kang clinic                     Y    O
+           CXKANYMC    Kanye Main Clinic               Y    O
+           CXKARAKH    Karakubis Health Post           Y    O
+           CXKARENG    Kareng Health Post              Y    O
+           CXKASHP     Kasane Health Post              Y    O
+           CXKAUDH     Kaudwane Health Post            Y    O
+           CXKAUXP     Kauxwi Health Post              Y    O
+           CXKAVIMHP   Kavimba Health Post             Y    O
+           CXKAZBDF    Kazungula BDF Health Post       Y    O
+           CXKAZUNH    Kazungula Health Post           Y    O
+           CXKEDIAHP   Kedia Health Post               Y    O
+           CXKEDIRC    Kediretswe Clinic               Y    O
+           CXKENGHP    Keng Health Post                Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 23
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           CXKESC      Scottish Livingstone Hospital   Y    O
+           CXKETA      Thebephatshwa Airbase BDF       Y    O
+           CXKETH      Thamaga Primary Hospital        Y    O
+           CXKGARIH    Kgari Health Post               Y    O
+           CXKGDE      Deborah Memorial hospital       Y    O
+           CXKGOMOH    Kgomodiatshaba Health Post      Y    O
+           CXKGOMOK    Kgomokasitwa Health Post        Y    O
+           CXKGOPEH    Kgope Health Post               Y    O
+           CXKGSOIN    Kgosing Clinic                  Y    O
+           CXKGWATC    Kgwatlheng Clinic               Y    O
+           CXKHAKHC    Khakhea Clinic                  Y    O
+           CXKHAWHP    Khawa Health Post               Y    O
+           CXKHAYAH    Khayakholo Health Post          Y    O
+           CXKHAYAK    Khayakholo Clinic               Y    O
+           CXKHEKHP    Khekhenye Health Post           Y    O
+           CXKHONHP    Khonkhwa Health Post            Y    O
+           CXKHUDC     Khudumelapye Clinic             Y    O
+           CXKHUMAC    Khumaga Health Post             Y    O
+           CXKHURUC    Khurumela  Clinic               Y    O
+           CXKHURUH    Khurutshe Health Post           Y    O
+           CXKHWAIC    Khwai Clinic                    Y    O
+           CXKODIHP    Kodibeleng Health Post          Y    O
+           CXKOKOHP    Kokong Health Post              Y    O
+           CXKOKOTH    Kokotsha Health Post            Y    O
+           CXKOLEHP    Kole Health Post                Y    O
+           CXKOMAHP    Komana Health Post              Y    O
+           CXKOPON     Kopong Health Post              Y    O
+           CXKOTOHP    Kotolaname Health Post          Y    O
+           CXKUBANH    Kubung Health Post              Y    O
+           CXKUDUMH    Kudumatse Health Post           Y    O
+           CXKUMAKC    Kumakwane Health Post           Y    O
+           CXKUTAMH    Kutamogore Health Post          Y    O
+           CXKWANBDF   Kwando BDF Health Post          Y    O
+           CXKWEEHP    Kwee Health Post                Y    O
+           CXKWENHP    Kweneng Health Post             Y    O
+           CXKWTS      Tsabong Primary Hospital        Y    O
+           CXLAPOLO    Lapologang Clinic               Y    O
+           CXLAZANC    Lazane Kaplan Clinic            Y    O
+           CXLECHC     Lecheng Clinic                  Y    O
+           CXLEETHP    Leetile Health Post             Y    O
+           CXLEHUTH    Lehututu Health Post            Y    O
+           CXLEKGOH    Lekgolobotlo Health Post        Y    O
+           CXLEKGWH    Lekgwapeng Health Post          Y    O
+           CXLENTC     Lentsweletau Health Post        Y    O
+           CXLENTSW    Lentswelemoriti Health Post     Y    O
+           CXLENYBDF   Lenyanti BDF Health Post        Y    O
+           CXLEPHEC    Lephephe Clinic                 Y    O
+           CXLEPHP     Lepokole Health Post            Y    O
+           CXLERAC     Lerala Clinic                   Y    O
+           CXLESETC    Lesetlhana Clinic               Y    O
+           CXLESHHP    Leshibitse Health Post          Y    O
+           CXLESILH    Lesilakgokong Health Post       Y    O
+           CXLESIRC    Lesirane Clinic                 Y    O
+           CXLESOMH    Lesoma Health Post              Y    O
+           CXLETHCL    Letlhakeng Clinic               Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 24
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           CXLETSHP    Letsholathebe Health Post       Y    O
+           CXLOBATH    Lobatse Athlone Hospital        Y    O
+           CXLOKGWH    Lokgwabe Health Post            Y    O
+           CXLOOLHP    Loologane Health Post           Y    O
+           CXLOOLOC    Loologane Clinic                Y    O
+           CXLOTLHC    Lotlhakane East Clinic          Y    O
+           CXLOTLHP    Lotlhakane West Health Post     Y    O
+           CXLOTSAC    Lotsane Clinic                  Y    O
+           CXLUSAN     Lusane Clinic                   Y    O
+           CXMAAPEH    Maape Health Post               Y    O
+           CXMABABE    Mababe Health Post              Y    O
+           CXMABALH    Mabale Health Post              Y    O
+           CXMABEC     Mabeleapudi Clinic              Y    O
+           CXMABELE    Mabeleapodi                     Y    O
+           CXMABELH    Mabeleng Health Post            Y    O
+           CXMABESH    Mabesekwa Health Post           Y    O
+           CXMABHP     Mabolwe Health Post             Y    O
+           CXMABULE    Mabule Clinic                   Y    O
+           CXMABUTC    Mabutsane Clinic                Y    O
+           CXMACHAC    Machaneng Clinic                Y    O
+           CXMADIAH    Madiaele Health Post            Y    O
+           CXMADIHP    Madiaela Health Post            Y    O
+           CXMADISP    Madisakwane Health Post         Y    O
+           CXMAFITC    Mafitlhakgosi Clinic            Y    O
+           CXMAGAPH    Magapatona Health Post          Y    O
+           CXMAHETH    Mahetwe Health Post             Y    O
+           CXMAHOHP    Mahotshwane Health Post         Y    O
+           CXMAITEC    Maitengwe Health Post           Y    O
+           CXMAJWAN    Majwanadipitse Clinic           Y    O
+           CXMAJWHP    Majwaneng Health Post           Y    O
+           CXMAKAKC    Makakatlela Clinic              Y    O
+           CXMAKAKU    Makakung Health Clinic          Y    O
+           CXMAKALA    Makalamabedi Clinic             Y    O
+           CXMAKALC    Makaleng Clinic                 Y    O
+           CXMAKGOH    Makgophana Health Post          Y    O
+           CXMAKOBH    Makobo Health Post              Y    O
+           CXMAKOPC    Makopong Clinic                 Y    O
+           CXMAKWHP    Makwate Health Post             Y    O
+           CXMALAHP    Malaka Health Post              Y    O
+           CXMALAT     Malatswai Clinic                Y    O
+           CXMALEH     Maleshe Health Post             Y    O
+           CXMALOHP    Malolwane Health Post           Y    O
+           CXMALOTHP   Malotwana Health Post           Y    O
+           CXMALWEL    Malwelwe Health Post            Y    O
+           CXMAMBOH    Mambo Health Post               Y    O
+           CXMANAHP    Manaledi Health Post            Y    O
+           CXMANDHP    Mandunyane Health Post          Y    O
+           CXMANGAC    Manga Clinic                    Y    O
+           CXMANTSH    Mantswabisi Health Post         Y    O
+           CXMANYAC    Manyana Clinic                  Y    O
+           CXMANYHP    Manyanda Health Post            Y    O
+           CXMAOKAC    Maokane Clinic                  Y    O
+           CXMAOKC     Maokatumo Clinic                Y    O
+           CXMAPOKC    Mapoka Clinic                   Y    O
+           CXMAPR      Mahalapye Prison Clinic         Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 25
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           CXMARAHP    Maralaleng Health Post          Y    O
+           CXMARAPO    Marapong Clinic                 Y    O
+           CXMAROBH    Marobela Health Post            Y    O
+           CXMASE      Sefhare Primary Hospital        Y    O
+           CXMASEGO    Masego Clinic                   Y    O
+           CXMASINH    Masingwaneng Health Post        Y    O
+           CXMASUKH    Masukwane Health Post           Y    O
+           CXMASUNG    Masunga Clinic                  Y    O
+           CXMASUPH    Masunga Primary Hospital        Y    O
+           CXMATEBH    Matebele Health Post            Y    O
+           CXMATEN     Matenge Health Post             Y    O
+           CXMATHAC    Mathathane Clinic               Y    O
+           CXMATHAN    Mathangwane Clinic              Y    O
+           CXMATHP     Matlhakola Health Post          Y    O
+           CXMATLAP    Matlapana Health Post           Y    O
+           CXMATLHP    Matlhako Health Post            Y    O
+           CXMATOBH    Matobo Health Post              Y    O
+           CXMATOHP    Matopi Health Post              Y    O
+           CXMATOLH    Matolwane Health Post           Y    O
+           CXMATSHC    Matshelagabedi Clinic           Y    O
+           CXMATSIH    Matsitama Health Post           Y    O
+           CXMATSIL    Matsiloje Clinic                Y    O
+           CXMAUBHP    Maubelo Health Post             Y    O
+           CXMAUCC     Maun Councelling Centre         Y    O
+           CXMAUCL     Maunatlala Clinic               Y    O
+           CXMAUKAC    Maokatumo Clinic                Y    O
+           CXMAUNAH    Maunatlala Clinic               Y    O
+           CXMAUNH     Letsholathebe 11 Hospital       Y    O
+           CXMAUSSC    Maun Sec School Clinic          Y    O
+           CXMAUSU     Maun Surgery                    Y    O
+           CXMBALAH    Mbalambi Health Post            Y    O
+           CXMBDFCL    Maun BDF Clinic                 Y    O
+           CXMBOAH     Maboane Health Post             Y    O
+           CXMBUDH     Mabudzani Health Post           Y    O
+           CXMEDIE     Medie Health Post               Y    O
+           CXMENTAH    Mental Referal Hospital         Y    O
+           CXMETLOC    Metlobo Clinic                  Y    O
+           CXMETLOH    Metlojane Health Post           Y    O
+           CXMETSIH    Metsimaswaane Health Post       Y    O
+           CXMETSIM    Metsimotlhabe Clinic            Y    O
+           CXMFHIC     Mafhikana Clinic                Y    O
+           CXMGORHP    Magoriapitse Health Post        Y    O
+           CXMHALPH    Mhalapitsa Health Post          Y    O
+           CXMIDDLC    Middlepits Health Post          Y    O
+           CXMMADIHP   Mmadikola Health Post           Y    O
+           CXMMADUH    Mmadunyane Health Post          Y    O
+           CXMMAKHP    Mmakgori Health Post            Y    O
+           CXMMAMOC    Mmamokhasi Clinic               Y    O
+           CXMMANHP    Mmanako Health Post             Y    O
+           CXMMANKC    Mmankgodi Clinic                Y    O
+           CXMMAPHH    Mmaphashalala Health Post       Y    O
+           CXMMASHC    Mmashoro Clinic                 Y    O
+           CXMMASHO    Mmashoro Clinic                 Y    O
+           CXMMATHC    Mmathubudukwane Clinic          Y    O
+           CXMMATHE    Mmathethe Clinic                Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 26
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           CXMMATHP    Mmatseta Health Post            Y    O
+           CXMMATSC    Mmatshumo Clinic                Y    O
+           CXMMEYAH    Mmeya Health Post               Y    O
+           CXMMOKOC    Mmokolodi Clinic                Y    O
+           CXMMOPAN    Mmopane Clinic                  Y    O
+           CXMMOPHP    Mmopane Health Post             Y    O
+           CXMMUTHP    Mmutlane Health Post            Y    O
+           CXMOBOLH    Mobolwe Health Post             Y    O
+           CXMOCDRH    Mochudi Deborah Retief Hosp     Y    O
+           CXMOCH1C    Mochudi 1 Clinic                Y    O
+           CXMOCH2C    Mochudi 11 clinic               Y    O
+           CXMODIHP    Modipane Health Post            Y    O
+           CXMODIKH    Modikwane Health Post           Y    O
+           CXMOETIC     MOETI CLINIC 01-3-17           Y    O
+           CXMOGAHP    Mogapinyana Health Post         Y    O
+           CXMOGOBC    Mogobane Clinic                 Y    O
+           CXMOGOBH    Mogobane Health Post            Y    O
+           CXMOGODI    Mogoditshane Clinic             Y    O
+           CXMOGOHP    Mogome Health Post              Y    O
+           CXMOGOJH    Mogojogojwe Health Post         Y    O
+           CXMOGONH    Mogonono Health Post            Y    O
+           CXMOGOR     Mogorosi Clinic                 Y    O
+           CXMOGORH    Mogorosi Health Post            Y    O
+           CXMOGOTH    Mogotho Health Post             Y    O
+           CXMOGOTL    Mogotlhwane Health Post         Y    O
+           CXMOIYAC    Moiyabana Clinic                Y    O
+           CXMOKATH    Mokatako Health Post            Y    O
+           CXMOKGEH    Mokgenene Health Post           Y    O
+           CXMOKGOC    Mokgoro Clinic                  Y    O
+           CXMOKHHP    Mokhomma Health Post            Y    O
+           CXMOKHP     Mokgware Health Post            Y    O
+           CXMOKIBC    Mokubilo Health Post            Y    O
+           CXMOKOBH    Mokobeng Health Post            Y    O
+           CXMOKOHP    Mokoboxane Health Post          Y    O
+           CXMOKOKH    Mokokwana Mosweu Health Post    Y    O
+           CXMOKOSW    Mokoswana Health Post           Y    O
+           CXMOKUHP    Mokungwana Health Post          Y    O
+           CXMOLAHP    Molalatau Health Post           Y    O
+           CXMOLAPC    Molapowabojang Clinic           Y    O
+           CXMOLCOL    Molepolole College of Edu       Y    O
+           CXMOLECL    Molepolole Clinic               Y    O
+           CXMONOHP    Monong Health Post              Y    O
+           CXMONWH     Monwane Health Post             Y    O
+           CXMOOKAC    Mookane Clinic                  Y    O
+           CXMOPIPC    Mopipi Clinic                   Y    O
+           CXMORALH    Moralane Health Post            Y    O
+           CXMOREHP    Moreomaoto Health Post          Y    O
+           CXMOREMH    Moremi Health Post              Y    O
+           CXMOREOH    Moreomabele Health Post         Y    O
+           CXMOREOM    Moreomaoto Clinic               Y    O
+           CXMORHP     Morwe Health Post               Y    O
+           CXMOROKC    Moroka Clinic                   Y    O
+           CXMORUPC    Morupule Colliary Clinic        Y    O
+           CXMORWAC    Morwa Clinic                    Y    O
+           CXMORWAH    Morwa Health Post               Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 27
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           CXMORWC     Morwamusu Clinic                Y    O
+           CXMOSEHP    Mosetse Health Post             Y    O
+           CXMOSHAH    Moshaneng Health Post           Y    O
+           CXMOSHCC    Moshupa Council Clinic          Y    O
+           CXMOSHUS    Moshupa SDA Clinic              Y    O
+           CXMOSHWA    Moshaweng Clinic                Y    O
+           CXMOSOC     Mosojane Health Post            Y    O
+           CXMOSOLH    Mosolotshane Health Paste       Y    O
+           CXMOSUHP    Mosu Health Post                Y    O
+           CXMOTLHP    Motlhabaneng Health Post        Y    O
+           CXMOTLOP    Motlopi Clinic                  Y    O
+           CXMOTOC     Motopi Clinic                   Y    O
+           CXMOTOKC    Motokwe Clinic                  Y    O
+           CXMOTSWC    Motswedi Clinic                 Y    O
+           CXMOWAHP    Mowana Health Post              Y    O
+           CXMPRISO    Maun Prison Clinic              Y    O
+           CXMULAMH    Mulambakwena Health Post        Y    O
+           CXNATAC     Nata Clinic (Tutume)            Y    O
+           CXNATALH    Natale Health Post              Y    O
+           CXNCAAHP    Ncaang Health Post              Y    O
+           CXNCOJAC    Ncojane Clinic                  Y    O
+           CXNEWTOC    New Town Clinic                 Y    O
+           CXNEWXAC    New Xade Clinic                 Y    O
+           CXNGARHP    Ngarange Health Post            Y    O
+           CXNGGU      Gumare Primary Hospital         Y    O
+           CXNGWAPH    Ngwapa Health Post              Y    O
+           CXNGWARE    Ngware Clinic                   Y    O
+           CXNKAIKE    Nkaikela Clinic                 Y    O
+           CXNKAIKH    Nkaikela Health Post            Y    O
+           CXNKANGC    Nkange Clinic                   Y    O
+           CXNKOYAC    Nkoyaphiri Clinic               Y    O
+           CXNLAPHC    Nlaphwane Clinic                Y    O
+           CXNOJAC     Nojane Clinic                   Y    O
+           CXNOKANE    Nokaneng Clinic                 Y    O
+           CXNSHAHP    Nshakashongwe Health Post       Y    O
+           CXNSWAZC    Nswazwi Clinic                  Y    O
+           CXNTLHAC    Ntlhantlhe Clinic               Y    O
+           CXNTSHEC    Ntshe Clinic                    Y    O
+           CXNTSWC     Ntswe Clinic                    Y    O
+           CXNTSWEC    Ntsweletau Clinic               Y    O
+           CXNXAMHP    Nxamasere Health Post           Y    O
+           CXNXAUNH    Nxaunxau Health Posr            Y    O
+           CXNXOMHP    Nxomokao Health Post            Y    O
+           CXOFAMIC    Okavango F Informatory Clinic   Y    O
+           CXOLIPHC    Oliphants Drift Clinic          Y    O
+           CXOMAWEH    Omaweneno Health Post           Y    O
+           CXONALED    Old Naledi Clinic               Y    O
+           CXOODICL    Oodi Clinic                     Y    O
+           CXORAPA     Orapa Mine Clinic               Y    O
+           CXOTSECL    Otse Clinic                     Y    O
+           CXOTSEHP    Otse Health Post                Y    O
+           CXPAJBDF    Paje BDF Clinic                 Y    O
+           CXPAJCLI    Paje Clinic                     Y    O
+           CXPALLAH    Palla Road Health Post          Y    O
+           CXPANDAC    Pandamatenga BDF Clinic         Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 28
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           CXPANDAM    Pandamatenga Clinic             Y    O
+           CXPARAKH    Parakarangu Health Post         Y    O
+           CXPELCEC    Peleng Central Clinic           Y    O
+           CXPELEAC    Peleng East Clinic              Y    O
+           CXPHAPC     Phaphane Clinic                 Y    O
+           CXPHIMOL    Phitshane Molopo Clinic         Y    O
+           CXPHITSH    Phitshane Potlokwe Health Post  Y    O
+           CXPHUDHP    Phuduhedu Health Post           Y    O
+           CXPHUTHC    Phuthadikobo Clinic             Y    O
+           CXPHUTIC    Phuting Health Post             Y    O
+           CXPILANH    Pilane Health Post              Y    O
+           CXPILIKC    Pilikwe Clinic                  Y    O
+           CXPITSAN    Pitsane Clinic                  Y    O
+           CXPITSEC    Pitseng Clinic                  Y    O
+           CXPLATHP    Plateau Health Post             Y    O
+           CXPOLANI    Polani Clinic                   Y    O
+           CXPOLEHP    Pole Health Post                Y    O
+           CXPOLIC     Police Clinic - Otse            Y    O
+           CXPOLICE    Police College                  Y    O
+           CXPOLOHP    Poloka Health Post              Y    O
+           CXPRIKAS    Kasane "Prisons" Health Post    Y    O
+           CXPRPR      Private Practice                Y    O
+           CXQABOHP    Qabo Health Post                Y    O
+           CXQANGC     Qangwa Clinic                   Y    O
+           CXRADIC     Radisele Clinic                 Y    O
+           CXRAILHP    Railways Health Post            Y    O
+           CXRAKHUH    Rakhuna Health Post             Y    O
+           CXRAKOPC    Rakops Health Post              Y    O
+           CXRALHP     Ralekgetho Health Post          Y    O
+           CXRAMAC     Ramatlabama Clinic              Y    O
+           CXRAMAKC    Ramakgwebana Clinic             Y    O
+           CXRAMBLH    Ramotswa Bamalete Luth Hosp     Y    O
+           CXRAMOKC    Ramokgonami Clinic              Y    O
+           CXRAMONH    Ramonaka Health Post            Y    O
+           CXRAMOTH    Ramotlabaki Health Post         Y    O
+           CXRAMSTC    Ramotswa Station Clinic         Y    O
+           CXRANAKA    Ranaka Clinic                   Y    O
+           CXRASHP     Rasesa Health Post              Y    O
+           CXRATHHP    Ratholo Health Post             Y    O
+           CXROBELH    Robelela Health Post            Y    O
+           CXRUNGHP    Rungwana Health Post            Y    O
+           CXRUSMAY    Russel May Clinic               Y    O
+           CXSALAC     Salajwe Clinic                  Y    O
+           CXSAMAHP    Samane Health Post              Y    O
+           CXSANKOY    Sankoyo Health Post             Y    O
+           CXSAOT      Athlone Hospital                Y    O
+           CXSATAUH    Satau Health Post               Y    O
+           CXSBSEL     Selebi Phikwe Hospital IDCC     Y    O
+           CXSCOTIC    Scottish Livingstone Hospital   Y    O
+           CXSEBELE    Sebele Clinic                   Y    O
+           CXSEBHP     Sebogo Health Post              Y    O
+           CXSEBINC    Sebina Clinic                   Y    O
+           CXSECHEH    Sechele Health Post             Y    O
+           CXSEDIEC    Sedie Clinic                    Y    O
+           CXSEFHOC    Sefhope Clinic                  Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 29
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           CXSEHERH    Seherelela H Post               Y    O
+           CXSEHITL    Sehitlhwa Clinic                Y    O
+           CXSEKAKC    Sekakangwe Clinic               Y    O
+           CXSEKGOH    Sekgoma Memorial Hospital       Y    O
+           CXSEKHUH    Sekhutlane Health Post          Y    O
+           CXSEKOHP    Sekoma Health Post              Y    O
+           CXSELEC     Seleka Clinic                   Y    O
+           CXSELKIC    Selkirk Clinic                  Y    O
+           CXSELOKH    Selokolela H Post               Y    O
+           CXSEMBOY    Semboyo Health Post             Y    O
+           CXSEMOLC    Semolale Clinic                 Y    O
+           CXSENETC    Senete Clinic                   Y    O
+           CXSENYAH    Senyawe Health Post             Y    O
+           CXSEOLWH    Seolwane Health Post            Y    O
+           CXSEPOC     Sepopa Clinic                   Y    O
+           CXSEPOPD    LAB Private Patient OPD         Y    O
+           CXSERONG    Seronga Clinic                  Y    O
+           CXSEROWC    Serowe Clinic                   Y    O
+           CXSERUC     Serule Clinic                   Y    O
+           CXSESAMC    Sesame Clinic                   Y    O
+           CXSESE      Sese Health Post                Y    O
+           CXSESUHP    Sesung Health Post              Y    O
+           CXSHAAHP    SHAA Health Post                Y    O
+           CXSHADHP    Shadisshadi Health Post         Y    O
+           CXSHAK      Shakawe Clinic                  Y    O
+           CXSHAKHP    Shakwe Health Post              Y    O
+           CXSHASHE    Shashe Bridge Health Post       Y    O
+           CXSHASHM    Shashe Mooke Health Post        Y    O
+           CXSHASHP    Shashe Health Post              Y    O
+           CXSHASST    Shashe Station Health Post      Y    O
+           CXSHELEC    Sheleketta Clinic               Y    O
+           CXSHORHP    Shorilatholo Health Post        Y    O
+           CXSHOROC    Shorobe Clinic                  Y    O
+           CXSHOSHC    Shoshong Clinic                 Y    O
+           CXSIGAC     Siga Clinic                     Y    O
+           CXSIKWHP    Sikwane Health Post             Y    O
+           CXSIVIYH    Siviya Health Post              Y    O
+           CXSOBA      Bamalete Lutheran Hospital      Y    O
+           CXSOJWEC    Sojwe Clinic                    Y    O
+           CXSOMELO    Somelo Health Post              Y    O
+           CXSORILH    Sorilatholo Health Post         Y    O
+           CXSOSE      Seventh Day Adventist Hos       Y    O
+           CXSOUTC     South East Ext Clinic           Y    O
+           CXSOWA      Sowa Clinic                     Y    O
+           CXSPPA      Palapye Primary Hospital        Y    O
+           CXSPRISO    Prison                          Y    O
+           CXSTCONC    St Conrad's Clinic              Y    O
+           CXSTDCLI    STD Clinic                      Y    O
+           CXSTJOSE    St Josephs                      Y    O
+           CXSTRUIH    Struizendam Health Post         Y    O
+           CXTAKATO    Takatokwane Clinic              Y    O
+           CXTAMAHP    Tamasane Health Post            Y    O
+           CXTAPOLC    Tapologong Clinic               Y    O
+           CXTATSIC    Tati Siding Clinic              Y    O
+           CXTATTOW    Tatitown Clinic                 Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 30
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           CXTAUNCL    Taung Clinic                    Y    O
+           CXTAUPHP    Taupye Health Post              Y    O
+           CXTAWANC    Tawana Clinic                   Y    O
+           CXTBLOC     TB Location                     Y    O
+           CXTEBE      Tebelopele VCT                  Y    O
+           CXTEWANH    Tewane Health Post              Y    O
+           CXTEWCL     Tewane Clinic                   Y    O
+           CXTHABAC    Thabala Clinic                  Y    O
+           CXTHALOH    Thalogong / Chadibe Healt Post  Y    O
+           CXTHAMAC    Thamaga Clinic                  Y    O
+           CXTHANHP    Thankane Health Post            Y    O
+           CXTHEMAC    Themashanga Clinic              Y    O
+           CXTHIIC     Thini Clinic                    Y    O
+           CXTHITOC    Thito Clinic                    Y    O
+           CXTHITOH    Thitoyamokodi Health Post       Y    O
+           CXTJUKUH    Tjukumuchu Health Post          Y    O
+           CXTLOKMC    Tlokweng Main Clinic            Y    O
+           CXTLOOWH    Tloowaneng Health Post          Y    O
+           CXTMCOMP    Teemane Manufacturing Co.       Y    O
+           CXTOBANE    Tobane Health Post              Y    O
+           CXTONOC     Tonota Clinic                   Y    O
+           CXTONOCO    Tonota College                  Y    O
+           CXTOPIHP    Topisi Health Post              Y    O
+           CXTOROHP    Tomoroja Health Post            Y    O
+           CXTOTENG    Toteng Health Post              Y    O
+           CXTSABOC    Tsabong Clinic                  Y    O
+           CXTSAMC     Tsamaya Clinic                  Y    O
+           CXTSAUCL    Tsau Clinic                     Y    O
+           CXTSETHP    Tsetseng Health Post            Y    O
+           CXTSETSC    Tsetsejwe Clinic                Y    O
+           CXTSHANE    Tshane Health Post              Y    O
+           CXTSHEC     Tshesebe Clinic                 Y    O
+           CXTSHIDI    Tshidilamolomo Clinic           Y    O
+           CXTSHIHP    Tshimoyapula Health Post        Y    O
+           CXTSHIMC    Tshimologo Clinic               Y    O
+           CXTSHIMO    Tshimoyapula Clinic             Y    O
+           CXTSHOHP    Tshokwe Health Post             Y    O
+           CXTSHOLC    Tsholofelo Clinic               Y    O
+           CXTSHWAA    Tshwaane Health Post            Y    O
+           CXTSHWAR    Tshwaragano Clinic              Y    O
+           CXTSOKOH    Tsokatshaa Health Post          Y    O
+           CXTSONYH    Tsonyane Health Post            Y    O
+           CXTSOOTC    Tsootsha Clinic                 Y    O
+           CXTSOPEC    Tsopeng Clinic                  Y    O
+           CXTUBUHP    Tubu Health Post                Y    O
+           CXTUGW      Gweta Primary Hospital          Y    O
+           CXTUMA      Masunga Primary Hospital        Y    O
+           CXTUTU      Tutume Primary Hospital         Y    O
+           CXUKHWHP    Ukhwi Health Post               Y    O
+           CXUNBOTS    University of Botswana          Y    O
+           CXUNIT5C    Unit 5 Clinic                   Y    O
+           CXUNIT7C    Unit 7 Clinic                   Y    O
+           CZZUNK      Unknown Patient Location        Y    O
+           DMANTNW     DM AnteNatal and Delivery Ward  Y    I
+           DMCAER      DM Accident & Emergency Room    Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 31
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           DMCDEM      DRM Dermatology clinic          Y    O
+           DMCDEN      DM Dental Department            Y    O
+           DMCDIE      DM Dietetics Clinic             Y    O
+           DMCEYE      DM Eye Clininc                  Y    O
+           DMCPHY      DM Physiotherapy                Y    O
+           DMCPSY      DM Psychology Clinic            Y    O
+           DMCRAD      DM Radiology Department         Y    O
+           DMCSCW      DM Social Workers               Y    O
+           DMCTBC      DM Tuberculosis Clinic     TBC  Y    O
+           DMCYOU      DM Youth Friendly Clinic        Y    O
+           DMDHIS      Deborah DHIS                    Y    O
+           DMDLAB      DM Laboratory                   Y    O
+           DMDOPD      DM Outpatient Department        Y    O
+           DMDPHA      DM Pharmacy                     Y    O
+           DMEYET      DM Eye Theatre                  N    O
+           DMEYTH      DM Eye Theatre                  Y    O
+           DMFMEDW     DM Female Medical Ward          Y    I
+           DMFSURW     DM Female Surgical Ward         Y    I
+           DMMATH      DM Major Theatre                Y    O
+           DMMMEDW     DM Male Medical Ward            Y    I
+           DMMSURW     DM Male Surgical Ward           Y    I
+           DMPAEDW     DM Paediatric Ward              Y    I
+           DMPOSTW     DM Post Natal Ward              Y    I
+           DMREVENUE   DM Deborah Retief Revenue Off   Y    O
+           DMSCBU      DM Special Care Baby Unit       Y    I
+           DMSTA       DM Staff Clinic                 Y    O
+           GAANTEW     GA Ante Natal Ward              Y    I
+           GACAER      GA Accident & Emergency Room    Y    O
+           GACDEN      GA Dental Clinic                Y    O
+           GACDIA      GA Diabetic Specialist Clinic   Y    O
+           GACLAS      GA Labour Assistance Area       Y    O
+           GACMED      GA Medical Specialist Clinic    Y    O
+           GACMOP      GA Medical Outpatient Dept      Y    O
+           GACOPT      GA Opthalmology Clinic          Y    O
+           GACORT      GA Orthopaedic Clinic           Y    O
+           GACPHY      GA Physiotherapy Dept           Y    O
+           GACPSY      GA Psyciatric Clinic            Y    O
+           GACSCW      GA Social Workers               Y    O
+           GACSOP      GA Surgical Outpatient Dept     Y    O
+           GACSRH      GA Sexual Reproductive Health   Y    O
+           GACSTA      GA Staff Clinic                 Y    O
+           GACTBC      GA Tuberculosis Clinic          Y    O
+           GACULT      GA Ultra Sound Dept             Y    O
+           GACYOU      GA Youth Clinic                 Y    O
+           GADHIS      Ghanzi DHIS                     Y    O
+           GADLAB      GA Laboratory Dept              Y    O
+           GADPHA      GA Pharmacy                     Y    O
+           GADRAD      GA Radiology Dept               Y    O
+           GADRTBW     GA MDR & TB Ward                Y    I
+           GAFGENW     GA Female General Ward          Y    I
+           GAISO1      GA Hospital Covid Isolation     Y    I
+           GAISO2      GA Hospice Covid Isolation      Y    I
+           GAISO3      GA Education Covid Isolation    Y    I
+           GALABOW     GA Labour Ward                  Y    I
+           GAMATH      GA Major Theatre                Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 32
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           GAMGENW     GA Male General Ward            Y    I
+           GAMITH      GA Minor Theatre                Y    O
+           GAPOSNW     GA Post Natal Ward              Y    I
+           GAPREMW     GA Preterm Baby Ward            Y    I
+           GAREVENUE   GA Gantsi Revenue Office        Y    O
+           GFCARW      Area W Clinic                   Y    O
+           GFCBOIKH    GFC Boikhutso Clinic            N    O
+           GFCDONGA    GFC Donga Clinic                N    O
+           GFCMASEG    GFC Masego Clinic               N    O
+           GFCTATIS    GFC Tati Siding Clinic          N    O
+           GFCTNT      Tonota Clinic                   Y    O
+           GFCTONOT    GFC Tonota Clinic               N    O
+           GGCBPS      Botswana Prisons Service Clini  Y    O
+           GGCBR3      Broadhurst 3 Clinic             Y    O
+           GGCBRHS3    GGC Broadhurst 3 Clinic         N    O
+           GGCBRHTL    GGC Broadhurst Traditional CL   N    O
+           GGCEX2      Extension 2 Clinic              Y    O
+           GGCJULML    GGC Julia Molefhe Clinic        N    O
+           GGCJUM      Julia Molefhe Clinic            Y    O
+           GGCKGA      Kgatelopele Clinic              Y    O
+           GGCLES      Lesirane Clinic                 Y    O
+           GGCMATLES   GGC Lesirane Mat Ward           Y    O
+           GGCNKA      Nkaikela Healthpost             N    O
+           GGCNKO      Nkoyaphiri clinic               Y    O
+           GGCNKOYAP   GGC Nkoyaphiri Clinic           N    O
+           GGCNKOYP    GGC Nkoyaphiri Clinic           N    O
+           GGCTLO      Tlokweng Main Clinic            Y    O
+           GGCTLOKN    GGC Tlokweng Main Clinic        N    O
+           GGCXTN02    GCC Extension 2 Clinic          N    O
+           GHANTNW     GH Ante Natal Ward              Y    I
+           GHCEYE      GH Eye Clinic                   Y    O
+           GHCMED      GH Diabetic/Hypertension Clini  Y    O
+           GHCPSY      GH Psychiatric Clinic           Y    O
+           GHCSRH      GH Sexual Reproductive Health   Y    O
+           GHDHIS      Goodhope DHIS                   Y    O
+           GHDLAB      GH Laboratory                   Y    O
+           GHDOPD      GH Out Patient Department       Y    O
+           GHDPHA      GH Pharmacy                     Y    O
+           GHDRAD      GH Radiology Department         Y    O
+           GHDSOC      GH Social Work Dept             Y    O
+           GHFGENW     GH Female General Ward          Y    I
+           GHLABOW     GH Labour Ward                  Y    I
+           GHMGENW     GH Male General Ward            Y    I
+           GHMITH      GH Minor Theatre                Y    O
+           GHPAEDW     GH Paediatrics Ward             Y    I
+           GHPIHW      GH Pregnancy Induced Hypertion  Y    I
+           GHPOSTW     GH Post Natal Ward              Y    I
+           GHSTAFF     GH Side Ward (Staff only)       Y    I
+           GHTBWRD     GH TB Shelter Ward              Y    I
+           GHTDWRD     GH TB Shelter Ward              N    I
+           GHTHEA      GH Main Theatre                 Y    O
+           GPAEDW      GA Paediatric Ward              Y    I
+           GUCEYE      GU Eye Clinic                   Y    O
+           GUCMED      GU Diabetic/Hypertension CL     Y    O
+           GUCPSY      GU Psychiatric Clinic           Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 33
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           GUDHIS      Gumare DHIS                     Y    O
+           GUDLAB      GU Laboratory                   Y    O
+           GUDOPD      GU Outpatient Department        Y    O
+           GUDPHA      GU Pharmacy Department          Y    O
+           GUDRAD      GU Radiology Department         Y    O
+           GUDSOC      GU Social Work Department       Y    O
+           GUGENWD     GU General Ward                 Y    I
+           GUMATH      GU Main Theatre                 Y    O
+           GUMATWD     GU Maternity Ward               Y    I
+           GUMITH      GU Minor Theatre                Y    O
+           GWCDEN      GW Dental Clinic                Y    O
+           GWCEYE      GW Eye Clinic                   Y    O
+           GWCMED      GW Diabetic/Hypertension CL     Y    O
+           GWCPSY      GW Psychiatric Clinic           Y    O
+           GWDHIS      Gweta DHIS                      Y    O
+           GWDLAB      GW Laboratory                   Y    O
+           GWDOPD      GW Outpatient Department        Y    O
+           GWDPHA      GW Pharmacy Department          Y    O
+           GWDRAD      GW Radiology Department         Y    O
+           GWDSOC      GW Social Work Department       Y    O
+           GWGENWD     GW General Ward                 Y    I
+           GWISOW      GW Covid Isolation Ward         Y    I
+           GWMATH      GW Main Theatre                 Y    O
+           GWMATWD     GW Maternity Ward               Y    I
+           GWMITH      GW Minor Theatre                Y    O
+           HGGMMO      Mmopane Healthpost              Y    O
+           HGGNKA      Nkaikela Healthpost             Y    O
+           HKANTNW     HK Ante Natal Ward              Y    I
+           HKCDEN      HK Dental Clinic                Y    O
+           HKCDIE      HK Dietetics                    Y    O
+           HKCEYE      HK Eye Clinic                   Y    O
+           HKCPSY      HK Psychology clinic            Y    O
+           HKCPSYC     HK PSYCHIATRIC CLINIC           Y    O
+           HKCYOU      HK Youth Friendly Services Cli  Y    O
+           HKDHIS      Hukuntsi DHIS                   Y    O
+           HKDLAB      HK Laboratory                   Y    O
+           HKDOPD      HK Outpatient Department        Y    O
+           HKDPHA      HK Pharmacy                     Y    O
+           HKDRAD      HK Radiology Department         Y    O
+           HKDSOC      HK Social Work Department       Y    O
+           HKERUN      Rungwana Healthpost             Y    O
+           HKFMEDW     HK Female Ward                  Y    I
+           HKGENHD     HK General High Dependency      Y    I
+           HKISOW      HK Isolation Ward               Y    I
+           HKKANGW     HK Kangaroo Ward                Y    I
+           HKLABOW     HK Labour/Delivery Ward         Y    I
+           HKMATH      HK Main Theatre                 Y    O
+           HKMITH      HK Minor Theatre                Y    O
+           HKMMEDW     HK Male Ward                    Y    I
+           HKPAEDW     HK Paediatrics                  Y    I
+           HKPOSTW     HK Post Natal Ward              Y    I
+           HKREVENUE   HK Sundry Revenue               Y    O
+           HKSCBUW     HK Special Care Baby Unit       Y    I
+           HKTBSHW     HK TB Shelters Ward             Y    I
+           JPKANTENW   JPK Antenatal Ward              N    I
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 34
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           JPKCAER     JPK Accident & Emergency Dept   Y    O
+           JPKCDEN     JPK Dental Department           Y    O
+           JPKCDIE     JPK Dietetics Department        Y    O
+           JPKCEYE     JPK Eye Clinic                  Y    O
+           JPKCOPD     JPK Outpatient Department       Y    O
+           JPKCPSY     JPK Psychiatric Clinic          Y    O
+           JPKCSOW     JPK Social Work Department      Y    O
+           JPKCSRH     JPK Sexual Reproductive Health  Y    O
+           JPKDHIS     JPK DHIS                        Y    O
+           JPKDLAB     JPK Laboratory Department       Y    O
+           JPKDPHA     JPK Pharmacy Department         Y    O
+           JPKDRAD     JPK Radiology Department        Y    O
+           JPKFGENW    JPK Female General Ward         N    I
+           JPKGENWD    JPK General Ward                Y    I
+           JPKGYNTH    JPK OBS & Gynae Theatre         Y    O
+           JPKLABOW    JPK Labour Ward                 N    I
+           JPKMATH     JPK Main Theatre                Y    O
+           JPKMATWD    JPK Maternity Ward              Y    I
+           JPKMGENW    JPK Male General Ward           N    I
+           JPKMITH     JPK Minor Theatre               Y    O
+           JPKPAEDW    JPK Paediatric General Ward     N    I
+           JPKPOSNW    JPK Post Natal Ward             N    I
+           JPKREVENUE  JPK Revenue Office              Y    O
+           JPKSCBU     JPK Special Care Baby Unit      N    I
+           JPKTBWD     JPK TB Ward                     Y    I
+           JWUNOPD     Unit 7 Clinic OPD               Y    O
+           KACDEN      KA Dental Clinic                Y    O
+           KACDIE      KA DIETETICS CLINIC             Y    O
+           KACEYE      KA Eye Clinic                   Y    O
+           KACMED      KA Diabetic/Hypertension CL     Y    O
+           KACPSY      KA Psychiatric Clinic           Y    O
+           KACSRH      KA SRH Clinic                   Y    O
+           KADHIS      Kasane DHIS                     Y    O
+           KADLAB      KA Laboratory                   Y    O
+           KADOPD      KA Outpatient Department        Y    O
+           KADPHA      KA Pharmacy Department          Y    O
+           KADRAD      KA Radiology Department         Y    O
+           KADSOC      KA Social Work                  Y    O
+           KAGENWD     KA General Ward                 Y    I
+           KAMATH      KA Main Theatre                 Y    O
+           KAMATWD     KA Maternity Ward               Y    I
+           KAMITH      KA Minor Theatre                Y    O
+           KINELI00    KING,ELIZABETH                  N    I
+           KNCKAN      Kang Clinic                     Y    O
+           KSCDEN      KS Dental                       Y    O
+           KSCDIE      KS Dietetics                    Y    O
+           KSCEYE      KS Eye Clinic                   Y    O
+           KSCPHY      KS Physiotherapy                Y    O
+           KSCPSY      KS Psychiatric                  Y    O
+           KSCSRH      KS Sexual Reproductive Health   Y    O
+           KSCSUR      KS Surgical Clinic              Y    O
+           KSDAER      KS Accident & Emergency         Y    O
+           KSDHIS      Kanye DHIS                      Y    O
+           KSDLAB      KS Laboratory & Microbiology    Y    O
+           KSDOPD      KS Outpatient                   Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 35
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           KSDPHA      KS Pharmacy                     Y    O
+           KSDRAD      KS Radiology                    Y    O
+           KSDSOC      KS Social Work                  Y    O
+           KSFMEDW     KS Female Medical Ward          Y    I
+           KSISOW      KS Covid Isolation Ward         Y    I
+           KSMATENW    KS Maternity Ward               N    I
+           KSMATNW     KS Maternity Ward               Y    I
+           KSMMEDW     KS Male Medical Ward            Y    I
+           KSPAEDW     KS Paediatrics Ward             Y    I
+           KSPRVYW     KS Private Ward                 Y    I
+           KSREVENUE   KS Saundry Revenue              Y    O
+           KSSURGW     KS Surgical Ward                Y    I
+           KSTHEA      KS Theatre                      Y    O
+           KWCLTK      Letlhakeng Clinic               Y    O
+           LB1         TEST                            N    O
+           LHANTNW     LH Ante Natal Ward              Y    I
+           LHCDEN      LH Dental Clinic                Y    O
+           LHCEYE      LH Eye Clinic                   Y    O
+           LHCMED      LH Hypertension & Diabetic Cli  Y    O
+           LHCSRH      LH Sexual Reproductive Health   Y    O
+           LHCTB       LH Tubercolosis Clinic          Y    O
+           LHCYOU      LH Youth Friendly Services Cli  Y    O
+           LHDHIS      Letlhakane DHIS                 Y    O
+           LHDLAB      LH Laboratory                   Y    O
+           LHDOPD      LH Outpatient Department        Y    O
+           LHDPHA      LH Pharmacy                     Y    O
+           LHDRAD      LH Radiology Department         Y    O
+           LHDSOC      LH Social Work Department       Y    O
+           LHFISOW     LH Female Isolation Ward        Y    I
+           LHFMEDW     LH Female Ward                  Y    I
+           LHFTBWD     LH Female TB Ward               Y    I
+           LHISOW      LH Hospital Covid Isolation     Y    I
+           LHLABOW     LH Labour Ward                  Y    I
+           LHMISOW     LH Male Isolation Ward          Y    I
+           LHMMEDW     LH Male Ward                    Y    I
+           LHMTBWD     LH Male TB Ward                 Y    I
+           LHPAEDW     LH Paediatrics                  Y    I
+           LHPOSTW     LH Post Natal Ward              Y    I
+           LHREVENUE   LH Sundry Revenue               Y    O
+           LHSCBUW     LH Special Care Baby Unit       Y    I
+           LHTHEA      LH Theatre Department           Y    O
+           MAANTNW     MA Antenatal Ward               N    I
+           MAANTW      MA Antenatal Ward               Y    I
+           MACA&E      MA Accident & Emergency Dept    N    O
+           MACCPS      MA Clinical Psychology Clinic   Y    O
+           MACDEN      MA Dental Clinic                Y    O
+           MACDER      MA Dermatology Clinic           Y    O
+           MACDIA      MA Diabetic Clinic              Y    O
+           MACDIE      MA Dietician Clinic             Y    O
+           MACENT      MA ENT Clinic                   Y    O
+           MACEYE      MA Eye Clinic                   Y    O
+           MACGYN      MA Gynaecology Clinic           Y    O
+           MACHYP      MA Hypertension Clinic          Y    O
+           MACMCH      MA Sexual Reproductive Health   Y    O
+           MACMED      MA Medical Clinic               Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 36
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           MACMEX      MA Medical Exams Clinic         Y    O
+           MACOCC      MA Occupational Therapy Clinic  Y    O
+           MACOPH      MA Ophthalmology Clinic         Y    O
+           MACORT      MA Orthopaedic Clinic           Y    O
+           MACPAE      MA Paediatric Clinic            Y    O
+           MACPHY      MA Physiotherapy Clinic         Y    O
+           MACPSY      MA Psychiatric Clinic           Y    O
+           MACSCW      MA Social Workers Clinic        Y    O
+           MACSUR      MA Surgical Clinic              Y    O
+           MACTB       MA TB Clinic                    N    O
+           MACTBT      MA MDR TB Treatment Clinic      Y    O
+           MACYF       MA Youth Friendly Clinic        Y    O
+           MADA&E      MA Accident & Emergency Dept    Y    O
+           MADEN       Dental Clinic               MA  N    O
+           MADHIS      Letsholathebe DHIS              Y    O
+           MADIE       Dietician Clinic            MA  N    O
+           MADLAB      MA Laboratory                   Y    O
+           MADMORT     MA Mortuary                     N    O
+           MADOPD      MA Outpatient Department        Y    O
+           MADPHA      MA Pharmacy Department          Y    O
+           MADRAD      MA Diagnostic Imaging Dept      Y    O
+           MAFMEDO     MA Female Medical O/F Ward      N    I
+           MAFMEDOA    Female Medical O/F              N    I
+           MAFMEDW     MA Female Medical Ward          Y    I
+           MAFPSYW     MA Female Psychiatric Ward      Y    I
+           MAFSURCOA   Female Surgical O/F             N    I
+           MAFSURGO    Female Surgical O/F             N    I
+           MAFSURGOA   Female Surgical O/F             N    I
+           MAFSURO     MA Female Surgical O/F Ward     N    I
+           MAFSURW     MA Female Surgical Ward         Y    I
+           MAFTBW      MA Female Tuberculosis Ward     Y    I
+           MAFTENT     MA Female Eye Tent              N    I
+           MAGICUW     MA Intensive Care Unit          N    I
+           MAGYN       Gynaecology Clinic          MA  N    O
+           MAGYNAW     MA Gynaecology Ward             Y    I
+           MAGYNTH     MA Gynegology Theatre           Y    O
+           MAICUW      MA Intensive Care Ward          N    I
+           MAISOW      MA Covid Isolation Ward         Y    I
+           MALABOW     MA Labour Ward                  Y    I
+           MAMAI       MA Main Theatre                 N    D
+           MAMATH      MA Major Theatre                Y    O
+           MAMCH       Mother Child Health Clinic  MA  N    O
+           MAMITH      MA Minor Theatres               Y    O
+           MAMMEDO     MA Male Medical O/F Ward        N    I
+           MAMMEDW     MA Male Medical Ward            Y    I
+           MAMORT      MA Mortuary                     N    O
+           MAMPSYW     MA Male Psychiatric Ward        Y    I
+           MAMSURO     MA Male Surgical O/F Ward       N    I
+           MAMSURW     MA Male Surgical Ward           Y    I
+           MAMTBW      MA Male Tuberculosis Ward       Y    I
+           MAMTENT     MA Male Eye Tent                N    I
+           MANURW      MA Nursery Ward                 Y    I
+           MAOPH       Ophthalmology Clinic        MA  N    O
+           MAPAE       Paediatric Clinic           MA  N    O
+           MAPAEDW     MA Paediatric Ward              N    I
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 37
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           MAPAEMW     MA Paediatric Medical Ward      Y    I
+           MAPAESW     MA Paediatric Surgical Ward     Y    I
+           MAPHY       Physiology Clinic           MA  N    O
+           MAPOSNW     MA Post Natal Ward              Y    I
+           MAPSY       Maun Psychiatric Clinic     MA  N    O
+           MAPSYW      MA Psychiatric Ward             N    I
+           MAREVENUE   MA SUNDRY REVENUE               Y    O
+           MASCBW      MA Special Care Baby Unit       Y    I
+           MATBC       Maun TB Clinic              MA  N    O
+           MATBW       MA Tuberculosis Ward            N    I
+           MATHEA      MA Maun Theatres                Y    O
+           MATSUR      MA General Sugeons              Y    O
+           MBCMBT      Mabutsane Clinic                N    O
+           MBSMBT      Mabutsane Clinic                Y    O
+           MCPSY       Psycology Clinic            MA  N    O
+           MDANTNW     MD Ante-Natal Maternity ward    Y    I
+           MDCEYE      MD Eye Clinic                   Y    O
+           MDCPSY      MD Psychiatry Clinic            Y    O
+           MDCSRH      MD Sexual Reproductive Health   Y    O
+           MDCTB       MD TB Clinic                    Y    O
+           MDCYFS      MD Youth Friendly Service Clin  Y    O
+           MDDHIS      Mmadinare DHIS                  Y    O
+           MDDLAB      MD Laboratory                   Y    O
+           MDDOPD      MD Outpatient Department        Y    O
+           MDDPHA      MD Pharmacy                     Y    O
+           MDDRAD      MD Radiology Department         Y    O
+           MDDSOC      MD Social Work Department       Y    O
+           MDFGENW     MD Female General Ward          Y    I
+           MDFTBW      MD Female TB Ward               Y    I
+           MDGENISO    MD Isolation General Ward       Y    I
+           MDISOLW     MD Isolation TB Ward            Y    I
+           MDISOW      MD Covid Isolation Ward         Y    I
+           MDLABOW     MD Labour Maternity Ward        Y    I
+           MDMGENW     MD Male General Ward            Y    I
+           MDMTBW      MD Male TB Ward                 Y    I
+           MDPAEDW     MD Paediatrics Ward             Y    I
+           MDPOSTW     MD Post-Natal Maternity Ward    Y    I
+           MDTHEA      MD Minor Theatre                Y    O
+           MHANTEW     MH Ante Natal Ward              Y    I
+           MHCAER      MH Accident & Emergency Room    Y    O
+           MHCCAR      MH Cardiology Clinic            Y    O
+           MHCCPS      MH Clinical Psychology          Y    O
+           MHCDEN      MH Dental Clinic                Y    O
+           MHCDIA      MH Diabetic Clinic              Y    O
+           MHCDIE      MH Dietician Clinic             Y    O
+           MHCENT      MH Ear Nose & Throat Clinic     Y    O
+           MHCEYE      MH Eye Clinic                   Y    O
+           MHCGYN      MH Gynegology Clinic            Y    O
+           MHCHYP      MH Hypertension Clinic          Y    O
+           MHCMEX      MH Medical Examiniation Clinic  Y    O
+           MHCMSP      Moshupa Council Clinic          Y    O
+           MHCOCC      MH Occupational Therapy         Y    O
+           MHCORT      MH Orthopaedic Clinic           Y    O
+           MHCPHY      MH Physiotherapy Dept           Y    O
+           MHCPSY      MH Psychiatric Clinic           Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 38
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           MHCRAD      MH Radiology Dept               Y    O
+           MHCSCW      MH Social Workers               Y    O
+           MHCSRH      MH Sexual Reproductive Health   Y    O
+           MHCSTA      MH Staff Clinic                 Y    O
+           MHCSUR      MH General Surgeon Clinic       Y    O
+           MHCTBT      MH MDR & Tuberculosis Clinic    Y    O
+           MHCVCL      MH.VIA,CRYOTHERAPY & LEEP CLIN  Y    O
+           MHCWS       MH Social Workers               N    O
+           MHCYOU      MH Youth Clinic                 Y    O
+           MHDHIS      Mahalapye DHIS                  Y    O
+           MHDLAB      MH Laboratory Dept              Y    O
+           MHDOPD      MH Outpatients Department       Y    O
+           MHDPHA      MH Parmacy Dept                 Y    O
+           MHDRTBW     MH Drug Resistance & TB Ward    Y    I
+           MHFMEDW     MH Female Medical Ward          Y    I
+           MHFORTHW    MH Female Orthopedic Ward       Y    I
+           MHFSURGYW   MH Female Surgical and Gynae W  Y    I
+           MHFSURW     MH Female Surgical Ward         Y    I
+           MHGYNEW     MH Gynegology Ward              Y    I
+           MHLABOW     MH Labour Ward                  Y    I
+           MHMMEDW     MH Male Medical Ward            Y    I
+           MHMORTHW    MH Male Orhtopedic Ward         Y    I
+           MHMSURW     MH Male Surgical Ward           Y    I
+           MHNURW      MH Nursery Ward                 Y    I
+           MHORTHW     MH Orthopaedic Ward             Y    I
+           MHPAEDW     MH Paediatric Ward              Y    I
+           MHPOSTW     MH Post Natal Ward              Y    I
+           MHPSYCW     MH General Psyciatric Ward      Y    I
+           MHREVENUE   MH Mahalapye Revenue Office     Y    O
+           MHSCW       MH Social Workers               N    O
+           MHTMAI      MH Main Theatre                 Y    O
+           MHTMIN      MH Minor Theatre                Y    O
+           MPCL        MPHO CLINI                      Y    O
+           MSANTNW     MS Ante-Natal Ward              Y    I
+           MSCDEN      MS Dental Clinic                Y    O
+           MSCEYE      MS Eye Clinic                   Y    O
+           MSCMED      MS Hypertension & Diabetic Cli  Y    O
+           MSCPSY      MS Psychiatric Clinic           Y    O
+           MSDHIS      Masunga DHIS                    Y    O
+           MSDLAB      MS Laboratory                   Y    O
+           MSDOPD      MS Outpatient Department        Y    O
+           MSDPHA      MS Pharmacy                     Y    O
+           MSDRAD      MS Radiology Department         Y    O
+           MSDSOC      MS Social Work Department       Y    O
+           MSFISOW     MS Female Isolatn - Infectious  Y    I
+           MSFMEDW     MS Female Ward                  Y    I
+           MSHDGEN     MS General Ward - HD            Y    I
+           MSISONON    MS Isolation - Non Infectious   Y    I
+           MSISOW      MS ISOLATION WARD               Y    I
+           MSLABOW     MS Labour Ward                  Y    I
+           MSMATH      MS Main Theatre                 Y    O
+           MSMISOW     MS Male Isolation - Infectious  Y    I
+           MSMITH      MS Minor Theatre                Y    O
+           MSMMEDW     MS Male Ward                    Y    I
+           MSPAEDW     MS Paediatrics Ward             Y    I
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 39
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           MSPOSTW     MS Post Natal Ward              Y    I
+           MSREVENUE   MS Sundry Revenue               Y    O
+           MSSCBUW     MS Special Care Baby Unit Ward  Y    I
+           MSSTAFW     MS Staff Rooms                  Y    I
+           MSTBWRD     MS TB Shelters                  Y    I
+           NYACCU      NY Accupuncture                 Y    O
+           NYBLOOD     NY Blood Donor                  Y    O
+           NYBREAKA    NY Breakages and Losses         Y    O
+           NYCACU      NY Acupuncture Clinic           Y    O
+           NYCDEN      NY Dental Clinic                Y    O
+           NYCDER      NY Dermatology Clinic           Y    O
+           NYCDIA      NY Diabetic Clinic              Y    O
+           NYCDIE      NY Dietetics Obesity Clinic     Y    O
+           NYCENT      NY Ear Nose and Throat Clinic   Y    O
+           NYCGAS      NY Gastroenterology Clinic      Y    O
+           NYCGYN      NY Gynaecology Clinic           Y    O
+           NYCHYP      NY Hypertensice Clinic          Y    O
+           NYCMCH      NY ANC/PNC Clinic               Y    O
+           NYCMDR      NY MDR Clinic                   Y    O
+           NYCMEC      NY Medical Cardiac Clinic       Y    O
+           NYCMED      NY Medical Clinic               Y    O
+           NYCMEX      NY Medical Exam & Staff Clinic  Y    O
+           NYCNEU      NY Neurological Clinic          Y    O
+           NYCOCC      NY Occupational Therapy         Y    O
+           NYCONC      NY Oncology Clinic              Y    O
+           NYCOPH      NY Ophthalmology Clinic         Y    O
+           NYCORH      NY Orthopaedic Clinic           N    O
+           NYCORT      NY Orthopaedic Clinic           Y    O
+           NYCPAE      NY Paediatric Clinic            Y    O
+           NYCPCC      NY Cancer Pall Care Clinic      Y    O
+           NYCPHY      NY Physiotherapy Clinic         Y    O
+           NYCPSC      NY Psycology Clinic             Y    O
+           NYCPSY      NY Psychiatric Clinic           Y    O
+           NYCSCW      NY Social Workers               Y    O
+           NYCSES      NY Staff Emo & Soc Supp Clinic  Y    O
+           NYCSSD      NY CSSD                         Y    O
+           NYCSUR      NY General Surgery Clinic       Y    O
+           NYCTBC      NY Tuberculosis Clinic     TBC  Y    O
+           NYCTHC      NY Thoracic clinic              Y    O
+           NYCURO      NY Urology Clinic               Y    O
+           NYCYOU      NY Youth Friendly Clinic        Y    O
+           NYDAER      NY Accident and Emergency       Y    O
+           NYDASS      NY Labour Assessment Area       Y    O
+           NYDEN       Dental Clinic               NY  N    O
+           NYDENT      NY Dental                       Y    O
+           NYDHIS      Nyangabgwe DIHS                 Y    O
+           NYDIE       Dietician Clinic            NY  N    O
+           NYDISAS     NY Disaster Room A&E            Y    O
+           NYDLAB      NY Laboratory Department        Y    D
+           NYDMORT     NY Mortuary                     N    O
+           NYDPHA      NY Pharmacy Department          Y    O
+           NYDPSY      NY Psychiatric Outpatient       Y    O
+           NYDRAD      NY Radiology Department         Y    O
+           NYENT       Ear Nose and Throat Clinic  NY  N    O
+           NYEXPIR     NY Expired Items                Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 40
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           NYFTBWCA    NY TB Ward                      N    I
+           NYGNNEOA    NY Gynaecology Ward O/F     NY  N    I
+           NYGYN       Gynaecology Clinic          NY  N    O
+           NYGYNE2     NY Gynaecology Ward 2           Y    I
+           NYIDCC      NY IDCC Clinic                  Y    O
+           NYLAB       NY Laboratory                   Y    O
+           NYMAI       NY Main Theatre             NY  N    D
+           NYMCH       Mother Child Health Clinic  NY  N    O
+           NYMED       Medical Clinic              NY  N    O
+           NYMEDT      NY Medical Treatment Room       Y    O
+           NYMHTU      NY Male Head Trauma Unit        N    I
+           NYMHTUO     NY Male Head Trauma O/F Unit    N    I
+           NYMORT      NY Mortuary                     Y    O
+           NYNEU       Neurology Clinic            NY  N    O
+           NYNRC       NY Nutrition Rehab Centre       Y    O
+           NYONCD      NY Oncology Department          N    D
+           NYOPD       NY Out Patient Department       N    O
+           NYOPERT     NY Poerating Theatre            Y    O
+           NYOPH       Ophthalmology Clinic        NY  N    O
+           NYORT       Orthopedic Clinic           NY  N    O
+           NYORTHC     NY Orthopeadic Clinic           Y    O
+           NYORTHOM    NY Male Orthopaedic             Y    O
+           NYOUTPD     NY Outpatient Department        Y    O
+           NYPAE       Paediatric Clinic           NY  N    O
+           NYPHY       Physiology Clinic           NY  N    O
+           NYPHYSIO    NY Physiotherapy                Y    O
+           NYPOSNOF    NY Post Natal O/F Ward          N    I
+           NYPSYCHF    NY Psychiatric Female           Y    O
+           NYPSYCHM    NY Psychiatric Male             Y    O
+           NYPSYCW     NY Psychiatric Ward             N    I
+           NYREVENUE   NY SUNDRY REVENUE               Y    O
+           NYSHSTW     NY Short Stay Ward              N    I
+           NYSUPP      NY Supplies Store               Y    O
+           NYSUR       General Surgery Clinic      NY  N    O
+           NYTDEN      NY Dental Surgeons              Y    O
+           NYTENT      NY ENT Surgeons                 Y    O
+           NYTGEN      NY General Surgeons             N    O
+           NYTGYN      NY Gynaecology Surgeons         Y    O
+           NYTHE1      NY Theatre 1                NY  N    O
+           NYTHE2      NY Theatre 2                NY  N    D
+           NYTHE3      NY Theatre 3                NY  N    D
+           NYTHEA      NY Theatres                     Y    O
+           NYTHEN      NY Theatres                     N    O
+           NYTMA       NY Theatre Main                 N    O
+           NYTMI       NY Theatre Minor                N    O
+           NYTNEU      NY Neuro Surgeons               Y    O
+           NYTOPH      NY Ophthalmology Surgeons       Y    O
+           NYTORT      NY Orthopaedics Surgeons        Y    O
+           NYTSUR      NY General Surgeons             Y    O
+           NYTURO      NY Urology Surgeons             Y    O
+           NYURO       Urology Clinic              NY  N    O
+           NYXRAY      NY Xray Department              Y    D
+           PMANC       Ante Natal Ward             PM  N    I
+           PMB         PM Baylor Pharmacy              N    O
+           PMBPHA      PM Baylor Pharmacy              Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 41
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           PMCACU      PM Acupuncture Clinic           Y    O
+           PMCAT       Catering                    PM  N    D
+           PMCAUD      PM Audio Clinic                 Y    O
+           PMCCAT      Catering Clinic             PM  N    O
+           PMCCTH      PM Cardiothoracic Clinic        Y    O
+           PMCDEN      PM Dental Clinic                Y    O
+           PMCDER      PM Dermatology Clinic           Y    O
+           PMCDIA      PM Diabetic Clinic              Y    O
+           PMCDIE      PM Dietician Clinic             Y    O
+           PMCENT      PM Ear Nose and Throat Clinic   Y    O
+           PMCGAS      PM Gastroenterology Clinic      Y    O
+           PMCGYN      PM Gynaecology Clinic           Y    O
+           PMCIMM      PM Immunology Clinic            Y    O
+           PMCMCH      PM Sexual Reproductive Health   Y    O
+           PMCMED      PM Medical Clinic               Y    O
+           PMCMOF      PM Dr Moffat Office Clinic      N    O
+           PMCNEO      PM Neonatal Clinic              Y    O
+           PMCNEU      PM Neurology Clinic             Y    O
+           PMCOCC      PM Occupational Therapy Clinic  Y    O
+           PMCOPH      PM Opthalmology Clinic          Y    O
+           PMCOPT      PM Opthalmology Clinic          N    O
+           PMCORR      PM Prosthetics & Ortho Clinic   Y    O
+           PMCORT      PM Orthopaedic Clinic           Y    O
+           PMCOTH      Occupational Therapy Clinic PM  N    O
+           PMCPAE      PM Paediatric Clinic            Y    O
+           PMCPAS      PM Paediatric Surgery Clinic    Y    O
+           PMCPHY      PM Physiotherapy Clinic         Y    O
+           PMCPSY      PM Psychiatric Clinic           Y    O
+           PMCPSYC     PM Psychology                   Y    O
+           PMCSCB      PM Special Care Baby Unit       Y    O
+           PMCSCW      PM Social Workers               Y    O
+           PMCSOCW     PM Social Work                  Y    O
+           PMCSPCH     PM Speech Clinic                Y    O
+           PMCSUR      PM General Surgery Clinic       Y    O
+           PMCSWO      PM Social Workers Clinic        N    O
+           PMCURO      PM Urology Clinic               Y    O
+           PMDAER      PM Accident and Emergency       Y    O
+           PMDEN       Dental Clinic               PM  N    O
+           PMDER       Dermatology Clinic          PM  N    O
+           PMDHIS      Princess Marina DHIS            Y    O
+           PMDIE       Dietician Clinic            PM  N    O
+           PMDLAB      PM Laboratory                   Y    D
+           PMDMORT     PM Mortuary                     N    I
+           PMDPHA      PM Pharmacy                     Y    O
+           PMDRAD      PM Diagnostic Imaging Dept      Y    O
+           PMENT       Ear Nose and Throat Clinic  PM  N    O
+           PMFME       Female Medical Ward         PM  N    I
+           PMFONCO     PM Female Oncology O/F          N    I
+           PMFONCW     PM Female Oncology Ward         N    I
+           PMFORT      Female Orthopaedic Ward     PM  N    I
+           PMFPR       Private Ward                PM  N    I
+           PMFPRIW     PM Female Private Ward          N    I
+           PMFPS       Psychiatric Female Ward     PM  N    I
+           PMFSU       Female Surgical Ward        PM  N    I
+           PMFSUR      PM Female Surgical Ward     PM  N    I
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 42
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           PMGPR       Private Gyenaecology Ward   PM  N    I
+           PMGYN       Gynaecology Ward            PM  N    I
+           PMGYNC      Gynaecology Clinic          PM  N    O
+           PMICU       Intensive Care Unit         PM  N    I
+           PMISOLW     PM Isolation Ward               Y    I
+           PMISOWF     PM Female Covid Isolation       Y    I
+           PMISOWM     PM Male Covid Isolation         Y    I
+           PMISOWSS    PM Short Stay Covid Isolation   Y    I
+           PMLAB       Labour Ward                 PM  N    I
+           PMMCH       Mother Child Health Clinic  PM  N    O
+           PMMDEN      PM Dental Minor Theatre         Y    O
+           PMMED       Medical Clinic              PM  N    O
+           PMMENT      PM ENT Surgery Minor Theatre    Y    O
+           PMMME       Male Medical Ward           PM  N    I
+           PMMNEU      PM Neurology Minor Theatre      Y    O
+           PMMONCO     PM Male Oncology O/F            N    I
+           PMMONCW     PM Male Oncology Ward           N    I
+           PMMOPH      PM Ophthalmology Minor Theatre  Y    O
+           PMMORT      PM Orthopaedic Minor Theatre    Y    O
+           PMMPR       Private Male Ward           PM  N    I
+           PMMPRIW     PM Male Private Ward            N    I
+           PMMPS       Psychiatric Male Ward       PM  N    I
+           PMMSU       ,                               N    I
+           PMMSUR      PM Surgery Minor Theatre        Y    O
+           PMMURO      PM Urology Minor Theatre        Y    O
+           PMNEU       Neurology Clinic            PM  N    O
+           PMONC       Oncology Ward               PM  N    I
+           PMOPD       PM Outpatient Department        N    O
+           PMOPH       Ophthalmology Clinic        PM  N    O
+           PMOPHT      PM Ophthalmology Ward       PM  N    I
+           PMORT       Male Orthopedic Ward        PM  N    I
+           PMORTC      Orthopaedic Clinic          PM  N    O
+           PMPAE       Paediatric Clinic           PM  N    O
+           PMPHY       Physiotherapy               PM  N    O
+           PMPME       Paediatrics Medical Ward    PM  N    I
+           PMPNA       Post Partum Ward            PM  N    I
+           PMPSU       Paediatrics Surgical Ward   PM  N    I
+           PMRAD       Radiology Department        PM  N    D
+           PMREVENUE   PM Sundry Revenue               Y    O
+           PMSPINAL    PM Spinalis ward                Y    I
+           PMSUR       General Surgery Clinic      PM  N    O
+           PMTB        Tuberculoisis Ward          PM  N    I
+           PMTDEN      PM Dental Surgeons              Y    O
+           PMTENT      PM ENT Surgeons                 Y    O
+           PMTERG      ER Gynaecology Theatre      PM  N    O
+           PMTERO      ER Orthopaedics Theatre     PM  N    O
+           PMTGEN      PM General Surgeons             Y    D
+           PMTGER      Gynaecology ER Theatre      PM  N    O
+           PMTGYN      PM Gynaecology Surgeons         Y    O
+           PMTHEA      PM Theatres                     Y    O
+           PMTMA1      PM Main Theatre 1           PM  N    O
+           PMTMAI      PM Main Theatre                 N    O
+           PMTMAJ      PM Theatre Major                N    O
+           PMTMI1      ER Orthopaedics Theatre     PM  N    O
+           PMTMI2      ER Surgery Theatre          PM  N    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 43
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           PMTMI3      ER Day,Septic Cases Theatre PM  N    O
+           PMTMIN      PM Minor Theatre                Y    O
+           PMTNEO      Neorology Surgery Theatre   PM  N    O
+           PMTNEU      PM Neurology Specialist         Y    O
+           PMTOER      PM Orthopaedics ER Theatre      N    O
+           PMTOPH      PM Ophthalmology Specialist     Y    O
+           PMTORT      PM Orthopaedic Specialist       Y    O
+           PMTSER      PM Surgery ER Theatre           N    O
+           PMTSUR      PM Surgery Specialist           Y    O
+           PMTTHO      PM Thoracic Specialist          Y    O
+           PMTUBIW     PM TB Isolation Ward            Y    I
+           PMTURO      PM Urology Specialist           Y    O
+           PMURO       Urology Clinic              PM  N    O
+           PMVPRIW     PM VIP Private Ward             N    I
+           PMWARD      PM WARD                         Y    O
+           PPANTNW     PP AnteNatal and Delivery ward  Y    I
+           PPCAER      PP Accident & Emergency Room    Y    O
+           PPCDEN      PP Dental Dept                  Y    O
+           PPCDIE      PP Dietetics Clinic             Y    O
+           PPCDRAD     PP Radiology Dept               N    O
+           PPCEYE      PP Eye Clinic                   Y    O
+           PPCPHY      PP Physiotherapy                Y    O
+           PPCPSY      PP Psychiatric Clinic           Y    O
+           PPCRAD      PP Radiology                    Y    O
+           PPCSCW      PP Social Workers               Y    O
+           PPCSOCIAL   Social work                     Y    O
+           PPCSRH      PP Sexual Reproductive Health   Y    O
+           PPCSTA      PP Staff Clinic                 Y    O
+           PPCTBC      PP Tuberculosis Clinic     TBC  Y    O
+           PPDHIS      Palapye DHIS                    Y    O
+           PPDLAB      PP Laboratory                   Y    O
+           PPDOPD      PP Outpatient Department        Y    O
+           PPDPHA      PP Pharmacy                     Y    O
+           PPFMEDW     PP Female Medical Ward          Y    I
+           PPFTBW      PP Female Tuberculosis Ward     Y    I
+           PPISOW      PP Covid Isolation Ward         Y    I
+           PPMATH      PP Major Theatre                Y    O
+           PPMITH      PP Minor Theatre                Y    O
+           PPMMEDW     PP Male Medical Ward            Y    I
+           PPMTBW      PP Male Tuberculosis Ward       Y    I
+           PPPAEDW     PP Paediatric Ward              Y    I
+           PPPOSTW     PP Post Natal Ward              Y    I
+           PPREVENUE   Palapye Revenue Office          Y    O
+           PPSCBUR     PP Special Care Baby Unit       Y    I
+           PPSYW       PP PSYCH WARD                   Y    I
+           RKCDEN      RK Dental Clinic                Y    O
+           RKCEYE      RK Eye Clinic                   Y    O
+           RKCMED      RK Diabetic/Hypertension        Y    O
+           RKCPSY      RK Psychiatric Clinic           Y    O
+           RKCSRH      RK SRH Clinic                   Y    O
+           RKCYOU      RK Youth Friendly Clinic        Y    O
+           RKDHIS      Rakops DHIS                     Y    O
+           RKDLAB      RK Laboratory                   Y    O
+           RKDOPD      RK Outpatient Department        Y    O
+           RKDPHA      RK Pharmacy Department          Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 44
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           RKDRAD      RK Radiology Department         Y    O
+           RKDSOC      RK Social Work Department       Y    O
+           RKGENWD     RK General Ward                 Y    I
+           RKISOW      RK Covid Isolation Ward         Y    I
+           RKMATWD     RK Maternity Ward               Y    I
+           RKMITH      RK Minor Theatre                Y    O
+           SBANTNW     SB AnteNatal and Delivery ward  Y    I
+           SBCAER      SB Accident & Emergency Room    Y    O
+           SBCDEN      SB Dental Dept                  Y    O
+           SBCDIA      SB Diabetic Clinic              Y    O
+           SBCDIE      SB Dietetics Clinic             Y    O
+           SBCEYE      SB Eye Clinic                   Y    O
+           SBCGYN      SB Gynegology Clinic            Y    O
+           SBCIMED     SB Internal Medicine Clinic     Y    O
+           SBCMC       SB Safe Male Circumcision Clin  Y    O
+           SBCORT      SB Orthopaedic Clinic           Y    O
+           SBCPHY      SB Physiotherapy                Y    O
+           SBCPS       SB Clinical Psychology          Y    O
+           SBCPSY      SB Psychiatric Clinic           Y    O
+           SBCRAD      SB Radiology Dept               Y    O
+           SBCSCW      SB Social Workers               Y    O
+           SBCSUR      SB Surgical Clinic              Y    O
+           SBCTBC      SB Tuberculosis Clinic     TBC  N    O
+           SBCYOU      SB Youth Clinic                 Y    O
+           SBDHIS      Selebi Phikwe DHIS              Y    O
+           SBDLAB      SB Laboratory                   Y    O
+           SBDOPD      SB Outpatient Department        Y    O
+           SBDPHA      SB Pharmacy                     Y    O
+           SBFMEDW     SB Female Medical Ward          Y    I
+           SBGYNEW     SB Gynegology Ward              Y    I
+           SBISOW      SB Covid Isolation Ward         Y    I
+           SBMATH      SB Major Theatre                Y    O
+           SBMITH      SB Minor Theatre                Y    O
+           SBMMEDW     SB Male Medical Ward            Y    I
+           SBPAEDW     SB Paediatric Ward              Y    I
+           SBPOSTW     SB Post Natal Ward              Y    I
+           SBREVENUE   SB Selebi-Phikwe Revenue Off    Y    O
+           SBSCBU      SB Special Care Baby Unit       Y    I
+           SEANTNW     SE AnteNatal and Delivery ward  Y    I
+           SECAUD      SE AUDIOLOGY CLINIC             Y    O
+           SECCAR      SE Cardiac Screening Clinic     Y    O
+           SECCIR      SE Circumcision Clinic          Y    O
+           SECDEM      SE Dermatology Clinic           Y    O
+           SECDEN      SE Dental Clinic                Y    O
+           SECDIA      SE Diabetic Clinic              Y    O
+           SECDIE      SE Dietician Clinic             Y    O
+           SECECG      SE ECG Clinic                   Y    O
+           SECENT      SE ENT Clinic                   Y    O
+           SECGYN      SE Gynaecology Clinic           Y    O
+           SECHIVR     SE HIV Resistance Clinic        Y    O
+           SECHRCLIN   SE High Risk Clinic             Y    O
+           SECHRI      SE HIGH RISK CLINIC             Y    O
+           SECHYP      SE Hypertension Clinic          Y    O
+           SECIMED     SE Internal Medicine Clinic     Y    O
+           SECMAC      Mabuo Clinic                    Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 45
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           SECMCH      SE Sexual Reproductive Health   Y    O
+           SECMDR      SE MDR TB Clinic                Y    O
+           SECMED      SE Medical Clinic               Y    O
+           SECMEX      SE Medical Exams Clinic         Y    O
+           SECOCC      SE Occupational Therapy Clinic  Y    O
+           SECONC      SE Oncology Clinic              Y    O
+           SECOPD      SE Outpatient Department        N    O
+           SECOPH      SE Ophthalmology Clinic         Y    O
+           SECORT      SE Orthopaedic Clinic           Y    O
+           SECPAE      SE Paediatric Clinic            Y    O
+           SECPHS      SE Physician Clinic             Y    O
+           SECPHY      SE Physiotherapy Clinic         Y    O
+           SECPIDC     SE Paediatric IDCC              Y    O
+           SECPSC      SE Psycology Clinic             Y    O
+           SECPSY      SE Psychiatric Clinic           Y    O
+           SECPY       SE Physiotherapy Department     N    O
+           SECSCW      SE Social Workers               Y    O
+           SECSRH      SE Sexual Reproductive          Y    O
+           SECSUR      SE Surgical Clinic              Y    O
+           SECTBT      SE TB Treatment                 Y    O
+           SECTUB      SE Tuberculosis Clinic          Y    O
+           SECVCL      SE.VIA,CRYOTHERAPY & LEEP CLIN  Y    O
+           SEDAER      SE Accident and Emergency       Y    O
+           SEDDXRA     SE X-Ray Department         SE  N    O
+           SEDEN       Dental Clinic               SE  N    O
+           SEDHIS      Sekgoma DHIS                    Y    O
+           SEDHRC      SE High Risk Department         Y    D
+           SEDIE       Dietician Clinic            SE  N    O
+           SEDLAB      SE Laboratory                   Y    D
+           SEDMORT     SE Mortuary                     N    O
+           SEDOPD      SE Outpatient Department        Y    O
+           SEDPHA      SE Pharmacy Department          Y    O
+           SEDRAD      SE Diagnostic Imaging Dept      Y    O
+           SEDXRA      SE X-Ray Department         SE  N    O
+           SEFCIW      SE Female Covid Isolation Ward  Y    I
+           SEFGENO     SE Female General O/F           N    I
+           SEFPSYW     SE Female Psychiatric Ward      Y    I
+           SEFSURW     SE Female Surgical Ward         Y    I
+           SEFTBW      SE Female TB Ward               Y    I
+           SEGICUW     SE Intensive Care Unit          Y    I
+           SEGYN       Gynaecology Clinic          SE  N    O
+           SEGYNEW     SE Gynaecology Ward             Y    I
+           SEMATW      Maternity Ward              SE  N    I
+           SEMCH       Mother Child Health Clinic  SE  N    O
+           SEMCIW      SE Male Covid Isolation Ward    Y    I
+           SEMORT      SE Mortuary                     N    O
+           SEMPSYW     SE Male Psychiatric Ward        Y    I
+           SEMSURW     SE Male Surgical Ward           Y    I
+           SEMTBW      SE Male TB Ward                 Y    I
+           SEMTHEA     SE Minor Theatre                Y    D
+           SENEONW     SE Neo-Natal ward (SCBU)        N    I
+           SEOBGCIW    SE Obs & Gyane Covid Iso Ward   Y    I
+           SEONCW      SE Oncology ward                Y    I
+           SEOPH       Ophthalmology Clinic        SE  N    O
+           SEOPHTW     SE Opthalmology ward            Y    I
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 46
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           SEOPTHW     SE Opthalmology Ward            N    I
+           SEPAE       Paediatric Clinic           SE  N    O
+           SEPAEMW     SE Paediatric Medical Ward      Y    I
+           SEPAESW     SE Paediatric Surgical Ward     N    I
+           SEPHY       Physiology Clinic           SE  N    O
+           SEPOPD      SE LAB Private Patient OPD      N    O
+           SEPOSNW     SE Post-Natal ward              Y    I
+           SEREVENUE   SE Sundry Revenue               Y    O
+           SETHEA      SE Theatres                     Y    O
+           SETMAI      SE Main Theatre                 N    D
+           SETMIN      SE Theatre Minor                N    O
+           SEWFMED     SE Female Medical Ward      SE  N    I
+           SEWMAT      SE Maternity Ward           SE  N    I
+           SEWMMED     SE Male Medical Ward        SE  N    I
+           SEWPAED     SE Paediatric Ward              N    I
+           SEXSTIC     SE STI CLINIC                   Y    O
+           SFANTNW     SF Ante-natal ward              Y    I
+           SFCDEN      SF Dental Clinic                Y    O
+           SFCEYE      SF Eye Clinic                   Y    O
+           SFCMED      SF Hypertension/Diabetic Clini  Y    O
+           SFCPSY      SF Psychiatric clinic           Y    O
+           SFCSRH      SF Sexual Reproductiv health C  Y    O
+           SFCVIA      Sefhare VIA Clinic              Y    O
+           SFDHIS      Sefhare DHIS                    Y    O
+           SFDLAB      SF Laboratory Dept              Y    O
+           SFDOPD      SF Outpatient Department        Y    O
+           SFDPHA      SF Pharmacy Department          Y    O
+           SFDRAD      SF Radiology Dept               Y    O
+           SFDSOC      SF Social Work Dept             Y    O
+           SFFGENW     SF Female General ward          Y    I
+           SFHIGHD     SF High Dependency ward         Y    I
+           SFISOLW     SF Isolation ward               Y    I
+           SFLABOW     SF Labour/Delivery ward         Y    I
+           SFMGENW     SF Male General ward            Y    I
+           SFMITH      SF Minor Theatre                Y    O
+           SFPAEDW     SF Paediatrics Ward             Y    I
+           SFPOSTW     SF Post-Natal                   Y    I
+           SFPRENW     SF Pre-natal ward               Y    I
+           SFSCBUW     SF Special Baby Care Unit       Y    I
+           SFTBWRD     SF Shelters/ward                Y    I
+           SFTHEA      SF Main Theatre                 Y    O
+           SHADOLES    SH Adolescence Ward             Y    I
+           SHCDAY      SH Day Hospital                 Y    O
+           SHCDIE      SH Dietetics Clinic             Y    O
+           SHCDIET     SH DIETETICS                    Y    O
+           SHCOCC      SH Occupational Therapy         Y    O
+           SHCPSY      SH Psychology                   Y    O
+           SHCSCW      SH Social Work                  Y    O
+           SHCSUD      SH Substance Use Disorders      Y    O
+           SHDHIS      S'brana DHIS                    Y    O
+           SHDLAB      SH Laboratory Dept              Y    O
+           SHDOPD      SH Outpatient Department        Y    O
+           SHDPHA      SH Pharmacy                     Y    O
+           SHFACUTE    SH Female Acute Ward            Y    I
+           SHFOBSRV    SH Female Observation Ward      Y    I
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 47
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           SHFORE2     SH Male Forensic Ward 2         N    I
+           SHFREHAB    SH Female Rehabilitation Ward   Y    I
+           SHISOW      SH Isolation Ward               Y    I
+           SHMACUT1    SH Male Acute 1                 Y    I
+           SHMACUT2    SH Male Acute 2                 Y    I
+           SHMFORE2    SH Male Forensic Ward 2         Y    I
+           SHMFOREN    SH Male Forensic Ward 1         Y    I
+           SHMPSYGW    SH Male Psycho Geriatric Ward   Y    I
+           SHMREHAB    SH Male Rehabiltation Ward      Y    I
+           SHREVENUE   SH Revenue Office               Y    O
+           SHSUD       Substance Abuse and Disorder    Y    O
+           SLANTNW     SL Ante Natal Ward              Y    I
+           SLCAER      SL Accident & Emergency Room    Y    O
+           SLCDEN      SL Dental Dept                  Y    O
+           SLCDIA      SL Diabetic Clinic              Y    O
+           SLCDIE      SL Dietetics Clinic             Y    O
+           SLCENT      SL ENT Clinic                   Y    O
+           SLCEYE      SL Eye Clinic                   Y    O
+           SLCGYN      SL Gynaecology Clinic           Y    O
+           SLCHYP      SL Hypertensive Clinic          Y    O
+           SLCISO      SL Isolation Clinic             Y    O
+           SLCMATER    SL Maternity                    Y    O
+           SLCMED      SL Medical Clinic               Y    O
+           SLCOCC      SL Occupational Therapy         Y    O
+           SLCORT      SL Orthopaedic Clinic           Y    O
+           SLCPAE      SL Paediatric Clinic            Y    O
+           SLCPHY      SL Physiotherapy                Y    O
+           SLCPS       SL Clinical Psychology          Y    O
+           SLCPSY      SL Psychiatric Clinic           Y    O
+           SLCRAD      SL Radiology Dept               Y    O
+           SLCSCW      SL Social Workers               Y    O
+           SLCSRH      SL Sexual Reproductive Health   Y    O
+           SLCSTA      SL Staff Clinic                 Y    O
+           SLCSUR      SL Surgical Clinic              Y    O
+           SLCTBS      SL Tuberculosis Clinic          Y    O
+           SLCURO      SL Urologist Clinic             Y    O
+           SLCVALELA   SL VALELA CLINIC                Y    O
+           SLCYFC      SL Youth Friendly Clinic        Y    O
+           SLCYOU      SL Youth Friendly Clinic        N    O
+           SLDETH      SL Delivery Theatre             Y    O
+           SLDHIS      Scottish DHIS                   Y    O
+           SLDLAB      SL Laboratory                   Y    O
+           SLDOPD      SL Outpatient Department        Y    O
+           SLDPHA      SL Pharmacy                     Y    O
+           SLEYECW     SL Eye Campaign Ward            N    I
+           SLFMEDW     SL Female Medical Ward          Y    I
+           SLFPSYW     SL Female Psyciatric Ward       Y    I
+           SLFSURW     SL Female Surgical ward         Y    I
+           SLGYTH      SL Gynae Theatre                Y    O
+           SLISOW      SL Isolation Ward               Y    I
+           SLLABOW     SL Labour Ward                  Y    I
+           SLMATH      SL Major Theatre                Y    O
+           SLMITH      SL Minor Theatre                Y    O
+           SLMMEDW     SL Male Medical Ward            Y    I
+           SLMPSYW     SL Male Psyciatric Ward         Y    I
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 48
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           SLMSURW     SL Male Surgical Ward           Y    I
+           SLPAESW     SL Surgical Paediatric Ward     Y    I
+           SLPOSNW     SL Post Natal Ward              Y    I
+           SLREVENUE   SL Scottish Livingston Revenue  Y    O
+           SLSCBU      SL Special Baby Unit            Y    I
+           SLTBSW      SL Tuberculosis Ward            Y    I
+           SLVALELA    SL VALELA WARD                  Y    I
+           SPCBOI      Boipelego Clinic                Y    O
+           SPCKAD      Kadimo Clinic                   Y    O
+           SPCNEW      Newtown Clinic                  Y    O
+           SPCNUT      Nutrition Clinic                Y    O
+           SPCSE       Serowe Clinic Clinic            N    O
+           SPCSER      Serowe Clinic                   Y    O
+           THANTNW     TH Ante-Natal ward              Y    I
+           THCCWC      TH CWC Clinic                   Y    O
+           THCDEN      TH Dental clinic                Y    O
+           THCDIE      TH Dietetic Clinic              Y    O
+           THCEYE      TH Eye Clinic                   Y    O
+           THCHTC      TH HIV Testing & Counseling     Y    O
+           THCHYP      TH Hypertensive Clinic          Y    O
+           THCMED      TH Hypertension/Diabetic clini  Y    O
+           THCMEN      TH Men's Clinic                 Y    O
+           THCNUR      TH OPD Nurse Clinic             Y    O
+           THCOBW      TH Observation Department       Y    O
+           THCOCC      TH Occupational Therapy         Y    O
+           THCORC      TH Out Reach Clinic             Y    O
+           THCPSY      TH Psychiatric clinic           Y    O
+           THCSTC      TH Staff Clinic                 Y    O
+           THCTB       TH TB Clinic                    Y    O
+           THCVIA      TH VIA Clinic                   Y    O
+           THCWCC      TH Wellness & Campaigns Clinic  Y    O
+           THCYOU      TH Youth clinic                 Y    O
+           THDAER      TH Accident & Emergency         Y    O
+           THDHIS      Thamaga DHIS                    Y    O
+           THDLAB      TH Laboratory department        Y    O
+           THDOPD      TH Outpatient department        Y    O
+           THDPHA      TH Pharmacy department          Y    O
+           THDRAD      TH Radiology department         Y    O
+           THDSOC      TH Social Work Dept             Y    O
+           THFGENW     TH Female Ward                  Y    I
+           THFISOW     TH Female Isolation ward        Y    I
+           THLABOW     TH Delivery/Labour ward         Y    I
+           THMATH      TH Main Theatre                 Y    O
+           THMGENW     TH Male ward                    Y    I
+           THMISOW     TH Male Isolation ward          Y    I
+           THMITH      TH Minor Theatre                Y    O
+           THPAEDW     TH Paediatrics ward             Y    I
+           THPOSTW     TH Post-Natal ward              Y    I
+           THPRENW     TH Pre-natal Ward               Y    I
+           THPSYC      TH Psychology Clinic            Y    O
+           TSANTNW     TS Ante/Post Natal Ward         Y    I
+           TSCDEN      TS Dental Clinic                Y    O
+           TSCEYE      TS Eye Clinic                   Y    O
+           TSCGYN      TS Gynaecology                  Y    O
+           TSCMED      TS Hypertension & Diabetic Cli  Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 49
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           TSCPSY      TS Psychiatric Clinic           Y    O
+           TSCSRH      TS Sexual Reproductive Health   Y    O
+           TSCTB       TS Tubercolosis Clinic          N    O
+           TSDHIS      Tsabong DHIS                    Y    O
+           TSDLAB      TS Laboratory                   Y    O
+           TSDOPD      TS Outpatient Department        Y    O
+           TSDPHA      TS Pharmacy                     Y    O
+           TSDRAD      TS Radiology Department         Y    O
+           TSDSOC      TS Social Work Department       Y    O
+           TSFMEDW     TS Female Ward                  Y    I
+           TSHIHP      Tshimoyapula Health Post        N    O
+           TSISOW      TS Isolation Ward               Y    I
+           TSLABOW     TS Labour Ward                  Y    I
+           TSMATH      TS Main Theatre                 Y    O
+           TSMITH      TS Minor Theatre                Y    O
+           TSMMEDW     TS Male Ward                    Y    I
+           TSPAEDW     TS Paediatrics Ward             Y    I
+           TSREVENUE   TS Sundry Reveue                Y    O
+           TSSCBUW     TS Special Baby Care Unit       Y    I
+           TTANTNW     TT Ante Natal Ward              Y    I
+           TTCDEN      TT Dental Clinic                Y    O
+           TTCEYE      TT Eye Clinic                   Y    O
+           TTCMED      TT Hypertension & Diabetic Cli  Y    O
+           TTCNAT      Nata Clinic                     Y    O
+           TTCOCC      TT Occupational Health Clinic   Y    O
+           TTCPSY      TT Psychiatric Clinic           Y    O
+           TTCSOW      Sowa Township Clinic            Y    O
+           TTCSRH      TT Sexual Reproductive Health   Y    O
+           TTCYOU      TT Youth Friendly Clinic        N    O
+           TTDLAB      TT Laboratory                   Y    O
+           TTDOPD      TT Outpatient Department        Y    O
+           TTDPHA      TT Pharmacy                     Y    O
+           TTDRAD      TT Radiology Department         Y    O
+           TTDSOC      TT Social Work Department       Y    O
+           TTFMEDW     TT Female Ward                  Y    I
+           TTFTBWD     TT Female TB Ward               Y    I
+           TTLABOW     TT Labour Ward                  Y    I
+           TTMATH      TT Main Theatre                 Y    O
+           TTMATHD     TT Maternity - High Dependacy   Y    I
+           TTMITH      TT Minor Theatre                Y    O
+           TTMMEDW     TT Male Ward                    Y    I
+           TTMTBWD     TT Male TB Ward                 Y    I
+           TTNEONW     TT Neo Natal Ward               Y    I
+           TTPAEDW     TT Paediatrics Ward             Y    I
+           TTPOSTW     TT Post Natal Ward              Y    I
+           TTREVENUE   TT Sundry Revenue               Y    O
+           U           UNKNOWN                         Y     
+           XAREAW      Area W Clinic               NY  N    O
+           XBDFCLI     BDF Clinic                  MA  N    O
+           XBLOCK9     Block 9                         Y    O
+           XBONTLC     Bontleng Clinic                 Y    O
+           XBOTDEF     Botswana Defence Force      GA  N    O
+           XCHUHHP     Chuhumuchu Health Post 14.4.17  Y    O
+           XCMADIB     Madiba Health Post              Y    O
+           XCOEMOLC    College of Education   05-3-15  N    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 50
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           XCWAGAHP    Cwagare H Post                  Y    O
+           XDRJOOM     Doctor Jooma's Clinic       MA  N    O
+           XDUKWIC     Dukwi Clinic                NY  Y    O
+           XGENPRI     General Private Location    GA  N    O
+           XGENPRS     General Private Location    SE  N    O
+           XGHAHOS     Ghanzi Hospital        07-2-01  N    O
+           XGHANPH     Gantsi Primary Hospital  7-2-1  N    O
+           XGHANTC     Gantsi Clinic          07-3-04  N    O
+           XGLENVA     Glen Valley                 GA  N    O
+           XGULUHP     Gulubane Helath Post   02-4-03  N    O
+           XGUMHOS     Gumare Hospital             MA  Y    O
+           XGWEHOS     Gweta Hospital              MA  Y    O
+           XJWCMAOK    JW Maokane clinic               Y    O
+           XKANGNHL    Kang Clinic                     N    O
+           XKANGPM     Kang Clinic                     Y    O
+           XKASHOS     Kasane Hospital             MA  N    O
+           XKAUNGW     Kaungwe Health Post             Y    O
+           XLABOPD     Lab Outpatient Department   SE  N    O
+           XLOOLOC     Loologane Clinic       05-3-25  N    O
+           XMABESHP    Mabesekwa Health Post  25-4-05  Y    O
+           XMAFHIKC    Mafhikwa Clinic                 Y    O
+           XMAKAK      Makakung                    MA  N    O
+           XMAKAL      Makalamabedi                MA  N    O
+           XMANDHP     Mandunyane H Post      25-4-02  Y    O
+           XMANKC      Mankgodi Clinic                 Y    O
+           XMAROBHP    Marobela Health Post        NY  Y    O
+           XMOGOR      Mogorosi                    SE  N    O
+           XMOKGOC     Mokgoro Clinic              NY  Y    O
+           XMOLSCH     Molepolole Scottish L.Hosp 5-1  N    O
+           XMOSEHP     Mosetse Health Post         NY  Y    O
+           XMOTLAP     Motlapi                     MA  N    O
+           XMPRIVAT    LAB Private OPD             MA  N    O
+           XMPROPD     LAB Private Patient OPD     MA  N    O
+           XNKOYACL    Nkoyaphiri Clinic               Y    O
+           XNSHAHP     Nshakashogwe Health Post    NY  Y    O
+           XOKAVAN     Okavango Informatory Clinic MA  N    O
+           XPHASEIIC   Phase II Clinic                 Y    O
+           XPLTHP      Plateau Health Post         PM  N    O
+           XPOLICC     Police College              GA  N    O
+           XRUGWAC     Rugwana Clinic              PM  N    O
+           XSEKOMHP    Sekondomboro Health Post        Y    O
+           XSESEHP     Sese Health Post            FR  Y    O
+           XSETRDI     Sexually Trans Disease      GA  N    O
+           XSHEROB     Shorobe Clinic         01-3-07  N    O
+           XSORILHP    Sorilatholo H Post    20-4-13   N    O
+           XSPRIVAT    LAB Private OPD             SE  N    O
+           XSSKBC      SSKB                        GA  N    O
+           XTATSID     Tati Siding                 FR  N    O
+           XTHIBC      Thibelo Clinic                  Y    O
+           XTSAMAY     Tsamaya                     FR  N    O
+           XTUBUHP     Tubu Health Post       14-4-09  Y    O
+           XTUMASC     Tumasera Clinic                 Y    O
+           XUNIT5C     Unit 5 Clinic          22-3-04  Y    O
+           XXSTCONDC   St. Condrads Clinic    17-3-05  N    O
+           YYHJJJJ     HJUHJHHJ                        Y    O
+DATE: 22/05/24 @ 1229  MIS Database                        TEST           PAGE 51
+USER: KAGTSH01         MIS LOCATION DICTIONARY BY LAB SORT # 
+
+LAB SORT#  MNEMONIC    NAME                           ACT  TYPE
+
+           ZCBBBPI     Bobonong Hospital IDCC   BP     Y    O
+           ZCBBMDI     Mmadinare Hospital IDCC   MD    Y    O
+           ZCBOLHI     Letlhakane Hospital IDCC  LH    Y    O
+           ZCBORKI     Rakops Hospital IDCC  RK        Y    O
+           ZCCEGWI     Gweta Hospital IDCC  GW         Y    O
+           ZCCETTI     Tutume Hospital IDCC  TT        Y    O
+           ZCCHKAI     Kasane Hospital IDCC  KA        Y    O
+           ZCGGBRHS3   Broadhurst 3 Clinic IDCC  GGC   N    O
+           ZCGGNKOYA   Nkoyaphiri Clinic IDCC  GGC     N    O
+           ZCGGTLOKN   Tlokweng Main Clinic IDCC  GGC  N    O
+           ZCGHGHI     Goodhope Hospital IDCC   GH     Y    O
+           ZCGHGPI     Gantsi Primary Hospital IDCC    Y    O
+           ZCKESLI     Scottish Livingstone IDCC       Y    O
+           ZCKETHI     Thamaga Hospital IDCC   TH      Y    O
+           ZCKNHKI     Hukuntsi Hospital IDCC  HK      Y    O
+           ZCKSTSI     Tsabong Hospital IDCC           Y    O
+           ZCMABOS     Boseja Clinic               MA  N    O
+           ZCMABOY     Boyei Clinic                MA  N    O
+           ZCMAMAI     Maun General Hospital IDCC  MA  N    O
+           ZCMAMCC     Maun Council Clinic         MA  N    O
+           ZCMASED     Sedie Clinic                MA  N    O
+           ZCMHMHI     Mahalapye Hospital IDCC         Y    O
+           ZCMHSFI     Sefhare Hospital IDCC   SF      Y    O
+           ZCNEMSI     Masunga Hospital IDCC  MS       Y    O
+           ZCNGBOS     Boseja Clinic               MA  Y    O
+           ZCNGBOY     Boyei Clinic                MA  Y    O
+           ZCNGGUI     Gumare Hospital IDCC  GU        Y    O
+           ZCNGJPKI    JP Kavindama Hospital IDCC JPK  Y    O
+           ZCNGJUB     Jubilee Clinic              MA  N    O
+           ZCNGMCC     Maun Council Clinic         MA  N    O
+           ZCNGSED     Sedie Clinic                MA  Y    O
+           ZCSEBLI     Bamalete Lutheran Hosp IDCC BL  Y    O
+           ZCSOKSI     Kanye Hospital IDCC  KS         Y    O
+           ZCSPBOI     Boipelego Clinic            SE  Y    O
+           ZCXBSEL     Selebi Phikwe Hospital IDCC SB  N    O
+           ZCXLOBATH   Athlone Hospital IDCC    AT     Y    O
+           ZCXMOCDRH   Deborah Hospital IDCC    DM     Y    O
+           ZCXMOCDRM   Deborah Hospital IDCC    DM     N    O
+           ZCXSBSEL    Selebi Phikwe Hospital IDCC SB  Y    O
+           ZCXSPPA     Palapye Hospital IDCC    PP     Y    O
+           ZFRARW      Area West Clinic            FR  N    O
+           ZFRGEE      Gerald Estate Clinic        FR  N    O
+           ZM          MA MT Ward                  MA  N    I
+           ZN          NY MT Ward                  NY  N    I
+           ZP          PM MT Ward                  PM  N    I
+           ZPMBON      Bontleng Clinic                 N    O
+           ZPMPMI      Princess Marina IDCC            N    O
+           ZS          SE MT Ward                  SE  N    I
+           ZSBRANA     Sbrana Psychiatric Hospital     N    O
+           ZZMADOC     MA Doctors Office               Y    D
+           ZZMALAB     MA Laboratory                   Y    D
+           ZZNYLAB     NY Laboratory                   Y    D
+           ZZPMDOC     PM Doc Offices in Admin Block   Y    D
+           ZZPMLAB     PM Laboratory                   Y    D
+           ZZSELAB     SE Laboratory                   Y    D
+

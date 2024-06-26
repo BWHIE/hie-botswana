@@ -8,6 +8,13 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.yarn
+dist/
+
+#Python 
+__pycache__/
+*.venv 
+venv/
 
 # Runtime data
 pids
@@ -69,6 +76,7 @@ typings/
 
 # docker data volumes
 **/data
+!/projects/openhim-mediator-fhir-converter/data
 
 # production
 /docs/build
@@ -84,3 +92,5 @@ platform-macos
 instant-linux
 instant.exe
 instant-macos
+
+/log

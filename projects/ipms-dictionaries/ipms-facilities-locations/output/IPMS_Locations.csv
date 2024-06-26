@@ -1,0 +1,2534 @@
+Mnemonic,Name,Old ID,Active,Type,Category
+LEKCLI,Lekganyane Clinic,,Y,O,Local
+PMANTNW,PM Ante-Natal Ward,,Y,I,Local
+PMFMEDW,PM Female Medical Ward,,Y,I,Local
+PMFORTW,PM Female Orthopaedic Ward,,Y,I,Local
+PMFSURW,PM Female Surgical Ward,,Y,I,Local
+PMGICUW,PM Intensive Care Unit Ward,,Y,I,Local
+PMGYNEW,PM Gynaecology Ward,,Y,I,Local
+PMLABOW,PM Labour Ward,,Y,I,Local
+PMMMEDW,PM Male Medical Ward,,Y,I,Local
+PMMORTW,PM Male Orthopaedic Ward,,Y,I,Local
+PMMSURW,PM Male Surgical Ward,,Y,I,Local
+PMONCW,PM Oncology Ward,,Y,I,Local
+PMOPHTW,PM Ophthalmology Ward,,Y,I,Local
+PMPAEMW,PM Paeds Medical Ward,,Y,I,Local
+PMPAESW,PM Paeds Surgical Ward,,Y,I,Local
+PMPOSNW,PM Post-Natal Ward,,Y,I,Local
+PMPRIVW,PM Private Ward,,Y,I,Local
+PMCONC,PM Oncology Clinic,,Y,O,Local
+PMPIDCCC,PM Paeds IDCC Clinic,,Y,O,Local
+XBANATR,Bana Trial,GA,Y,O,Remote
+XKHIHP,khisa Health Post,,Y,O,Remote
+XBAMALH,Bamalete Lutheren Hos,17-1-01,Y,O,Remote
+XGBOTUS,Botusa,GA,Y,O,Remote
+XNHL,National Health Laboratory,,Y,O,Remote
+XIHS,Institute of Health Sciences,,Y,O,Remote
+XSEBELE,Sebele Clinic,GA,Y,O,Remote
+XLESIRC,Lesirane Clinic,05-3-22,Y,O,Remote
+XPOLICE,Police College,GA,Y,O,Remote
+XKAATEL,Kgatelopele,GA,N,O,Remote
+XONALED,Old Naledi,GA,Y,O,Remote
+XTLOKMC,Tlokweng Main Clinic,17-3-07,Y,O,Remote
+XTLOKWE,Tlokweng,GA,Y,O,Remote
+XMAFITC,Mafitlhakgosi Clinic,17-3-10,Y,O,Remote
+XKHAYAHP,Khayakholo Health Post,17-4-01,Y,O,Remote
+XNKAIKHP,Nkaikela Health Post,17-4-05,Y,O,Remote
+XNKAIKE,Nkaikela,GA,N,O,Remote
+XKHAYAK,Khayakholo,17-4-01,Y,O,Remote
+XSBRANA,Sbrana Psychiatric Hospital,,Y,O,Remote
+XMOGODI,Mogoditshane Clinic,05-3-12,Y,O,Remote
+XNKOYAC,Nkoyaphiri Clinic,05-3-16,Y,O,Remote
+XNKOYAP,Nkoyaphiri Clinic,05-3-16,N,O,Remote
+XTSHOLC,Tsholofelo Clinic,15-3-10,Y,O,Remote
+XMMOPAN,Mmopane Health Post,05-4-12,Y,O,Remote
+XBDFTHE,BDF Thebephatshwa,PM,Y,O,Remote
+XKOPON,Kopong Clinic,05-3-06,Y,O,Remote
+XMETSIM,Metsimotlhabe Clinic,05-3-09,Y,O,Remote
+XGABAN,Gabane Clinic,05-3-04,Y,O,Remote
+XPRISON,Prisons,GA,Y,O,Remote
+XGABWES,Gaborone West,GA,Y,O,Remote
+XUNBOTS,University of Botswana,GA,Y,O,Remote
+XBFWASS,Bot Family Welfare Assoc,GA,Y,O,Remote
+XSTDCLI,STD Clinic,GA,Y,O,Remote
+XVILLAG,Village Clinic,GA,Y,O,Remote
+XBTACLI,BTA,GA,Y,O,Remote
+XGPRIVAT,LAB Private Patient OPD,GA,Y,O,Remote
+XSTJOSE,St Josephs,GA,Y,O,Remote
+XHEACEN,Health Centre,GA,Y,O,Remote
+XTBLOC,TB Location,GA,Y,O,Remote
+XGUMAPH,Gumare Primary Hosp,14-2-01,Y,O,Remote
+XSERONG,Seronga Clinic,14-3-02,Y,O,Remote
+XXAKSHA,Xakau Shakawe,PM,Y,O,Remote
+XNOKANE,Nokaneng Clinic,14-3-04,Y,O,Remote
+XXAKAOC,Xakao Clinic,14-3-06,Y,O,Remote
+XGUMAC,Gumare Clinic,14-3-07,Y,O,Remote
+XQANGC,Qangwa Clinic,14-3-05,Y,O,Remote
+XSEPOC,Sepopa Clinic,14-3-09,Y,O,Remote
+XBEETHP,Beetsha Health Post,14-4-10,Y,O,Remote
+XGUNUTHP,Gunutsoga Health Post,14-4-03,Y,O,Remote
+XKAUXHP,Kauxwi Health Post,14-4-04,Y,O,Remote
+XMOGOTHP,Mogotho Health Post,14-4-05,Y,O,Remote
+XHABUHP,Habu Health Post,14-4-06,Y,O,Remote
+XNXAUNHP,Nxaunxau Health Post,14-4-07,Y,O,Remote
+XNXOMHP,Nxomokao Health Post,14-4-08,Y,O,Remote
+XNGARHP,Ngarange Health Post,14-4-12,Y,O,Remote
+XNXAMHP,Nxamasere Health Post,14-4-14,Y,O,Remote
+XKAJAJHP,Kajaja Health Post,,Y,O,Remote
+XIKOGAHP,Ikoga Health Post,14-4-15,Y,O,Remote
+XXAXAHP,Xaxa Health Post,14-4-16,Y,O,Remote
+XGHANHP,Ghani Health Post,14-4-18,Y,O,Remote
+XGUDIHP,Gudigwa Health Post,14-4-19,Y,O,Remote
+XSHAKWC,Shakawe Clinic,14-3-03,Y,O,Remote
+XNYARAHP,NGARANGE HEALTH POST,,N,O,Remote
+XHUKUPH,Hukuntsi Primary Hosp,24-2-01,Y,O,Remote
+XKANG,Kang Clinic,24-3-02,Y,O,Remote
+XHUKUNT,Hukuntsi Clinic,24-3-01,Y,O,Remote
+XMAKEHP,Make Health Post,24-4-05,Y,O,Remote
+XNCAAHP,Ncaang Health Post,24-4-01,Y,O,Remote
+XINALEHP,Inalegolo Health Post,24-4-02,Y,O,Remote
+XLEHUTHP,Lehututu Health Post,24-4-03,Y,O,Remote
+XLOKGWHP,Lokgwabe Health Post,24-4-04,Y,O,Remote
+XHUNHC,Hunhukwe Clinic,,Y,O,Remote
+XMONOHP,Monong Health Post,24-4-06,Y,O,Remote
+XTSHANEHP,Tshane Health Post,24-4-07,Y,O,Remote
+XTSHAPHP,Tshane Prison Health Post,24-4,Y,O,Remote
+XPHUDHP,Phuduhudu Health Post,24-4-08,Y,O,Remote
+XUKHWHP,Ukhwi Health Post,24-4-09,Y,O,Remote
+XHUKUHP,Hukuntsi West H Post,24-4-11,Y,O,Remote
+XMOSELHP,Moselebe Health Post,24-4-,Y,O,Remote
+XNGWATHP,Ngwatle Health Post,24-4-13,Y,O,Remote
+XGOODPH,Goodhope Primary Hosp,23-2-01,Y,O,Remote
+XDIGAWC,Digawana Clinic,23-3-01,Y,O,Remote
+XKANGWHP,Kangwe H Post,,Y,O,Remote
+XPHIMOL,Phitshane Molopo Clinic,23-3-6,Y,O,Remote
+XPITSAN,Pitsane Clinic,23-3-07,Y,O,Remote
+XMMATHE,Mmathethe Clinic,23-3-05,Y,O,Remote
+XMABULE,Mabule Clinic,23-3-03,Y,O,Remote
+XHEBRON,Hebron Clinic,23-3-02,Y,O,Remote
+XMETLOC,Metlobo Clinic,23-3-04,Y,O,Remote
+XGOODHP,Goodhope Clinic,,Y,O,Remote
+XRAMAC,Ramatlabama Clinic,23-3-08,Y,O,Remote
+XTSHIDIC,Tshidilamolomo Clinic,23-3-09,Y,O,Remote
+XCWAANHP,Cwaanyaneng H Post,,Y,O,Remote
+XDIKHUKHP,Dikhukhung H post,,Y,O,Remote
+XDITLHHP,Ditlharapa Health Post,23-4-04,Y,O,Remote
+XGATHWHP,Gathwane Health Post,23-4-05,Y,O,Remote
+XLEPORHP,Leporung H post,,Y,O,Remote
+XLOROLHP,Lorolwane H Post,,Y,O,Remote
+XMMAKHP,Mmakgori Health Post,23-4-11,Y,O,Remote
+XMOGOJHP,Mogojogojwe H Post,23-4-12,Y,O,Remote
+XMOKATHP,Mokatako Health Post,,Y,O,Remote
+XMOKGOMAHP,Mokgomane Health Post,23-4-14,Y,O,Remote
+XKGOROHP,Kgoro H Post,,Y,O,Remote
+XSHEEPHP,Sheepfarm H Post,,Y,O,Remote
+XRAKHUHP,Rakhuna Health Post,23-4-17,Y,O,Remote
+XRAKMILCC,Rakhuna Military Clinic,,Y,O,Remote
+XPAPATHP,Papatlo H Post,,Y,O,Remote
+XSEKHUHP,Sekhutlane Health Post,23-4-21,Y,O,Remote
+XTLHARESHP,TLHARESELEELE H POST,,Y,O,Remote
+XSEDIBHP,Sedibeng H Post,,Y,O,Remote
+XPHIHEHP,Phihetswane H Post,,Y,O,Remote
+XSEGWAHP,Segwagwa H Post,,Y,O,Remote
+XGAMAJHP,Gamajaalela H Post,23-4-,Y,O,Remote
+XMETLOHP,Metlojane H Post,23-4-26,Y,O,Remote
+XTHAMPH,Thamaga Primary Hospital,5-2-1,Y,O,Remote
+XMMANKC,Mmankgodi Clinic,05-3-10,Y,O,Remote
+XTHAMAC,Thamaga Clinic,05-3-20,Y,O,Remote
+XMANYAC,Manyana Clinic,06-03-05,Y,O,Remote
+XGAKGHP,Gakgatla Health Post,05-4-02,Y,O,Remote
+XKUBANHP,Kubung Health Post,05-4-07,Y,O,Remote
+XKUMAKC,Kumakwane Health Post,05-4-08,Y,O,Remote
+XPHUTIC,Phuting Health Post,05-4-13,Y,O,Remote
+XRUNGHP,Rungwana Health Post,05-4-24,Y,O,Remote
+XLOBATH,Lobatse Athlone Hosp,18-1-02,Y,O,Remote
+XMENTAH,Mental Referal Hosp,18-1-02,Y,O,Remote
+XTSOPEC,Tsopeng Clinic,18-3-07,Y,O,Remote
+XPELCEC,Peleng Central Clinic,18-3-03,Y,O,Remote
+XPELEAC,Peleng East Clinic,18-3-04,Y,O,Remote
+XWOODHC,Woodhall Clinic,18-3-05,Y,O,Remote
+XATHOLON,Athlone Hospital,,N,O,Remote
+XMOLAPC,Molapowabojang Clinic,06-3-06,Y,O,Remote
+XMOTSWC,Motswedi Clinic,13-3-08,Y,O,Remote
+XKGSOIN,Kgosing Clinic,05-3-05,Y,O,Remote
+XMOGOKHP,Magokotswane H Post,05-4-20,Y,O,Remote
+XMAFHIC,Mafhikana Clinic,06-3-04,Y,O,Remote
+XKGWATC,Kgwatlheng Clinic,06-3-02,Y,O,Remote
+XLOTLHC,Lotlhakane East Clinic,6-3-3,Y,O,Remote
+XKANYMC,Kanye Main Clinic,06-3-01,Y,O,Remote
+XMOSHCC,Moshupa Council Clinic,06-3-07,Y,O,Remote
+XMOSHUSDAC,Moshupa SDA Clinic,,Y,O,Remote
+XNTLHAC,Ntlhantlhe Clinic,06-3-09,Y,O,Remote
+XPITSEC,Pitseng Clinic,06-3-10,Y,O,Remote
+XRANAKAC,Ranaka Clinic,06-03-11,Y,O,Remote
+XDADAC,Joosub Dada Clinic,,Y,O,Remote
+XMMAMOC,Mmamokhasi Clinic,06-3-14,Y,O,Remote
+XDIABOHP,Diabo Health Post,06-4-01,Y,O,Remote
+XGASITHP,Gasita Health Post,06-4-02,Y,O,Remote
+XRALHP,Ralekgetho Health Post,06-4-09,Y,O,Remote
+XKGOMOKHP,Kgomokasitwa H Post,06-4-04,Y,O,Remote
+XMAGOTH,Magotlhwane Hospital,,Y,O,Remote
+XLEKGOHP,Lekgolobotlo H Post,06-4-05,Y,O,Remote
+XLOBATPC,Lobatse Prison Clinic,18-3-01,Y,O,Remote
+XLOTLHP,Lotlhakane W H Post,06-4-06,Y,O,Remote
+XBMCIC,BMC I Clinic,18-3-01,Y,O,Remote
+XMOSHAHP,Moshaneng Health Post,06-4-07,Y,O,Remote
+XLOTHECL,Letlhakane Clininc,13-3-01,Y,O,Remote
+XMOSHUHP,Moshupa Health Post,06-4-08,Y,O,Remote
+XSEBHP,Sebego Health Post,06-4-11,Y,O,Remote
+XSELOKHP,Selokolela H Post,06-4-12,Y,O,Remote
+XSESE,Sese Health Post,06-4-13,Y,O,Remote
+XTSHWAANHP,Tshwaane Health Post,06-4-16,Y,O,Remote
+XMOGOTLHP,Mogotlhwane H Post,06-4-18,Y,O,Remote
+XDILOLHP,Dilolwe Health Post,06-4-19,Y,O,Remote
+XMOGONHP,Mogonye Health Post,06-4-20,Y,O,Remote
+XSEHERHP,Seherelela H Post,06-4-22,Y,O,Remote
+XMOCDRH,Mochudi Deborah Retief Hosp,9-,Y,O,Remote
+XDEBORH,Deborah Retief Hospital,9-1-1,N,O,Remote
+XARTEC,Artesia Clinic,09-3-01,Y,O,Remote
+XMMATHC,Mmathubudukwane Clinic,09-3-3,Y,O,Remote
+XOODICL,Oodi Clinic,09-3-07,Y,O,Remote
+XMORWAC,Morwa Clinic,09-3-11,Y,O,Remote
+XMAKAKC,Makakatlela Clinic,09-3-09,Y,O,Remote
+XMOCHIIC,Mochudi II Clinic,09-3-05,Y,O,Remote
+XOLIPHC,Oliphants Drift Clinic,09-3-6,Y,O,Remote
+BOJEIC,Bojesa I Clinic,09-3-08,N,O,Local
+XPHAPC,Phaphane Clinic,09-3-10,Y,O,Remote
+XBOSEIIC,Boseja II Clinic,09-3-12,Y,O,Remote
+XBODUNHP,Bodungwane H Post,09-4-01,Y,O,Remote
+XRAMONHP,Ramonaka Health Post,09-4-02,Y,O,Remote
+XDIKGOHP,Dikgonnye Health Post,09-4-03,Y,O,Remote
+XDIKWHP,Dikwididi Health Post,09-4-04,Y,O,Remote
+XKGOMOHP,Kgomodiatshaba H Post,09-4-05,Y,O,Remote
+XKHURUHP,Khurutshe Health Post,09-4-06,Y,O,Remote
+XLESHHP,Leshibitse Health Post,09-4-07,Y,O,Remote
+XMALOHP,Malolwane Health Post,09-4-08,Y,O,Remote
+XMALOTHP,Malotwana Health Post,09-4-09,Y,O,Remote
+XMATEBHP,Matebele Health Post,09-4-10,Y,O,Remote
+XMAKOPH,Makopane Hospital,,Y,O,Remote
+XMODIHP,Modipane Health Post,09-4-11,Y,O,Remote
+XMORHP,Morwa H Post,,Y,O,Remote
+XMORWAHP,Morwa Health Post,09-4-12,Y,O,Remote
+XPILANHP,Pilane Health Post,09-4-13,Y,O,Remote
+XRASHP,Rasesa Health Post,09-4-15,Y,O,Remote
+XSIKWHP,Sikwane Health Post,09-4-16,Y,O,Remote
+XMAKGOHP,Makgophana H Post,09-4-18,Y,O,Remote
+XMOCHPRHP,Mochudi Prisons HP,09-4-17,Y,O,Remote
+XRAMBLH,Ramotswa Bamalete Luth Hosp,17,Y,O,Remote
+XMOGOBC,Mogobane Clinic,17-3-01,Y,O,Remote
+XLESETC,Lesetlhana Clinic,17-3-08,Y,O,Remote
+XTAUNCL,Taung Clinic,17-3-03,Y,O,Remote
+XRAMSTC,Ramotswa Station Clinic,17-3-3,Y,O,Remote
+XOTSECL,Otse Clinic,17-3-02,Y,O,Remote
+XSIGAC,Siga Clinic,17-3-04,Y,O,Remote
+XPOLIC,Police Clinic-Otse,17-3-09,Y,O,Remote
+XMETSIHP,Metsimaswaane H Post,17-4-03,Y,O,Remote
+XMOGOBHP,Mogobane Health Post,17-4-04,Y,O,Remote
+XTSABOPH,Tsabong Primary Hosp,11-2-01,Y,O,Remote
+XBOKSC,Bokspits Clinic,11-3-01,Y,O,Remote
+XHEREFC,Hereford Clinic,11-3-02,Y,O,Remote
+XMIDDLC,Middlepits Clinic,11-3-03,Y,O,Remote
+XMAKOPC,Makopong Clinic,11-3-04,Y,O,Remote
+XKHUIHP,Khuis Health Post,11-4-04,Y,O,Remote
+XTSABOC,Tsabong Clinic,11-3-06,Y,O,Remote
+XKOLONHP,Kolonkwaneng Health Post,11-04,Y,O,Remote
+XVERDAC,Verda Clinic,11-3-05,Y,O,Remote
+XWERDAC,Werda Clinic,11-3-05,Y,O,Remote
+XVAALHP,Vaalhoek Health Post,11-4-16,Y,O,Remote
+XOMAWEHP,Omaweneno Helath Post,11-4-05,Y,O,Remote
+XGAKHIHP,Gakhibane Health Post,11-4-01,Y,O,Remote
+XSTRUIHP,Struizendam H Post,11-4-08,Y,O,Remote
+XDRIEHHP,Draiehoek Health Post,11-4-09,Y,O,Remote
+XMAUBHP,Maubelo Health Post,11-4-10,Y,O,Remote
+XMARAHP,Maralaleng Health Post,11-4-11,Y,O,Remote
+XKHAWHP,Khawa Health Post,11-4-12,Y,O,Remote
+XKOKOTHP,Kokotsha Health Post,11-4-13,Y,O,Remote
+XMALEHP,Maleshe Health Post,11-4-14,Y,O,Remote
+XBOGOHP,Bogogobo Health Post,11-4-15,Y,O,Remote
+XJWANMH,Jwaneng Mine Hospital,22-1-01,Y,O,Remote
+XJWATCC,Jwaneng Town Council Clinic,22,Y,O,Remote
+XMABUTC,Mabutsane Clinic,21-3-02,Y,O,Remote
+XKHAKHC,Khakhea Clinic,21-3-01,Y,O,Remote
+XDITSWC,Ditsweletse Clinic,22-3-04,Y,O,Remote
+XTSHIMC,Tshimologo Clinic,22-3-03,Y,O,Remote
+XMAOKAC,Maokane Clinic,06-3-13,Y,O,Remote
+XSAMAHP,Samane Health Post,06-4-10,Y,O,Remote
+XTHANHP,Thankane Health Post,06-4-15,Y,O,Remote
+XMOKHHP,Mokhomma Health Post,06-4-21,Y,O,Remote
+XMORWC,Morwamusu Clinic,21-3-03,Y,O,Remote
+XKENGHP,Keng Health Post,21-4-01,Y,O,Remote
+XKHONHP,Khonkhwa Health Post,21-4-02,Y,O,Remote
+XKOKOHP,Kokong Health Post,21-4-03,Y,O,Remote
+XITHOLHP,Itholoke Health Post,21-4-04,Y,O,Remote
+XTSONYHP,Tsonyane Health Post,06-4-17,Y,O,Remote
+XMAHOHP,Mahotshwane Health Post,21-4-5,Y,O,Remote
+XSEKOHP,Sekoma Health Post,21-4-06,Y,O,Remote
+GGCJULLAB,GGC Julia Molefe Clinic BLK,9,Y,I,Local
+GGCLESLAB,GGC Lesirane Laboratory,,Y,I,Local
+GGCNKALAB,GGC Nkaikela Laboratory,,Y,I,Local
+XLETLPH,Letlhakane Primary Hosp,13-2-2,Y,O,Remote
+XLETLHC,Letlhakane Clinc,13-3-01,Y,O,Remote
+XTAWANC,Tawana Clinic,13-3-09,Y,O,Remote
+XKHUMAC,Khumaga Health Post,13-4-02,Y,O,Remote
+XMOKIBC,Mokubilo Health Post,13-4-11,Y,O,Remote
+XXHUMOC,Xhumo Clinic,13-3-08,Y,O,Remote
+XMMATSC,Mmatshumo Clinic,13-3-12,Y,O,Remote
+XRAKOPH,Rakops Primary Hosp,13-2-01,Y,O,Remote
+XMOPIPC,Mopipi Clinic,13-3-02,Y,O,Remote
+XMOTOC,Motopi Clinic,13-3-03,Y,O,Remote
+XKEDIAHP,Kedia Health Post,13-4-01,Y,O,Remote
+XRAKOPC,Rakops Health Post,13-4-03,Y,O,Remote
+XRAILHP,Railways Health Post,NY,Y,O,Remote
+XMMADIHP,Mmadikola Health Post,13-4-04,Y,O,Remote
+XKWEEHP,Kwee Health Post,13-4-05,Y,O,Remote
+XMOREHP,Moreomaoto Health Post,13-4-06,Y,O,Remote
+XMOSUHP,Mosu Health Post,13-4-07,Y,O,Remote
+XMOKOHP,Makoboxane Health Post,13-4-8,Y,O,Remote
+XTOROHP,Toromoja Health Post,13-4-09,Y,O,Remote
+XMMEYAHP,Mmeya Health Post,13-4-10,Y,O,Remote
+XXEREHP,Xere Health Post,13-4-12,Y,O,Remote
+XMASAC,Orapa Masa Clinic,13-3-13,Y,O,Remote
+XPALAPH,Palapye Primary Hospital,3-2-1,Y,O,Remote
+XLOTSAC,Lotsane Clinic,03-3-13,Y,O,Remote
+XKEDIRC,Kediretswe Clinic,03-3-19,Y,O,Remote
+XKHURUC,Khurumela Clinic,03-3-22,Y,O,Remote
+XMORUPC,Morupule Colliary Clinic,3-3-6,Y,O,Remote
+XLECHC,Lecheng Clinic,03-3-16,Y,O,Remote
+XGOOTHP,Gootau Health Post,03-4-01,Y,O,Remote
+XGOOSHP,Goosekgweng H Post,03-4-03,Y,O,Remote
+XMALAHP,Malaka Health Post,03-4-08,Y,O,Remote
+XMANAHP,Manaledi Health Post,03-4-09,Y,O,Remote
+XMATHP,Matlhakola H Post,03-4-10,Y,O,Remote
+XMOKUHP,Mokungwana Health Post,03-4-12,Y,O,Remote
+XMOENGHP,Moeng College HP,03-4-06,Y,O,Remote
+XTOPIHP,Topisi Health Post,03-4-18,Y,O,Remote
+XMOREOMHP,Moreomabele H Post,03-4-05,Y,O,Remote
+XMOREMHP,Moremi Health Post,03-4-22,Y,O,Remote
+XLERAC,Lerala Clinic,03-3-03,Y,O,Remote
+XMAJWHP,Majwaneng Health Post,03-4-07,Y,O,Remote
+XRATHHP,Ratholo Health Post,03-4-14,Y,O,Remote
+XMAOKC,Maokatumo Clinic,03-3-10,Y,O,Remote
+XTAMAHP,Tamasane Health Post,03-4-16,Y,O,Remote
+XDILOHP,Diloro Health Post,03-4-29,Y,O,Remote
+XMOGAHP,Mogapinyana H Post,03-4-,Y,O,Remote
+XMAUNAHP,Maunatlala Clinic,03-3-04,Y,O,Remote
+XSEOLWHP,Seolwane Health Post,03-4-15,Y,O,Remote
+XMOKOKHP,Mokokwana-mosweu H P,03-4-22,Y,O,Remote
+XMATOLHP,Matolwana Health Post,03-4-,Y,O,Remote
+XRADIC,Radisele Clinic,03-3-15,Y,O,Remote
+XMADIHP,Madiaela Health Post,03-4-20,Y,O,Remote
+XMOGOHP,Mogome Health Post,03-4-23,Y,O,Remote
+XMOKHP,Mokgware Health Post,03-4-24,Y,O,Remote
+XSELPGH,Selibe Phikwe Gov Hosp,19-1-02,Y,O,Remote
+XLEPHP,Lepokole Health Post,04-4-02,Y,O,Remote
+XMABHP,Mabolwe Health Post,04-4-14,Y,O,Remote
+XPRISMAC,Mahalapye Prisons Clinic,8-3-3,Y,O,Remote
+XTSOKOHP,Tsokatshaa Health Post,12-4-12,Y,O,Remote
+XMANTSHW,Mantshwabisi Health Post 20-,4-,Y,O,Remote
+XORAPAH,Orapa Mine Hospital,13-1-01,Y,O,Remote
+XLEPOHP,Leporong H Post,23-4-08,Y,O,Remote
+XLORWHP,Lorwana H Post,23-3-10,Y,O,Remote
+XRAILWC,Railway Clinic,08-3-09,Y,O,Remote
+NYANTNW,NY Antenatal Ward,,Y,I,Local
+NYFMEDW,NY Female Medical Ward,,Y,I,Local
+NYFPSYW,NY Female Psychiatric Ward,,Y,I,Local
+XMATSHC,Matshelagabedi Clinic,02-3-11,Y,O,Remote
+NYFSURW,NY Female Surgical Ward,,Y,I,Local
+NYGICUW,NY Intensive Care Unit,,Y,I,Local
+NYGPSYW,NY Psychiatric Ward Seclusion,,Y,I,Local
+NYGYNEW,NY Gynaecology Ward,,Y,I,Local
+NYISOLW,NY Isolation Ward,,Y,I,Local
+NYLABOW,NY Labour Ward,,Y,I,Local
+NYMMEDW,NY Male Medical Ward,,Y,I,Local
+NYMPSYW,NY Male Psychiatric Ward,,Y,I,Local
+NYMSURW,NY Male Surgical Ward,,Y,I,Local
+NYPAEMW,NY Paeds Medical Ward,,Y,I,Local
+NYPAESW,NY Paeds Surgical Ward,,Y,I,Local
+NYPOSNW,NY Post Natal Ward,,Y,I,Local
+NYPRIVW,NY Private Ward,,Y,I,Local
+NYSCBU,NY Special Care Baby Unit,,Y,I,Local
+NYMORTW,NY Male Orthopaedic Ward,,N,I,Local
+NYTBW,NY TB Ward,,Y,I,Local
+XTONOTA,Tonota Clinic,NY,Y,O,Remote
+XMATHAN,Mathangwane,FR,Y,O,Remote
+XBOTSHEC,Botshelo Clinic,NY,Y,O,Remote
+XMARAPO,Marapong,FR,Y,O,Remote
+XSOWACL,Sowa,FR,Y,O,Remote
+XMASUNG,Masunga,FR,Y,O,Remote
+XFBDFCL,BDF Clinic Ftown,NY,Y,O,Remote
+XBDFFC,BDF Clinic Francistown,16-3-01,Y,O,Remote
+XBMCCLI,BMC Clinic,FR,Y,O,Remote
+XPOLANI,Polani,FR,Y,O,Remote
+XFPRISO,Prisons Clinic,16-3-04,Y,O,Remote
+XMASUPH,Masunga Primary Hospital,2-2-1,Y,O,Remote
+XMAKALC,Makaleng Clinic,02-3-01,Y,O,Remote
+XMAPOKC,Mapoka Clinic,02-3-02,Y,O,Remote
+XMASUNC,Masunga Clinic,02-3-03,Y,O,Remote
+XMATSIL,Matsiloje Clinic,02-3-04,Y,O,Remote
+XTSAMC,Tsamaya Clinic,02-3-05,Y,O,Remote
+XSELKIC,Selkirk Clinic,02-3-06,Y,O,Remote
+XSEKAKC,Sekakangwe Clinic,02-3-07,Y,O,Remote
+XTATSIC,Tati Siding Clinic,02-3-08,Y,O,Remote
+XTHEMAC,Themashanga Clinic,02-3-09,Y,O,Remote
+XNLAPHC,Nlaphwane Clinic,02-3-10,Y,O,Remote
+XRAMAKC,Ramakgwebana Clinic,02-3-12,Y,O,Remote
+XMOROKC,Moroka Clinic,02-3-13,Y,O,Remote
+XTSHEC,Tshesebe Clinic,02-3-14,Y,O,Remote
+XGUNGHP,Gungwe Health Post,02-4-08,Y,O,Remote
+XBUTALHP,Butale Health Post,02-4-01,Y,O,Remote
+XGAMHP,Gambule Health Post,02-4-02,Y,O,Remote
+XJACKAHP,Jackalas I Health Post,02-4-04,Y,O,Remote
+XJACKHP,Jackalas II H Post,02-4-05,Y,O,Remote
+XKALAKHP,Kalakamati Health Post,02-4-06,Y,O,Remote
+XMBALAHP,Mbalambi Health Post,02-4-07,Y,O,Remote
+XMOSOC,Mosojane Health Post,02-4-09,Y,O,Remote
+XMATENHP,Matenge Helath Post,02-4-10,Y,O,Remote
+XSECHEHP,Sechele Health Post,02-4-12,Y,O,Remote
+XMATOHP,Matopi Health Post,02-4-13,Y,O,Remote
+XSENYAHP,Senyawe Health Post,02-4-14,Y,O,Remote
+XSIVIYHP,Siviya Health Post,02-4-15,Y,O,Remote
+XPOLEHP,Pole Health Post,02-4-16,Y,O,Remote
+XMASUKHP,Masukwane H Post,02-4-17,Y,O,Remote
+XMABUDHP,Mabudzani Health Post,02-4-18,Y,O,Remote
+XZWENSHP,Zwenshambe Health Post,02-4-19,Y,O,Remote
+XDITLAHP,Ditladi Health Post,02-4-21,Y,O,Remote
+XLETSHP,Letsholathebe H Post,02-4-23,Y,O,Remote
+XMASINHP,Masingwaneng H Post,02-4-24,Y,O,Remote
+XKGARIHP,Kgari Health Post,02-4-25,Y,O,Remote
+XMULAMHP,Mulambakwena H Post,02-4-26,Y,O,Remote
+XMAMBOHP,Mambo Health Post,02-4-27,Y,O,Remote
+XMOWAHP,Mowana Health Post,02-4-28,Y,O,Remote
+XTONOC,Tonota Clinic,25-3-01,Y,O,Remote
+XTONOCOLC,Tonota College,25-3-03,Y,O,Remote
+XBOROLHP,Borolong Helath Post,25-4-06,Y,O,Remote
+XNATALHP,Natale Health Post,25-4-07,Y,O,Remote
+XSHASHMHP,Shashe Mooke H Post,25-4-09,Y,O,Remote
+XPALAPHNY,Palapye Primary Hosp NY,3-2-1,Y,O,Remote
+XTSHWAR,Tshwaragano Clinic,16-3-03,Y,O,Remote
+XTATTOW,Tatitown Clinic,16-3-08,Y,O,Remote
+XBOTSAC,Botsalano Clinic,16-3-05,Y,O,Remote
+XMASEGO,Masego Clinic,16-3-11,Y,O,Remote
+XGERALC,Gerald Estate Clinic,FR,Y,O,Remote
+XBOIKHU,Boikhutso Clinic,16-3-13,Y,O,Remote
+XBOITC,Boitekanelo Clinic,FR,Y,O,Remote
+XAERODR,Aerodrome,FR,Y,O,Remote
+XMANYHP,Manyanda Health Post,25-4-03,Y,O,Remote
+XNTSHEC,Ntshe Clinic,16-3-16,Y,O,Remote
+XLAPOLO,Lapologang Clinic,16-3-07,Y,O,Remote
+XTSHOLO,Tsholofelo,FR,Y,O,Remote
+XAREASC,Area S Clinic,FR,Y,O,Remote
+XAREALC,Area L Clinic,FR,Y,O,Remote
+XBOTUSA,Botusa,FR,Y,O,Remote
+XFIHS,Francistown IHS,FR,Y,O,Remote
+XBOBOPH,Bobonong Primary Hospital,4-2,Y,O,Remote
+NYPOPD,LAB Private Patient OPD,FR,Y,O,Local
+XTUTUPH,Tutume Primary Hosp,12-2-01,Y,O,Remote
+XNKANGC,Nkange Clinic,12-3-06,Y,O,Remote
+XSEBINC,Sebina Clinic,12-3-07,Y,O,Remote
+XSEPAKHP,Sepako Health post,18-11-2021,Y,O,Remote
+XMMADPH,Mmadinare Primary Hospital,4-2,Y,O,Remote
+XMATHAC,Mathathane Clinic,04-3-01,Y,O,Remote
+XTHIIC,Thini Clinic,12-3-10,Y,O,Remote
+XSELOHP,Selolwane Health Post,4-12-32,Y,O,Remote
+XCHANGC,Changate Clinic,12-3-15,Y,O,Remote
+XLEPASHP,Lepashe Health Post,12-4-05,Y,O,Remote
+XSENETC,Senete Clinic,12-3-16,Y,O,Remote
+XSEMOLC,Semolale Clinic,04-3-05,Y,O,Remote
+XNSWAZC,Nswazwi Clinic,12-3-17,Y,O,Remote
+XTSETSC,Tsetsejwe Clinic,04-3-06,Y,O,Remote
+XGOSHWC,Goshwe Health Post,12-4-04,Y,O,Remote
+XSEMIHP,Semitwe Health Post,12-4-28,Y,O,Remote
+XMATOBHP,Matobo Health Post,12-4-09,Y,O,Remote
+XMANGAC,Manga Clinic,04-3-07,Y,O,Remote
+XMATSIHP,Matsitama Health Post,12-4-10,Y,O,Remote
+XBOROTC,Borotsi Clinic,04-3-08,Y,O,Remote
+XDAGWHP,Dagwi Health Post,12-4-02,Y,O,Remote
+XMABELHP,Mabeleng Health Post,04-4-01,Y,O,Remote
+XMAGAPHP,Magapatona H Post,12-4-24,Y,O,Remote
+XKUTAMHP,Kutamogore Health Post,12-4-27,Y,O,Remote
+XMMADUHP,Mmadunyane Health Post,25-4-02,Y,O,Remote
+XGOBOHP,Gobojango Health Post,04-4-04,Y,O,Remote
+XSHASSTHP,Shashe Station H Post,25-4-01,Y,O,Remote
+XLENTSWHP,Lentswelemoriti H Post,04-4-05,Y,O,Remote
+XMADISHP,Madisakwane H Post,25-4-04,Y,O,Remote
+XROBELHP,Robelela Health Post,04-4-06,Y,O,Remote
+XMAKOBHP,Makobo Health Post,25-4-08,Y,O,Remote
+XMOREOHP,Moremabele H Post,25-4-10,Y,O,Remote
+XDAMUHP,Damuchujenaa Health Post,4-4-8,Y,O,Remote
+XMOLAHP,Molalatau Health Post,04-4-09,Y,O,Remote
+XMOLEHP,Moletemane Health Post,04-4-10,Y,O,Remote
+XMOTLHP,Motlhabaneng H Post,4-4-13,Y,O,Remote
+XMOBOLHP,Mobolwe Health Post,04-4-14,Y,O,Remote
+XGWETPH,Gweta Primary Hospital,12-2-02,Y,O,Remote
+XGWETAC,Gweta Clinic,12-3-02,Y,O,Remote
+XMAPOSHP,Maposa Health post,18-11-2021,Y,O,Remote
+XMAITEC,Maitengwe Clinic,12-3-03,Y,O,Remote
+XZOROHP,Zoroga Health Post,12-4-03,Y,O,Remote
+XGULUBHP,Gulubane Health Post,02-4-03,Y,O,Remote
+XTOBANEHP,Tobane Health Post,04-4-12,Y,O,Remote
+XTSHOHP,Tshokwe Health Post,04-4-11,Y,O,Remote
+XSEFHOC,Sefhophe Clinic,04-3-02,Y,O,Remote
+XBOTSHC,Botshabelo Clinic,19-3-06,Y,O,Remote
+XSESAMC,Sesame Clinic,19-3-08,Y,O,Remote
+XMANXHP,Manxoxae Health Post,18-11-202,Y,O,Remote
+XSOUTC,South East Ext Clinic,19-3-10,Y,O,Remote
+XINDUSC,Industrial Clinic,19-3-11,Y,O,Remote
+XTAPOLC,Tapologong Clinic,19-3-12,Y,O,Remote
+XMOGHP,Mogapi Health Post,03-4-32,Y,O,Remote
+XSERUC,Serule Clinic,25-3-02,Y,O,Remote
+XGOJWHP,Gojwane Health Post,03-4-30,Y,O,Remote
+XBDFSPC,BDF Selebi Phikwe,04-2-02,Y,O,Remote
+XBAINDPHP,Baines Drift Prisons HP,04-4-3,Y,O,Remote
+XSELPPCL,Selibi Phikwe Prisons C,04-3-4,Y,O,Remote
+XKASAH,Kasane Primary Hospital,10-2-1,Y,O,Remote
+XKACHIC,Kachikau Clinic,10-3-01,Y,O,Remote
+XPANDAMC,Pandamatenga Clinic,10-3-02,Y,O,Remote
+XPANDAC,Pandamatenga BDF Cl,10-3-03,Y,O,Remote
+XLESOMHP,Leesoma Health Post,10-4-02,Y,O,Remote
+XKAVIMHP,Kavimba Health Post,10-4-03,Y,O,Remote
+XMABALHP,Mabale Health Post,10-4-04,Y,O,Remote
+XKAZUNHP,Kazungula Health Post,10-4-05,Y,O,Remote
+XKWANBDFHP,Kwando BDF H Post,10-6-06,Y,O,Remote
+XSATAUHP,Satau Health Post,10-4-07,Y,O,Remote
+XPARAKHP,Parakarangu H Post,10-4-08,Y,O,Remote
+XKASHP,Kasane Health Post,10-4-09,Y,O,Remote
+XKAZBDFHP,Kazungula BDF H Post,10-4-10,Y,O,Remote
+XPLATHP,Plateau Health Post,10-4-11,Y,O,Remote
+XLENYBDFHP,Lenyanti BDF H Post,10-4-12,Y,O,Remote
+XFGENLOC,Francistown General Loc,FR,N,O,Remote
+XROYALC,RCPARoyal College of Australia,,Y,O,Remote
+MAFGENW,MA Female General Ward,,N,I,Local
+MAGMEDW,MA General Medical Ward,,N,I,Local
+MAGPAEW,MA Paediatrics Ward,,N,I,Local
+MAGPSYW,MA Psychiatric Ward,,N,I,Local
+MAMATEW,MA Maternity Ward,,N,I,Local
+MAMGENW,MA Male General Ward,,N,I,Local
+XTHITOC,Thito,MA,Y,O,Remote
+XSHASHP,Shashe Health Post,01-4-19,Y,O,Remote
+XSHASHHP,Shashe Health Post,01-4-19,N,O,Remote
+XMOTLOP,Motlopi,MA,Y,O,Remote
+XMAUNH,Letsholathebe II Memorial,01-1,Y,O,Remote
+XDELTMC,Delta Medical Centre,01-1-02,Y,O,Remote
+XMPRISO,Maun Prison Clinic,01-3-02,Y,O,Remote
+XMAUSSC,Maun Sec School Clinic,01-3-03,Y,O,Remote
+XMAUNC,Maun Clinic,01-3-04,Y,O,Remote
+XSEHITL,Sehitlhwa Clinic,01-3-05,Y,O,Remote
+XMBDFCL,Maun BDF Clinic,01-3-06,Y,O,Remote
+XSHOROC,Shorobe Clinic,01-3-07,Y,O,Remote
+XBOYEIC,Boyei Clinic,01-3-08,Y,O,Remote
+XMAKALA,Makalamabedi Clinic,01-3-09,Y,O,Remote
+XBOSEJC,Boseja Clinic Maun,01-3-10,Y,O,Remote
+XTSAUCL,Tsau Clinic,01-3-11,Y,O,Remote
+XSEDIEC,Sedie Clinic,01-3-12,Y,O,Remote
+XBOTHHP,Bothatogo Health Post,01-4-01,Y,O,Remote
+XBODIBE,Bodibeng Health Post,01-4-02,Y,O,Remote
+XCHANOG,Chanoga Health Post,01-4-03,Y,O,Remote
+XKUBUNG,Kubung Health Post,01-4-04,Y,O,Remote
+XMABABE,Mababe Health Post,01-4-05,Y,O,Remote
+XSEMBOY,Semboyo Health Post,01-4-06,Y,O,Remote
+XKARENG,Kareng Health Post,01-4-07,Y,O,Remote
+XTOTENG,Toteng Health Post,01-4-08,Y,O,Remote
+XKOMAHP,Komana Health Post,01-4-09,Y,O,Remote
+XMAKAKU,Makakung Health Post,01-4-10,Y,O,Remote
+XMATLAP,Matlapana Health Post,01-4-11,Y,O,Remote
+XPHUDUH,Phuduhudu Health Post,01-4-12,Y,O,Remote
+XSANKOY,Sankoyo Health Post,01-4-13,Y,O,Remote
+XBOSEJAKHP,Boseja Kubung H Post,01-4-14,Y,O,Remote
+XSOMELO,Somelo Health Post,01-4-15,Y,O,Remote
+XTHITOHP,Thitoyamokodi H	Post,01-4-16,Y,O,Remote
+XBOROHP,Boro Prison H Post,01-4-17,Y,O,Remote
+XDISANHP,Disana Health Post,01-4-18,Y,O,Remote
+XKHWAIC,Khwai,MA,Y,O,Remote
+XMOREOM,Moreomaoto,MA,Y,O,Remote
+XBOFWAC,Bofwa,MA,Y,O,Remote
+XMAUNCC,Maun Counselling Centre,MA,Y,O,Remote
+XMAPOPD,LAB Private Patient OPD,MA,Y,O,Remote
+XSHASHE,Shashe,MA,N,O,Remote
+XCOVEMC,Covenant Medical Centre,MA,Y,O,Remote
+XGLOMIS,Global Mission,MA,Y,O,Remote
+XMAUSUR,Maun Surgery,MA,Y,O,Remote
+XOFAMIC,Okavango Fam Informatory Cl MA,,Y,O,Remote
+XDAVECL,Davenine Clinic,MA,Y,O,Remote
+SEFGENW,SE Female General Ward,,N,I,Local
+SEFMEDW,SE Female Medical Ward,,Y,I,Local
+SEGTBW,SE General TB Ward,,N,I,Local
+SEMATEW,SE Maternity Ward,,N,I,Local
+SESCBU,SE Special Care Baby Unit,,Y,I,Local
+SEMGENW,SE Male General Ward,,N,I,Local
+SEMMEDW,SE Male Medical Ward,,Y,I,Local
+SEPAEW,SE Paediatric Ward,,N,I,Local
+SEPSYW,SE Psychiatric Ward,,N,I,Local
+XSEPOPD,LAB Private Patient OPD,SE,Y,O,Remote
+XMMASHO,Mmashoro Clinic,03-03-05,Y,O,Remote
+XMABUHP,Mabuo Health Post,,Y,O,Remote
+XKADIMC,Kadimo Samson Clinic,03-3-01,Y,O,Remote
+XSEROWC,Serowe Clinic,03-3-02,Y,O,Remote
+XMAUCL,Maunatlala Clinic,,Y,O,Remote
+XMMASHC,Mmashoro Clinic,03-3-05,Y,O,Remote
+XNEWTOC,New Town Clinic,03-3-07,Y,O,Remote
+XNUTRC,Nutrition Clinic,03-3-08,Y,O,Remote
+XBOIPC,Boipelego Clinic,03-3-,Y,O,Remote
+XRUSSEC,Russel May Clinic,03-3-09,Y,O,Remote
+XMODIKHP,Modikwane H Post,03-4-02,Y,O,Remote
+XMOGORHP,Mogorosi Health Post,03-4-11,Y,O,Remote
+XMADIAHP,Madiaele Health Post,03-4-20,Y,O,Remote
+XMAMAHP,Malatswai Health Post,03-4-31,N,O,Remote
+XMABELE,Mabeleapudi,29-3-08,Y,O,Remote
+XKEDICL,Kediretswe Clinic,NY,Y,O,Remote
+XTSHIMO,Tshimoyapula,SE,Y,O,Remote
+XTSHIHP,Tshimoyapula Health Post,3-4-,Y,O,Remote
+XPAJCLI,Paje Clinic,SE,Y,O,Remote
+XPAJBDF,Paje BDF Clinic,SE,Y,O,Remote
+XMALAT,Malatswai,SE,Y,O,Remote
+XMOIYAB,Moiyabana,SE,Y,O,Remote
+XMOIYAC,Moiyabana Clinic,03-3-11,Y,O,Remote
+XTHABAL,Thabala,SE,Y,O,Remote
+XTHABAC,Thabala Clinic,03-3-20,Y,O,Remote
+XRUSMAY,Russel May Clinic,SE,Y,O,Remote
+XDIMAJW,Dimajwe,SE,Y,O,Remote
+XMAJWAN,Majwanadipitse,03-3,Y,O,Remote
+XKHURU,Khurumela,SE,N,O,Remote
+XSPRISO,Prison,SE,Y,O,Remote
+XLUSAN,Lusane,SE,Y,O,Remote
+XJUMEDC,Juliana Medical Clinic,SE,Y,O,Remote
+XMAUKAC,Maokatumo Clinic,03-3-10,Y,O,Remote
+XMABEC,Mabeleapudi Clinic,03-3-17,Y,O,Remote
+XMAHALH,Mahalapye Hospital,08-1-01,Y,O,Remote
+XXHOSAC,Xhosa Clinic,08-3-01,Y,O,Remote
+XMAHPRIC,Mahalapye Prisons Cl,08-3-03,Y,O,Remote
+XMOOKAC,Mookane Clinic,08-3-04,Y,O,Remote
+XKALAMC,Kalamare Clinic,08-3-07,Y,O,Remote
+XSHOSHC,Shoshong Clinic,08-3-08,Y,O,Remote
+XAIRSTC,Airstrip Clinic,08-3-10,Y,O,Remote
+XBAITIC,Baitiredi Clinic,08-3-11,Y,O,Remote
+XPRISMACC,Machaneng Prison Clinic,8-3-13,Y,O,Remote
+XSHELEC,Sheleketla Clinic,08-3-14,Y,O,Remote
+XTEWANHP,Tewane Health Post,08-4-01,Y,O,Remote
+XBONWHP,Bonwapitse Health Post,08-4-02,Y,O,Remote
+XMORALHP,Moralane H Post,08-4-03,Y,O,Remote
+XDIBETHP,Dibete Health Post,08-4-04,Y,O,Remote
+XDOVEDHP,Dovedale Health Post,08-4-05,Y,O,Remote
+XMOWANHP,Mowana Health Post,08-4-06,Y,O,Remote
+XIKONGHP,Ikongwe Health Post,08-4-07,Y,O,Remote
+XMOKGEHP,Mokgenene Health Post,08-4-08,Y,O,Remote
+XKODIHP,Kodibeleng Health Post,08-4-09,Y,O,Remote
+XKUDUMHP,Kudumatse Health Post,08-4-10,Y,O,Remote
+XBDFMALHP,BDF Mahalapye H Post,08-4-11,Y,O,Remote
+XLEETHP,Leetile Health Post,08-4-12,Y,O,Remote
+XMAKWHP,Makwate Health Post,08-4-14,Y,O,Remote
+XMADIBHP,Madiba Health Post,08-4-15,Y,O,Remote
+XMMAPHHP,Mmaphashalala HP,08-4-16,Y,O,Remote
+XMMUTHP,Mmutlane Health Post,08-4-17,Y,O,Remote
+XMHALHP,Mhalapitsa Health Post,08-4-18,Y,O,Remote
+XMOKOSWHP,Mokoswane H Post,08-4-19,Y,O,Remote
+XMOKOBHP,Mokobeng Health Post,08-4-20,Y,O,Remote
+XMOSHHP,Moshopha Health Post,08-4-21,Y,O,Remote
+XMOSOLHP,Mosolotshane H Post,08-4-22,Y,O,Remote
+XNGWAHP,Ngwapa Health Post,08-4-23,Y,O,Remote
+XPALLAHP,Palla Road Health Post,08-4-24,Y,O,Remote
+XPOLOHP,Poloka Health Post,08-4-25,Y,O,Remote
+XOTSEHP,Otse Health Post,08-4-26,Y,O,Remote
+XSHAKHP,Shakwe Health Post,08-4-28,Y,O,Remote
+XTAUPHP,Taupye Health Post,08-4-29,Y,O,Remote
+XSEFHPH,Sefhare Primary Hospital,8-2-1,Y,O,Remote
+XMACHAC,Machaneng Clinic,08-3-02,Y,O,Remote
+XPILIKC,Pilikwe Clinic,08-3-05,Y,O,Remote
+XRAMOKC,Ramokgonami Clinic,08-3-06,Y,O,Remote
+XSELEC,Seleka Clinic,08-3-12,Y,O,Remote
+XCHADIC,Chadibe Clinic,08-3-15,Y,O,Remote
+XTEWCL,Tewane Health Post,08-4-01,N,O,Remote
+XMAAPEHP,Maape Health Post,08-4-13,Y,O,Remote
+XLETORHP,Letoreng Health Post,,Y,O,Remote
+XMATLHP,Matlhako Health Post,08-4-27,Y,O,Remote
+XGANPH,Gantsi Primary Hospital,07-2-1,Y,O,Remote
+XCHARLC,Charleshill Clinic,07-3-01,Y,O,Remote
+XMORAMC,Morama Clinic,07-03-06,Y,O,Remote
+XKALKFC,Kalkfontein Clinic,07-3-02,Y,O,Remote
+XTSOOTC,Tsootsha Clinic,07-3-02,N,O,Remote
+XNCOJAC,Ncojane Clinic,07-3-03,Y,O,Remote
+XCHARLCPM,Charleshill Clinic,,Y,O,Remote
+XGANTC,Gantsi Clinic,07-3-04,Y,O,Remote
+XNOJAC,Nojane Clinic,07-3-03,Y,O,Remote
+XNEWXAC,New Xade Clinic,07-3-04,Y,O,Remote
+XBEREHP,Bere Health Post,07-4-01,Y,O,Remote
+XKACGAHP,Kacgae Health Post,07-4-03,Y,O,Remote
+XKARAKHP,Karakubis Health Post,07-4-04,Y,O,Remote
+XKUKEHP,Kuke Heath Post,07-4-05,Y,O,Remote
+XKOLEHP,Kole Health Post,07-4-06,Y,O,Remote
+XMAKUNHP,Makunda Health Post,07-4-07,Y,O,Remote
+XWESTHHP,West Hanahai Health Post,7-4-8,Y,O,Remote
+XEASTHHP,East Hanahai Health Post,7-4-9,Y,O,Remote
+XXANAGHP,Xanagas Health Post,07-4-10,Y,O,Remote
+XMETSIMAHP,Metsimantso H Post,07-4-12,Y,O,Remote
+XGROOTHP,Grootlaagte Health Post,7-4-13,Y,O,Remote
+XCHOBHP,Chobokwane Health Post,07-4-14,Y,O,Remote
+XQABOHP,Qabo Health Post,07-4-15,Y,O,Remote
+XXADEHP,Xade Health Post,07-4-16,Y,O,Remote
+XSHAAHP,SHAA Health Post,07-4-17,Y,O,Remote
+XPRISHP,Prison Health Post,07-4-18,Y,O,Remote
+XSCOTIC,Scottish Livingstone Hosp,5-1,Y,O,Remote
+XGUDHP,Gudigwa Health Post,14-4-19,N,O,Remote
+XSERIHP,Serinane Health Post,,Y,O,Remote
+XBHPMOLC,BHP Clinic Molepolole,,Y,O,Remote
+XBORAKC,Borakalalo Clinic,05-3-02,Y,O,Remote
+XBORIBC,Boribamo Clinic,05-3-03,Y,O,Remote
+XKGOSIC,Kgosing Clinic,05-3-05,Y,O,Remote
+XLENTC,Lentsweletau Clinic,05-3-07,Y,O,Remote
+XLEPHEC,Lephephe Clinic,05-3-08,Y,O,Remote
+XMOLCOC,Molepolole Council Cl,05-3-13,Y,O,Remote
+XLAZANC,Lazane Kaplan Clinic,06-3-14,Y,O,Remote
+XMOLCOEC,MolepololeCollege of Education,,Y,O,Remote
+XMOLEPC,Molepolole Prison Cl,05-3-17,Y,O,Remote
+XPHUTHC,Phuthadikobo Clinic,05-3-18,Y,O,Remote
+XSOJWEC,Sojwe Clinic,05-3-19,Y,O,Remote
+XIKAGOC,Ikago Clinic,05-3-21,Y,O,Remote
+XBORAKNC,Borakalalo New Clinic,05-3-23,Y,O,Remote
+XMMOKOC,Mmokolodi Clinic,05-3-24,Y,O,Remote
+XLOOLHP,Loologane Clinic,05-3-25,Y,O,Remote
+XNTSWEC,Ntsweletau Clinic,05-3-,Y,O,Remote
+XBOSWEC,Boswelakoko Clinic,05-3-,Y,O,Remote
+XBOATLHP,Boatlaname Health Post,05-4-01,Y,O,Remote
+XGAKUTHP,Gakutlo Health Post,05-4-03,Y,O,Remote
+XGAMODHP,Gamodubu Health Post,05-4-04,Y,O,Remote
+XHATSHP,Hatsalatladi H Post,05-4-05,Y,O,Remote
+XKGOPEHP,Kgope Health Post,05-4-06,Y,O,Remote
+XLESILHP,Lesilakgokong H Post,5-4-09,Y,O,Remote
+XMAHETHP,Mahetwe Health Post,05-4-10,Y,O,Remote
+XMEDIEHP,Medie Health Post,05-4-11,Y,O,Remote
+XSHADHP,Shadisshadi H Post,05-4-14,Y,O,Remote
+XGABAHP,Gabane Health Post,05-4-15,Y,O,Remote
+XMOGONOHP,Mogonono Health Post,05-4-16,Y,O,Remote
+XDITSHHP,Ditshukudu Health Post,05-4-17,Y,O,Remote
+XKWENHP,Kweneng Health Post,05-4-18,Y,O,Remote
+XLEKGWHP,Lekgwapeng Health Post,05-4-19,Y,O,Remote
+XMAGOKHP,Magokotswane H Post,05-4-20,Y,O,Remote
+XMMANHP,Mmanoko Health Post,05-4-21,Y,O,Remote
+XMMATHP,Mmatseta Health Post,05-4-22,Y,O,Remote
+XTLOOWHP,Tloowaneng H Post,05-4-23,Y,O,Remote
+XTHEBEH,Thebephatswa Hospital,20-2-01,Y,O,Remote
+XLETHCL,Letlhakeng Clinic,20-3-01,Y,O,Remote
+XMOTOKWC,Motokwe Clinic,20-3-02,Y,O,Remote
+XNGWAREC,Ngware Clinic,20-3-03,Y,O,Remote
+XSALAC,Salajwe Clinic,20-3-04,Y,O,Remote
+XTAKATOKC,Takatokwane Clinic,20-3-05,Y,O,Remote
+XMOSHAWC,Moshaweng Clinic,20-3-06,Y,O,Remote
+XKHUDC,Khudumelapye Clinic,20-3-07,Y,O,Remote
+XBOTLHAPC,Botlhapatlou Clinic,20-3-08,Y,O,Remote
+XMALWELHP,Malwelwe Health Post,20-4-07,Y,O,Remote
+XKHEKHP,Khekhenye Health Post,20-4-01,Y,O,Remote
+XDITSC,Ditshegwane Health Post,20-4-2,Y,O,Remote
+XDUTLWHP,Dutlwe Health Post,20-4-03,Y,O,Remote
+XDIPHUHP,Diphuduhudu Health Post,20-4-4,Y,O,Remote
+XKOTOHP,Kotolaname Health Post,20-4-05,Y,O,Remote
+XMABOAHP,Maboane Health Post,20-4-06,Y,O,Remote
+XMONWHP,Monwane Health Post,20-4-09,Y,O,Remote
+XKAUDHP,Kaudwane Health Post,20-4-10,Y,O,Remote
+XSESUHP,Sesung Health Post,20-4-11,Y,O,Remote
+XTSETSHP,Tsetseng Health Post,20-4-12,Y,O,Remote
+XSHORHP,Sorilatholo H Post,20-4-13,Y,O,Remote
+XTSHWAHP,Tshwaane Health Post,20-4-14,Y,O,Remote
+ZCGABON,Bontleng Clinic,GA,Y,O,Local
+ZCGABRT,Broadhurst Traditional Cl,GA,Y,O,Local
+ZCGAPMI,Princess Marina Hosp IDCC,GA,Y,O,Local
+ZCFRARW,Area W Clinic,FR,Y,O,Local
+ZCFRBOT,Botswelelo Clinic,FR,Y,O,Local
+XBOTSWC,Botswelelo Clinic,16-3-06,Y,O,Remote
+ZCFRGEE,Gerald Estate Clinic,FR,Y,O,Local
+XNTSWC,Ntswe Clinic,16-3-,Y,O,Remote
+ZCFRJUB,Jubilee Clinic,16-3-10,Y,O,Local
+XJUBIC,Jubilee Clinic,16-3-10,Y,O,Remote
+ZCFRNYI,Nyangabwe Hospital IDCC,FR,Y,O,Local
+ZCNGMAC,Maun Council Clinic,MA,Y,O,Local
+ZCNGMAI,Maun General Hospital IDCC,MA,Y,O,Local
+ZCSPKAS,Kadimo Samson Clinic,SE,Y,O,Local
+ZCSPNEW,Newtown Clinic,SE,Y,O,Local
+ZCSPNUT,Nutrition Clinic,SE,Y,O,Local
+ZCSPSER,Serowe Clinic,SE,Y,O,Local
+ZCSPSEI,Sekgoma Hospital IDCC,SE,Y,O,Local
+XSEKGOH,Sekgoma Memorial Hospital,3-1,Y,O,Remote
+ASPC,Serowe,,N,O,Local
+ATANTNW,AT AnteNatal and Delivery ward,,N,I,Local
+ATCDEN,AT Dental Dept,,Y,O,Local
+ATCDIA,AT Diabetic Clinic,,Y,O,Local
+ATCDIE,AT Dietetics Clinic,,Y,O,Local
+ATCEYE,AT Eye Clinic,,Y,O,Local
+ATCGYN,AT Gynaecology Clinic,,Y,O,Local
+ATCHYP,AT Hypertensive Clinic,,Y,O,Local
+ATCOPD,AT OUTPATIENT DEP CLINIC,,Y,O,Local
+ATCPEAD,AT Paediatric Clinic,,Y,O,Local
+ATCPHY,AT Physiotherapy,,Y,O,Local
+ATCPHYS,AT Physician Clinic,,Y,O,Local
+ATCPSY,AT Psychiatric Clinic,,Y,O,Local
+ATCRAD,AT Radiology Dept,,Y,O,Local
+ATCSCW,AT Social Workers,,Y,O,Local
+ATCSRH,AT Sexual Reproductive Health,,Y,O,Local
+ATCSTA,AT Staff Clinic,,Y,O,Local
+ATCSUR,AT General Surgery Clinic,,Y,O,Local
+ATCTB,AT TB Clinic,,Y,O,Local
+ATCYOU,AT Youth Friendly Clinic,,Y,O,Local
+ATDHIS,Athlone DHIS,,Y,O,Local
+ATDLAB,AT Laboratory,,Y,O,Local
+ATDOPD,AT Outpatient Department,,Y,O,Local
+ATDPHA,AT Pharmacy,,Y,O,Local
+ATFGENW,AT Female General Ward,,Y,I,Local
+ATFMEDW,AT Female Medical Ward,,N,I,Local
+ATFTBW,AT Female TB Ward,,N,I,Local
+ATMATH,AT Major Theatre,,Y,O,Local
+ATMATWD,AT Maternity Ward,,Y,I,Local
+ATMAVPR,MAVAIVAI CLINIC,,Y,O,Local
+ATMGENW,AT Male General Ward,,Y,I,Local
+ATMITH,AT Minor Theatre,,Y,O,Local
+ATMMEDW,AT Male Medical Ward,,N,I,Local
+ATMTBW,AT Male TB Ward,,N,I,Local
+ATNURW,AT Nursery Ward,,N,I,Local
+ATONCOLOGY,AT Oncology Ward,,Y,I,Local
+ATPAEDW,AT Paediatric Ward,,Y,I,Local
+ATPECIDCC,AT Peleng East Clinic IDCC,,Y,O,Local
+ATPECSRH,AT Peleng East Clinic SRH,,Y,O,Local
+ATPECTB,AT Peleng East TB Clinic,,Y,O,Local
+ATPOSTW,AT Post Natal Ward,,N,I,Local
+ATREVENUE,AT Athlone Revenue Office,,Y,O,Local
+ATSCBU,AT Special Care Baby Unit,,N,I,Local
+ATTBWD,AT TB Ward,,Y,I,Local
+ATTHCIDCC,THEMA CLINIC,,Y,O,Local
+ATWHCOPD,AT Woodhall Clinic OPD,,Y,O,Local
+ATWHCSRH,AT Woodhall SRH,,Y,O,Local
+ATWHIDCC,AT WOODHALL IDCC,,Y,O,Local
+BLANTNW,BL Ante Natal Ward,,Y,I,Local
+BLCAUD,BL Audiology Clinic,,Y,O,Local
+BLCCWC,BL Child Welfare Care Clinic,,Y,O,Local
+BLCDEN,BL Dental Clinic,,Y,O,Local
+BLCDIE,BL Dietetics Clinic,,Y,O,Local
+BLCENT,BL ENT Clinic,,Y,O,Local
+BLCEYE,BL Eye Clinic,,Y,O,Local
+BLCFRA,BL Fracture Clinic,,Y,O,Local
+BLCGYN,BL Gynaecology Clinic,,Y,O,Local
+BLCMED,BL Diabetic Clinic,,Y,O,Local
+BLCPAE,BL Paediatric Clinic,,Y,O,Local
+BLCPAS,BL Pastoral Care Dept,,Y,O,Local
+BLCPHY,BL Physiotherapy Clinic,,Y,O,Local
+BLCPSY,BL Psychiatric Clinic,,Y,O,Local
+BLCPSYC,BL Psychology Clinic,,Y,O,Local
+BLCSPC,BL Speech Therapy Clinic,,Y,O,Local
+BLCSRH,BL Sexual Reproductive Health,,Y,O,Local
+BLCSROM,BL Caesarian Room,,Y,I,Local
+BLCSUR,BL Surgical Clinic,,Y,O,Local
+BLCTB,BL Tubercolosis Clinic,,Y,O,Local
+BLCYOU,BL Youth Friendly Services Cli,,Y,O,Local
+BLDHIS,Bamalete DHIS,,Y,O,Local
+BLDHOS,BL Hospice Department,,Y,O,Local
+BLDLAB,BL Laboratory,,Y,O,Local
+BLDOPD,BL Outpatient Department,,Y,O,Local
+BLDPHA,BL Pharmacy,,Y,O,Local
+BLDRAD,BL Radiology Department,,Y,O,Local
+BLDSOC,BL Social Work Department,,Y,O,Local
+BLFHDWD,BL High Depandancy,,N,I,Local
+BLFMEDW,BL Female Ward,,Y,I,Local
+BLFPRVT,BL Female Private Ward,,Y,I,Local
+BLFTBWD,BL Female TB Ward,,Y,I,Local
+BLISOMT,BL Maternity - Isolation Ward,,Y,I,Local
+BLKANGA,BL Kangaroo Ward,,Y,I,Local
+BLLABOW,BL Labour Ward,,Y,I,Local
+BLMATNW,BL Maternity Ward,,Y,I,Local
+BLMMEDW,BL Male Ward,,Y,I,Local
+BLMPRVT,BL Male Private Ward,,N,I,Local
+BLMTBWD,BL Male TB Ward,,Y,I,Local
+BLNEONW,BL Neo-Natal Ward,,Y,I,Local
+BLPAEDW,BL Paediatrics Ward,,Y,I,Local
+BLPAEGR,BL Paediatrics - Greeny,,N,I,Local
+BLPAEPI,BL Paediatrics - Pinky,,N,I,Local
+BLPAEYL,BL Paediatrics - Yellowy,,N,I,Local
+BLPOSTW,BL Post Natal Ward,,Y,I,Local
+BLPRVTW,BL Maternity - Private Ward,,Y,I,Local
+BLREVENUE,BL Saundry Revenue,,Y,O,Local
+BLTBWRD,BL TB Ward,,Y,I,Local
+BLTHEA,BL Theatre Department,,Y,O,Local
+BPCDEN,BP Dental Clinic,,Y,O,Local
+BPCDIA,BP Diabetic Clinic,,Y,O,Local
+BPCEYE,BP Eye Clinic,,Y,O,Local
+BPCHYP,BP Hypertension Clinic,,Y,O,Local
+BPCPSY,BP Psychiatric Clinic,,Y,O,Local
+BPCSRH,BP Sexual Reproductive Health,,Y,O,Local
+BPCVIA,BP VIA Clinic,,Y,O,Local
+BPCYOU,BP Youth Clinic,,Y,O,Local
+BPDHIS,Bobonong DHIS,,Y,O,Local
+BPDOPD,BP Outpatient Department,,Y,O,Local
+BPDRAD,BP Radiology Dept,,Y,O,Local
+BPDSOC,BP Social Work Dept,,Y,O,Local
+BPFGENW,BP Female Ward,,Y,I,Local
+BPHDGEN,BP High Dependency General W,,Y,I,Local
+BPHIGHD,BP High Dependency - Maternity,,Y,I,Local
+BPLAB,BP Laboratory,,Y,I,Local
+BPLABOW,BP Delivery Ward,,Y,I,Local
+BPMATH,BP Main Theatre,,Y,O,Local
+BPMGENW,BP Male Ward,,Y,I,Local
+BPMITH,BP Minor Theatre,,Y,O,Local
+BPPAEDW,BP Paediatric Ward,,Y,I,Local
+BPPSYCH,BP Psychiatric Ward,,Y,I,Local
+BPTBWRD,BP TB Ward,,Y,I,Local
+CFRARW,Area W Clinic,,Y,O,Local
+CFRBOT,Botswelelo Clinic,,Y,O,Local
+CFRGEE,Gerald Estate Clinic,,Y,O,Local
+CFRJUB,Jubilee Clinic,,Y,O,Local
+CFRNYI,Nyangabgwe Hospital IDCC,,Y,O,Local
+CGABON,Bontleng Clinic,,Y,O,Local
+CGABRT,Broadhurst Traditional Clinic,,Y,O,Local
+CGAPMI,Princess Marina Hosp IDCC,,Y,O,Local
+CGGNKOYA,GGC Nkoyaphiri Clinic IDCC,,N,O,Local
+CGGTLOKN,GGC Tlokweng Main Clinic IDCC,,N,O,Local
+CGHGPI,Gantsi Primary Hospital IDCC,,Y,O,Local
+CHCCHA,Charleshill Clinic,,Y,O,Local
+CKESLI,Scottish Livingstone IDCC,,Y,O,Local
+CMHMHI,Mahalapye Hospital IDCC,,Y,O,Local
+CNGBOS,Boseja Clinic,,Y,O,Local
+CNGBOY,Boyei Clinic,,Y,O,Local
+CNGMAC,Maun Council Clinic,,Y,O,Local
+CNGMAI,Maun General Hospital IDCC,,Y,O,Local
+CNGSED,Sedie Clinic,,Y,O,Local
+CSOKSI,Kanye Adventist Hospital IDCC,,Y,O,Local
+CSONEW,Newton Clinic,SER,N,O,Local
+CSPKAD,Kadimo Samason Clinic,SE,N,O,Local
+CSPKAS,Kadimo Samson Clinic,,Y,O,Local
+CSPMOD,Modikwane Clinic,,Y,O,Local
+CSPNEW,Newtown Clinic,,Y,O,Local
+CSPNUT,Nutrition Clinic,,Y,O,Local
+CSPSEI,Sekgoma Hospital IDCC,,Y,O,Local
+CSPSER,Serowe Clinic,,Y,O,Local
+CXAEROD,Aerodrome,,Y,O,Local
+CXAIRSC,Airstrip Clinic,,Y,O,Local
+CXAREAC,Area L Clinic,,Y,O,Local
+CXAREASC,Area S Clinic,,Y,O,Local
+CXARTEC,Artesia Clinic,,Y,O,Local
+CXBAITC,Baitiredi Clinic,,Y,O,Local
+CXBANTR,Bana Trial,,Y,O,Local
+CXBBBO,Bobonong Primary Hospital,,Y,O,Local
+CXBBSE,Selibe Phikwe Hospital,,Y,O,Local
+CXBDFFC,BDF Clinic Franscistown,,Y,O,Local
+CXBDFGL,BDF Clinic Glen valley,,Y,O,Local
+CXBDFSP,BDF Clinic Selebi Phikwe,,Y,O,Local
+CXBDFSS,BDF Clinic SSKB,,Y,O,Local
+CXBDFTH,BDF Thebephatswe,,Y,O,Local
+CXBEETH,Beetsha Health post,,Y,O,Local
+CXBEREH,Bere Health Post,,Y,O,Local
+CXBFWAS,Bot Familiy Welfare Associatio,,Y,O,Local
+CXBMCLI,BMC Clinic,,Y,O,Local
+CXBOATL,Boatlaname Health Post,,Y,O,Local
+CXBODIB,Bodibeng Health Post,,Y,O,Local
+CXBODUN,Bodungwane Health Post,,Y,O,Local
+CXBOFWA,Bofwa,,Y,O,Local
+CXBOGOH,Bogogobo Health Post,,Y,O,Local
+CXBOIKH,Boikhutso clinic,,Y,O,Local
+CXBOIPC,Boipelego Clinic,,Y,O,Local
+CXBOITC,Boitekanelo Clinic,,Y,O,Local
+CXBOKAAC,Bokaa Clinic Kweneng,,Y,O,Local
+CXBOKAC,Bokaa Clinic Kgatleng,,Y,O,Local
+CXBOKSC,Bokspits Clinic,,Y,O,Local
+CXBOLE,Letlhakane Primary Hospital,,Y,O,Local
+CXBOMM,Mmadinare Primary Hospital,,Y,O,Local
+CXBONWP,Bonwapitse Health Post,,Y,O,Local
+CXBOOR,Orapa Mine Hospital,,Y,O,Local
+CXBORA,Rakops Primary Hospital,,Y,O,Local
+CXBORAK,Borakalalo Clinic,,Y,O,Local
+CXBORAKN,Borakalalo New Clinic,,Y,O,Local
+CXBORIB,Boribamo Clinic,,Y,O,Local
+CXBOROH,Boro Prison Health Post,,Y,O,Local
+CXBOROL,Borolong Health Post,,Y,O,Local
+CXBOROTC,Borotsi Clinic,,Y,O,Local
+CXBOSEKP,Boseja Kubung Health Post,,Y,O,Local
+CXBOSWEC,Boswelakoko Clinic,,Y,O,Local
+CXBOTHHP,Bothatogo Health Post,,Y,O,Local
+CXBOTLHA,Botlhapatlou Clinic,,Y,O,Local
+CXBOTSAC,Botsalano Clinic,,Y,O,Local
+CXBOTSHC,Botshabelo Clinic,,Y,O,Local
+CXBOTSHE,Botshelo Clinic,,Y,O,Local
+CXBOTSW,Botswelelo Clinic,,Y,O,Local
+CXBOTUS,Botusa Clinic,,Y,O,Local
+CXBOTUSA,Botusa Clinic,,Y,O,Local
+CXBSEL,Selebi Phikwe Hospital IDCC,,N,O,Local
+CXBTACL,BTA,,Y,O,Local
+CXBUTAL,Butale Health Post,,Y,O,Local
+CXCHADIC,Chadibe Clinic,,Y,O,Local
+CXCHANG,Changate Clinic,,Y,O,Local
+CXCHANOG,Chanoga Health Post,,Y,O,Local
+CXCHARLC,Charleshill Clinic,,Y,O,Local
+CXCHKA,Kasane Hospital,,Y,O,Local
+CXCHOBHP,Chobokwane Health Post,,Y,O,Local
+CXCOEMOL,College of Education Clinic,,Y,O,Local
+CXCOVEMC,Covenant medical Centre,,Y,O,Local
+CXDADAC,Joosub Dada Clinic,,Y,O,Local
+CXDAMUHP,Damuchujenaa Health Post,,Y,O,Local
+CXDAVECL,Davenine Clinic,,Y,O,Local
+CXDEKARH,Dekar Health Post,,Y,O,Local
+CXDELTMC,Delta Medical Centre,,Y,O,Local
+CXDIABOH,Diabo Health Post,,Y,O,Local
+CXDIBETH,Dibete Health Post,,Y,O,Local
+CXDIGAWC,Digawana Clinic,,Y,O,Local
+CXDIKGOH,Dikgonnye Health Post,,Y,O,Local
+CXDIKWHP,Dikwididi Health Post,,Y,O,Local
+CXDILOHP,Diloro Health Post,,Y,O,Local
+CXDILOLH,Dilolwe Health Post,,Y,O,Local
+CXDIMAJW,Dimajwe Clinic,,Y,O,Local
+CXDIPHUH,Diphuduhudu Health Post,,Y,O,Local
+CXDISANH,Disana Health Post,,Y,O,Local
+CXDITLAH,Ditladi Health Post,,Y,O,Local
+CXDITLHH,Ditlharapa Health Post,,Y,O,Local
+CXDITSC,Ditshegwane Health Post,,Y,O,Local
+CXDITSHHP,Ditshukudu Health Post,,Y,O,Local
+CXDITSWC,Ditsweletse Clinic,,Y,O,Local
+CXDOVEHP,Dovedale Health Post,,Y,O,Local
+CXDRIEHP,Draiehoek Health Post,,Y,O,Local
+CXDUKWIC,Dukwi Clinic,,Y,O,Local
+CXDUTLWH,Dutlwe Health Post,,Y,O,Local
+CXEASTHP,East Hanahai Health Post,,Y,O,Local
+CXFBDFC,BDF Clinic Franscistown,,N,O,Local
+CXFIHS,Franscistown IHS,,Y,O,Local
+CXFPRISO,Prisons Clinic,,Y,O,Local
+CXFRBD,Francistown BDF,,Y,O,Local
+CXFRFR,Francistown BDF,,N,O,Local
+CXGABAHP,Gabane Health Post,,Y,O,Local
+CXGABAN,Gabane Clinic,,Y,O,Local
+CXGABWES,Gaborone West Clinic,,Y,O,Local
+CXGAKGHP,Gakgatla Health Post,,Y,O,Local
+CXGAKH,Kanye SDA Hospital,,Y,O,Local
+CXGAKUTH,Gakutlo Health Post,,Y,O,Local
+CXGAMAJH,Gamajaalela Health Post,,Y,O,Local
+CXGAMHP,Gambule Health Post,,Y,O,Local
+CXGAMODH,Gamodubu Health Post,,Y,O,Local
+CXGASITH,Gasita Health Post,,Y,O,Local
+CXGASS,Sir Seretse Khama Base,,Y,O,Local
+CXGATHWH,Gathwane Health Post,,Y,O,Local
+CXGHANHP,Ghani Health Post,,Y,O,Local
+CXGLOMI,Global Mission,,Y,O,Local
+CXGNATAC,Nata Clinic Gweta,,Y,O,Local
+CXGOBOH,Gobojango Health Post,,Y,O,Local
+CXGOGO,Good Hope	Primary Hospital,,Y,O,Local
+CXGOJWHP,Gojwane Health Post,,Y,O,Local
+CXGOOSH,Goosekgweng Health Post,,Y,O,Local
+CXGOOTH,Gootau Health Post,,Y,O,Local
+CXGOSHW,Goshwe Health Post,,Y,O,Local
+CXGROOT,Grootlaagte Health Post,,Y,O,Local
+CXGUDIHP,Gudingwa Health Post,,Y,O,Local
+CXGULUBH,Gulubane Health Post,,Y,O,Local
+CXGUMAC,Gumare Clinic,,Y,O,Local
+CXGUMHOS,Gumare Hospital,,Y,O,Local
+CXGUNUTH,Gunutsoga Health Post,,Y,O,Local
+CXGWETAC,Gweta Clinic,,Y,O,Local
+CXGWETPH,Gweta Primary Hospital,,Y,O,Local
+CXHABUHP,Habu Health Post,,Y,O,Local
+CXHATSHP,Hatsalatladi Health Post,,Y,O,Local
+CXHAVA,Harvard Studies,,Y,O,Local
+CXHEACEN,Health Centre,,Y,O,Local
+CXHEBRO,Hebron Clinic,,Y,O,Local
+CXHEREFC,Hereford Clinic,,Y,O,Local
+CXHUHU,Hukuntsi Primary Hospital,,Y,O,Local
+CXHUKUN,Hukuntsi Clinic,,Y,O,Local
+CXIHS,Institute of Health Sciences,,Y,O,Local
+CXIKAGO,Ikago Clinic,,Y,O,Local
+CXIKOGHP,Ikoga Health Post,,Y,O,Local
+CXIKONGH,Ikongwe Health Psot,,Y,O,Local
+CXINALEH,Inalegolo Health Post,,Y,O,Local
+CXINDUS,Industrial Clinic,,Y,O,Local
+CXINSDMA,Institute of Develo Management,,Y,O,Local
+CXITHOLH,Itholoke Health Post,,Y,O,Local
+CXJACKAH,Jackalas 1 Health Post,,Y,O,Local
+CXJACKHP,Jackalas 11 Health Post,,Y,O,Local
+CXJUMEDC,Juliana Medical Clinic,,Y,O,Local
+CXJWATCC,Jwaneng Town Council Clinic,,Y,O,Local
+CXJWJW,Jwaneng Mine Hospital,,Y,O,Local
+CXKAATEL,Kgatelopele,,Y,O,Local
+CXKACGAH,Kacgae Health Post,,Y,O,Local
+CXKACHIC,Kachikau Clinic,,Y,O,Local
+CXKAGIFC,Kagiso Clinic Franscistown,,Y,O,Local
+CXKAGISC,Kagiso Clinic Selebi Phikwe,,Y,O,Local
+CXKALAKH,Kalakamati Health Post,,Y,O,Local
+CXKALAMC,Kalamare Clinic,,Y,O,Local
+CXKALKFC,Kalkfontein Clinic,,Y,O,Local
+CXKANG,Kang clinic,,Y,O,Local
+CXKANYMC,Kanye Main Clinic,,Y,O,Local
+CXKARAKH,Karakubis Health Post,,Y,O,Local
+CXKARENG,Kareng Health Post,,Y,O,Local
+CXKASHP,Kasane Health Post,,Y,O,Local
+CXKAUDH,Kaudwane Health Post,,Y,O,Local
+CXKAUXP,Kauxwi Health Post,,Y,O,Local
+CXKAVIMHP,Kavimba Health Post,,Y,O,Local
+CXKAZBDF,Kazungula BDF Health Post,,Y,O,Local
+CXKAZUNH,Kazungula Health Post,,Y,O,Local
+CXKEDIAHP,Kedia Health Post,,Y,O,Local
+CXKEDIRC,Kediretswe Clinic,,Y,O,Local
+CXKENGHP,Keng Health Post,,Y,O,Local
+CXKESC,Scottish Livingstone Hospital,,Y,O,Local
+CXKETA,Thebephatshwa Airbase BDF,,Y,O,Local
+CXKETH,Thamaga Primary Hospital,,Y,O,Local
+CXKGARIH,Kgari Health Post,,Y,O,Local
+CXKGDE,Deborah Memorial hospital,,Y,O,Local
+CXKGOMOH,Kgomodiatshaba Health Post,,Y,O,Local
+CXKGOMOK,Kgomokasitwa Health Post,,Y,O,Local
+CXKGOPEH,Kgope Health Post,,Y,O,Local
+CXKGSOIN,Kgosing Clinic,,Y,O,Local
+CXKGWATC,Kgwatlheng Clinic,,Y,O,Local
+CXKHAKHC,Khakhea Clinic,,Y,O,Local
+CXKHAWHP,Khawa Health Post,,Y,O,Local
+CXKHAYAH,Khayakholo Health Post,,Y,O,Local
+CXKHAYAK,Khayakholo Clinic,,Y,O,Local
+CXKHEKHP,Khekhenye Health Post,,Y,O,Local
+CXKHONHP,Khonkhwa Health Post,,Y,O,Local
+CXKHUDC,Khudumelapye Clinic,,Y,O,Local
+CXKHUMAC,Khumaga Health Post,,Y,O,Local
+CXKHURUC,Khurumela	Clinic,,Y,O,Local
+CXKHURUH,Khurutshe Health Post,,Y,O,Local
+CXKHWAIC,Khwai Clinic,,Y,O,Local
+CXKODIHP,Kodibeleng Health Post,,Y,O,Local
+CXKOKOHP,Kokong Health Post,,Y,O,Local
+CXKOKOTH,Kokotsha Health Post,,Y,O,Local
+CXKOLEHP,Kole Health Post,,Y,O,Local
+CXKOMAHP,Komana Health Post,,Y,O,Local
+CXKOPON,Kopong Health Post,,Y,O,Local
+CXKOTOHP,Kotolaname Health Post,,Y,O,Local
+CXKUBANH,Kubung Health Post,,Y,O,Local
+CXKUDUMH,Kudumatse Health Post,,Y,O,Local
+CXKUMAKC,Kumakwane Health Post,,Y,O,Local
+CXKUTAMH,Kutamogore Health Post,,Y,O,Local
+CXKWANBDF,Kwando BDF Health Post,,Y,O,Local
+CXKWEEHP,Kwee Health Post,,Y,O,Local
+CXKWENHP,Kweneng Health Post,,Y,O,Local
+CXKWTS,Tsabong Primary Hospital,,Y,O,Local
+CXLAPOLO,Lapologang Clinic,,Y,O,Local
+CXLAZANC,Lazane Kaplan Clinic,,Y,O,Local
+CXLECHC,Lecheng Clinic,,Y,O,Local
+CXLEETHP,Leetile Health Post,,Y,O,Local
+CXLEHUTH,Lehututu Health Post,,Y,O,Local
+CXLEKGOH,Lekgolobotlo Health Post,,Y,O,Local
+CXLEKGWH,Lekgwapeng Health Post,,Y,O,Local
+CXLENTC,Lentsweletau Health Post,,Y,O,Local
+CXLENTSW,Lentswelemoriti Health Post,,Y,O,Local
+CXLENYBDF,Lenyanti BDF Health Post,,Y,O,Local
+CXLEPHEC,Lephephe Clinic,,Y,O,Local
+CXLEPHP,Lepokole Health Post,,Y,O,Local
+CXLERAC,Lerala Clinic,,Y,O,Local
+CXLESETC,Lesetlhana Clinic,,Y,O,Local
+CXLESHHP,Leshibitse Health Post,,Y,O,Local
+CXLESILH,Lesilakgokong Health Post,,Y,O,Local
+CXLESIRC,Lesirane Clinic,,Y,O,Local
+CXLESOMH,Lesoma Health Post,,Y,O,Local
+CXLETHCL,Letlhakeng Clinic,,Y,O,Local
+CXLETSHP,Letsholathebe Health Post,,Y,O,Local
+CXLOBATH,Lobatse Athlone Hospital,,Y,O,Local
+CXLOKGWH,Lokgwabe Health Post,,Y,O,Local
+CXLOOLHP,Loologane Health Post,,Y,O,Local
+CXLOOLOC,Loologane Clinic,,Y,O,Local
+CXLOTLHC,Lotlhakane East Clinic,,Y,O,Local
+CXLOTLHP,Lotlhakane West Health Post,,Y,O,Local
+CXLOTSAC,Lotsane Clinic,,Y,O,Local
+CXLUSAN,Lusane Clinic,,Y,O,Local
+CXMAAPEH,Maape Health Post,,Y,O,Local
+CXMABABE,Mababe Health Post,,Y,O,Local
+CXMABALH,Mabale Health Post,,Y,O,Local
+CXMABEC,Mabeleapudi Clinic,,Y,O,Local
+CXMABELE,Mabeleapodi,,Y,O,Local
+CXMABELH,Mabeleng Health Post,,Y,O,Local
+CXMABESH,Mabesekwa Health Post,,Y,O,Local
+CXMABHP,Mabolwe Health Post,,Y,O,Local
+CXMABULE,Mabule Clinic,,Y,O,Local
+CXMABUTC,Mabutsane Clinic,,Y,O,Local
+CXMACHAC,Machaneng Clinic,,Y,O,Local
+CXMADIAH,Madiaele Health Post,,Y,O,Local
+CXMADIHP,Madiaela Health Post,,Y,O,Local
+CXMADISP,Madisakwane Health Post,,Y,O,Local
+CXMAFITC,Mafitlhakgosi Clinic,,Y,O,Local
+CXMAGAPH,Magapatona Health Post,,Y,O,Local
+CXMAHETH,Mahetwe Health Post,,Y,O,Local
+CXMAHOHP,Mahotshwane Health Post,,Y,O,Local
+CXMAITEC,Maitengwe Health Post,,Y,O,Local
+CXMAJWAN,Majwanadipitse Clinic,,Y,O,Local
+CXMAJWHP,Majwaneng Health Post,,Y,O,Local
+CXMAKAKC,Makakatlela Clinic,,Y,O,Local
+CXMAKAKU,Makakung Health Clinic,,Y,O,Local
+CXMAKALA,Makalamabedi Clinic,,Y,O,Local
+CXMAKALC,Makaleng Clinic,,Y,O,Local
+CXMAKGOH,Makgophana Health Post,,Y,O,Local
+CXMAKOBH,Makobo Health Post,,Y,O,Local
+CXMAKOPC,Makopong Clinic,,Y,O,Local
+CXMAKWHP,Makwate Health Post,,Y,O,Local
+CXMALAHP,Malaka Health Post,,Y,O,Local
+CXMALAT,Malatswai Clinic,,Y,O,Local
+CXMALEH,Maleshe Health Post,,Y,O,Local
+CXMALOHP,Malolwane Health Post,,Y,O,Local
+CXMALOTHP,Malotwana Health Post,,Y,O,Local
+CXMALWEL,Malwelwe Health Post,,Y,O,Local
+CXMAMBOH,Mambo Health Post,,Y,O,Local
+CXMANAHP,Manaledi Health Post,,Y,O,Local
+CXMANDHP,Mandunyane Health Post,,Y,O,Local
+CXMANGAC,Manga Clinic,,Y,O,Local
+CXMANTSH,Mantswabisi Health Post,,Y,O,Local
+CXMANYAC,Manyana Clinic,,Y,O,Local
+CXMANYHP,Manyanda Health Post,,Y,O,Local
+CXMAOKAC,Maokane Clinic,,Y,O,Local
+CXMAOKC,Maokatumo Clinic,,Y,O,Local
+CXMAPOKC,Mapoka Clinic,,Y,O,Local
+CXMAPR,Mahalapye Prison Clinic,,Y,O,Local
+CXMARAHP,Maralaleng Health Post,,Y,O,Local
+CXMARAPO,Marapong Clinic,,Y,O,Local
+CXMAROBH,Marobela Health Post,,Y,O,Local
+CXMASE,Sefhare Primary Hospital,,Y,O,Local
+CXMASEGO,Masego Clinic,,Y,O,Local
+CXMASINH,Masingwaneng Health Post,,Y,O,Local
+CXMASUKH,Masukwane Health Post,,Y,O,Local
+CXMASUNG,Masunga Clinic,,Y,O,Local
+CXMASUPH,Masunga Primary Hospital,,Y,O,Local
+CXMATEBH,Matebele Health Post,,Y,O,Local
+CXMATEN,Matenge Health Post,,Y,O,Local
+CXMATHAC,Mathathane Clinic,,Y,O,Local
+CXMATHAN,Mathangwane Clinic,,Y,O,Local
+CXMATHP,Matlhakola Health Post,,Y,O,Local
+CXMATLAP,Matlapana Health Post,,Y,O,Local
+CXMATLHP,Matlhako Health Post,,Y,O,Local
+CXMATOBH,Matobo Health Post,,Y,O,Local
+CXMATOHP,Matopi Health Post,,Y,O,Local
+CXMATOLH,Matolwane Health Post,,Y,O,Local
+CXMATSHC,Matshelagabedi Clinic,,Y,O,Local
+CXMATSIH,Matsitama Health Post,,Y,O,Local
+CXMATSIL,Matsiloje Clinic,,Y,O,Local
+CXMAUBHP,Maubelo Health Post,,Y,O,Local
+CXMAUCC,Maun Councelling Centre,,Y,O,Local
+CXMAUCL,Maunatlala Clinic,,Y,O,Local
+CXMAUKAC,Maokatumo Clinic,,Y,O,Local
+CXMAUNAH,Maunatlala Clinic,,Y,O,Local
+CXMAUNH,Letsholathebe 11 Hospital,,Y,O,Local
+CXMAUSSC,Maun Sec School Clinic,,Y,O,Local
+CXMAUSU,Maun Surgery,,Y,O,Local
+CXMBALAH,Mbalambi Health Post,,Y,O,Local
+CXMBDFCL,Maun BDF Clinic,,Y,O,Local
+CXMBOAH,Maboane Health Post,,Y,O,Local
+CXMBUDH,Mabudzani Health Post,,Y,O,Local
+CXMEDIE,Medie Health Post,,Y,O,Local
+CXMENTAH,Mental Referal Hospital,,Y,O,Local
+CXMETLOC,Metlobo Clinic,,Y,O,Local
+CXMETLOH,Metlojane Health Post,,Y,O,Local
+CXMETSIH,Metsimaswaane Health Post,,Y,O,Local
+CXMETSIM,Metsimotlhabe Clinic,,Y,O,Local
+CXMFHIC,Mafhikana Clinic,,Y,O,Local
+CXMGORHP,Magoriapitse Health Post,,Y,O,Local
+CXMHALPH,Mhalapitsa Health Post,,Y,O,Local
+CXMIDDLC,Middlepits Health Post,,Y,O,Local
+CXMMADIHP,Mmadikola Health Post,,Y,O,Local
+CXMMADUH,Mmadunyane Health Post,,Y,O,Local
+CXMMAKHP,Mmakgori Health Post,,Y,O,Local
+CXMMAMOC,Mmamokhasi Clinic,,Y,O,Local
+CXMMANHP,Mmanako Health Post,,Y,O,Local
+CXMMANKC,Mmankgodi Clinic,,Y,O,Local
+CXMMAPHH,Mmaphashalala Health Post,,Y,O,Local
+CXMMASHC,Mmashoro Clinic,,Y,O,Local
+CXMMASHO,Mmashoro Clinic,,Y,O,Local
+CXMMATHC,Mmathubudukwane Clinic,,Y,O,Local
+CXMMATHE,Mmathethe Clinic,,Y,O,Local
+CXMMATHP,Mmatseta Health Post,,Y,O,Local
+CXMMATSC,Mmatshumo Clinic,,Y,O,Local
+CXMMEYAH,Mmeya Health Post,,Y,O,Local
+CXMMOKOC,Mmokolodi Clinic,,Y,O,Local
+CXMMOPAN,Mmopane Clinic,,Y,O,Local
+CXMMOPHP,Mmopane Health Post,,Y,O,Local
+CXMMUTHP,Mmutlane Health Post,,Y,O,Local
+CXMOBOLH,Mobolwe Health Post,,Y,O,Local
+CXMOCDRH,Mochudi Deborah Retief Hosp,,Y,O,Local
+CXMODIHP,Modipane Health Post,,Y,O,Local
+CXMODIKH,Modikwane Health Post,,Y,O,Local
+CXMOETIC,MOETI CLINIC,01-3-17,Y,O,Local
+CXMOGAHP,Mogapinyana Health Post,,Y,O,Local
+CXMOGOBC,Mogobane Clinic,,Y,O,Local
+CXMOGOBH,Mogobane Health Post,,Y,O,Local
+CXMOGODI,Mogoditshane Clinic,,Y,O,Local
+CXMOGOHP,Mogome Health Post,,Y,O,Local
+CXMOGOJH,Mogojogojwe Health Post,,Y,O,Local
+CXMOGONH,Mogonono Health Post,,Y,O,Local
+CXMOGOR,Mogorosi Clinic,,Y,O,Local
+CXMOGORH,Mogorosi Health Post,,Y,O,Local
+CXMOGOTH,Mogotho Health Post,,Y,O,Local
+CXMOGOTL,Mogotlhwane Health Post,,Y,O,Local
+CXMOIYAC,Moiyabana Clinic,,Y,O,Local
+CXMOKATH,Mokatako Health Post,,Y,O,Local
+CXMOKGEH,Mokgenene Health Post,,Y,O,Local
+CXMOKGOC,Mokgoro Clinic,,Y,O,Local
+CXMOKHHP,Mokhomma Health Post,,Y,O,Local
+CXMOKHP,Mokgware Health Post,,Y,O,Local
+CXMOKIBC,Mokubilo Health Post,,Y,O,Local
+CXMOKOBH,Mokobeng Health Post,,Y,O,Local
+CXMOKOHP,Mokoboxane Health Post,,Y,O,Local
+CXMOKOKH,Mokokwana Mosweu Health Post,,Y,O,Local
+CXMOKOSW,Mokoswana Health Post,,Y,O,Local
+CXMOKUHP,Mokungwana Health Post,,Y,O,Local
+CXMOLAHP,Molalatau Health Post,,Y,O,Local
+CXMOLAPC,Molapowabojang Clinic,,Y,O,Local
+CXMOLCOL,Molepolole College of Edu,,Y,O,Local
+CXMOLECL,Molepolole Clinic,,Y,O,Local
+CXMONOHP,Monong Health Post,,Y,O,Local
+CXMONWH,Monwane Health Post,,Y,O,Local
+CXMOOKAC,Mookane Clinic,,Y,O,Local
+CXMOPIPC,Mopipi Clinic,,Y,O,Local
+CXMORALH,Moralane Health Post,,Y,O,Local
+CXMOREHP,Moreomaoto Health Post,,Y,O,Local
+CXMOREMH,Moremi Health Post,,Y,O,Local
+CXMOREOH,Moreomabele Health Post,,Y,O,Local
+CXMOREOM,Moreomaoto Clinic,,Y,O,Local
+CXMORHP,Morwe Health Post,,Y,O,Local
+CXMOROKC,Moroka Clinic,,Y,O,Local
+CXMORUPC,Morupule Colliary Clinic,,Y,O,Local
+CXMORWAC,Morwa Clinic,,Y,O,Local
+CXMORWAH,Morwa Health Post,,Y,O,Local
+CXMORWC,Morwamusu Clinic,,Y,O,Local
+CXMOSEHP,Mosetse Health Post,,Y,O,Local
+CXMOSHAH,Moshaneng Health Post,,Y,O,Local
+CXMOSHCC,Moshupa Council Clinic,,Y,O,Local
+CXMOSHUS,Moshupa SDA Clinic,,Y,O,Local
+CXMOSHWA,Moshaweng Clinic,,Y,O,Local
+CXMOSOC,Mosojane Health Post,,Y,O,Local
+CXMOSOLH,Mosolotshane Health Paste,,Y,O,Local
+CXMOSUHP,Mosu Health Post,,Y,O,Local
+CXMOTLHP,Motlhabaneng Health Post,,Y,O,Local
+CXMOTLOP,Motlopi Clinic,,Y,O,Local
+CXMOTOC,Motopi Clinic,,Y,O,Local
+CXMOTOKC,Motokwe Clinic,,Y,O,Local
+CXMOTSWC,Motswedi Clinic,,Y,O,Local
+CXMOWAHP,Mowana Health Post,,Y,O,Local
+CXMPRISO,Maun Prison Clinic,,Y,O,Local
+CXMULAMH,Mulambakwena Health Post,,Y,O,Local
+CXNATALH,Natale Health Post,,Y,O,Local
+CXNCAAHP,Ncaang Health Post,,Y,O,Local
+CXNCOJAC,Ncojane Clinic,,Y,O,Local
+CXNEWTOC,New Town Clinic,,Y,O,Local
+CXNEWXAC,New Xade Clinic,,Y,O,Local
+CXNGARHP,Ngarange Health Post,,Y,O,Local
+CXNGGU,Gumare Primary Hospital,,Y,O,Local
+CXNGWAPH,Ngwapa Health Post,,Y,O,Local
+CXNGWARE,Ngware Clinic,,Y,O,Local
+CXNKAIKE,Nkaikela Clinic,,Y,O,Local
+CXNKAIKH,Nkaikela Health Post,,Y,O,Local
+CXNKANGC,Nkange Clinic,,Y,O,Local
+CXNKOYAC,Nkoyaphiri Clinic,,Y,O,Local
+CXNLAPHC,Nlaphwane Clinic,,Y,O,Local
+CXNOJAC,Nojane Clinic,,Y,O,Local
+CXNOKANE,Nokaneng Clinic,,Y,O,Local
+CXNSHAHP,Nshakashongwe Health Post,,Y,O,Local
+CXNSWAZC,Nswazwi Clinic,,Y,O,Local
+CXNTLHAC,Ntlhantlhe Clinic,,Y,O,Local
+CXNTSHEC,Ntshe Clinic,,Y,O,Local
+CXNTSWC,Ntswe Clinic,,Y,O,Local
+CXNTSWEC,Ntsweletau Clinic,,Y,O,Local
+CXNXAMHP,Nxamasere Health Post,,Y,O,Local
+CXNXAUNH,Nxaunxau Health Posr,,Y,O,Local
+CXNXOMHP,Nxomokao Health Post,,Y,O,Local
+CXOFAMIC,Okavango F Informatory Clinic,,Y,O,Local
+CXOLIPHC,Oliphants Drift Clinic,,Y,O,Local
+CXOMAWEH,Omaweneno Health Post,,Y,O,Local
+CXONALED,Old Naledi Clinic,,Y,O,Local
+CXOODICL,Oodi Clinic,,Y,O,Local
+CXORAPA,Orapa Mine Clinic,,Y,O,Local
+CXOTSECL,Otse Clinic,,Y,O,Local
+CXOTSEHP,Otse Health Post,,Y,O,Local
+CXPAJBDF,Paje BDF Clinic,,Y,O,Local
+CXPAJCLI,Paje Clinic,,Y,O,Local
+CXPALLAH,Palla Road Health Post,,Y,O,Local
+CXPANDAC,Pandamatenga BDF Clinic,,Y,O,Local
+CXPANDAM,Pandamatenga Clinic,,Y,O,Local
+CXPARAKH,Parakarangu Health Post,,Y,O,Local
+CXPELCEC,Peleng Central Clinic,,Y,O,Local
+CXPELEAC,Peleng East Clinic,,Y,O,Local
+CXPHAPC,Phaphane Clinic,,Y,O,Local
+CXPHIMOL,Phitshane Molopo Clinic,,Y,O,Local
+CXPHITSH,Phitshane Potlokwe Health Post,,Y,O,Local
+CXPHUDHP,Phuduhedu Health Post,,Y,O,Local
+CXPHUTHC,Phuthadikobo Clinic,,Y,O,Local
+CXPHUTIC,Phuting Health Post,,Y,O,Local
+CXPILANH,Pilane Health Post,,Y,O,Local
+CXPILIKC,Pilikwe Clinic,,Y,O,Local
+CXPITSAN,Pitsane Clinic,,Y,O,Local
+CXPITSEC,Pitseng Clinic,,Y,O,Local
+CXPLATHP,Plateau Health Post,,Y,O,Local
+CXPOLANI,Polani Clinic,,Y,O,Local
+CXPOLEHP,Pole Health Post,,Y,O,Local
+CXPOLIC,Police Clinic - Otse,,Y,O,Local
+CXPOLICE,Police College,,Y,O,Local
+CXPOLOHP,Poloka Health Post,,Y,O,Local
+CXPRPR,Private Practice,,Y,O,Local
+CXQABOHP,Qabo Health Post,,Y,O,Local
+CXQANGC,Qangwa Clinic,,Y,O,Local
+CXRADIC,Radisele Clinic,,Y,O,Local
+CXRAILHP,Railways Health Post,,Y,O,Local
+CXRAKHUH,Rakhuna Health Post,,Y,O,Local
+CXRAKOPC,Rakops Health Post,,Y,O,Local
+CXRALHP,Ralekgetho Health Post,,Y,O,Local
+CXRAMAC,Ramatlabama Clinic,,Y,O,Local
+CXRAMAKC,Ramakgwebana Clinic,,Y,O,Local
+CXRAMBLH,Ramotswa Bamalete Luth Hosp,,Y,O,Local
+CXRAMOKC,Ramokgonami Clinic,,Y,O,Local
+CXRAMONH,Ramonaka Health Post,,Y,O,Local
+CXRAMOTH,Ramotlabaki Health Post,,Y,O,Local
+CXRAMSTC,Ramotswa Station Clinic,,Y,O,Local
+CXRANAKA,Ranaka Clinic,,Y,O,Local
+CXRASHP,Rasesa Health Post,,Y,O,Local
+CXRATHHP,Ratholo Health Post,,Y,O,Local
+CXROBELH,Robelela Health Post,,Y,O,Local
+CXRUNGHP,Rungwana Health Post,,Y,O,Local
+CXRUSMAY,Russel May Clinic,,Y,O,Local
+CXSALAC,Salajwe Clinic,,Y,O,Local
+CXSAMAHP,Samane Health Post,,Y,O,Local
+CXSANKOY,Sankoyo Health Post,,Y,O,Local
+CXSAOT,Athlone Hospital,,Y,O,Local
+CXSATAUH,Satau Health Post,,Y,O,Local
+CXSBSEL,Selebi Phikwe Hospital IDCC,,Y,O,Local
+CXSCOTIC,Scottish Livingstone Hospital,,Y,O,Local
+CXSEBELE,Sebele Clinic,,Y,O,Local
+CXSEBHP,Sebogo Health Post,,Y,O,Local
+CXSEBINC,Sebina Clinic,,Y,O,Local
+CXSECHEH,Sechele Health Post,,Y,O,Local
+CXSEDIEC,Sedie Clinic,,Y,O,Local
+CXSEFHOC,Sefhope Clinic,,Y,O,Local
+CXSEHERH,Seherelela H Post,,Y,O,Local
+CXSEHITL,Sehitlhwa Clinic,,Y,O,Local
+CXSEKAKC,Sekakangwe Clinic,,Y,O,Local
+CXSEKGOH,Sekgoma Memorial Hospital,,Y,O,Local
+CXSEKHUH,Sekhutlane Health Post,,Y,O,Local
+CXSEKOHP,Sekoma Health Post,,Y,O,Local
+CXSELEC,Seleka Clinic,,Y,O,Local
+CXSELKIC,Selkirk Clinic,,Y,O,Local
+CXSELOKH,Selokolela H Post,,Y,O,Local
+CXSEMBOY,Semboyo Health Post,,Y,O,Local
+CXSEMOLC,Semolale Clinic,,Y,O,Local
+CXSENETC,Senete Clinic,,Y,O,Local
+CXSENYAH,Senyawe Health Post,,Y,O,Local
+CXSEOLWH,Seolwane Health Post,,Y,O,Local
+CXSEPOC,Sepopa Clinic,,Y,O,Local
+CXSEPOPD,LAB Private Patient OPD,,Y,O,Local
+CXSERONG,Seronga Clinic,,Y,O,Local
+CXSEROWC,Serowe Clinic,,Y,O,Local
+CXSERUC,Serule Clinic,,Y,O,Local
+CXSESAMC,Sesame Clinic,,Y,O,Local
+CXSESE,Sese Health Post,,Y,O,Local
+CXSESUHP,Sesung Health Post,,Y,O,Local
+CXSHAAHP,SHAA Health Post,,Y,O,Local
+CXSHADHP,Shadisshadi Health Post,,Y,O,Local
+CXSHAK,Shakawe Clinic,,Y,O,Local
+CXSHAKHP,Shakwe Health Post,,Y,O,Local
+CXSHASHE,Shashe Bridge Health Post,,Y,O,Local
+CXSHASHM,Shashe Mooke Health Post,,Y,O,Local
+CXSHASHP,Shashe Health Post,,Y,O,Local
+CXSHASST,Shashe Station Health Post,,Y,O,Local
+CXSHELEC,Sheleketta Clinic,,Y,O,Local
+CXSHORHP,Shorilatholo Health Post,,Y,O,Local
+CXSHOROC,Shorobe Clinic,,Y,O,Local
+CXSHOSHC,Shoshong Clinic,,Y,O,Local
+CXSIGAC,Siga Clinic,,Y,O,Local
+CXSIKWHP,Sikwane Health Post,,Y,O,Local
+CXSIVIYH,Siviya Health Post,,Y,O,Local
+CXSOBA,Bamalete Lutheran Hospital,,Y,O,Local
+CXSOJWEC,Sojwe Clinic,,Y,O,Local
+CXSOMELO,Somelo Health Post,,Y,O,Local
+CXSORILH,Sorilatholo Health Post,,Y,O,Local
+CXSOSE,Seventh Day Adventist Hos,,Y,O,Local
+CXSOUTC,South East Ext Clinic,,Y,O,Local
+CXSOWA,Sowa Clinic,,Y,O,Local
+CXSPPA,Palapye Primary Hospital,,Y,O,Local
+CXSPRISO,Prison,,Y,O,Local
+CXSTDCLI,STD Clinic,,Y,O,Local
+CXSTJOSE,St Josephs,,Y,O,Local
+CXSTRUIH,Struizendam Health Post,,Y,O,Local
+CXTAKATO,Takatokwane Clinic,,Y,O,Local
+CXTAMAHP,Tamasane Health Post,,Y,O,Local
+CXTAPOLC,Tapologong Clinic,,Y,O,Local
+CXTATSIC,Tati Siding Clinic,,Y,O,Local
+CXTATTOW,Tatitown Clinic,,Y,O,Local
+CXTAUNCL,Taung Clinic,,Y,O,Local
+CXTAUPHP,Taupye Health Post,,Y,O,Local
+CXTAWANC,Tawana Clinic,,Y,O,Local
+CXTBLOC,TB Location,,Y,O,Local
+CXTEBE,Tebelopele VCT,,Y,O,Local
+CXTEWANH,Tewane Health Post,,Y,O,Local
+CXTEWCL,Tewane Clinic,,Y,O,Local
+CXTHABAC,Thabala Clinic,,Y,O,Local
+CXTHAMAC,Thamaga Clinic,,Y,O,Local
+CXTHANHP,Thankane Health Post,,Y,O,Local
+CXTHEMAC,Themashanga Clinic,,Y,O,Local
+CXTHIIC,Thini Clinic,,Y,O,Local
+CXTHITOC,Thito Clinic,,Y,O,Local
+CXTHITOH,Thitoyamokodi Health Post,,Y,O,Local
+CXTJUKUH,Tjukumuchu Health Post,,Y,O,Local
+CXTLOKMC,Tlokweng Main Clinic,,Y,O,Local
+CXTLOOWH,Tloowaneng Health Post,,Y,O,Local
+CXTOBANE,Tobane Health Post,,Y,O,Local
+CXTONOC,Tonota Clinic,,Y,O,Local
+CXTONOCO,Tonota College,,Y,O,Local
+CXTOPIHP,Topisi Health Post,,Y,O,Local
+CXTOROHP,Tomoroja Health Post,,Y,O,Local
+CXTOTENG,Toteng Health Post,,Y,O,Local
+CXTSABOC,Tsabong Clinic,,Y,O,Local
+CXTSAMC,Tsamaya Clinic,,Y,O,Local
+CXTSAUCL,Tsau Clinic,,Y,O,Local
+CXTSETHP,Tsetseng Health Post,,Y,O,Local
+CXTSETSC,Tsetsejwe Clinic,,Y,O,Local
+CXTSHANE,Tshane Health Post,,Y,O,Local
+CXTSHEC,Tshesebe Clinic,,Y,O,Local
+CXTSHIDI,Tshidilamolomo Clinic,,Y,O,Local
+CXTSHIHP,Tshimoyapula Health Post,,Y,O,Local
+CXTSHIMC,Tshimologo Clinic,,Y,O,Local
+CXTSHIMO,Tshimoyapula Clinic,,Y,O,Local
+CXTSHOHP,Tshokwe Health Post,,Y,O,Local
+CXTSHOLC,Tsholofelo Clinic,,Y,O,Local
+CXTSHWAA,Tshwaane Health Post,,Y,O,Local
+CXTSHWAR,Tshwaragano Clinic,,Y,O,Local
+CXTSOKOH,Tsokatshaa Health Post,,Y,O,Local
+CXTSONYH,Tsonyane Health Post,,Y,O,Local
+CXTSOOTC,Tsootsha Clinic,,Y,O,Local
+CXTSOPEC,Tsopeng Clinic,,Y,O,Local
+CXTUBUHP,Tubu Health Post,,Y,O,Local
+CXTUGW,Gweta Primary Hospital,,Y,O,Local
+CXTUMA,Masunga Primary Hospital,,Y,O,Local
+CXTUTU,Tutume Primary Hospital,,Y,O,Local
+CXUKHWHP,Ukhwi Health Post,,Y,O,Local
+CXUNBOTS,University of Botswana,,Y,O,Local
+CZZUNK,Unknown Patient Location,,Y,O,Local
+DMANTNW,DM AnteNatal and Delivery Ward,,Y,I,Local
+DMCDEM,DRM Dermatology clinic,,Y,O,Local
+DMCDEN,DM Dental Department,,Y,O,Local
+DMCDIE,DM Dietetics Clinic,,Y,O,Local
+DMCEYE,DM Eye Clininc,,Y,O,Local
+DMCPHY,DM Physiotherapy,,Y,O,Local
+DMCPSY,DM Psychology Clinic,,Y,O,Local
+DMCRAD,DM Radiology Department,,Y,O,Local
+DMCSCW,DM Social Workers,,Y,O,Local
+DMCTBC,DM Tuberculosis Clinic,TBC,Y,O,Local
+DMCYOU,DM Youth Friendly Clinic,,Y,O,Local
+DMDHIS,Deborah DHIS,,Y,O,Local
+DMDLAB,DM Laboratory,,Y,O,Local
+DMDOPD,DM Outpatient Department,,Y,O,Local
+DMDPHA,DM Pharmacy,,Y,O,Local
+DMEYET,DM Eye Theatre,,N,O,Local
+DMEYTH,DM Eye Theatre,,Y,O,Local
+DMFMEDW,DM Female Medical Ward,,Y,I,Local
+DMFSURW,DM Female Surgical Ward,,Y,I,Local
+DMMATH,DM Major Theatre,,Y,O,Local
+DMMMEDW,DM Male Medical Ward,,Y,I,Local
+DMMSURW,DM Male Surgical Ward,,Y,I,Local
+DMPAEDW,DM Paediatric Ward,,Y,I,Local
+DMPOSTW,DM Post Natal Ward,,Y,I,Local
+DMREVENUE,DM Deborah Retief Revenue Off,,Y,O,Local
+DMSCBU,DM Special Care Baby Unit,,Y,I,Local
+DMSTA,DM Staff Clinic,,Y,O,Local
+GAANTEW,GA Ante Natal Ward,,Y,I,Local
+GACDEN,GA Dental Clinic,,Y,O,Local
+GACDIA,GA Diabetic Specialist Clinic,,Y,O,Local
+GACLAS,GA Labour Assistance Area,,Y,O,Local
+GACMED,GA Medical Specialist Clinic,,Y,O,Local
+GACMOP,GA Medical Outpatient Dept,,Y,O,Local
+GACOPT,GA Opthalmology Clinic,,Y,O,Local
+GACORT,GA Orthopaedic Clinic,,Y,O,Local
+GACPHY,GA Physiotherapy Dept,,Y,O,Local
+GACPSY,GA Psyciatric Clinic,,Y,O,Local
+GACSCW,GA Social Workers,,Y,O,Local
+GACSOP,GA Surgical Outpatient Dept,,Y,O,Local
+GACSRH,GA Sexual Reproductive Health,,Y,O,Local
+GACSTA,GA Staff Clinic,,Y,O,Local
+GACTBC,GA Tuberculosis Clinic,,Y,O,Local
+GACULT,GA Ultra Sound Dept,,Y,O,Local
+GACYOU,GA Youth Clinic,,Y,O,Local
+GADHIS,Ghanzi DHIS,,Y,O,Local
+GADLAB,GA Laboratory Dept,,Y,O,Local
+GADPHA,GA Pharmacy,,Y,O,Local
+GADRAD,GA Radiology Dept,,Y,O,Local
+GAFGENW,GA Female General Ward,,Y,I,Local
+GALABOW,GA Labour Ward,,Y,I,Local
+GAMATH,GA Major Theatre,,Y,O,Local
+GAMGENW,GA Male General Ward,,Y,I,Local
+GAMITH,GA Minor Theatre,,Y,O,Local
+GAPOSNW,GA Post Natal Ward,,Y,I,Local
+GAPREMW,GA Preterm Baby Ward,,Y,I,Local
+GAREVENUE,GA Gantsi Revenue Office,,Y,O,Local
+GFCARW,Area W Clinic,,Y,O,Local
+GFCBOIKH,GFC Boikhutso Clinic,,N,O,Local
+GFCDONGA,GFC Donga Clinic,,N,O,Local
+GFCMASEG,GFC Masego Clinic,,N,O,Local
+GFCTATIS,GFC Tati Siding Clinic,,N,O,Local
+GFCTNT,Tonota Clinic,,Y,O,Local
+GFCTONOT,GFC Tonota Clinic,,N,O,Local
+GGCBPS,Botswana Prisons Service Clini,,Y,O,Local
+GGCBRHTL,GGC Broadhurst Traditional CL,,N,O,Local
+GGCJULML,GGC Julia Molefhe Clinic,,N,O,Local
+GGCJUM,Julia Molefhe Clinic,,Y,O,Local
+GGCKGA,Kgatelopele Clinic,,Y,O,Local
+GGCLES,Lesirane Clinic,,Y,O,Local
+GGCMATLES,GGC Lesirane Mat Ward,,Y,O,Local
+GGCNKA,Nkaikela Healthpost,,N,O,Local
+GGCNKO,Nkoyaphiri clinic,,Y,O,Local
+GGCNKOYAP,GGC Nkoyaphiri Clinic,,N,O,Local
+GGCNKOYP,GGC Nkoyaphiri Clinic,,N,O,Local
+GGCTLO,Tlokweng Main Clinic,,Y,O,Local
+GGCTLOKN,GGC Tlokweng Main Clinic,,N,O,Local
+GHANTNW,GH Ante Natal Ward,,Y,I,Local
+GHCEYE,GH Eye Clinic,,Y,O,Local
+GHCPSY,GH Psychiatric Clinic,,Y,O,Local
+GHCSRH,GH Sexual Reproductive Health,,Y,O,Local
+GHDHIS,Goodhope DHIS,,Y,O,Local
+GHDLAB,GH Laboratory,,Y,O,Local
+GHDOPD,GH Out Patient Department,,Y,O,Local
+GHDPHA,GH Pharmacy,,Y,O,Local
+GHDRAD,GH Radiology Department,,Y,O,Local
+GHDSOC,GH Social Work Dept,,Y,O,Local
+GHFGENW,GH Female General Ward,,Y,I,Local
+GHLABOW,GH Labour Ward,,Y,I,Local
+GHMGENW,GH Male General Ward,,Y,I,Local
+GHMITH,GH Minor Theatre,,Y,O,Local
+GHPAEDW,GH Paediatrics Ward,,Y,I,Local
+GHPIHW,GH Pregnancy Induced Hypertion,,Y,I,Local
+GHPOSTW,GH Post Natal Ward,,Y,I,Local
+GHTBWRD,GH TB Shelter Ward,,Y,I,Local
+GHTDWRD,GH TB Shelter Ward,,N,I,Local
+GHTHEA,GH Main Theatre,,Y,O,Local
+GPAEDW,GA Paediatric Ward,,Y,I,Local
+GUCEYE,GU Eye Clinic,,Y,O,Local
+GUCPSY,GU Psychiatric Clinic,,Y,O,Local
+GUDHIS,Gumare DHIS,,Y,O,Local
+GUDLAB,GU Laboratory,,Y,O,Local
+GUDOPD,GU Outpatient Department,,Y,O,Local
+GUDPHA,GU Pharmacy Department,,Y,O,Local
+GUDRAD,GU Radiology Department,,Y,O,Local
+GUDSOC,GU Social Work Department,,Y,O,Local
+GUGENWD,GU General Ward,,Y,I,Local
+GUMATH,GU Main Theatre,,Y,O,Local
+GUMATWD,GU Maternity Ward,,Y,I,Local
+GUMITH,GU Minor Theatre,,Y,O,Local
+GWCDEN,GW Dental Clinic,,Y,O,Local
+GWCEYE,GW Eye Clinic,,Y,O,Local
+GWCPSY,GW Psychiatric Clinic,,Y,O,Local
+GWDHIS,Gweta DHIS,,Y,O,Local
+GWDLAB,GW Laboratory,,Y,O,Local
+GWDOPD,GW Outpatient Department,,Y,O,Local
+GWDPHA,GW Pharmacy Department,,Y,O,Local
+GWDRAD,GW Radiology Department,,Y,O,Local
+GWDSOC,GW Social Work Department,,Y,O,Local
+GWGENWD,GW General Ward,,Y,I,Local
+GWISOW,GW Covid Isolation Ward,,Y,I,Local
+GWMATH,GW Main Theatre,,Y,O,Local
+GWMATWD,GW Maternity Ward,,Y,I,Local
+GWMITH,GW Minor Theatre,,Y,O,Local
+HGGMMO,Mmopane Healthpost,,Y,O,Local
+HGGNKA,Nkaikela Healthpost,,Y,O,Local
+HKANTNW,HK Ante Natal Ward,,Y,I,Local
+HKCDEN,HK Dental Clinic,,Y,O,Local
+HKCDIE,HK Dietetics,,Y,O,Local
+HKCEYE,HK Eye Clinic,,Y,O,Local
+HKCPSY,HK Psychology clinic,,Y,O,Local
+HKCPSYC,HK PSYCHIATRIC CLINIC,,Y,O,Local
+HKCYOU,HK Youth Friendly Services Cli,,Y,O,Local
+HKDHIS,Hukuntsi DHIS,,Y,O,Local
+HKDLAB,HK Laboratory,,Y,O,Local
+HKDOPD,HK Outpatient Department,,Y,O,Local
+HKDPHA,HK Pharmacy,,Y,O,Local
+HKDRAD,HK Radiology Department,,Y,O,Local
+HKDSOC,HK Social Work Department,,Y,O,Local
+HKERUN,Rungwana Healthpost,,Y,O,Local
+HKFMEDW,HK Female Ward,,Y,I,Local
+HKGENHD,HK General High Dependency,,Y,I,Local
+HKISOW,HK Isolation Ward,,Y,I,Local
+HKKANGW,HK Kangaroo Ward,,Y,I,Local
+HKMATH,HK Main Theatre,,Y,O,Local
+HKMITH,HK Minor Theatre,,Y,O,Local
+HKMMEDW,HK Male Ward,,Y,I,Local
+HKPAEDW,HK Paediatrics,,Y,I,Local
+HKPOSTW,HK Post Natal Ward,,Y,I,Local
+HKREVENUE,HK Sundry Revenue,,Y,O,Local
+HKSCBUW,HK Special Care Baby Unit,,Y,I,Local
+HKTBSHW,HK TB Shelters Ward,,Y,I,Local
+JPKANTENW,JPK Antenatal Ward,,N,I,Local
+JPKCDEN,JPK Dental Department,,Y,O,Local
+JPKCDIE,JPK Dietetics Department,,Y,O,Local
+JPKCEYE,JPK Eye Clinic,,Y,O,Local
+JPKCOPD,JPK Outpatient Department,,Y,O,Local
+JPKCPSY,JPK Psychiatric Clinic,,Y,O,Local
+JPKCSOW,JPK Social Work Department,,Y,O,Local
+JPKCSRH,JPK Sexual Reproductive Health,,Y,O,Local
+JPKDHIS,JPK DHIS,,Y,O,Local
+JPKDLAB,JPK Laboratory Department,,Y,O,Local
+JPKDPHA,JPK Pharmacy Department,,Y,O,Local
+JPKDRAD,JPK Radiology Department,,Y,O,Local
+JPKFGENW,JPK Female General Ward,,N,I,Local
+JPKGENWD,JPK General Ward,,Y,I,Local
+JPKLABOW,JPK Labour Ward,,N,I,Local
+JPKMATH,JPK Main Theatre,,Y,O,Local
+JPKMATWD,JPK Maternity Ward,,Y,I,Local
+JPKMGENW,JPK Male General Ward,,N,I,Local
+JPKMITH,JPK Minor Theatre,,Y,O,Local
+JPKPAEDW,JPK Paediatric General Ward,,N,I,Local
+JPKPOSNW,JPK Post Natal Ward,,N,I,Local
+JPKREVENUE,JPK Revenue Office,,Y,O,Local
+JPKSCBU,JPK Special Care Baby Unit,,N,I,Local
+JPKTBWD,JPK TB Ward,,Y,I,Local
+JWUNOPD,Unit 7 Clinic OPD,,Y,O,Local
+KACDEN,KA Dental Clinic,,Y,O,Local
+KACDIE,KA DIETETICS CLINIC,,Y,O,Local
+KACEYE,KA Eye Clinic,,Y,O,Local
+KACPSY,KA Psychiatric Clinic,,Y,O,Local
+KACSRH,KA SRH Clinic,,Y,O,Local
+KADHIS,Kasane DHIS,,Y,O,Local
+KADLAB,KA Laboratory,,Y,O,Local
+KADOPD,KA Outpatient Department,,Y,O,Local
+KADPHA,KA Pharmacy Department,,Y,O,Local
+KADRAD,KA Radiology Department,,Y,O,Local
+KADSOC,KA Social Work,,Y,O,Local
+KAGENWD,KA General Ward,,Y,I,Local
+KAMATH,KA Main Theatre,,Y,O,Local
+KAMATWD,KA Maternity Ward,,Y,I,Local
+KAMITH,KA Minor Theatre,,Y,O,Local
+KNCKAN,Kang Clinic,,Y,O,Local
+KSCDEN,KS Dental,,Y,O,Local
+KSCDIE,KS Dietetics,,Y,O,Local
+KSCEYE,KS Eye Clinic,,Y,O,Local
+KSCPHY,KS Physiotherapy,,Y,O,Local
+KSCPSY,KS Psychiatric,,Y,O,Local
+KSCSRH,KS Sexual Reproductive Health,,Y,O,Local
+KSCSUR,KS Surgical Clinic,,Y,O,Local
+KSDHIS,Kanye DHIS,,Y,O,Local
+KSDOPD,KS Outpatient,,Y,O,Local
+KSDPHA,KS Pharmacy,,Y,O,Local
+KSDRAD,KS Radiology,,Y,O,Local
+KSDSOC,KS Social Work,,Y,O,Local
+KSFMEDW,KS Female Medical Ward,,Y,I,Local
+KSISOW,KS Covid Isolation Ward,,Y,I,Local
+KSMATENW,KS Maternity Ward,,N,I,Local
+KSMATNW,KS Maternity Ward,,Y,I,Local
+KSMMEDW,KS Male Medical Ward,,Y,I,Local
+KSPAEDW,KS Paediatrics Ward,,Y,I,Local
+KSPRVYW,KS Private Ward,,Y,I,Local
+KSREVENUE,KS Saundry Revenue,,Y,O,Local
+KSSURGW,KS Surgical Ward,,Y,I,Local
+KSTHEA,KS Theatre,,Y,O,Local
+KWCLTK,Letlhakeng Clinic,,Y,O,Local
+LHANTNW,LH Ante Natal Ward,,Y,I,Local
+LHCDEN,LH Dental Clinic,,Y,O,Local
+LHCEYE,LH Eye Clinic,,Y,O,Local
+LHCSRH,LH Sexual Reproductive Health,,Y,O,Local
+LHCTB,LH Tubercolosis Clinic,,Y,O,Local
+LHCYOU,LH Youth Friendly Services Cli,,Y,O,Local
+LHDHIS,Letlhakane DHIS,,Y,O,Local
+LHDLAB,LH Laboratory,,Y,O,Local
+LHDOPD,LH Outpatient Department,,Y,O,Local
+LHDPHA,LH Pharmacy,,Y,O,Local
+LHDRAD,LH Radiology Department,,Y,O,Local
+LHDSOC,LH Social Work Department,,Y,O,Local
+LHFISOW,LH Female Isolation Ward,,Y,I,Local
+LHFMEDW,LH Female Ward,,Y,I,Local
+LHFTBWD,LH Female TB Ward,,Y,I,Local
+LHISOW,LH Hospital Covid Isolation,,Y,I,Local
+LHLABOW,LH Labour Ward,,Y,I,Local
+LHMISOW,LH Male Isolation Ward,,Y,I,Local
+LHMMEDW,LH Male Ward,,Y,I,Local
+LHMTBWD,LH Male TB Ward,,Y,I,Local
+LHPAEDW,LH Paediatrics,,Y,I,Local
+LHPOSTW,LH Post Natal Ward,,Y,I,Local
+LHREVENUE,LH Sundry Revenue,,Y,O,Local
+LHSCBUW,LH Special Care Baby Unit,,Y,I,Local
+LHTHEA,LH Theatre Department,,Y,O,Local
+MAANTNW,MA Antenatal Ward,,N,I,Local
+MAANTW,MA Antenatal Ward,,Y,I,Local
+MACCPS,MA Clinical Psychology Clinic,,Y,O,Local
+MACDEN,MA Dental Clinic,,Y,O,Local
+MACDER,MA Dermatology Clinic,,Y,O,Local
+MACDIA,MA Diabetic Clinic,,Y,O,Local
+MACDIE,MA Dietician Clinic,,Y,O,Local
+MACENT,MA ENT Clinic,,Y,O,Local
+MACEYE,MA Eye Clinic,,Y,O,Local
+MACGYN,MA Gynaecology Clinic,,Y,O,Local
+MACHYP,MA Hypertension Clinic,,Y,O,Local
+MACMCH,MA Sexual Reproductive Health,,Y,O,Local
+MACMED,MA Medical Clinic,,Y,O,Local
+MACMEX,MA Medical Exams Clinic,,Y,O,Local
+MACOCC,MA Occupational Therapy Clinic,,Y,O,Local
+MACOPH,MA Ophthalmology Clinic,,Y,O,Local
+MACORT,MA Orthopaedic Clinic,,Y,O,Local
+MACPAE,MA Paediatric Clinic,,Y,O,Local
+MACPHY,MA Physiotherapy Clinic,,Y,O,Local
+MACPSY,MA Psychiatric Clinic,,Y,O,Local
+MACSCW,MA Social Workers Clinic,,Y,O,Local
+MACSUR,MA Surgical Clinic,,Y,O,Local
+MACTB,MA TB Clinic,,N,O,Local
+MACTBT,MA MDR TB Treatment Clinic,,Y,O,Local
+MACYF,MA Youth Friendly Clinic,,Y,O,Local
+MADEN,Dental Clinic,MA,N,O,Local
+MADHIS,Letsholathebe DHIS,,Y,O,Local
+MADIE,Dietician Clinic,MA,N,O,Local
+MADLAB,MA Laboratory,,Y,O,Local
+MADMORT,MA Mortuary,,N,O,Local
+MADOPD,MA Outpatient Department,,Y,O,Local
+MADPHA,MA Pharmacy Department,,Y,O,Local
+MADRAD,MA Diagnostic Imaging Dept,,Y,O,Local
+MAFMEDW,MA Female Medical Ward,,Y,I,Local
+MAFPSYW,MA Female Psychiatric Ward,,Y,I,Local
+MAFSURW,MA Female Surgical Ward,,Y,I,Local
+MAFTBW,MA Female Tuberculosis Ward,,Y,I,Local
+MAFTENT,MA Female Eye Tent,,N,I,Local
+MAGICUW,MA Intensive Care Unit,,N,I,Local
+MAGYN,Gynaecology Clinic,MA,N,O,Local
+MAGYNAW,MA Gynaecology Ward,,Y,I,Local
+MAGYNTH,MA Gynegology Theatre,,Y,O,Local
+MAICUW,MA Intensive Care Ward,,N,I,Local
+MAISOW,MA Covid Isolation Ward,,Y,I,Local
+MALABOW,MA Labour Ward,,Y,I,Local
+MAMATH,MA Major Theatre,,Y,O,Local
+MAMCH,Mother Child Health Clinic,MA,N,O,Local
+MAMITH,MA Minor Theatres,,Y,O,Local
+MAMMEDW,MA Male Medical Ward,,Y,I,Local
+MAMORT,MA Mortuary,,N,O,Local
+MAMPSYW,MA Male Psychiatric Ward,,Y,I,Local
+MAMSURW,MA Male Surgical Ward,,Y,I,Local
+MAMTBW,MA Male Tuberculosis Ward,,Y,I,Local
+MAMTENT,MA Male Eye Tent,,N,I,Local
+MANURW,MA Nursery Ward,,Y,I,Local
+MAOPH,Ophthalmology Clinic,MA,N,O,Local
+MAPAE,Paediatric Clinic,MA,N,O,Local
+MAPAEDW,MA Paediatric Ward,,N,I,Local
+MAPAEMW,MA Paediatric Medical Ward,,Y,I,Local
+MAPAESW,MA Paediatric Surgical Ward,,Y,I,Local
+MAPHY,Physiology Clinic,MA,N,O,Local
+MAPOSNW,MA Post Natal Ward,,Y,I,Local
+MAPSY,Maun Psychiatric Clinic,MA,N,O,Local
+MAPSYW,MA Psychiatric Ward,,N,I,Local
+MAREVENUE,MA SUNDRY REVENUE,,Y,O,Local
+MASCBW,MA Special Care Baby Unit,,Y,I,Local
+MATBC,Maun TB Clinic,MA,N,O,Local
+MATBW,MA Tuberculosis Ward,,N,I,Local
+MATHEA,MA Maun Theatres,,Y,O,Local
+MATSUR,MA General Sugeons,,Y,O,Local
+MBCMBT,Mabutsane Clinic,,N,O,Local
+MBSMBT,Mabutsane Clinic,,Y,O,Local
+MCPSY,Psycology Clinic,MA,N,O,Local
+MDANTNW,MD Ante-Natal Maternity ward,,Y,I,Local
+MDCEYE,MD Eye Clinic,,Y,O,Local
+MDCPSY,MD Psychiatry Clinic,,Y,O,Local
+MDCSRH,MD Sexual Reproductive Health,,Y,O,Local
+MDCTB,MD TB Clinic,,Y,O,Local
+MDCYFS,MD Youth Friendly Service Clin,,Y,O,Local
+MDDHIS,Mmadinare DHIS,,Y,O,Local
+MDDLAB,MD Laboratory,,Y,O,Local
+MDDOPD,MD Outpatient Department,,Y,O,Local
+MDDPHA,MD Pharmacy,,Y,O,Local
+MDDRAD,MD Radiology Department,,Y,O,Local
+MDDSOC,MD Social Work Department,,Y,O,Local
+MDFGENW,MD Female General Ward,,Y,I,Local
+MDFTBW,MD Female TB Ward,,Y,I,Local
+MDGENISO,MD Isolation General Ward,,Y,I,Local
+MDISOLW,MD Isolation TB Ward,,Y,I,Local
+MDISOW,MD Covid Isolation Ward,,Y,I,Local
+MDLABOW,MD Labour Maternity Ward,,Y,I,Local
+MDMGENW,MD Male General Ward,,Y,I,Local
+MDMTBW,MD Male TB Ward,,Y,I,Local
+MDPAEDW,MD Paediatrics Ward,,Y,I,Local
+MDPOSTW,MD Post-Natal Maternity Ward,,Y,I,Local
+MDTHEA,MD Minor Theatre,,Y,O,Local
+MHANTEW,MH Ante Natal Ward,,Y,I,Local
+MHCCAR,MH Cardiology Clinic,,Y,O,Local
+MHCCPS,MH Clinical Psychology,,Y,O,Local
+MHCDEN,MH Dental Clinic,,Y,O,Local
+MHCDIA,MH Diabetic Clinic,,Y,O,Local
+MHCDIE,MH Dietician Clinic,,Y,O,Local
+MHCEYE,MH Eye Clinic,,Y,O,Local
+MHCGYN,MH Gynegology Clinic,,Y,O,Local
+MHCHYP,MH Hypertension Clinic,,Y,O,Local
+MHCMEX,MH Medical Examiniation Clinic,,Y,O,Local
+MHCMSP,Moshupa Council Clinic,,Y,O,Local
+MHCOCC,MH Occupational Therapy,,Y,O,Local
+MHCORT,MH Orthopaedic Clinic,,Y,O,Local
+MHCPHY,MH Physiotherapy Dept,,Y,O,Local
+MHCPSY,MH Psychiatric Clinic,,Y,O,Local
+MHCRAD,MH Radiology Dept,,Y,O,Local
+MHCSCW,MH Social Workers,,Y,O,Local
+MHCSRH,MH Sexual Reproductive Health,,Y,O,Local
+MHCSTA,MH Staff Clinic,,Y,O,Local
+MHCSUR,MH General Surgeon Clinic,,Y,O,Local
+MHCWS,MH Social Workers,,N,O,Local
+MHCYOU,MH Youth Clinic,,Y,O,Local
+MHDHIS,Mahalapye DHIS,,Y,O,Local
+MHDLAB,MH Laboratory Dept,,Y,O,Local
+MHDOPD,MH Outpatients Department,,Y,O,Local
+MHDPHA,MH Parmacy Dept,,Y,O,Local
+MHFMEDW,MH Female Medical Ward,,Y,I,Local
+MHFORTHW,MH Female Orthopedic Ward,,Y,I,Local
+MHFSURGYW,MH Female Surgical and Gynae W,,Y,I,Local
+MHFSURW,MH Female Surgical Ward,,Y,I,Local
+MHGYNEW,MH Gynegology Ward,,Y,I,Local
+MHLABOW,MH Labour Ward,,Y,I,Local
+MHMMEDW,MH Male Medical Ward,,Y,I,Local
+MHMORTHW,MH Male Orhtopedic Ward,,Y,I,Local
+MHMSURW,MH Male Surgical Ward,,Y,I,Local
+MHNURW,MH Nursery Ward,,Y,I,Local
+MHORTHW,MH Orthopaedic Ward,,Y,I,Local
+MHPAEDW,MH Paediatric Ward,,Y,I,Local
+MHPOSTW,MH Post Natal Ward,,Y,I,Local
+MHPSYCW,MH General Psyciatric Ward,,Y,I,Local
+MHREVENUE,MH Mahalapye Revenue Office,,Y,O,Local
+MHSCW,MH Social Workers,,N,O,Local
+MHTMAI,MH Main Theatre,,Y,O,Local
+MHTMIN,MH Minor Theatre,,Y,O,Local
+MPCL,MPHO CLINI,,Y,O,Local
+MSANTNW,MS Ante-Natal Ward,,Y,I,Local
+MSCDEN,MS Dental Clinic,,Y,O,Local
+MSCEYE,MS Eye Clinic,,Y,O,Local
+MSCPSY,MS Psychiatric Clinic,,Y,O,Local
+MSDHIS,Masunga DHIS,,Y,O,Local
+MSDLAB,MS Laboratory,,Y,O,Local
+MSDOPD,MS Outpatient Department,,Y,O,Local
+MSDPHA,MS Pharmacy,,Y,O,Local
+MSDRAD,MS Radiology Department,,Y,O,Local
+MSDSOC,MS Social Work Department,,Y,O,Local
+MSFISOW,MS Female Isolatn - Infectious,,Y,I,Local
+MSFMEDW,MS Female Ward,,Y,I,Local
+MSHDGEN,MS General Ward - HD,,Y,I,Local
+MSISONON,MS Isolation - Non Infectious,,Y,I,Local
+MSISOW,MS ISOLATION WARD,,Y,I,Local
+MSLABOW,MS Labour Ward,,Y,I,Local
+MSMATH,MS Main Theatre,,Y,O,Local
+MSMISOW,MS Male Isolation - Infectious,,Y,I,Local
+MSMITH,MS Minor Theatre,,Y,O,Local
+MSMMEDW,MS Male Ward,,Y,I,Local
+MSPAEDW,MS Paediatrics Ward,,Y,I,Local
+MSPOSTW,MS Post Natal Ward,,Y,I,Local
+MSREVENUE,MS Sundry Revenue,,Y,O,Local
+MSSCBUW,MS Special Care Baby Unit Ward,,Y,I,Local
+MSSTAFW,MS Staff Rooms,,Y,I,Local
+MSTBWRD,MS TB Shelters,,Y,I,Local
+NYACCU,NY Accupuncture,,Y,O,Local
+NYBLOOD,NY Blood Donor,,Y,O,Local
+NYBREAKA,NY Breakages and Losses,,Y,O,Local
+NYCACU,NY Acupuncture Clinic,,Y,O,Local
+NYCDEN,NY Dental Clinic,,Y,O,Local
+NYCDER,NY Dermatology Clinic,,Y,O,Local
+NYCDIA,NY Diabetic Clinic,,Y,O,Local
+NYCDIE,NY Dietetics Obesity Clinic,,Y,O,Local
+NYCENT,NY Ear Nose and Throat Clinic,,Y,O,Local
+NYCGAS,NY Gastroenterology Clinic,,Y,O,Local
+NYCGYN,NY Gynaecology Clinic,,Y,O,Local
+NYCHYP,NY Hypertensice Clinic,,Y,O,Local
+NYCMDR,NY MDR Clinic,,Y,O,Local
+NYCMEC,NY Medical Cardiac Clinic,,Y,O,Local
+NYCMED,NY Medical Clinic,,Y,O,Local
+NYCNEU,NY Neurological Clinic,,Y,O,Local
+NYCOCC,NY Occupational Therapy,,Y,O,Local
+NYCONC,NY Oncology Clinic,,Y,O,Local
+NYCOPH,NY Ophthalmology Clinic,,Y,O,Local
+NYCORH,NY Orthopaedic Clinic,,N,O,Local
+NYCORT,NY Orthopaedic Clinic,,Y,O,Local
+NYCPAE,NY Paediatric Clinic,,Y,O,Local
+NYCPCC,NY Cancer Pall Care Clinic,,Y,O,Local
+NYCPHY,NY Physiotherapy Clinic,,Y,O,Local
+NYCPSC,NY Psycology Clinic,,Y,O,Local
+NYCPSY,NY Psychiatric Clinic,,Y,O,Local
+NYCSCW,NY Social Workers,,Y,O,Local
+NYCSSD,NY CSSD,,Y,O,Local
+NYCSUR,NY General Surgery Clinic,,Y,O,Local
+NYCTBC,NY Tuberculosis Clinic,TBC,Y,O,Local
+NYCTHC,NY Thoracic clinic,,Y,O,Local
+NYCURO,NY Urology Clinic,,Y,O,Local
+NYCYOU,NY Youth Friendly Clinic,,Y,O,Local
+NYDAER,NY Accident and Emergency,,Y,O,Local
+NYDASS,NY Labour Assessment Area,,Y,O,Local
+NYDEN,Dental Clinic,NY,N,O,Local
+NYDENT,NY Dental,,Y,O,Local
+NYDHIS,Nyangabgwe DIHS,,Y,O,Local
+NYDIE,Dietician Clinic,NY,N,O,Local
+NYDMORT,NY Mortuary,,N,O,Local
+NYDPHA,NY Pharmacy Department,,Y,O,Local
+NYDPSY,NY Psychiatric Outpatient,,Y,O,Local
+NYDRAD,NY Radiology Department,,Y,O,Local
+NYENT,Ear Nose and Throat Clinic,NY,N,O,Local
+NYEXPIR,NY Expired Items,,Y,O,Local
+NYFTBWCA,NY TB Ward,,N,I,Local
+NYGYN,Gynaecology Clinic,NY,N,O,Local
+NYIDCC,NY IDCC Clinic,,Y,O,Local
+NYLAB,NY Laboratory,,Y,O,Local
+NYMCH,Mother Child Health Clinic,NY,N,O,Local
+NYMED,Medical Clinic,NY,N,O,Local
+NYMEDT,NY Medical Treatment Room,,Y,O,Local
+NYMHTU,NY Male Head Trauma Unit,,N,I,Local
+NYMORT,NY Mortuary,,Y,O,Local
+NYNEU,Neurology Clinic,NY,N,O,Local
+NYNRC,NY Nutrition Rehab Centre,,Y,O,Local
+NYOPD,NY Out Patient Department,,N,O,Local
+NYOPERT,NY Poerating Theatre,,Y,O,Local
+NYOPH,Ophthalmology Clinic,NY,N,O,Local
+NYORT,Orthopedic Clinic,NY,N,O,Local
+NYORTHC,NY Orthopeadic Clinic,,Y,O,Local
+NYORTHOM,NY Male Orthopaedic,,Y,O,Local
+NYOUTPD,NY Outpatient Department,,Y,O,Local
+NYPAE,Paediatric Clinic,NY,N,O,Local
+NYPHY,Physiology Clinic,NY,N,O,Local
+NYPHYSIO,NY Physiotherapy,,Y,O,Local
+NYPSYCHF,NY Psychiatric Female,,Y,O,Local
+NYPSYCHM,NY Psychiatric Male,,Y,O,Local
+NYPSYCW,NY Psychiatric Ward,,N,I,Local
+NYREVENUE,NY SUNDRY REVENUE,,Y,O,Local
+NYSHSTW,NY Short Stay Ward,,N,I,Local
+NYSUPP,NY Supplies Store,,Y,O,Local
+NYSUR,General Surgery Clinic,NY,N,O,Local
+NYTDEN,NY Dental Surgeons,,Y,O,Local
+NYTENT,NY ENT Surgeons,,Y,O,Local
+NYTGEN,NY General Surgeons,,N,O,Local
+NYTGYN,NY Gynaecology Surgeons,,Y,O,Local
+NYTHEA,NY Theatres,,Y,O,Local
+NYTHEN,NY Theatres,,N,O,Local
+NYTMA,NY Theatre Main,,N,O,Local
+NYTMI,NY Theatre Minor,,N,O,Local
+NYTNEU,NY Neuro Surgeons,,Y,O,Local
+NYTOPH,NY Ophthalmology Surgeons,,Y,O,Local
+NYTORT,NY Orthopaedics Surgeons,,Y,O,Local
+NYTSUR,NY General Surgeons,,Y,O,Local
+NYTURO,NY Urology Surgeons,,Y,O,Local
+NYURO,Urology Clinic,NY,N,O,Local
+PMANC,Ante Natal Ward,PM,N,I,Local
+PMB,PM Baylor Pharmacy,,N,O,Local
+PMBPHA,PM Baylor Pharmacy,,Y,O,Local
+PMCACU,PM Acupuncture Clinic,,Y,O,Local
+PMCAUD,PM Audio Clinic,,Y,O,Local
+PMCCAT,Catering Clinic,PM,N,O,Local
+PMCCTH,PM Cardiothoracic Clinic,,Y,O,Local
+PMCDEN,PM Dental Clinic,,Y,O,Local
+PMCDER,PM Dermatology Clinic,,Y,O,Local
+PMCDIA,PM Diabetic Clinic,,Y,O,Local
+PMCDIE,PM Dietician Clinic,,Y,O,Local
+PMCENT,PM Ear Nose and Throat Clinic,,Y,O,Local
+PMCGAS,PM Gastroenterology Clinic,,Y,O,Local
+PMCGYN,PM Gynaecology Clinic,,Y,O,Local
+PMCIMM,PM Immunology Clinic,,Y,O,Local
+PMCMCH,PM Sexual Reproductive Health,,Y,O,Local
+PMCMED,PM Medical Clinic,,Y,O,Local
+PMCMOF,PM Dr Moffat Office Clinic,,N,O,Local
+PMCNEO,PM Neonatal Clinic,,Y,O,Local
+PMCNEU,PM Neurology Clinic,,Y,O,Local
+PMCOCC,PM Occupational Therapy Clinic,,Y,O,Local
+PMCOPH,PM Opthalmology Clinic,,Y,O,Local
+PMCOPT,PM Opthalmology Clinic,,N,O,Local
+PMCORT,PM Orthopaedic Clinic,,Y,O,Local
+PMCOTH,Occupational Therapy Clinic PM,,N,O,Local
+PMCPAE,PM Paediatric Clinic,,Y,O,Local
+PMCPAS,PM Paediatric Surgery Clinic,,Y,O,Local
+PMCPHY,PM Physiotherapy Clinic,,Y,O,Local
+PMCPSY,PM Psychiatric Clinic,,Y,O,Local
+PMCPSYC,PM Psychology,,Y,O,Local
+PMCSCB,PM Special Care Baby Unit,,Y,O,Local
+PMCSCW,PM Social Workers,,Y,O,Local
+PMCSOCW,PM Social Work,,Y,O,Local
+PMCSPCH,PM Speech Clinic,,Y,O,Local
+PMCSUR,PM General Surgery Clinic,,Y,O,Local
+PMCSWO,PM Social Workers Clinic,,N,O,Local
+PMCURO,PM Urology Clinic,,Y,O,Local
+PMDAER,PM Accident and Emergency,,Y,O,Local
+PMDEN,Dental Clinic,PM,N,O,Local
+PMDER,Dermatology Clinic,PM,N,O,Local
+PMDHIS,Princess Marina DHIS,,Y,O,Local
+PMDIE,Dietician Clinic,PM,N,O,Local
+PMDMORT,PM Mortuary,,N,I,Local
+PMDPHA,PM Pharmacy,,Y,O,Local
+PMDRAD,PM Diagnostic Imaging Dept,,Y,O,Local
+PMENT,Ear Nose and Throat Clinic,PM,N,O,Local
+PMFME,Female Medical Ward,PM,N,I,Local
+PMFONCW,PM Female Oncology Ward,,N,I,Local
+PMFORT,Female Orthopaedic Ward,PM,N,I,Local
+PMFPR,Private Ward,PM,N,I,Local
+PMFPRIW,PM Female Private Ward,,N,I,Local
+PMFPS,Psychiatric Female Ward,PM,N,I,Local
+PMFSU,Female Surgical Ward,PM,N,I,Local
+PMFSUR,PM Female Surgical Ward,PM,N,I,Local
+PMGPR,Private Gyenaecology Ward,PM,N,I,Local
+PMGYN,Gynaecology Ward,PM,N,I,Local
+PMGYNC,Gynaecology Clinic,PM,N,O,Local
+PMICU,Intensive Care Unit,PM,N,I,Local
+PMISOLW,PM Isolation Ward,,Y,I,Local
+PMISOWF,PM Female Covid Isolation,,Y,I,Local
+PMISOWM,PM Male Covid Isolation,,Y,I,Local
+PMISOWSS,PM Short Stay Covid Isolation,,Y,I,Local
+PMLAB,Labour Ward,PM,N,I,Local
+PMMCH,Mother Child Health Clinic,PM,N,O,Local
+PMMDEN,PM Dental Minor Theatre,,Y,O,Local
+PMMED,Medical Clinic,PM,N,O,Local
+PMMENT,PM ENT Surgery Minor Theatre,,Y,O,Local
+PMMME,Male Medical Ward,PM,N,I,Local
+PMMNEU,PM Neurology Minor Theatre,,Y,O,Local
+PMMONCW,PM Male Oncology Ward,,N,I,Local
+PMMOPH,PM Ophthalmology Minor Theatre,,Y,O,Local
+PMMORT,PM Orthopaedic Minor Theatre,,Y,O,Local
+PMMPR,Private Male Ward,PM,N,I,Local
+PMMPRIW,PM Male Private Ward,,N,I,Local
+PMMPS,Psychiatric Male Ward,PM,N,I,Local
+PMMSUR,PM Surgery Minor Theatre,,Y,O,Local
+PMMURO,PM Urology Minor Theatre,,Y,O,Local
+PMNEU,Neurology Clinic,PM,N,O,Local
+PMONC,Oncology Ward,PM,N,I,Local
+PMOPD,PM Outpatient Department,,N,O,Local
+PMOPH,Ophthalmology Clinic,PM,N,O,Local
+PMOPHT,PM Ophthalmology Ward,PM,N,I,Local
+PMORT,Male Orthopedic Ward,PM,N,I,Local
+PMORTC,Orthopaedic Clinic,PM,N,O,Local
+PMPAE,Paediatric Clinic,PM,N,O,Local
+PMPHY,Physiotherapy,PM,N,O,Local
+PMPME,Paediatrics Medical Ward,PM,N,I,Local
+PMPNA,Post Partum Ward,PM,N,I,Local
+PMPSU,Paediatrics Surgical Ward,PM,N,I,Local
+PMREVENUE,PM Sundry Revenue,,Y,O,Local
+PMSPINAL,PM Spinalis ward,,Y,I,Local
+PMSUR,General Surgery Clinic,PM,N,O,Local
+PMTB,Tuberculoisis Ward,PM,N,I,Local
+PMTDEN,PM Dental Surgeons,,Y,O,Local
+PMTENT,PM ENT Surgeons,,Y,O,Local
+PMTERG,ER Gynaecology Theatre,PM,N,O,Local
+PMTERO,ER Orthopaedics Theatre,PM,N,O,Local
+PMTGER,Gynaecology ER Theatre,PM,N,O,Local
+PMTGYN,PM Gynaecology Surgeons,,Y,O,Local
+PMTHEA,PM Theatres,,Y,O,Local
+PMTMAI,PM Main Theatre,,N,O,Local
+PMTMAJ,PM Theatre Major,,N,O,Local
+PMTMIN,PM Minor Theatre,,Y,O,Local
+PMTNEO,Neorology Surgery Theatre,PM,N,O,Local
+PMTNEU,PM Neurology Specialist,,Y,O,Local
+PMTOER,PM Orthopaedics ER Theatre,,N,O,Local
+PMTOPH,PM Ophthalmology Specialist,,Y,O,Local
+PMTORT,PM Orthopaedic Specialist,,Y,O,Local
+PMTSER,PM Surgery ER Theatre,,N,O,Local
+PMTSUR,PM Surgery Specialist,,Y,O,Local
+PMTTHO,PM Thoracic Specialist,,Y,O,Local
+PMTUBIW,PM TB Isolation Ward,,Y,I,Local
+PMTURO,PM Urology Specialist,,Y,O,Local
+PMURO,Urology Clinic,PM,N,O,Local
+PMVPRIW,PM VIP Private Ward,,N,I,Local
+PMWARD,PM WARD,,Y,O,Local
+PPANTNW,PP AnteNatal and Delivery ward,,Y,I,Local
+PPCDEN,PP Dental Dept,,Y,O,Local
+PPCDIE,PP Dietetics Clinic,,Y,O,Local
+PPCDRAD,PP Radiology Dept,,N,O,Local
+PPCEYE,PP Eye Clinic,,Y,O,Local
+PPCPHY,PP Physiotherapy,,Y,O,Local
+PPCPSY,PP Psychiatric Clinic,,Y,O,Local
+PPCRAD,PP Radiology,,Y,O,Local
+PPCSCW,PP Social Workers,,Y,O,Local
+PPCSOCIAL,Social work,,Y,O,Local
+PPCSRH,PP Sexual Reproductive Health,,Y,O,Local
+PPCSTA,PP Staff Clinic,,Y,O,Local
+PPCTBC,PP Tuberculosis Clinic,TBC,Y,O,Local
+PPDHIS,Palapye DHIS,,Y,O,Local
+PPDLAB,PP Laboratory,,Y,O,Local
+PPDOPD,PP Outpatient Department,,Y,O,Local
+PPDPHA,PP Pharmacy,,Y,O,Local
+PPFMEDW,PP Female Medical Ward,,Y,I,Local
+PPFTBW,PP Female Tuberculosis Ward,,Y,I,Local
+PPISOW,PP Covid Isolation Ward,,Y,I,Local
+PPMATH,PP Major Theatre,,Y,O,Local
+PPMITH,PP Minor Theatre,,Y,O,Local
+PPMMEDW,PP Male Medical Ward,,Y,I,Local
+PPMTBW,PP Male Tuberculosis Ward,,Y,I,Local
+PPPAEDW,PP Paediatric Ward,,Y,I,Local
+PPPOSTW,PP Post Natal Ward,,Y,I,Local
+PPREVENUE,Palapye Revenue Office,,Y,O,Local
+PPSCBUR,PP Special Care Baby Unit,,Y,I,Local
+PPSYW,PP PSYCH WARD,,Y,I,Local
+RKCDEN,RK Dental Clinic,,Y,O,Local
+RKCEYE,RK Eye Clinic,,Y,O,Local
+RKCPSY,RK Psychiatric Clinic,,Y,O,Local
+RKCSRH,RK SRH Clinic,,Y,O,Local
+RKCYOU,RK Youth Friendly Clinic,,Y,O,Local
+RKDHIS,Rakops DHIS,,Y,O,Local
+RKDLAB,RK Laboratory,,Y,O,Local
+RKDOPD,RK Outpatient Department,,Y,O,Local
+RKDPHA,RK Pharmacy Department,,Y,O,Local
+RKDRAD,RK Radiology Department,,Y,O,Local
+RKDSOC,RK Social Work Department,,Y,O,Local
+RKGENWD,RK General Ward,,Y,I,Local
+RKISOW,RK Covid Isolation Ward,,Y,I,Local
+RKMATWD,RK Maternity Ward,,Y,I,Local
+RKMITH,RK Minor Theatre,,Y,O,Local
+SBANTNW,SB AnteNatal and Delivery ward,,Y,I,Local
+SBCDEN,SB Dental Dept,,Y,O,Local
+SBCDIA,SB Diabetic Clinic,,Y,O,Local
+SBCDIE,SB Dietetics Clinic,,Y,O,Local
+SBCEYE,SB Eye Clinic,,Y,O,Local
+SBCGYN,SB Gynegology Clinic,,Y,O,Local
+SBCIMED,SB Internal Medicine Clinic,,Y,O,Local
+SBCMC,SB Safe Male Circumcision Clin,,Y,O,Local
+SBCORT,SB Orthopaedic Clinic,,Y,O,Local
+SBCPHY,SB Physiotherapy,,Y,O,Local
+SBCPS,SB Clinical Psychology,,Y,O,Local
+SBCPSY,SB Psychiatric Clinic,,Y,O,Local
+SBCRAD,SB Radiology Dept,,Y,O,Local
+SBCSCW,SB Social Workers,,Y,O,Local
+SBCSUR,SB Surgical Clinic,,Y,O,Local
+SBCTBC,SB Tuberculosis Clinic,TBC,N,O,Local
+SBCYOU,SB Youth Clinic,,Y,O,Local
+SBDHIS,Selebi Phikwe DHIS,,Y,O,Local
+SBDLAB,SB Laboratory,,Y,O,Local
+SBDOPD,SB Outpatient Department,,Y,O,Local
+SBDPHA,SB Pharmacy,,Y,O,Local
+SBFMEDW,SB Female Medical Ward,,Y,I,Local
+SBGYNEW,SB Gynegology Ward,,Y,I,Local
+SBISOW,SB Covid Isolation Ward,,Y,I,Local
+SBMATH,SB Major Theatre,,Y,O,Local
+SBMITH,SB Minor Theatre,,Y,O,Local
+SBMMEDW,SB Male Medical Ward,,Y,I,Local
+SBPAEDW,SB Paediatric Ward,,Y,I,Local
+SBPOSTW,SB Post Natal Ward,,Y,I,Local
+SBREVENUE,SB Selebi-Phikwe Revenue Off,,Y,O,Local
+SBSCBU,SB Special Care Baby Unit,,Y,I,Local
+SEANTNW,SE AnteNatal and Delivery ward,,Y,I,Local
+SECAUD,SE AUDIOLOGY CLINIC,,Y,O,Local
+SECCAR,SE Cardiac Screening Clinic,,Y,O,Local
+SECCIR,SE Circumcision Clinic,,Y,O,Local
+SECDEM,SE Dermatology Clinic,,Y,O,Local
+SECDEN,SE Dental Clinic,,Y,O,Local
+SECDIA,SE Diabetic Clinic,,Y,O,Local
+SECDIE,SE Dietician Clinic,,Y,O,Local
+SECECG,SE ECG Clinic,,Y,O,Local
+SECENT,SE ENT Clinic,,Y,O,Local
+SECGYN,SE Gynaecology Clinic,,Y,O,Local
+SECHIVR,SE HIV Resistance Clinic,,Y,O,Local
+SECHRCLIN,SE High Risk Clinic,,Y,O,Local
+SECHRI,SE HIGH RISK CLINIC,,Y,O,Local
+SECHYP,SE Hypertension Clinic,,Y,O,Local
+SECIMED,SE Internal Medicine Clinic,,Y,O,Local
+SECMAC,Mabuo Clinic,,Y,O,Local
+SECMCH,SE Sexual Reproductive Health,,Y,O,Local
+SECMDR,SE MDR TB Clinic,,Y,O,Local
+SECMED,SE Medical Clinic,,Y,O,Local
+SECMEX,SE Medical Exams Clinic,,Y,O,Local
+SECOCC,SE Occupational Therapy Clinic,,Y,O,Local
+SECONC,SE Oncology Clinic,,Y,O,Local
+SECOPD,SE Outpatient Department,,N,O,Local
+SECOPH,SE Ophthalmology Clinic,,Y,O,Local
+SECORT,SE Orthopaedic Clinic,,Y,O,Local
+SECPAE,SE Paediatric Clinic,,Y,O,Local
+SECPHS,SE Physician Clinic,,Y,O,Local
+SECPHY,SE Physiotherapy Clinic,,Y,O,Local
+SECPIDC,SE Paediatric IDCC,,Y,O,Local
+SECPSC,SE Psycology Clinic,,Y,O,Local
+SECPSY,SE Psychiatric Clinic,,Y,O,Local
+SECPY,SE Physiotherapy Department,,N,O,Local
+SECSCW,SE Social Workers,,Y,O,Local
+SECSRH,SE Sexual Reproductive,,Y,O,Local
+SECSUR,SE Surgical Clinic,,Y,O,Local
+SECTBT,SE TB Treatment,,Y,O,Local
+SECTUB,SE Tuberculosis Clinic,,Y,O,Local
+SEDAER,SE Accident and Emergency,,Y,O,Local
+SEDDXRA,SE X-Ray Department,SE,N,O,Local
+SEDEN,Dental Clinic,SE,N,O,Local
+SEDHIS,Sekgoma DHIS,,Y,O,Local
+SEDIE,Dietician Clinic,SE,N,O,Local
+SEDMORT,SE Mortuary,,N,O,Local
+SEDOPD,SE Outpatient Department,,Y,O,Local
+SEDPHA,SE Pharmacy Department,,Y,O,Local
+SEDRAD,SE Diagnostic Imaging Dept,,Y,O,Local
+SEDXRA,SE X-Ray Department,SE,N,O,Local
+SEFCIW,SE Female Covid Isolation Ward,,Y,I,Local
+SEFPSYW,SE Female Psychiatric Ward,,Y,I,Local
+SEFSURW,SE Female Surgical Ward,,Y,I,Local
+SEFTBW,SE Female TB Ward,,Y,I,Local
+SEGICUW,SE Intensive Care Unit,,Y,I,Local
+SEGYN,Gynaecology Clinic,SE,N,O,Local
+SEGYNEW,SE Gynaecology Ward,,Y,I,Local
+SEMATW,Maternity Ward,SE,N,I,Local
+SEMCH,Mother Child Health Clinic,SE,N,O,Local
+SEMCIW,SE Male Covid Isolation Ward,,Y,I,Local
+SEMORT,SE Mortuary,,N,O,Local
+SEMPSYW,SE Male Psychiatric Ward,,Y,I,Local
+SEMSURW,SE Male Surgical Ward,,Y,I,Local
+SEMTBW,SE Male TB Ward,,Y,I,Local
+SEONCW,SE Oncology ward,,Y,I,Local
+SEOPH,Ophthalmology Clinic,SE,N,O,Local
+SEOPHTW,SE Opthalmology ward,,Y,I,Local
+SEOPTHW,SE Opthalmology Ward,,N,I,Local
+SEPAE,Paediatric Clinic,SE,N,O,Local
+SEPAEMW,SE Paediatric Medical Ward,,Y,I,Local
+SEPAESW,SE Paediatric Surgical Ward,,N,I,Local
+SEPHY,Physiology Clinic,SE,N,O,Local
+SEPOPD,SE LAB Private Patient OPD,,N,O,Local
+SEPOSNW,SE Post-Natal ward,,Y,I,Local
+SEREVENUE,SE Sundry Revenue,,Y,O,Local
+SETHEA,SE Theatres,,Y,O,Local
+SETMIN,SE Theatre Minor,,N,O,Local
+SEWFMED,SE Female Medical Ward,SE,N,I,Local
+SEWMAT,SE Maternity Ward,SE,N,I,Local
+SEWMMED,SE Male Medical Ward,SE,N,I,Local
+SEWPAED,SE Paediatric Ward,,N,I,Local
+SEXSTIC,SE STI CLINIC,,Y,O,Local
+SFANTNW,SF Ante-natal ward,,Y,I,Local
+SFCDEN,SF Dental Clinic,,Y,O,Local
+SFCEYE,SF Eye Clinic,,Y,O,Local
+SFCPSY,SF Psychiatric clinic,,Y,O,Local
+SFCSRH,SF Sexual Reproductiv health C,,Y,O,Local
+SFCVIA,Sefhare VIA Clinic,,Y,O,Local
+SFDHIS,Sefhare DHIS,,Y,O,Local
+SFDLAB,SF Laboratory Dept,,Y,O,Local
+SFDOPD,SF Outpatient Department,,Y,O,Local
+SFDPHA,SF Pharmacy Department,,Y,O,Local
+SFDRAD,SF Radiology Dept,,Y,O,Local
+SFDSOC,SF Social Work Dept,,Y,O,Local
+SFFGENW,SF Female General ward,,Y,I,Local
+SFHIGHD,SF High Dependency ward,,Y,I,Local
+SFISOLW,SF Isolation ward,,Y,I,Local
+SFMGENW,SF Male General ward,,Y,I,Local
+SFMITH,SF Minor Theatre,,Y,O,Local
+SFPAEDW,SF Paediatrics Ward,,Y,I,Local
+SFPOSTW,SF Post-Natal,,Y,I,Local
+SFPRENW,SF Pre-natal ward,,Y,I,Local
+SFSCBUW,SF Special Baby Care Unit,,Y,I,Local
+SFTHEA,SF Main Theatre,,Y,O,Local
+SHADOLES,SH Adolescence Ward,,Y,I,Local
+SHCDAY,SH Day Hospital,,Y,O,Local
+SHCDIE,SH Dietetics Clinic,,Y,O,Local
+SHCDIET,SH DIETETICS,,Y,O,Local
+SHCOCC,SH Occupational Therapy,,Y,O,Local
+SHCPSY,SH Psychology,,Y,O,Local
+SHCSCW,SH Social Work,,Y,O,Local
+SHCSUD,SH Substance Use Disorders,,Y,O,Local
+SHDLAB,SH Laboratory Dept,,Y,O,Local
+SHDOPD,SH Outpatient Department,,Y,O,Local
+SHDPHA,SH Pharmacy,,Y,O,Local
+SHFACUTE,SH Female Acute Ward,,Y,I,Local
+SHFOBSRV,SH Female Observation Ward,,Y,I,Local
+SHFREHAB,SH Female Rehabilitation Ward,,Y,I,Local
+SHISOW,SH Isolation Ward,,Y,I,Local
+SHMFOREN,SH Male Forensic Ward,1,Y,I,Local
+SHMPSYGW,SH Male Psycho Geriatric Ward,,Y,I,Local
+SHMREHAB,SH Male Rehabiltation Ward,,Y,I,Local
+SHREVENUE,SH Revenue Office,,Y,O,Local
+SHSUD,Substance Abuse and Disorder,,Y,O,Local
+SLANTNW,SL Ante Natal Ward,,Y,I,Local
+SLCDEN,SL Dental Dept,,Y,O,Local
+SLCDIA,SL Diabetic Clinic,,Y,O,Local
+SLCDIE,SL Dietetics Clinic,,Y,O,Local
+SLCENT,SL ENT Clinic,,Y,O,Local
+SLCEYE,SL Eye Clinic,,Y,O,Local
+SLCGYN,SL Gynaecology Clinic,,Y,O,Local
+SLCHYP,SL Hypertensive Clinic,,Y,O,Local
+SLCISO,SL Isolation Clinic,,Y,O,Local
+SLCMATER,SL Maternity,,Y,O,Local
+SLCMED,SL Medical Clinic,,Y,O,Local
+SLCOCC,SL Occupational Therapy,,Y,O,Local
+SLCORT,SL Orthopaedic Clinic,,Y,O,Local
+SLCPAE,SL Paediatric Clinic,,Y,O,Local
+SLCPHY,SL Physiotherapy,,Y,O,Local
+SLCPS,SL Clinical Psychology,,Y,O,Local
+SLCPSY,SL Psychiatric Clinic,,Y,O,Local
+SLCRAD,SL Radiology Dept,,Y,O,Local
+SLCSCW,SL Social Workers,,Y,O,Local
+SLCSRH,SL Sexual Reproductive Health,,Y,O,Local
+SLCSTA,SL Staff Clinic,,Y,O,Local
+SLCSUR,SL Surgical Clinic,,Y,O,Local
+SLCTBS,SL Tuberculosis Clinic,,Y,O,Local
+SLCURO,SL Urologist Clinic,,Y,O,Local
+SLCVALELA,SL VALELA CLINIC,,Y,O,Local
+SLCYFC,SL Youth Friendly Clinic,,Y,O,Local
+SLCYOU,SL Youth Friendly Clinic,,N,O,Local
+SLDETH,SL Delivery Theatre,,Y,O,Local
+SLDHIS,Scottish DHIS,,Y,O,Local
+SLDLAB,SL Laboratory,,Y,O,Local
+SLDOPD,SL Outpatient Department,,Y,O,Local
+SLDPHA,SL Pharmacy,,Y,O,Local
+SLEYECW,SL Eye Campaign Ward,,N,I,Local
+SLFMEDW,SL Female Medical Ward,,Y,I,Local
+SLFPSYW,SL Female Psyciatric Ward,,Y,I,Local
+SLFSURW,SL Female Surgical ward,,Y,I,Local
+SLGYTH,SL Gynae Theatre,,Y,O,Local
+SLISOW,SL Isolation Ward,,Y,I,Local
+SLLABOW,SL Labour Ward,,Y,I,Local
+SLMATH,SL Major Theatre,,Y,O,Local
+SLMITH,SL Minor Theatre,,Y,O,Local
+SLMMEDW,SL Male Medical Ward,,Y,I,Local
+SLMPSYW,SL Male Psyciatric Ward,,Y,I,Local
+SLMSURW,SL Male Surgical Ward,,Y,I,Local
+SLPAESW,SL Surgical Paediatric Ward,,Y,I,Local
+SLPOSNW,SL Post Natal Ward,,Y,I,Local
+SLREVENUE,SL Scottish Livingston Revenue,,Y,O,Local
+SLSCBU,SL Special Baby Unit,,Y,I,Local
+SLTBSW,SL Tuberculosis Ward,,Y,I,Local
+SLVALELA,SL VALELA WARD,,Y,I,Local
+SPCBOI,Boipelego Clinic,,Y,O,Local
+SPCKAD,Kadimo Clinic,,Y,O,Local
+SPCNEW,Newtown Clinic,,Y,O,Local
+SPCNUT,Nutrition Clinic,,Y,O,Local
+SPCSE,Serowe Clinic Clinic,,N,O,Local
+SPCSER,Serowe Clinic,,Y,O,Local
+THANTNW,TH Ante-Natal ward,,Y,I,Local
+THCCWC,TH CWC Clinic,,Y,O,Local
+THCDEN,TH Dental clinic,,Y,O,Local
+THCDIE,TH Dietetic Clinic,,Y,O,Local
+THCEYE,TH Eye Clinic,,Y,O,Local
+THCHYP,TH Hypertensive Clinic,,Y,O,Local
+THCNUR,TH OPD Nurse Clinic,,Y,O,Local
+THCOBW,TH Observation Department,,Y,O,Local
+THCOCC,TH Occupational Therapy,,Y,O,Local
+THCORC,TH Out Reach Clinic,,Y,O,Local
+THCPSY,TH Psychiatric clinic,,Y,O,Local
+THCSTC,TH Staff Clinic,,Y,O,Local
+THCTB,TH TB Clinic,,Y,O,Local
+THCVIA,TH VIA Clinic,,Y,O,Local
+THCYOU,TH Youth clinic,,Y,O,Local
+THDHIS,Thamaga DHIS,,Y,O,Local
+THDLAB,TH Laboratory department,,Y,O,Local
+THDOPD,TH Outpatient department,,Y,O,Local
+THDPHA,TH Pharmacy department,,Y,O,Local
+THDRAD,TH Radiology department,,Y,O,Local
+THDSOC,TH Social Work Dept,,Y,O,Local
+THFGENW,TH Female Ward,,Y,I,Local
+THFISOW,TH Female Isolation ward,,Y,I,Local
+THMATH,TH Main Theatre,,Y,O,Local
+THMGENW,TH Male ward,,Y,I,Local
+THMISOW,TH Male Isolation ward,,Y,I,Local
+THMITH,TH Minor Theatre,,Y,O,Local
+THPAEDW,TH Paediatrics ward,,Y,I,Local
+THPOSTW,TH Post-Natal ward,,Y,I,Local
+THPRENW,TH Pre-natal Ward,,Y,I,Local
+THPSYC,TH Psychology Clinic,,Y,O,Local
+TSCDEN,TS Dental Clinic,,Y,O,Local
+TSCEYE,TS Eye Clinic,,Y,O,Local
+TSCGYN,TS Gynaecology,,Y,O,Local
+TSCPSY,TS Psychiatric Clinic,,Y,O,Local
+TSCSRH,TS Sexual Reproductive Health,,Y,O,Local
+TSCTB,TS Tubercolosis Clinic,,N,O,Local
+TSDHIS,Tsabong DHIS,,Y,O,Local
+TSDLAB,TS Laboratory,,Y,O,Local
+TSDOPD,TS Outpatient Department,,Y,O,Local
+TSDPHA,TS Pharmacy,,Y,O,Local
+TSDRAD,TS Radiology Department,,Y,O,Local
+TSDSOC,TS Social Work Department,,Y,O,Local
+TSFMEDW,TS Female Ward,,Y,I,Local
+TSHIHP,Tshimoyapula Health Post,,N,O,Local
+TSISOW,TS Isolation Ward,,Y,I,Local
+TSLABOW,TS Labour Ward,,Y,I,Local
+TSMATH,TS Main Theatre,,Y,O,Local
+TSMITH,TS Minor Theatre,,Y,O,Local
+TSMMEDW,TS Male Ward,,Y,I,Local
+TSPAEDW,TS Paediatrics Ward,,Y,I,Local
+TSREVENUE,TS Sundry Reveue,,Y,O,Local
+TSSCBUW,TS Special Baby Care Unit,,Y,I,Local
+TTANTNW,TT Ante Natal Ward,,Y,I,Local
+TTCDEN,TT Dental Clinic,,Y,O,Local
+TTCEYE,TT Eye Clinic,,Y,O,Local
+TTCNAT,Nata Clinic,,Y,O,Local
+TTCOCC,TT Occupational Health Clinic,,Y,O,Local
+TTCPSY,TT Psychiatric Clinic,,Y,O,Local
+TTCSOW,Sowa Township Clinic,,Y,O,Local
+TTCSRH,TT Sexual Reproductive Health,,Y,O,Local
+TTCYOU,TT Youth Friendly Clinic,,N,O,Local
+TTDLAB,TT Laboratory,,Y,O,Local
+TTDOPD,TT Outpatient Department,,Y,O,Local
+TTDPHA,TT Pharmacy,,Y,O,Local
+TTDRAD,TT Radiology Department,,Y,O,Local
+TTDSOC,TT Social Work Department,,Y,O,Local
+TTFMEDW,TT Female Ward,,Y,I,Local
+TTFTBWD,TT Female TB Ward,,Y,I,Local
+TTLABOW,TT Labour Ward,,Y,I,Local
+TTMATH,TT Main Theatre,,Y,O,Local
+TTMATHD,TT Maternity - High Dependacy,,Y,I,Local
+TTMITH,TT Minor Theatre,,Y,O,Local
+TTMMEDW,TT Male Ward,,Y,I,Local
+TTMTBWD,TT Male TB Ward,,Y,I,Local
+TTNEONW,TT Neo Natal Ward,,Y,I,Local
+TTPAEDW,TT Paediatrics Ward,,Y,I,Local
+TTPOSTW,TT Post Natal Ward,,Y,I,Local
+TTREVENUE,TT Sundry Revenue,,Y,O,Local
+XAREAW,Area W Clinic,NY,N,O,Remote
+XBDFCLI,BDF Clinic,MA,N,O,Remote
+XBONTLC,Bontleng Clinic,,Y,O,Remote
+XBOTDEF,Botswana Defence Force,GA,N,O,Remote
+XCMADIB,Madiba Health Post,,Y,O,Remote
+XCOEMOLC,College of Education,05-3-15,N,O,Remote
+XCWAGAHP,Cwagare H Post,,Y,O,Remote
+XDUKWIC,Dukwi Clinic,NY,Y,O,Remote
+XGENPRI,General Private Location,GA,N,O,Remote
+XGENPRS,General Private Location,SE,N,O,Remote
+XGHAHOS,Ghanzi Hospital,07-2-01,N,O,Remote
+XGHANPH,Gantsi Primary Hospital,7-2-1,N,O,Remote
+XGHANTC,Gantsi Clinic,07-3-04,N,O,Remote
+XGLENVA,Glen Valley,GA,N,O,Remote
+XGULUHP,Gulubane Helath Post,02-4-03,N,O,Remote
+XGUMHOS,Gumare Hospital,MA,Y,O,Remote
+XGWEHOS,Gweta Hospital,MA,Y,O,Remote
+XJWCMAOK,JW Maokane clinic,,Y,O,Remote
+XKANGNHL,Kang Clinic,,N,O,Remote
+XKANGPM,Kang Clinic,,Y,O,Remote
+XKASHOS,Kasane Hospital,MA,N,O,Remote
+XKAUNGW,Kaungwe Health Post,,Y,O,Remote
+XLABOPD,Lab Outpatient Department,SE,N,O,Remote
+XLOOLOC,Loologane Clinic,05-3-25,N,O,Remote
+XMABESHP,Mabesekwa Health Post,25-4-05,Y,O,Remote
+XMAFHIKC,Mafhikwa Clinic,,Y,O,Remote
+XMAKAK,Makakung,MA,N,O,Remote
+XMAKAL,Makalamabedi,MA,N,O,Remote
+XMANDHP,Mandunyane H Post,25-4-02,Y,O,Remote
+XMANKC,Mankgodi Clinic,,Y,O,Remote
+XMAROBHP,Marobela Health Post,NY,Y,O,Remote
+XMOGOR,Mogorosi,SE,N,O,Remote
+XMOKGOC,Mokgoro Clinic,NY,Y,O,Remote
+XMOSEHP,Mosetse Health Post,NY,Y,O,Remote
+XMOTLAP,Motlapi,MA,N,O,Remote
+XMPRIVAT,LAB Private OPD,MA,N,O,Remote
+XMPROPD,LAB Private Patient OPD,MA,N,O,Remote
+XNKOYACL,Nkoyaphiri Clinic,,Y,O,Remote
+XNSHAHP,Nshakashogwe Health Post,NY,Y,O,Remote
+XOKAVAN,Okavango Informatory Clinic MA,,N,O,Remote
+XPHASEIIC,Phase II Clinic,,Y,O,Remote
+XPLTHP,Plateau Health Post,PM,N,O,Remote
+XPOLICC,Police College,GA,N,O,Remote
+XRUGWAC,Rugwana Clinic,PM,N,O,Remote
+XSEKOMHP,Sekondomboro Health Post,,Y,O,Remote
+XSESEHP,Sese Health Post,FR,Y,O,Remote
+XSETRDI,Sexually Trans Disease,GA,N,O,Remote
+XSHEROB,Shorobe Clinic,01-3-07,N,O,Remote
+XSORILHP,Sorilatholo H Post,20-4-13,N,O,Remote
+XSPRIVAT,LAB Private OPD,SE,N,O,Remote
+XSSKBC,SSKB,GA,N,O,Remote
+XTATSID,Tati Siding,FR,N,O,Remote
+XTHIBC,Thibelo Clinic,,Y,O,Remote
+XTSAMAY,Tsamaya,FR,N,O,Remote
+XTUBUHP,Tubu Health Post,14-4-09,Y,O,Remote
+XTUMASC,Tumasera Clinic,,Y,O,Remote
+YYHJJJJ,HJUHJHHJ,,Y,O,Local
+ZCBBBPI,Bobonong Hospital IDCC,BP,Y,O,Local
+ZCBBMDI,Mmadinare Hospital IDCC,MD,Y,O,Local
+ZCBOLHI,Letlhakane Hospital IDCC,LH,Y,O,Local
+ZCBORKI,Rakops Hospital IDCC,RK,Y,O,Local
+ZCCEGWI,Gweta Hospital IDCC,GW,Y,O,Local
+ZCCETTI,Tutume Hospital IDCC,TT,Y,O,Local
+ZCCHKAI,Kasane Hospital IDCC,KA,Y,O,Local
+ZCGGNKOYA,Nkoyaphiri Clinic IDCC,GGC,N,O,Local
+ZCGGTLOKN,Tlokweng Main Clinic IDCC,GGC,N,O,Local
+ZCGHGHI,Goodhope Hospital IDCC,GH,Y,O,Local
+ZCGHGPI,Gantsi Primary Hospital IDCC,,Y,O,Local
+ZCKESLI,Scottish Livingstone IDCC,,Y,O,Local
+ZCKETHI,Thamaga Hospital IDCC,TH,Y,O,Local
+ZCKNHKI,Hukuntsi Hospital IDCC,HK,Y,O,Local
+ZCKSTSI,Tsabong Hospital IDCC,,Y,O,Local
+ZCMABOS,Boseja Clinic,MA,N,O,Local
+ZCMABOY,Boyei Clinic,MA,N,O,Local
+ZCMAMAI,Maun General Hospital IDCC,MA,N,O,Local
+ZCMAMCC,Maun Council Clinic,MA,N,O,Local
+ZCMASED,Sedie Clinic,MA,N,O,Local
+ZCMHMHI,Mahalapye Hospital IDCC,,Y,O,Local
+ZCMHSFI,Sefhare Hospital IDCC,SF,Y,O,Local
+ZCNEMSI,Masunga Hospital IDCC,MS,Y,O,Local
+ZCNGBOS,Boseja Clinic,MA,Y,O,Local
+ZCNGBOY,Boyei Clinic,MA,Y,O,Local
+ZCNGGUI,Gumare Hospital IDCC,GU,Y,O,Local
+ZCNGJPKI,JP Kavindama Hospital IDCC JPK,,Y,O,Local
+ZCNGJUB,Jubilee Clinic,MA,N,O,Local
+ZCNGMCC,Maun Council Clinic,MA,N,O,Local
+ZCNGSED,Sedie Clinic,MA,Y,O,Local
+ZCSEBLI,Bamalete Lutheran Hosp IDCC BL,,Y,O,Local
+ZCSOKSI,Kanye Hospital IDCC,KS,Y,O,Local
+ZCSPBOI,Boipelego Clinic,SE,Y,O,Local
+ZCXBSEL,Selebi Phikwe Hospital IDCC SB,,N,O,Local
+ZCXLOBATH,Athlone Hospital IDCC,AT,Y,O,Local
+ZCXMOCDRH,Deborah Hospital IDCC,DM,Y,O,Local
+ZCXMOCDRM,Deborah Hospital IDCC,DM,N,O,Local
+ZCXSBSEL,Selebi Phikwe Hospital IDCC SB,,Y,O,Local
+ZCXSPPA,Palapye Hospital IDCC,PP,Y,O,Local
+ZFRARW,Area West Clinic,FR,N,O,Local
+ZFRGEE,Gerald Estate Clinic,FR,N,O,Local
+ZM,MA MT Ward,MA,N,I,Local
+ZN,NY MT Ward,NY,N,I,Local
+ZP,PM MT Ward,PM,N,I,Local
+ZPMBON,Bontleng Clinic,,N,O,Local
+ZPMPMI,Princess Marina IDCC,,N,O,Local
+ZS,SE MT Ward,SE,N,I,Local
+ZSBRANA,Sbrana Psychiatric Hospital,,N,O,Local

@@ -1,0 +1,71 @@
+version: '3.9'
+
+services:
+  shared-health-record:
+    image: itechuw/shared-health-record:local
+    networks:
+      - default
+      - hapi-fhir
+      - shr
+      - kafka
+      - opencr
+      - openhim
+      - converter
+      - ocl
+    configs:
+      - source: shr_config
+        target: /app/config/config_docker.json
+      - source: shr_mediator
+        target: /app/config/mediator_docker.json
+      - source: ipms_locations
+        target: /app/config/ipms_facility_mappings.xlsx
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 5s
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+
+configs:
+  shr_config:
+    file: ./config/config.json
+    labels:
+      name: shr
+  shr_mediator:
+    file: ./config/mediator.json
+    labels:
+      name: shr
+  ipms_locations:
+    file: ./config/ipms_facility_mappings.xlsx
+    labels:
+      name: shr 
+
+networks:
+  default:
+  kafka:
+    external: true
+    name: kafka_public
+  hapi-fhir:
+    external: true
+    name: hapi-fhir_public
+  shr:
+    name: shr_public
+    external: true
+    attachable: true
+  opencr:
+    name: opencr
+    external: true
+  openhim:
+    name: openhim_public
+    external: true
+  converter:
+    name: converter_public
+    external: true
+  ocl:
+    name: reverse-proxy-ocl_public
+    external: true

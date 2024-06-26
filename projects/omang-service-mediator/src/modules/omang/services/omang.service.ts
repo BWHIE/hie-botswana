@@ -6,7 +6,7 @@ import { Omang } from '../models/omang';
 import { calculateMD5Hash } from 'src/utils/hash';
 import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { BaseService } from 'src/services/base.service';
-import { MasterPatientIndex } from '../../mpi/services/mpi';
+import { MpiService } from '../../mpi/services/mpi.service';
 import config from 'src/config';
 
 @Injectable()
@@ -16,8 +16,8 @@ export class OmangService extends BaseService {
   constructor(
     @Inject(OmangRepository)
     private readonly repo: OmangRepository,
-    @Inject(MasterPatientIndex)
-    protected readonly mpi: MasterPatientIndex,
+    @Inject(MpiService)
+    protected readonly mpi: MpiService,
   ) {
     super(mpi);
   }
@@ -94,6 +94,20 @@ export class OmangService extends BaseService {
     } else return FhirAPIResponses.RecordInitialized;
   }
 
+
+  async findOmangByDemographicData(
+    firstName: string,
+    lastName: string,
+    gender: string,
+    birthDate: string,
+    pager: Pager,
+  ): Promise<fhirR4.Bundle> {
+    const results = await this.repo.getByDemographicData(firstName, lastName, gender, birthDate, pager);
+    if (results.length > 0) {
+      return this.mapOmangToSearchBundle(results);
+    } else return FhirAPIResponses.RecordInitialized;
+  }
+
   async findOmangByFullNameNonFHIR(
     firstName: string,
     lastName: string,
@@ -131,7 +145,7 @@ export class OmangService extends BaseService {
       // Resource Type
       fhirPatient.resourceType = 'Patient';
       //Id
-      fhirPatient.id = omang.IdNo;
+      // fhirPatient.id = omang.IdNo;
 
       // Identifier
       const pat_identifier = new fhirR4.Identifier();
@@ -213,6 +227,15 @@ export class OmangService extends BaseService {
       fhirPatient.maritalStatus.coding.push(theCoding);
     }
 
+    fhirPatient.meta = {
+      tag: [
+        {
+          system: 'http://openclientregistry.org/fhir/source',
+          code: 'omang',
+        },
+      ],
+    };
+
     return fhirPatient;
   }
 
@@ -226,7 +249,7 @@ export class OmangService extends BaseService {
       entry.fullUrl =
         config.get('ClientRegistry:OmangSystem') +
         patient.constructor.name +
-        patient.id;
+        (patient.identifier[0].value);
 
       entry.resource = patient;
       searchBundle.entry.push(entry);

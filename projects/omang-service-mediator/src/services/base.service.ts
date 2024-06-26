@@ -1,24 +1,26 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import config from 'src/config';
-import { MasterPatientIndex } from '../modules/mpi/services/mpi';
+import { MpiService } from '../modules/mpi/services/mpi.service';
+import { FhirSearchParams } from 'src/utils/fhir-search.pipe';
 
 @Injectable()
 export abstract class BaseService {
   protected readonly logger = new Logger(BaseService.name);
 
   constructor(
-    @Inject(MasterPatientIndex)
-    protected readonly mpi: MasterPatientIndex,
+    @Inject(MpiService)
+    protected readonly mpi: MpiService,
   ) {}
 
-  protected async retryGetSearchBundleAsync(
-    searchParams: any,
+  public async retrySearchPatient(
+    params: FhirSearchParams,
+    clientId: string,
   ): Promise<fhirR4.Bundle | null> {
     const maxAttempts = 5;
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
       try {
-        return this.mpi.getSearchBundle(searchParams);
+        return this.mpi.searchPatientByIdentifier(params, clientId);
       } catch (error) {
         this.logger.warn(
           `Attempt ${attempt} to get search bundle failed: ${error.message}`,
@@ -45,26 +47,5 @@ export abstract class BaseService {
       new Date().getTime() - new Date(lastUpdated).getTime() >
         maxDays * 24 * 60 * 60 * 1000
     );
-  }
-
-
-   async updateClientRegistryAsync(
-    bundle: fhirR4.Bundle,
-    identifiers: string[],
-    configKey: string,
-    clientId: string,
-  ): Promise<void> {
-    const searchParamValue = `${configKey}|${identifiers[0]}`;
-    const searchBundle = await this.retryGetSearchBundleAsync(searchParamValue);
-
-    if (this.needsUpdateOrIsEmpty(searchBundle)) {
-      for (const entry of bundle.entry) {
-        try {
-          await this.mpi.createPatient(entry.resource,clientId);
-        } catch (error) {
-          this.logger.error(`Error creating patient:   ${error}`);
-        }
-      }
-    }
   }
 }

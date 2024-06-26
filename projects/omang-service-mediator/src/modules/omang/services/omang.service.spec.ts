@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { OmangRepository } from '../repositories/omang-repository';
 import { OmangService } from './omang.service';
-import { MasterPatientIndex } from '../../mpi/services/mpi';
+import { MpiService } from '../../mpi/services/mpi.service';
 import { Omang } from '../models/omang';
 import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { fhirR4 } from '@smile-cdr/fhirts';
-import { MasterPatientIndexModule } from '../../mpi/mpi.module';
+import { MpiModule } from '../../mpi/mpi.module';
 import { OmangModule } from '../omang.module';
 import { UserModule } from '../../user/user.module';
 import { Pager } from 'src/utils/pager';
@@ -207,15 +207,15 @@ mockOmangRecordTwo.ExpiryDate = new Date(2022, 9, 4);
 describe('OmangService', () => {
   let omangService: OmangService;
   let mockOmangRepository: OmangRepository;
-  let mockMpi: MasterPatientIndex;
+  let mockMpi: MpiService;
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [UserModule, OmangModule, MasterPatientIndexModule],
+      imports: [UserModule, OmangModule, MpiModule],
     }).compile();
 
     mockOmangRepository = module.get<OmangRepository>(OmangRepository);
-    mockMpi = module.get<MasterPatientIndex>(MasterPatientIndex);
+    mockMpi = module.get<MpiService>(MpiService);
     omangService = new OmangService(mockOmangRepository, mockMpi);
   });
 

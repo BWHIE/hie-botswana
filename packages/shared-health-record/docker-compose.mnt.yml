@@ -1,0 +1,4 @@
+services:
+  shared-health-record:
+    volumes:
+      - ${SHR_DEV_MOUNT_FOLDER}:/app/dist
