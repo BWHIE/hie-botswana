@@ -48,9 +48,9 @@ def create_oru_r01_response_message(data):
     # MSH Segment
     add_msh_segment(oru_r01)
     add_pid_segment(oru_r01, data)
-    add_obr_segment(oru_r01)
-    add_obx_segments(oru_r01)
-    add_nte_segments(oru_r01)
+    add_obr_segment(oru_r01, data)
+    add_obx_segments(oru_r01, data)
+    # add_nte_segments(oru_r01)
 
     # Manual MLLP encoding
     er7_message = oru_r01.to_er7()
@@ -63,7 +63,7 @@ def add_msh_segment(oru_r01):
     oru_r01.msh.MSH_3.value = "ADM"  # Replace with your system's sending application
     oru_r01.msh.MSH_4.value = "LAB"  # Extract from the incoming ORM^O01 message
     oru_r01.msh.MSH_5.value = ""  # Receiving Application (Optional)
-    oru_r01.msh.MSH_7.value = "202406120944"  # Current date/time (YYYYMMDDHHMM)
+    oru_r01.msh.MSH_7.value = datetime.now().strftime("%Y%m%d%H%M")  # Current date/time (YYYYMMDDHHMM)
     oru_r01.msh.MSH_9.MSH_9_1.value = "ORU"
     oru_r01.msh.MSH_9.MSH_9_2.value = "R01"
     oru_r01.msh.MSH_10.value = uuid.uuid4().hex  # Generate a unique message control ID
@@ -76,7 +76,6 @@ def add_pid_segment(oru_r01, data):
     # PID-1: Set ID - PID (SI)
     pid.PID_1.value = "1"  # Sequence number of this PID segment (usually 1)
     
-    logging.debug(data["pid"].get("identifiers", {}).get("mr", ""))
     # PID-2: Patient ID - PID (Internal) - MRN
     pid.PID_2.value = data["pid"].get("identifiers", {}).get("mr", "")
 
@@ -128,7 +127,7 @@ def add_pid_segment(oru_r01, data):
 
     return pid
 
-def add_obr_segment(oru_r01):
+def add_obr_segment(oru_r01, data):
     # Create an OBR segment
     obr = oru_r01.add_segment("OBR")
 
@@ -136,29 +135,28 @@ def add_obr_segment(oru_r01):
     obr.OBR_1.value = "1"
 
     # OBR-2: Placer Order Number (EI)
-    obr.OBR_2.value = "MOH001^LAB"
+    obr.OBR_2.value = data["orc"].get("placer_order_number", "")
 
     # OBR-3: Filler Order Number (EI)
-    obr.OBR_3.value = "68222^LAB"
+    obr.OBR_3.value = data["orc"].get("filler_order_number", "")
 
     # OBR-4: Universal Service Identifier (CE)
-    obr.OBR_4.value = "COVID^SARS-CoV-2 PCR^L"
+    obr.OBR_4.value = data["obr"].get("universal_service_identifier", "")
 
     # OBR-7: Observation Date/Time (TS)
-    # obr.OBR_7.value = "202106031400"
-    obr.OBR_7.value = (datetime.now()-timedelta(weeks=2)).strftime("%Y%m%d%H%M")
+    obr.OBR_7.value = data["obr"].get("observation_date_time", "")
 
     # OBR-8: Observation End Date/Time (TS)
-    obr.OBR_8.value = ""  # Not provided in the example
+    obr.OBR_8.value = data["obr"].get("observation_date_time", "")
 
-    # OBR-11: Specimen Action Code (ID)
-    obr.OBR_11.value = ""  # Not provided in the example
+    # OBR-15: Specimen Source (CM)
+    obr.OBR_14.value = data["obr"].get("specimen_source", "")
 
     # OBR-16: Ordering Provider (XCN)
-    obr.OBR_16.value = ""  # Not provided in the example
+    obr.OBR_16.value = data["obr"].get("ordering_provider", "")
 
     # OBR-22: Results Rpt/Status Chng - Date/Time (TS)
-    obr.OBR_22.value = (datetime.now()-timedelta(weeks=1)).strftime("%Y%m%d%H%M")
+    obr.OBR_22.value = data["obr"].get("observation_date_time", "")
 
     # OBR-24: Diagnostic Serv Sect ID (ID)
     obr.OBR_24.value = "LAB"
@@ -170,34 +168,24 @@ def add_obr_segment(oru_r01):
     obr.OBR_32.value = "ZZHGGMMO^Healthpost^Mmopane"
 
     # OBR-47: Filler Field 1 (varies)
-    obr.OBR_47.value = "00049731"
+    obr.OBR_47.value = data["orc"].get("filler_order_number", "")
 
     return obr
 
-def add_obx_segments(oru_r01):
+def add_obx_segments(oru_r01, data):
     # OBX-1
     obx1 = oru_r01.add_segment("OBX")
     obx1.OBX_1.value = "1"
     obx1.OBX_2.value = "ST"
-    obx1.OBX_3.value = "SARS-CoV-2 PCR^SARS-CoV-2 PCR^L"
-    obx1.OBX_5.value = "INCONCLUSIVE"
+    obx1.OBX_3.value = "CD4^CD4 count"
+    obx1.OBX_5.value = "450"
+    obx1.OBX_6.value = "cells/mm3"
+    obx1.OBX_7.value = "200-1500"
     obx1.OBX_8.value = "N"
     obx1.OBX_10.value = "A^S"
     obx1.OBX_11.value = "F"
-    obx1.OBX_14.value = (datetime.now()-timedelta(weeks=1)).strftime("%Y%m%d%H%M")
+    obx1.OBX_14.value = data["obr"].get("observation_date_time", "")
     obx1.OBX_15.value = "GNHL^National Health Laboratory^L"
-
-    # OBX-2
-    obx2 = oru_r01.add_segment("OBX")
-    obx2.OBX_1.value = "2"
-    obx2.OBX_2.value = "ST"
-    obx2.OBX_3.value = "S-Cov-2 RVW^SARS-CoV-2 PCR REVIEW^L"
-    obx2.OBX_5.value = "."
-    obx2.OBX_8.value = "N"
-    obx2.OBX_10.value = "A^S"
-    obx2.OBX_11.value = "F"
-    obx2.OBX_14.value = (datetime.now()-timedelta(weeks=1)).strftime("%Y%m%d%H%M")
-    obx2.OBX_15.value = "GNHL^National Health Laboratory^L"
 
     return oru_r01  # Return the updated message object
 
