@@ -1,0 +1,28 @@
+{  
+    
+    "fhirServer": {
+        "baseURL": "http://hapi-fhir:8080/fhir"
+    },
+    
+    "bwConfig": {
+    "pimsSystemUrl": "https://api.openconceptlab.org/orgs/I-TECH-UW/sources/PIMSLAB/",
+    "ipmsSystemUrl": "https://api.openconceptlab.org/orgs/I-TECH-UW/sources/IPMSLAB/",
+    "cielSystemUrl": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+    "loincSystemUrl": "https://api.openconceptlab.org/orgs/Regenstrief/sources/LOINC/",
+    "omangSystemUrl": "http://moh.bw.org/ext/identifier/omang",
+    "bdrsSystemUrl": "http://moh.bw.org/ext/identifier/bcn",
+    "labOrderSystemUrl": "http://moh.bw.org/ext/identifier/lab-order-id",
+    "mrnSystemUrl": "http://moh.bw.org/ext/identifier/mrn",
+    "immigrationSystemUrl": "http://moh.bw.org/ext/identifier/ppn",
+    "oclUrl": "https://api.openconceptlab.org",
+    "facilityCodeSystemUrl": "http://moh.bw.org/ext/identifier/facility-code",
+    "ipmsProviderSystemUrl": "http://moh.bw.org/ext/ipms-provider",
+    "ipmsPatientTypeSystemUrl": "http://moh.bw.org/ext/ipms-patient-type",
+    "ipmsPatientStatusSystemUrl": "http://moh.bw.org/ext/ipms-patient-status",
+    "ipmsXLocationSystemUrl": "http://moh.bw.org/ext/ipms-xlocation",
+    "ipmsOrderTypeSystemUrl": "http://moh.bw.org/ext/ipms-order-type",
+    "MflfacilityCodeSystemUrl": "http://moh.bw.org/ext/identifier/mfl-code"
+ 
+
+}
+}
