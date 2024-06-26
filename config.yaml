@@ -15,6 +15,7 @@ packages:
   - omang-service-mediator
   - openhim-mediator-fhir-converter
   - shared-health-record
+  - dashboard-visualiser-kibana
 
 profiles:
   - name: dev
@@ -30,6 +31,7 @@ profiles:
       - omang-service-mediator
       - openhim-mediator-fhir-converter
       - shared-health-record
+      - dashboard-visualiser-kibana
     envFiles:
       - .env.local
     dev: true

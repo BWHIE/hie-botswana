@@ -143,6 +143,13 @@ For dev environment you can access the ES and sign in using the following creden
 
 Note: Consider creating the ES_BACKUPS folder away from tmp since it will be deleted on system restart. The default value set inside `.env.local` is `/tmp/backups`
 
+### Kibana
+For dev environment you can access the Kibana and sign in using the following credentials:
+
+- URL : http://localhost:5601/
+- username : elastic
+- password : dev_password_only
+
 ### HAPI FHIR UI
 
 Without credentials you could access : http://localhost:3447/
