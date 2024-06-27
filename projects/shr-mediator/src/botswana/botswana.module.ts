@@ -13,6 +13,7 @@ import { LabWorkflowService } from './services/lab-workflow.service';
 import { TerminologyService } from './services/terminology.service';
 import { MflService } from './services/mfl.service';
 import { IpmsService } from './services/ipms.service';
+import { MpiService } from './services/mpi.service';
 
 const brokers = config.get('taskRunner:brokers') || ['kafka:9092'];
 
@@ -52,7 +53,7 @@ const brokers = config.get('taskRunner:brokers') || ['kafka:9092'];
     TerminologyService,
     IpmsService,
     MflService,
-    MllpService,
+    MpiService,
   ],
 })
 export class BotswanaModule {}
