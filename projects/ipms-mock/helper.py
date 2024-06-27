@@ -6,7 +6,8 @@ import string
 from mllp_client import MLLPClient
 from hl7apy.core import Message
 
-CLIENT_PORT = int(os.getenv('CLIENT_PORT', '2576'))  # Default client port to send ADT A04/ORU message
+MLLP_CLIENT_HOST = str(os.getenv('MLLP_CLIENT_HOST', 'host.docker.internal'))  # Default client host to send ADT A04/ORU message
+MLLP_CLIENT_PORT = int(os.getenv('MLLP_CLIENT_PORT', '2576'))  # Default client port to send ADT A04/ORU message
 
 def create_error_response(self, error_msg):
     logging.warning("Creating error response: %s", error_msg)
@@ -25,7 +26,10 @@ def create_ack_response(incoming_message):
     return response
 
 def send_message_to_client(message):
-    client = MLLPClient('host.docker.internal', CLIENT_PORT)
+    # Ensure the hl7 message ends with a \r to indicate the end of the message content
+    message += '\r'
+
+    client = MLLPClient(MLLP_CLIENT_HOST, MLLP_CLIENT_PORT)
     client.send_message(message)
     return
 
