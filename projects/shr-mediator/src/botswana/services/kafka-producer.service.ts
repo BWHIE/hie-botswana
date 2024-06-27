@@ -147,7 +147,6 @@ export class KafkaProducerService implements OnModuleInit {
       await transaction.commit();
       this.logger.log('Message sent transactionally.');
     } catch (err) {
-      console.log('333333', err);
       await transaction.abort();
       this.logger.log('Message failed to be sent transactionally.', err);
       throw err;

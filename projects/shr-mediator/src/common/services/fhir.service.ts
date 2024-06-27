@@ -1,3 +1,4 @@
+import { R4 } from '@ahryman40k/ts-fhir-types';
 import { HttpService } from '@nestjs/axios';
 import {
   BadGatewayException,
@@ -5,12 +6,13 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
+import { AxiosRequestConfig } from 'axios';
 import { Request, Response } from 'express';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { LoggerService } from '../../logger/logger.service';
 import config from '../../config';
-import { getResourceTypeEnum } from '../utils/fhir';
+import { LoggerService } from '../../logger/logger.service';
+import { ResourceType, getResourceTypeEnum } from '../utils/fhir';
 
 export interface FhirClientConfig {
   serverUrl: string;
@@ -50,7 +52,7 @@ export class FhirService {
       );
   }
 
-  async saveResource(req: Request, res: Response, operation?: string) {
+  async saveResource(req: Request, res: Response) {
     const resource = req.body;
     const resourceType = req.params.resourceType;
     const id = req.params.id;
@@ -91,6 +93,62 @@ export class FhirService {
     } catch (error) {
       this.logger.error(error);
       throw new InternalServerErrorException();
+    }
+  }
+
+  // Wrapper function that includes retry logic
+  async postWithRetry(
+    payload: any,
+    options?: AxiosRequestConfig<any>,
+    retryLimit = 2,
+    timeout = 30000,
+  ) {
+    for (let attempt = 1; attempt <= retryLimit; attempt++) {
+      try {
+        const { data } = await this.httpService.axiosRef.post<R4.IBundle>(
+          config.get('fhirServer:baseURL'),
+          payload,
+          options,
+        );
+        return data; // If request is successful, return the response
+      } catch (error) {
+        this.logger.error(`Attempt ${attempt} failed`, error);
+
+        // Sleep for a given amount of time
+        await new Promise((resolve) => setTimeout(resolve, timeout));
+
+        // If we are on the last attempt, re-throw the error
+        if (attempt === retryLimit) {
+          this.logger.error('All retries failed');
+          throw error;
+        }
+      }
+    }
+  }
+
+  async get(resource: ResourceType, options: AxiosRequestConfig): Promise<any> {
+    const targetUri = config.get('fhirServer:baseURL') + '/' + resource;
+
+    this.logger.log(`Getting ${targetUri}`);
+
+    try {
+      const { data: result } = await this.httpService.axiosRef.get<R4.IBundle>(
+        targetUri,
+        {
+          ...options,
+          auth: {
+            username: config.get('fhirServer:username'),
+            password: config.get('fhirServer:password'),
+          },
+        },
+      );
+
+      return result;
+    } catch (error) {
+      this.logger.error(
+        `Could not get ${targetUri}:\n${JSON.stringify(error)}`,
+      );
+      throw new InternalServerErrorException(error);
     }
   }
 }

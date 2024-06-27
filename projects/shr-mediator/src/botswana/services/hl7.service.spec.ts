@@ -1,24 +1,21 @@
 import { HttpService } from '@nestjs/axios';
 import { Test, TestingModule } from '@nestjs/testing';
 import { LoggerService } from '../../logger/logger.service';
-import { Hl7WorkflowsBw } from './hl7-workflow-bw.service';
+import { Hl7Service } from './hl7.service';
 import { KafkaProducerService } from './kafka-producer.service';
 
 jest.mock('./kafka-producer.service');
 jest.mock('@nestjs/axios');
 
-describe('Hl7WorkflowsBw', () => {
-  let service: Hl7WorkflowsBw;
+describe('Hl7Service', () => {
+  let service: Hl7Service;
   let kafkaProducerService: KafkaProducerService;
-  let httpService: HttpService;
-  let logger: LoggerService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        Hl7WorkflowsBw,
+        Hl7Service,
         KafkaProducerService,
-        HttpService,
         {
           provide: HttpService,
           useValue: {
@@ -36,7 +33,7 @@ describe('Hl7WorkflowsBw', () => {
       ],
     }).compile();
 
-    service = module.get<Hl7WorkflowsBw>(Hl7WorkflowsBw);
+    service = module.get<Hl7Service>(Hl7Service);
     kafkaProducerService =
       module.get<KafkaProducerService>(KafkaProducerService);
     httpService = module.get<HttpService>(HttpService);
@@ -79,16 +76,16 @@ describe('Hl7WorkflowsBw', () => {
     const hl7Msg = 'ORU Message';
     jest
       .spyOn(service, 'translateBundle')
-      .mockResolvedValue(Hl7WorkflowsBw.errorBundle);
+      .mockResolvedValue(Hl7Service.errorBundle);
 
     const result = await service.handleOruMessage(hl7Msg);
 
-    expect(result).toEqual(Hl7WorkflowsBw.errorBundle);
+    expect(result).toEqual(Hl7Service.errorBundle);
   });
 
   it('should retry translation on failure and succeed on retry', async () => {
     const hl7Msg = 'Message needing retry';
-    const mockErrorBundle = Hl7WorkflowsBw.errorBundle;
+    const mockErrorBundle = Hl7Service.errorBundle;
     const mockSuccessBundle = { resourceType: 'Bundle', entry: [{}] };
     const mockFunc = jest
       .fn()

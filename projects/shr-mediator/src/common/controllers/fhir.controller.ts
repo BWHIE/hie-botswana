@@ -1,5 +1,4 @@
 import { R4 } from '@ahryman40k/ts-fhir-types';
-import { HttpService } from '@nestjs/axios';
 import {
   BadRequestException,
   Body,
@@ -15,6 +14,7 @@ import {
 import { Request, Response } from 'express';
 import { Observable } from 'rxjs';
 import { LoggerService } from 'src/logger/logger.service';
+import URI from 'urijs';
 import config from '../../config';
 import { FhirService } from '../services/fhir.service';
 import { IpsService } from '../services/ips.service';
@@ -24,19 +24,17 @@ import {
   invalidBundleMessage,
   isValidResourceType,
 } from '../utils/fhir';
-import URI from 'urijs';
 
 @Controller('fhir')
 export class FhirController {
   constructor(
     private readonly fhirService: FhirService,
     private readonly ipsService: IpsService,
-    private httpService: HttpService,
     private readonly logger: LoggerService,
   ) {}
 
   @Get('/')
-  getRoot(@Req() req: Request, @Res() res: Response) {
+  getRoot(@Req() req: Request) {
     return req.url;
   }
 
@@ -146,18 +144,12 @@ export class FhirController {
   }
 
   @Post('/:resourceType')
-  async createResource(
-    @Req() req: Request,
-    @Res() res: Response,
-  ) {
+  async createResource(@Req() req: Request, @Res() res: Response) {
     return await this.fhirService.saveResource(req, res);
   }
 
   @Put('/:resourceType/:id')
-  async updateResource(
-    @Req() req: Request,
-    @Res() res: Response,
-  ) {
+  async updateResource(@Req() req: Request, @Res() res: Response) {
     return await this.fhirService.saveResource(req, res);
   }
 }

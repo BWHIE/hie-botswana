@@ -7,8 +7,6 @@ import { IpsService } from './ips.service';
 
 describe('IpsService', () => {
   let service: IpsService;
-  let loggerService: LoggerService;
-  let httpService: HttpService;
   let shrClient: Client;
 
   beforeEach(async () => {

@@ -102,7 +102,7 @@ describe('FhirService', () => {
       const mockResponse: any = {
         status: jest.fn().mockReturnThis(),
         json: jest.fn().mockImplementation(() => {
-           return {}
+          return {};
         }),
       };
       const mockReq: any = {
@@ -117,7 +117,7 @@ describe('FhirService', () => {
         .mockReturnValue(throwError(() => error));
 
       service.passthrough(mockReq, mockResponse).subscribe({
-        error: (err) => {
+        error: () => {
           expect(mockResponse.status).toHaveBeenCalledWith(502);
           expect(mockResponse.json).toHaveBeenCalledWith({
             error: 'test error',

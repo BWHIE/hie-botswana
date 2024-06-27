@@ -6,9 +6,10 @@ import { KafkaProducerService } from './kafka-producer.service';
 import config from '../../config';
 import { HttpService } from '@nestjs/axios';
 import { LoggerService } from '../../logger/logger.service';
+import * as hl7 from 'hl7';
 
 @Injectable()
-export class Hl7WorkflowsBw {
+export class Hl7Service {
   constructor(
     private readonly kafkaProducerService: KafkaProducerService,
     private readonly httpService: HttpService,
@@ -26,6 +27,37 @@ export class Hl7WorkflowsBw {
       },
     ],
   };
+
+  public async handleMessage(data: any): Promise<any> {
+    try {
+      this.logger.log('received payload:', data);
+      // Determine Message Type
+      const parsed = hl7.parseString(data);
+      const msgType: string = parsed[0][9][0][0];
+
+      if (msgType == 'ADT') {
+        this.logger.log('Handling ADT Message');
+        return this.handleAdtMessage(data);
+      } else if (msgType == 'ORU') {
+        this.logger.log('Handling ORU Message');
+        return this.handleOruMessage(data);
+      } else {
+        this.logger.error('Message unsupported!');
+        return {
+          type: BundleTypeKind._transactionResponse,
+          resourceType: 'Bundle',
+          entry: [{ response: { status: '501 Not Implemented' } }],
+        };
+      }
+    } catch (error) {
+      this.logger.error(error);
+      return {
+        type: BundleTypeKind._transactionResponse,
+        resourceType: 'Bundle',
+        entry: [{ response: { status: '500 Server Error' } }],
+      };
+    }
+  }
 
   async handleAdtMessage(hl7Msg: string): Promise<void> {
     try {
@@ -46,7 +78,7 @@ export class Hl7WorkflowsBw {
       );
 
       if (
-        translatedBundle != Hl7WorkflowsBw.errorBundle &&
+        translatedBundle != Hl7Service.errorBundle &&
         translatedBundle.entry
       ) {
         this.kafkaProducerService.sendPayload(
@@ -55,13 +87,13 @@ export class Hl7WorkflowsBw {
         );
         return translatedBundle;
       } else {
-        return Hl7WorkflowsBw.errorBundle;
+        return Hl7Service.errorBundle;
       }
     } catch (error: any) {
       this.logger.error(
         `Could not save ORU message!\n${JSON.stringify(error)}`,
       );
-      return Hl7WorkflowsBw.errorBundle;
+      return Hl7Service.errorBundle;
     }
   }
 
@@ -71,7 +103,7 @@ export class Hl7WorkflowsBw {
 
     // The errorCheck function defines the criteria for retrying based on the operation's result
     const errorCheck = (result: R4.IBundle) =>
-      result === Hl7WorkflowsBw.errorBundle;
+      result === Hl7Service.errorBundle;
 
     // Define the payload for DMQ in case of failure
     const payloadForDMQ = { hl7Msg, templateConfigKey };
@@ -164,7 +196,58 @@ export class Hl7WorkflowsBw {
         )}`,
       );
 
-      return Hl7WorkflowsBw.errorBundle;
+      return Hl7Service.errorBundle;
     }
+  }
+
+  async getFhirTranslation(
+    bundle: R4.IBundle,
+    template: string,
+  ): Promise<string> {
+    try {
+      const { data } = await this.httpService.axiosRef.request<string>({
+        url: `${config.get('fhirConverterUrl')}/convert/fhir/${template}`,
+        headers: {
+          'content-type': 'text/plain',
+        },
+        data: JSON.stringify(bundle),
+        method: 'POST',
+        auth: {
+          username: config.get('mediator:client:username'),
+          password: config.get('mediator:client:password'),
+        },
+      });
+
+      return data;
+    } catch (error: any) {
+      this.logger.error(
+        `Could not translate FHIR Bundle message\n${JSON.stringify(
+          bundle,
+        )}\n with template ${template}!\n${JSON.stringify(error)}`,
+      );
+      return '';
+    }
+  }
+
+  async getFhirTranslationWithRetry(
+    bundle: R4.IBundle,
+    template: string,
+  ): Promise<string> {
+    // Define your retry parameters
+    const maxRetries = config.get('retryConfig:translatorMaxRetries') || 5;
+    const delay = config.get('retryConfig:translatorRetryDelay') || 2000;
+
+    const errorCheck = (result: R4.IBundle) =>
+      result === Hl7Service.errorBundle;
+
+    const payloadForDMQ = { bundle, template };
+
+    return await this.retryOperation(
+      () => this.getFhirTranslation(bundle, template),
+      maxRetries,
+      delay,
+      errorCheck,
+      payloadForDMQ,
+    );
   }
 }

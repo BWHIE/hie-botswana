@@ -28,6 +28,7 @@
     "@nestjs/microservices": "^10.3.9",
     "@nestjs/platform-express": "^10.0.0",
     "axios": "^1.7.2",
+    "exceljs": "^4.4.0",
     "fhirclient": "^2.5.3",
     "hl7": "^1.1.1",
     "kafkajs": "^2.2.4",

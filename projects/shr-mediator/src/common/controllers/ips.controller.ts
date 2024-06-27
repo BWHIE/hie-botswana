@@ -26,7 +26,7 @@ export class IpsController {
   ) {}
 
   @Get('/')
-  getRoot(@Req() req: Request, @Res() res: Response) {
+  getRoot(@Req() req: Request) {
     return req.url;
   }
 
@@ -39,7 +39,6 @@ export class IpsController {
   async getPatientCruidData(
     @Param('id') id: string,
     @Param('lastUpdated') lastUpdated: string,
-    @Res() res: Response,
   ) {
     const shrUrl = config.get('fhirServer:baseURL');
     const shrClient = fhirClient.client({
