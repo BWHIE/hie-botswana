@@ -28,12 +28,14 @@
     "@nestjs/microservices": "^10.3.9",
     "@nestjs/platform-express": "^10.0.0",
     "axios": "^1.7.2",
+    "fhirclient": "^2.5.3",
     "hl7": "^1.1.1",
     "kafkajs": "^2.2.4",
     "nconf": "^0.12.1",
     "openhim-mediator-utils": "^0.4.0",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "urijs": "^1.19.11"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
@@ -43,6 +45,7 @@
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.1",
     "@types/supertest": "^6.0.0",
+    "@types/urijs": "^1.19.25",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.42.0",
