@@ -200,6 +200,7 @@ export class TerminologyService {
       return null;
     }
   }
+  
   async getMappedCode(q: string): Promise<any> {
     try {
       const codeMapping = await this.getOclMapping(q);
