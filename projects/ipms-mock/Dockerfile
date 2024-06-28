@@ -16,7 +16,7 @@ ENV SERVER_PORT=${SERVER_PORT_ARG}
 COPY . .
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir hl7apy watchdog
+RUN pip install -r requirements.txt
 
 # Make port 2575 available to the world outside this container
 EXPOSE ${SERVER_PORT}
