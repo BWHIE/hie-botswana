@@ -29,6 +29,8 @@ The obtained locations/facilities were mapped into FHIR resources. IPMS location
 ### Fhir Bundles:
 The initial Bundle was split into 3 bundles because the maximum size for a Docker config file is 1 MB and the initial Bundle's size exceeded that threshold. See `packages/fhir-datastore-hapi-fhir/importer/docker-compose.seeder.yml`. The scripts  for mapping FHIR resources can be found in the subfolder `fhir-ipms-facilities-locations`
 
+## FHIR IPMS PIMS Facilities/Locations Matching :
+There are several python scripts that were used for studying data discrepancies between the `Master Facility List` (MFL) locations and the `Integrated Patient Management System` (IPMS) locations on one side, between MFL locations and the `Patient Information Management System` (PIMS) locations on the other. These scripts are used to extract duplicates, common locations, locations that are in one dataset but not in the other, similarity scores between facilities' names etc. The MFL dataset is supposed to act as a source of truth for the PIMS and IPMS datasets.
 
 ## Installation 
 ### IPMS Lab Tests and Facilities 
@@ -99,3 +101,4 @@ Execute the Script:
 yarn start 
 
 ```
+

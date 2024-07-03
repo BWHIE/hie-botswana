@@ -1,0 +1,854 @@
+FacilityID,FacilityCode,CMSCode,Facility,HealthDistrictID,ARTSiteID,ARTServiceID,FacilityTypeID,Deleted,UpdateStamp,DateCreated,CreatedBy,OldFacilityName
+1,19-3-05,1183,Lesole Clinic,20019,33,1,1,,00000000014DC01C,,,A.N. Lesole Clinic
+3,16-4-02,,Area L Health Post,20016,33,1,1,,00000000014DC01D,,,Area L Health Post
+4,16-4-03,,Area S Health Post,20016,33,1,1,,00000000014DC01E,,,Area S Health Post
+5,09-3-01,1094,Artesia Clinic,20009,1,1,1,,00000000014DC01F,,,Artesia Clinic
+6,18-1-01,1538,Athlone Hospital,20018,7,8,1,,00000000014DC020,,,Athlone Hospital
+7,16-3-12,1177,B.M.C Clinic,20016,33,1,1,,00000000014DC021,,,B.M.C. Clinic
+8,04-4-03,1288,Baines Drift Prisons Health Post,20004,33,1,1,,00000000014DC022,,,Baines Drift Prisons Health Post
+9,08-3-11,1083,Baitiredi Clinic,20008,33,1,1,,00000000014DC023,,,Baitiredi Clinic
+10,05-2-01,1591,Thamaga Primary Hospital,20005,31,8,1,,00000000014DC024,,,Thamaga Primary Hospital
+11,17-7-01,,Bamalete School of Nursing,20017,33,1,1,,00000000014DC025,,,Bamalete School of Nursing
+12,19-3-04,1184,BCL 3rd  Shaft First Aid Clinic,20019,33,1,1,,00000000014DC026,,,BCL 3rd Shaft First Aid Clinic
+13,19-3-02,1185,BCL First Aid Clinic,20019,33,1,1,,00000000014DC027,,,BCL First  Aid Clinic
+14,19-1-01,1539,BCL Mine Hospital,20019,33,1,1,,00000000014DC028,,,BCL Mine Hospital
+15,01-3-06,,BDF Clinic (Ngamiland),20001,33,11,1,,00000000014DC029,,,BDF Clinic
+16,16-3-01,1154,BDF Clinic (Francistown),20016,12,1,1,,00000000014DC02A,,,BDF Clinic Francistown
+17,15-3-01,,BDF Village Garrison Clinic,20025,33,1,1,,00000000014DC02B,,,BDF Village Clinic
+18,14-3-11,1465,Beetsha Clinic,20014,33,1,1,,00000000014DC02C,,,Beetsha Health Post
+19,07-4-01,1347,Bere Health Post,20007,33,1,1,,00000000014DC02D,,,Bere Health Post
+21,22-3-01,,Blue Area Mine Clinic,20022,33,1,1,,00000000014DC02E,,,Blue Area Mine Clinic
+22,18-3-01,,BMC Clinic (factory),20018,33,1,1,,00000000014DC02F,,,BMC I Clinic (factory)
+23,05-4-01,,Boatlaname Health Post,20005,33,1,1,,00000000014DC030,,,Boatlaname Health Post
+24,04-2-01,1542,Bobonong Primary Hospital,20004,28,1,1,,00000000014DC031,,,Bobonong Primary Hospital
+25,01-4-02,1212,Bodibeng Health Post,20001,33,1,1,,00000000014DC032,,,Bodibeng  Health Post
+26,09-4-01,1391,Bodungwane Health Post,20009,33,1,1,,00000000014DC033,,,Bodungwane Health Post
+27,18-03-02,,BOFWA Youth Clinic,20018,33,1,1,,0000000001625EC3,,,BOFWA Clinic
+28,17-1-01,1537,Bamalete Lutheran Hospital,20017,2,1,1,,00000000014DC035,,,Bamalete Lutheran Hospital
+29,11-4-15,1672,Bogogobo Health Post ,20041,33,1,1,,00000000014DC036,,,Bogogobo Health Post 
+30,16-3-13,1157,Boikhutso Clinic,20016,33,1,1,,00000000014DC037,,,Boikhutso Clinic
+32,05-3-01 ,1559,Bokaa Clinic (Kweneng East),20005,33,1,1,,00000000014DC038,,,Bokaa Clinic (Kweneng East)
+33,09-3-02,1560,Bokaa Clinic (Kgatleng),20009,33,1,1,,00000000014DC039,,,Bokaa Clinic (Kgatleng)
+34,11-3-01,1105,Bokspits Clinic,20041,9,1,1,,00000000014DC03A,,,Bokspits Clinic
+35,15-3-02,1141,Bontleng Clinic,20025,33,1,1,,00000000014DC03B,,,Bontleng Clinic
+36,08-4-02,1364,Bonwapitse Health Post,20008,33,1,1,,00000000014DC03C,,,Bonwapitse Health Post
+37,05-3-02,1046,Borakalalo Clinic,20005,33,1,1,,00000000014DC03D,,,Borakalalo Clinic
+38,05-3-03 ,1047,Boribamo Clinic,20005,33,1,1,,00000000014DC03E,,,Boribamo Clinic
+39,01-4-17,1213,Boro Prison Health Post,20001,33,1,1,,00000000014DC03F,,,Boro Prison Health Post
+40,16-3-26,1429,Borolong Clinic,20016,33,1,1,,00000000014DC040,,,Borolong Health Post
+41,04-3-08,1289,Borotsi Clinic,20004,33,1,1,,00000000014DC041,,,Borotsi Clinic
+42,09-3-08,1095,Boseja Clinic 1 (Kgatleng),20009,33,1,1,,00000000014DC042,,,Boseja Clinic 1 (Kgatleng)
+43,01-3-10,1001,Boseja Clinic (Ngamiland),20001,16,1,1,,00000000014DC043,,,Boseja Clinic (Ngamiland)
+44,01-4-04,1778,Kubung (Boseja) Health Post,20001,33,1,1,,00000000014DC044,,,Boseja Kubung
+45,02-4-22,1228,Botalaote –Toteng Health Post,20002,33,1,1,,00000000014DC045,,,Botalaote/Toteng H/ Post
+46,01-4-01,1214,Bothatogo Health Post,20001,33,1,1,,00000000014DC046,,,Bothatogo Health Post
+47,20-3-08,1487,Botlhapatlou Clinic,20020,33,1,1,,00000000014DC047,,,Botlhapatlou Clinic
+48,16-3-05,1158,Botsalano Clinic,20016,33,1,1,,00000000014DC048,,,Botsalano Clinic
+49,19-3-06,1186,Botshabelo Clinic,20019,27,1,1,,00000000014DC049,,,Botshabelo Clinic
+50,16-3-02,1159,Botshelo Clinic,20016,33,1,1,,00000000014DC04A,,,Botshelo Clinics
+51,16-3-06,1161,Botswelelo Clinic,20016,4,1,1,,00000000014DC04B,,,Botswelelo Clinic
+52,01-3-08,1002,Moeti (Boyei) Clinic,20001,16,1,1,,00000000014DC04C,,,Moeti Clinic
+53,15-3-03,1142,Broadhurst 1 Clinic,20025,33,1,1,,00000000014DC04D,,,Broadhurst 1 Clinic
+54,15-3-04,1143,Broadhurst II (BH2) Clinic,20025,33,1,1,,00000000014DC04E,,,Broadhurst 11 Clinic
+55,15-3-05,,Broadhurst Traditional Area Clinic,20025,33,1,1,,00000000014DC04F,,,Broadhurst Traditional Area Clinic
+56,02-4-01,1229,Butale Health Post,20002,33,1,1,,00000000014DC050,,,Butale Health Post
+57,08-3-15,1365,Chadibe Clinic,20008,25,1,1,,00000000014DC051,,,Chadibe Clinic
+58,12-4-08,1110,Changate Health Post,20012,33,1,1,,00000000014DC052,,,Changate Clinic
+59,01-4-03,1620,Chanoga Health Post,20001,33,1,1,,00000000014DC053,,,Chanoga Health Post
+60,28-3-01,1077,Charleshill Clinic,20043,14,1,1,,00000000014DC054,,,Charleshill Clinic
+61,28-4-07,1348,Chobokwane Health Post,20043,33,1,1,,00000000014DC055,,,Chobokwane Health Post
+62,23-4-01,1501,Cwaanyaneng Health Post,20023,33,1,1,,00000000014DC056,,,Cwaanyaneng Health Post
+63,23-4-02,1500,Cwagare Health Post,20023,33,1,1,,00000000014DC057,,,Cwagare Health Post
+80,07-4-02,,D'Kar Health Post,20007,33,1,1,,00000000014DC058,,,D`kar Health Post
+81,12-4-02,1431,Dagwi Health Post,20012,33,1,1,,00000000014DC059,,,Dagwi Health Post
+82,13-3-11,,Damtshaa Clinic,20013,33,1,1,,00000000014DC05A,,,Damtshaa Clinic
+83,04-4-08,,Damuchujenaa Health Post,20004,33,1,1,,00000000014DC05B,,,Damuchujenaa Health Post.
+84,13-3-07,1124,De Beers DK1 Clinic,20013,33,1,1,,00000000014DC05C,,,De Beers DK1 Clinic
+85,13-3-06,,De Beers Letlhakane Clinic,20013,33,1,1,,00000000014DC05D,,,De Beers Letlhakane Clinic
+86,13-3-05,,De Beers Orapa White and Blue Area/Occupational Health Clinic,20013,33,1,1,,00000000014DC05E,,,De Beers Orapa Red and Blue Area Clinc
+87,13-3-04,,Boitekanelo - De Beers Orapa (Morale)  Clinic,20013,33,1,1,,00000000014DC05F,,,De Beers Orapa Town(Morale)
+88,09-1-01,,Deborah Retief Memorial Hospital,20009,1,1,1,,00000000014DC060,,,Deborah Retief Memorial Hospital
+89,01-1-02,,Delta Medical Centre ,20001,33,1,1,,00000000014DC061,,,Delta Medical Centre 
+90,22-6–01,1635,DHT Jwaneng ,20022,5,1,1,,00000000014DC062,,,DHT Jwaneng 
+91,06-4-06,,Diabo Health Post,20006,33,1,1,,00000000014DC063,,,Diabo Health Post
+92,08-4-04,,Dibete Health Post,20008,33,1,1,,00000000014DC064,,,Dibete Health Post
+93,18-3-09,,Digawana Clinic,20018,33,1,1,,00000000014DC065,,,Digawana Clinic
+94,09-4-03,,Dikgonnye Health Post,20009,33,1,1,,00000000014DC066,,,Dikgonnye Health Post
+95,09-4-04,,Dikwididi Health Post,20009,33,1,1,,00000000014DC067,,,Dikwididi Health Post
+96,06-4-02,,Dilolwe Health Post,20006,33,1,1,,00000000014DC068,,,Dilolwe Health Post
+97,03-4-29,,Diloro Health Post,20003,33,1,1,,00000000014DC069,,,Diloro Health Post
+98,29-4-06,,Dimajwe Health Post,20044,33,1,1,,00000000014DC06A,,,Dimajwe Health Post
+99,20-4-04,,Diphuduhudu Health Post,20020,33,1,1,,00000000014DC06B,,,Diphuduhudu Health Post
+100,06-4-05,,Dipotsana Health Post,20006,33,1,1,,00000000014DC06C,,,Dipotsana Health Post
+101,01-4-18,,Disana Health Post,20001,33,1,1,,00000000014DC06D,,,Disana Health Post
+108,16-4-05,,Ditladi Health Post ,20016,33,1,1,,00000000014DC06E,,,Ditladi Health Post 
+109,23-4-04,1503,Ditlharapa Health Post,20023,33,1,1,,00000000014DC06F,,,Ditlharapa Health Post
+110,20-4-02,1489,Ditshegwane Health Post,20020,33,1,1,,00000000014DC070,,,Ditshegwane Health Post
+111,05-4-17,1621,Ditshukudu Health Post,20005,33,1,1,,00000000014DC071,,,Ditshukudu Health Post
+112,22-3-04,1595,Ditsweletse Clinic,20022,33,1,1,,00000000014DC072,,,Ditsweletse Clinic
+113,08-4-05,,Dovedale Health Post,20008,33,1,1,,00000000014DC073,,,Dovedale Health Post
+114,11-4-09,1417,Draaihoek Health Post,20041,33,1,1,,00000000014DC074,,,Driehoek Health Post
+115,12-3-01,1111,Dukwi Clinic,20012,33,1,1,,00000000014DC075,,,Dukwi Clinic
+116,20-4-03,1490,Dutlwe Health Post,20020,33,1,1,,00000000014DC076,,,Dutlwe Health Post
+117,12-4-03,,Dzoroga Health Post,20012,33,1,1,,00000000014DC077,,,Dzoroga Health Post
+118,07-4-09,,East Hanahai Health Post,20007,33,1,1,,00000000014DC078,,,East Hanahai Health Post
+119,14-4-02,,Etsha 1 Health Post,20014,33,1,1,,00000000014DC079,,,Etsha 1 Health Post
+120,14-3-08,,Etsha 13 Clinic,20014,33,1,1,,00000000014DC07A,,,Etsha 13 Clinic
+121,14-3-01,,Etsha 6 Clinic,20014,15,1,1,,00000000014DC07B,,,Etsha 6 Clinic
+122,22-3-05,1703,EU7 Clinic,20022,5,1,1,,00000000014DC07C,,,EU7  Clinic
+123,15-3-16,,Ext II Clinic,20025,33,1,1,,00000000014DC07D,,,Ext. 11 Clinic
+124,15-3-06,1145,Ext 14 Clinic,20025,33,1,1,,00000000014DC07E,,,Ext. 14 Clinic
+125,15-3-07,,Ext 15 Clinic,20025,33,1,1,,00000000014DC07F,,,Ext. 15 Clinic
+126,03-3-20,,Extension 3 Clinic,20003,24,1,1,,00000000014DC080,,,Extension 3 Clinic
+127,15-3-33,1048,Gabane Clinic,20025,31,1,1,,00000000014DC081,,,Gabane Clinic
+128,15-4-01,1732,Gabane Health Post,20025,33,1,1,,00000000014DC082,,,Gabane Health Post
+129,15-1-02,1624,Gaborone Private Hospital,20025,33,1,1,,00000000014DC083,,,Gaborone Private Hospital
+130,15-3-12,1148,Gaborone West Clinic,20025,33,1,1,,00000000014DC084,,,Gaborone West Clinic
+131,05-4-02,1304,Gakgatla Health Post,20005,33,1,1,,00000000014DC085,,,Gakgatla Health Post
+132,11-4-01,1418,Gakhibane Health Post,20041,33,1,1,,00000000014DC086,,,Gakhibane Health Post
+133,05-4-03,1305,Gakutlo Health Post,20005,33,1,1,,00000000014DC087,,,Gakutlo Health Post
+134,02-4-02,1231,Gambule Health Post,20002,33,1,1,,00000000014DC088,,,Gambule Health Post
+135,05-4-04,1306,Gamodubu Health Post,20005,33,1,1,,00000000014DC089,,,Gamodubu Health Post
+136,07-3-04,1078,Gantsi Clinic,20007,14,1,1,,00000000014DC08A,,,Gantsi Clinic
+137,07-2-01,1545,Gantsi Primary Hospital,20007,14,1,1,,00000000014DC08B,,,Gantsi Primary Hospital
+138,06-4-09,1325,Gasita Health Post,20006,33,1,1,,00000000014DC08C,,,Gasita Health Post
+139,23-4-05,1505,Gathwane Health Post,20023,33,1,1,,00000000014DC08D,,,Gathwane Health Post
+140,16-3-15,1163,Gerald Estates Clinic,20016,4,1,1,,00000000014DC08E,,,Gerald Estates Clinic
+141,14-4-18,,Ghani Health Post,20014,33,1,1,,00000000014DC08F,,,Ghani Health Post
+142,15-3-21,,Glen Valley Clinic,20025,33,1,1,,00000000014DC090,,,Glen Valley Clinic
+143,04-4-04,,Gobojango Health Post,20004,33,1,1,,00000000014DC091,,,Gobojango Health Post
+144,16-4-15,,Gojwane Health Post,20016,33,1,1,,00000000014DC092,,,Gojwane Health Post
+145,23-2-01,,Good Hope Primary Hospital,20023,8,1,1,,00000000014DC093,,,Goodhope Primary Hospital
+146,03-4-03,,Goosekgweng Health Post,20003,33,1,1,,00000000014DC094,,,Goosekgweng Health Post
+147,03-4-01,,Gootau Health Post,20003,33,1,1,,00000000014DC095,,,Gootau Health Post
+148,12-4-04,,Goshwe Health Post,20012,33,1,1,,00000000014DC096,,,Goshwe Health Post
+149,22-3-02,,Green Area Mine Clinic/ Occupational health Clinic,20022,33,1,1,,00000000014DC097,,,Green Area Mine Clinic
+150,07-4-13,,Grootlaagte Health Post,20007,33,1,1,,00000000014DC098,,,Grootlaagte Health Post
+151,14-4-19,,Gudigwa Health Post,20014,33,1,1,,00000000014DC099,,,Gudigwa Heatlh Post
+152,02-4-03,,Gulubane Health Post,20002,33,1,1,,00000000014DC09A,,,Gulubane Health Post
+153,14-3-07,1134,Gumare Clinic,20014,33,1,1,,00000000014DC09B,,,Gumare Clinic
+154,14-2-01,1553,Gumare Primary Hospital,20014,15,1,1,,00000000014DC09C,,,Gumare Primary Hospital
+155,14-4-03,,Gunutsoga Health Post,20014,33,1,1,,00000000014DC09D,,,Gunutsoga Health Post
+156,12-3-02,1112,Gweta Clinic,20012,33,1,1,,00000000014DC09E,,,Gweta Clinic
+157,12-2-02,1549,Gweta Primary Hospital,20012,17,1,1,,00000000014DC09F,,,Gweta Primary Hospital
+158,14-4-06,1469,Habu Health Post,20014,33,1,1,,00000000014DC0A0,,,Habu Health Post
+159,05-4-05,1307,Hatsalatladi Health Post,20005,33,1,1,,00000000014DC0A1,,,Hatsalatladi Health Post
+160,23-3-02,1196,Hebron Clinic,20023,33,1,1,,00000000014DC0A2,,,Hebron Clinic
+161,11-3-02,1106,Hereford /Bray Clinic,20041,33,1,1,,00000000014DC0A3,,,Hereford Clinic
+162,24-3-01,1204,Hukuntsi Clinic,20024,13,1,1,,00000000014DC0A4,,,Hukuntsi Clinic
+163,24-2-01,1555,Hukuntsi Primary Hospital,20024,13,1,1,,00000000014DC0A5,,,Hukuntsi Primary Hospital
+164,24-4-11,,Moselebe/ Hukuntsi West Health Post,20024,33,1,1,,00000000014DC0A6,,,Hukuntsi West Health Post
+165,24-4-13,,Hunhukwe Health Post,20024,33,1,1,,00000000014DC0A7,,,Hunhukwe Clinic
+166,15-3-20,1149,I.D.M. Clinic,20025,33,1,1,,00000000014DC0A8,,,I.D.M. Clinic
+172,14-4-15,1470,Ikoga Health Post,20014,33,1,1,,00000000014DC0A9,,,Ikoga Health Post
+173,08-4-07,,Ikongwe Health Post,20008,33,1,1,,00000000014DC0AA,,,Ikongwe Health Post
+174,24-4-02,1525,Inalegolo Health Post,20024,33,1,1,,00000000014DC0AB,,,Inalegolo Health Post
+175,05-7-01,,Institute of Health Sciences,20005,33,1,1,,00000000014DC0AC,,,Institute of Health Sciences
+176,16-3-14,,Itekeng (Area W) Clinic,20016,4,1,1,,00000000014DC0AD,,,Itekeng (Area W) Clinic
+177,21-4-04,,Itholoke Health Post,20021,33,1,1,,00000000014DC0AE,,,Itholoke Health Post
+178,02-4-04,1233,Jackalas 1 Health Post,20002,33,1,1,,00000000014DC0AF,,,Jackalas I Health Post 
+179,02-4-05,1234,Jackalas 2 Health Post,20002,33,1,1,,00000000014DC0B0,,,Jackalas II Health Post
+180,06-3-04,1060,Joosub Dada Clinic,20006,33,1,1,,00000000014DC0B1,,,Joosub Dada Clinic
+181,16-3-10,1164,Jubilee Clinic,20016,4,1,1,,00000000014DC0B2,,,Jubilee Clinic
+182,15-3-14,,Julia Molefe (Block 9) Clinic,20025,33,1,1,,00000000014DC0B3,,,Julia Molefe(Block 9) Clinic
+183,22-1-01,1533,Jwaneng Mine Hospital  ,20022,5,1,1,,00000000014DC0B4,,,Jwaneng Mine Hospital  
+184,07-4-03,1353,Kacgae Health Post,20007,33,1,1,,00000000014DC0B5,,,Kacgae Health Post
+185,10-3-01,1103,Kachikau Clinic,20040,32,1,1,,00000000014DC0B6,,,Kachikau Clinic
+186,29-3-01,1023,Kadimo Samson clinic,20044,23,1,1,,00000000014DC0B7,,,Kadimo Samson clinic
+187,16-3-09,1581,Kagiso Clinic (Francistown),20016,33,1,1,,00000000014DC0B8,,,Kagiso Clinic (Francistown)
+188,19-3-07,1582,Kagiso Clinic (Selebi-Phikwe),20019,27,1,1,,00000000014DC0B9,,,Kagiso Clinic (Selebi-Phikwe)
+189,02-4-06,1235,Kalakamati Health Post,20002,33,1,1,,00000000014DC0BA,,,Kalakamati Health Post
+190,08-3-07,1084,Kalamare Clinic,20008,33,1,1,,00000000014DC0BB,,,Kalamare Clinic
+191,28-3-02,1080,Kalfontein Clinic,20043,14,1,1,,00000000014DC0BC,,,Kalkfontein Clinic
+192,24-3-02,1205,Kang Clinic,20024,13,1,1,,00000000014DC0BD,,,Kang Clinic
+193,23-4-06,1506,Kanngwe Health Post,20023,33,1,1,,00000000014DC0BE,,,Kanngwe Health Post
+194,06-4-03,1326,Kanye Prisons Health Post,20006,33,1,1,,00000000014DC0BF,,,Kanye Prison Health Post
+195,06-3-01,1596,Kanye Main Clinic,20006,6,1,1,,00000000014DC0C0,,,Kanye Clinic
+196,28-3-04,1355,Karakubis Clinic,20043,33,1,1,,00000000014DC0C1,,,Karakubis Health Post
+197,01-3-15,1217,Kareng Clinic,20001,33,1,1,,00000000014DC0C2,,,Kareng Health Post
+198,10-4-01,1408,Kasane Prisons Health Post,20040,33,1,1,,00000000014DC0C3,,,Kasane Prisons Health Post
+199,10-4-09,1407,Kasane Health Post,20040,33,1,1,,00000000014DC0C4,,,Kasane Health Post
+200,10-2-01,1547,Kasane Primary Hospital,20040,32,1,1,,00000000014DC0C5,,,Kasane Primary Hospital
+201,20-4-10,1491,Kaudwane Health Post,20020,33,1,1,,00000000014DC0C6,,,Kaudane Health Post
+202,14-4-04,1471,Kauxwi Health Post,20014,33,1,1,,00000000014DC0C7,,,Kauxwi Health Post
+203,10-4-03,1409,Kavimba Health Post,20040,33,1,1,,00000000014DC0C8,,,Kavimba Health Post
+204,10-4-10,,Kazungula BDF Health Post,20040,33,1,1,,00000000014DC0C9,,,Kazungula  BDF Health Post
+205,10-4-05,1410,Kazungula Health Post,20040,33,1,1,,00000000014DC0CA,,,Kazungula  Health Post
+206,13-4-01,1454,Kedia Health Post,20013,33,1,1,,00000000014DC0CB,,,Kedia Health Post
+207,03-3-19,,Kediretswe Clinic,20003,24,1,1,,00000000014DC0CC,,,Kediretswe Clinic
+208,21-4-01,1327,Keng Health Post,20021,33,1,1,,00000000014DC0CD,,,Keng Health Post
+209,15-3-22,1625,Kgalagadi Breweries(Ltd)Clinic,20025,33,1,1,,00000000014DC0CE,,,Kgalagadi Breweries (Ltd) Clinic
+210,02-4-25,1236,Kgari Health Post,20002,33,1,1,,00000000014DC0CF,,,Kgari Health Post
+211,15-3-25,1665,Kgatelopele (Block 8) Clinic,20025,33,1,1,,00000000014DC0D0,,,Kgatelopele Clinic
+212,09-4-05,1394,Kgomodiatshaba Health Post,20009,33,1,1,,00000000014DC0D1,,,Kgomodiatshaba Health post.
+213,26-4-04,1328,Kgomokasitwa Health Post,20042,33,1,1,,00000000014DC0D2,,,Kgomokasitwa Health Post
+214,05-4-06,1308,Kgope Health Post,20005,33,1,1,,00000000014DC0D3,,,Kgope Health Post
+215,23-4-07,1507,Kgoro Health Post,20023,33,1,1,,00000000014DC0D4,,,Kgoro Health Post
+216,05-3-05 ,1050,Kgosing Clinic,20005,33,1,1,,00000000014DC0D5,,,Kgosing Clinic
+217,06-3-02,1062,Kgwatleng Clinic,20006,33,1,1,,00000000014DC0D6,,,Kgwatlheng Clinic
+218,21-3-01,1063,Khakhea Clinic,20021,33,1,1,,00000000014DC0D7,,,Khakhea Clinic
+219,11-4-12,1419,Khawa Health Post,20041,33,1,1,,00000000014DC0D8,,,Khawa Health Post
+220,15-4-04,1481,Khayakholo Health Post,20025,33,1,1,,00000000014DC0D9,,,Khayakholo Health Post
+221,11-4-02,1420,Khisa Health Post,20041,33,1,1,,00000000014DC0DA,,,Khisa Health Post
+222,21-4-02,1329,Khonkhwa Health Post,20021,33,1,1,,00000000014DC0DB,,,Khonkhwa Health Post
+223,20-3-07,1492,Khudumelapye Clinic ,20020,33,1,1,,00000000014DC0DC,,,Khudumelapye Clinic 
+224,11-4-04,1650,Khuis Health Post,20041,33,1,1,,00000000014DC0DD,,,Khuis Health Post
+225,03-3-22,,Khurumela Clinic,20003,24,1,1,,00000000014DC0DE,,,Khurumela Clinic
+226,09-4-06,1395,Khurutshe Health Post,20009,33,1,1,,00000000014DC0DF,,,Khurutshe Health Post
+227,08-4-09,1369,Kodibeleng Health Post,20008,33,1,1,,00000000014DC0E0,,,Kodibeleng Health Post
+228,21-3-05,1330,Kokong Clinic,20021,33,1,1,,00000000014DC0E1,,,Kokong Health Post
+229,11-4-13,1421,Kokotsha Health Post,20041,33,1,1,,00000000014DC0E2,,,Kokotsha Health Post
+230,28-3-05,1356,Kole Clinic,20043,33,1,1,,00000000014DC0E3,,,Kole Health Post
+231,11-4-03,1422,Kolonkwaneng Health Post,20041,33,1,1,,00000000014DC0E4,,,Kolonkwaneng Health Post
+232,01-4-09,1218,Komana Health Post,20001,33,1,1,,00000000014DC0E5,,,Komana Health Post
+233,05-3-06 ,1051,Kopong Clinic,20005,33,1,1,,00000000014DC0E6,,,Kopong Clinic
+234,20-4-05,1626,Kotoloname Health Post,20020,33,1,1,,00000000014DC0E7,,,Kotolaname Health Post
+236,05-4-07,,Kubung Health Post (Kweneng East),20005,33,1,1,,00000000014DC0E8,,,Kubung Health Post 
+237,08-4-10,1370,Kudumatse Health Post,20008,33,1,1,,00000000014DC0E9,,,Kudumatse Health Post
+238,07-4-05,1357,Kuke Health Post,20007,33,1,1,,00000000014DC0EA,,,Kuke Health Post
+239,13-4-02,,Khumaga Health Post,20013,18,1,1,,00000000014DC0EB,,,Kumaga Health Post
+240,05-4-08,1310,Kumakwane Health Post,20005,33,1,1,,00000000014DC0EC,,,Kumakwane Health Post
+241,12-4-27,1433,Kutamogore Health Post,20012,33,1,1,,00000000014DC0ED,,,Kutamogore Health Post
+242,10-4-06,,Kwando BDF Health Post,20040,33,1,1,,00000000014DC0EE,,,Kwando BDF Health Post
+243,13-4-05,,Khwee Health Post,20013,20,1,1,,00000000014DC0EF,,,Kwee Health Post
+244,05-4-18,1627,Kweneng Health Post,20005,33,1,1,,00000000014DC0F0,,,Kweneng Health Post
+245,16-3-07,1165,Lapologang Clinic,20016,33,1,1,,00000000014DC0F1,,,Lapologang Clinic
+246,03-3-16,1259,Lecheng Clinic,20003,33,1,1,,00000000014DC0F2,,,Lecheng Clinic
+247,08-4-12,1371,Leetile Health Post,20008,33,1,1,,00000000014DC0F3,,,Leetile Health Post
+248,24-4-03,1526,Lehututu Health Post,20024,33,1,1,,00000000014DC0F4,,,Lehututu Health Post
+249,26-4-05,,Lekgolobotlo Health Post,20042,33,1,1,,00000000014DC0F5,,,Lekgolobotlo Health Post
+250,05-4-19,1311,Lekgwapheng Health Post,20005,33,1,1,,00000000014DC0F6,,,Lekgwapeng Health Pos
+251,04-4-05,1292,Lentswelemoriti Health Post,20004,33,1,1,,00000000014DC0F7,,,Lentswelemoriti Health Post
+252,05-3-07,1052,Lentsweletau Clinic,20005,30,1,1,,00000000014DC0F8,,,Lentsweletau Clinic
+253,10-4-12,,Lenyanti BDF Health Post ,20040,33,1,1,,00000000014DC0F9,,,Lenyanti BDF Health Post 
+254,12-4-05,1598,Lepashe Health Post,20012,33,1,1,,00000000014DC0FA,,,Lepashe Health Post
+255,05-3-08 ,1053,Lephephe Clinic,20005,33,1,1,,00000000014DC0FB,,,Lephephe Clinic
+256,04-4-02,1293,Lepokole Health Post,20004,33,1,1,,00000000014DC0FC,,,Lepokole Health Post
+257,23-4-08,1508,Leporung Health Post,20023,33,1,1,,00000000014DC0FD,,,Leporung Health Post
+258,03-3-03,1025,Lerala Clinic,20003,24,1,1,,00000000014DC0FE,,,Lerala Clinic
+259,,1599,Lerolwane Health Post,20025,33,1,1,,00000000014DC0FF,,,Lerolwane Health Post
+260,03-4-04,,Lesenepole(Matolwane) H/Post,20003,33,1,1,,00000000014DC101,,,Lesenepole(Matolwane) Health Post
+261,17-3-08,1169,Lesetlhana Clinic,20017,2,1,1,,00000000014DC102,,,Lesetlhana Clinic.
+262,09-4-07,1396,Leshibitse  Health Post,20009,33,1,1,,00000000014DC103,,,Leshibetse Health Post
+263,05-4-09,1312,Lesilakgokong Health Post,20005,33,1,1,,00000000014DC104,,,Lesilakgokong Health Post
+264,10-4-02,1411,Lesoma Health Post,20040,33,1,1,,00000000014DC105,,,Lesoma Health Post
+265,13-3-01,1126,Letlhakane Clinic,20013,33,1,1,,00000000014DC106,,,Letlhakane Clinic
+266,13-2-02,1551,Letlhakane Primary Hospital,20013,20,1,1,,00000000014DC107,,,Letlhakane Primary Hospital
+267,13-3-10,1127,Letlhakane Prisons Clinic,20013,33,1,1,,00000000014DC108,,,Letlhakane Prisons Clinic
+268,20-3-01,1190,Letlhakeng Clinic,20020,30,1,1,,00000000014DC109,,,Letlhakeng Clinic
+269,02-4-23,1237,Letsholathebe Health Post,20002,33,1,1,,00000000014DC10A,,,Letsholathebe Health Post
+270,18-3-06,1178,Lobatse Prison Clinic,20018,33,1,1,,00000000014DC10B,,,Lobatse Prison Clinic
+271,24-4-04,1527,Lokgwabe Health Post,20024,33,1,1,,00000000014DC10C,,,Lokgwabe Health Post
+272,06-3-07,,Lotlhakane East Clinic,20006,33,1,1,,00000000014DC10D,,,Lotlhakane East Clinic
+273,26-4-06,,Lotlhakane West Health Post,20042,33,1,1,,00000000014DC10E,,,Lotlhakane West H/Post
+274,03-3-13,,Lotsane Clinic,20003,24,1,1,,00000000014DC10F,,,Lotsane Clinic
+275,08-4-13,1372,Maape Health Post,20008,33,1,1,,00000000014DC110,,,Maape Health Post
+276,01-4-05,1219,Mababe Health Post,20001,33,1,1,,00000000014DC111,,,Mababe Health Post
+277,10-4-04,,Mabale Health Post,20040,33,1,1,,00000000014DC112,,,Mabale Health Post
+278,04-4-16,1261,Mabeleng Health Post,20004,33,1,1,,00000000014DC113,,,Mabaleng Health Post
+279,29-3-08,1294,Mabeleapudi Clinic,20044,33,1,1,,00000000014DC114,,,Mabeleapudi Clinic
+280,16-4-10,1434,Mabesekwa Health Post,20016,33,1,1,,00000000014DC115,,,Mabesekwa Health Post
+281,20-4-06,1493,Maboane Health Post,20020,33,1,1,,00000000014DC116,,,Maboane Health Post
+282,02-4-18,,Mabudzane Health Post,20002,33,1,1,,00000000014DC117,,,Mabudzane Health Post
+283,23-3-03,1197,Mabule Clinic,20023,33,1,1,,00000000014DC118,,,Mabule Clinic
+284,21-3-02,1065,Mabutsane Clinic,20021,5,1,1,,00000000014DC119,,,Mabutsane Clinic
+285,08-3-02,1085,Machaneng Clinic,20008,25,1,1,,00000000014DC11A,,,Machaneng Clinic
+286,08-3-13,1086,Machaneng Prisons Clinic,20008,33,1,1,,00000000014DC11B,,,Machaneng Prisons Clinic
+287,03-4-20,1262,Madiaele health Post,20003,33,1,1,,00000000014DC11C,,,Madiaele health Post
+288,08-4-15,1373,Madiba Health Post,20008,33,1,1,,00000000014DC11D,,,Madiba Health Post
+289,16-4-09,1693,Madisakwane Health Post,20016,33,1,1,,00000000014DC11E,,,Madisakwane Health Post
+290,15-3-36,1482,Mafitlhakgosi Clinic ,20025,33,1,1,,00000000014DC11F,,,Mafitlhakgosi Clinic 
+291,12-4-24,1436,Magapatona  Health Post,20012,33,1,1,,00000000014DC120,,,Magapatona Health Post
+292,08-4-11,,Mahalapye BDF Health Post,20008,33,1,1,,00000000014DC121,,,Mahalapye BDF Health Post
+293,08-1-01,1209,Mahalapye Hospital,20008,29,1,1,,00000000014DC122,,,Mahalapye Hospital
+294,08-3-03,,Mahalapye Prisons Clinic,20008,33,1,1,,00000000014DC123,,,Mahalapye Prisons Clinic
+295,05-4-10,1313,Mahetwe Health Post ,20005,33,1,1,,00000000014DC124,,,Mahetwe Health Post 
+296,06-3-03,,Mahikana Clinic,20006,33,1,1,,00000000014DC125,,,Mahikana Clinic
+297,21-4-05,1314,Mahotshwane Health Post,20021,33,1,1,,00000000014DC126,,,Mahotshwane Health Post
+298,12-3-03,1113,Maitengwe Clinic,20012,21,1,1,,00000000014DC127,,,Maitengwe Clinic
+299,23-4-20,,Majaalela Health Post,20023,33,1,1,,00000000014DC128,,,Majaalela Health Post
+300,29-4-05,1263,Majwana-a-dipitse Health Post,20044,33,1,1,,00000000014DC129,,,Majwana-a-dipitse Health Post
+301,03-4-07,1264,Majwaneng Health Post,20003,33,1,1,,00000000014DC12A,,,Majwaneng Health Post
+302,09-3-09,1096,Makakatlela Clinic,20009,33,1,1,,00000000014DC12B,,,Makakatlela Clinic
+303,01-4-10,1220,Makakung Health Post,20001,33,1,1,,00000000014DC12C,,,Makakung Health Post
+304,01-3-09,1003,Makalamabedi Clinic,20001,16,1,1,,00000000014DC12D,,,Makalamabedi
+305,02-3-01,1012,Makaleng Clinic,20002,22,1,1,,00000000014DC12E,,,Makaleng Clinic
+306,24-4-05,1528,Make Health Post,20024,33,1,1,,00000000014DC12F,,,Make Health Post
+307,09-4-18,1777,Makgophana Health Post,20009,33,1,1,,00000000014DC130,,,Makgophana Health Post
+308,16-4-17,1437,Makobo Health Post,20016,33,1,1,,00000000014DC131,,,Makobo Health Post
+309,13-4-08,1457,Makoboxane Health Post,20013,33,1,1,,00000000014DC132,,,Makoboxane Health Post
+310,11-3-04,1107,Makopong Clinic,20041,9,1,1,,00000000014DC133,,,Makopong Clinic
+311,28-4-03,1358,Makunda Health Post,20043,33,1,1,,00000000014DC134,,,Makunda Health Post
+312,08-4-14,1374,Makwate Health Post,20008,33,1,1,,00000000014DC135,,,Makwate Health Post
+313,03-4-08,1265,Malaka Health Post,20003,33,1,1,,00000000014DC136,,,Malaka Health Post
+314,29-4-07,1266,Malatswai Health Post,20044,33,1,1,,00000000014DC137,,,Malatswai Health Post
+315,11-4-14,1651,Maleshe Health Post,20041,33,1,1,,00000000014DC138,,,Maleshe Health Post
+316,09-3-13,1661,Malolwane Clinic,20009,33,1,1,,00000000014DC139,,,Malolwane Health Post
+317,09-4-09,,Malotwana Health Post,20009,33,1,1,,00000000014DC13A,,,Malotwana Health Post
+318,20-4-07,,Malwelwe Health Post,20020,33,1,1,,00000000014DC13B,,,Malwelwe Health Post
+319,02-4-28,,Mambo Health Post,20002,33,1,1,,00000000014DC13C,,,Mambo Health Post
+320,03-4-09,1725,Manaledi Health Post,20003,33,1,1,,00000000014DC13D,,,Manaledi Health Post
+321,04-3-07,1038,Manga Clinic,20004,26,1,1,,00000000014DC13E,,,Manga Clinic
+322,20-4-08,,Mantshwabisi Health Post,20020,33,1,1,,00000000014DC13F,,,Mantshwabisi Health Post
+323,12-4-06,1439,Manxotae  Health Post,20012,33,1,1,,00000000014DC140,,,Manxotae Health Post
+324,26-3-02,1067,Manyana Clinic,20042,33,1,1,,00000000014DC141,,,Manyana Clinic
+325,16-4-08,1440,Manyanda Health Post,20016,33,1,1,,00000000014DC142,,,Manyanda Health Post
+326,22-3-06,1068,Maokane Clinic,20022,33,1,1,,00000000014DC143,,,Maokane Clinic
+327,03-3-10,1027,Maokatumo Clinic,20003,24,1,1,,00000000014DC144,,,Maokatumo Clinic
+328,02-3-02,1013,Mapoka Clinic,20002,22,1,1,,00000000014DC145,,,Mapoka Clinic
+329,12-4-07,1441,Maposa Health Post,20012,33,1,1,,00000000014DC146,,,Maposa Health Post
+330,11-4-11,1423,Maralaleng Health Post,20041,33,1,1,,00000000014DC147,,,Maralaleng Health Post
+331,12-3-09,1114,Marapong Clinic,20012,33,1,1,,00000000014DC148,,,Marapong Clinic
+332,16-3-11,1166,Masego Clinic,20016,33,1,1,,00000000014DC149,,,Masego Clinic
+333,02-4-24,1239,Masingwaneng Health Post,20002,33,1,1,,00000000014DC14A,,,Masingwaneng Health Post
+334,02-4-17,1240,Masukwane Health Post,20002,33,1,1,,00000000014DC14B,,,Masukwane Health Post
+335,02-3-03,1014,Masunga Clinic,20002,33,1,1,,00000000014DC14C,,,Masunga Clinic
+336,02-2-01,1540,Masunga Primary Hospital,20002,22,1,1,,00000000014DC14D,,,Masunga Primary Hospital
+337,09-4-10,1399,Matebele Health Post,20009,33,1,1,,00000000014DC14E,,,Matebele Health Post
+338,02-4-10,1241,Matenge Health Post,20002,33,1,1,,00000000014DC14F,,,Matenge Health Post
+339,16-3-25,1629,Mathangwane Clinic,20016,33,1,1,,00000000014DC150,,,Mathangwane Clinic
+340,04-3-01,1039,Mathathane Clinic,20004,28,1,1,,00000000014DC151,,,Mathathane Clinic
+341,01-4-11,1221,Matlapana Health Post,20001,33,1,1,,00000000014DC152,,,Matlapana Health Post
+342,08-4-27,,Matlhako Health Post,20008,33,1,1,,00000000014DC153,,,Matlhako Health Post
+343,03-4-10,1267,Matlhakola Health Post,20003,33,1,1,,00000000014DC154,,,Matlhakola Health Post
+344,12-4-09,1442,Matobo Health Post,20012,33,1,1,,00000000014DC155,,,Matobo Health Post
+345,02-4-13,1242,Matopi Health Post (North East),20002,33,1,1,,00000000014DC156,,,Matopi Health Post
+346,16-3-20,1354,Matshelagabedi Clinic,20016,33,1,1,,00000000014DC157,,,Matshelagabedi Clinic
+347,16-3-19,1016,Matsiloje Clinic,20016,33,1,1,,00000000014DC158,,,Matsiloje Clinic
+348,12-4-10,1443,Matsitama Health Post,20012,33,1,1,,00000000014DC159,,,Matsitama Health Post
+349,11-4-10,,Maubelo Health Post,20041,33,1,1,,00000000014DC15A,,,Maubelo Health Post
+350,01-3-04,1005,Maun Clinic,20001,16,1,1,,00000000014DC15B,,,Maun Clinic
+351,01-1-01,1206,Letsholathebe II Memorial Hospital,20001,16,8,1,,00000000014DC15C,,,Letsholathebe Memorial Hospital
+352,01-3-02,1006,Maun Prison Clinic,20001,33,11,1,,00000000014DC15D,,,Maun Prison Clinics
+353,01-3-03,1007,Maun Secondary School Clinic,20001,33,1,1,,00000000014DC15E,,,Maun Secondary School Clinics
+354,03-3-04,1028,Maunatlala Clinic,20003,24,1,1,,00000000014DC15F,,,Maunatlala Clinic
+355,02-4-07,,Mbalambi Health Post,20002,33,1,1,,00000000014DC160,,,Mbalambi  Health Post 
+356,05-4-11,1315,Medie Health Post,20005,33,1,1,,00000000014DC161,,,Medie Health Post
+357,23-3-04,1198,Metlobo Clinic,20023,33,1,1,,00000000014DC162,,,Metlobo Clinic
+358,23-4-26,,Metlojane Health Post ,20023,33,1,1,,00000000014DC163,,,Metlojane Health Post 
+359,28-4-06,1359,Metsimantsho Health Post,20043,33,1,1,,00000000014DC164,,,Metsimantso Health Post
+360,17-4-03,1483,Metsimaswaane Health Post,20017,33,1,1,,00000000014DC165,,,Metsimaswaane Health Post
+361,15-3-28,1056,Metsimotlhabe Clinic,20025,33,1,1,,00000000014DC166,,,Metsimotlhabe Clinic
+362,08-4-18,1375,Mhalapitsa Health Post,20008,33,1,1,,00000000014DC167,,,Mhalapitsa Health Post
+363,11-3-03,1108,Middlepits Clinic,20041,9,1,1,,00000000014DC168,,,Middlepits Clinic
+364,13-4-04,1458,Mmadikola Health Post,20013,33,1,1,,00000000014DC169,,,Mmadikola Health Post
+365,04-2-02,1543,Mmadinare Primary Hospital,20004,26,1,1,,00000000014DC16A,,,Mmadinare Primary Hospital
+366,16-4-07,,Mmandunyane Health Post,20016,33,1,1,,00000000014DC16B,,,Mmadunyane Health Post
+367,23-4-11,1510,Mmakgori Health Post,20023,33,1,1,,00000000014DC16C,,,Mmakgori Health Post
+368,06-3-06,1069,Mmamokhasi Clinic,20006,33,1,1,,00000000014DC16D,,,Mmamokhasi Clinic
+369,05-4-21,1316,Mmanoko Health Post,20005,33,1,1,,00000000014DC16E,,,Mmanako Healyh Post
+370,05-3-10 ,1630,Mmankgodi Clinic,20005,31,1,1,,00000000014DC16F,,,Mmankgodi Clinic
+371,08-4-16,1376,Mmaphashalala Health Post,20008,33,1,1,,00000000014DC170,,,Mmaphashalala H/Post
+372,29-3-03,1029,Mmashoro Clinic,20044,23,1,1,,00000000014DC171,,,Mmashoro Clinic
+373,23-3-05,1199,Mmathethe Clinic,20023,8,1,1,,00000000014DC172,,,Mmathethe Clinc
+374,09-3-03,,Mathubudukwane Clinic,20009,1,1,1,,00000000014DC173,,,Mmathubudukwane Clinic
+375,05-4-22,1674,Mmatseta Health Post,20005,33,1,1,,00000000014DC174,,,Mmatseta Health Post
+376,13-3-12,1459,Mmatshumo Clinic ,20013,19,1,1,,00000000014DC175,,,Mmatshumo Clinic 
+377,13-4-10,,Mmea Health Post,20013,33,1,1,,00000000014DC176,,,Mmeya Health Post.
+378,15-4-03,1318,Mmopane Health Post ,20025,33,1,1,,00000000014DC177,,,Mmopane Health Post 
+379,08-4-17,1377,Mmutlane Health Post,20008,33,1,1,,00000000014DC178,,,Mmutlane Health Post
+380,04-4-14,,Mabolwe Health Post,20004,33,1,1,,00000000014DC179,,,Mobolwe Health Post
+381,09-3-04,1098,Mochudi Clinic 1,20009,33,1,1,,00000000014DC17A,,,Mochudi 1 Clinic
+382,09-3-05,1099,Mochudi Clinic 2,20009,33,1,1,,00000000014DC17B,,,Mochudi 11 Clinic
+383,09-4-17,1400,Mochudi Prisons Sick Bay Health Post,20009,33,1,1,,00000000014DC17C,,,Mochudi Prisons H/Post
+384,29-4-01,1268,Modikwane Health Post,20044,33,1,1,,00000000014DC17D,,,Modikwane Healt Post
+385,09-4-11,1401,Modipane Health Post,20009,33,1,1,,00000000014DC17E,,,Modipane Health Post
+386,03-4-06,1701,Moeng College Health Post,20003,33,1,1,,00000000014DC17F,,,Moeng College Health Post
+387,03-4-32,1270,Mogapi Health Post,20003,33,1,1,,00000000014DC180,,,Mogapi Health Post
+388,17-3-01,1170,Mogobane Clinic,20017,33,1,1,,00000000014DC181,,,Mogobane Clinic
+389,17-4-04,1484,Mogobane Health Post,20017,33,1,1,,00000000014DC182,,,Mogobane Health Post
+390,15-3-32,,SSKB (Mogoditshane BDF) Clinic,20025,10,1,1,,00000000014DC183,,,Mogoditshane BDF Clinic
+391,15-3-30,1057,Mogoditshane Clinic,20025,33,1,1,,00000000014DC184,,,Mogoditshane Clinic
+392,18-4-01,1511,Mogojogojwe Health Post,20018,33,1,1,,00000000014DC185,,,Mogojogojwe Health Post
+393,05-4-20,,Magokotswane Health Post,20005,33,1,1,,00000000014DC186,,,Mogokotswane Health Post
+394,03-4-23,1271,Mogome Health Post,20003,33,1,1,,00000000014DC187,,,Mogome Health Post
+395,05-4-16,1319,Mogonono Health Post,20005,33,1,1,,00000000014DC188,,,Mogonono Health Post
+396,26-4-18,,Mogonye Health Post,20042,33,1,1,,00000000014DC189,,,Mogonye Health Post
+397,23-4-10,,Mogoriapitse Health Post,20023,33,1,1,,00000000014DC18A,,,Mogoriapitse Health Post
+398,29-4-02,1272,Mogorosi Health Post,20044,33,1,1,,00000000014DC18B,,,Mogorosi Health Post
+399,14-4-05,1472,Mogotho Health Post,20014,33,1,1,,00000000014DC18C,,,Mogotho Health Post
+400,26-4-17,,Magotlhwane Health Post,20042,33,1,1,,00000000014DC18D,,,Mogotlhwane Health Post
+401,29-3-07,1273,Moiyabana Clinic,20044,23,1,1,,00000000014DC18E,,,Moiyabana Clinic
+402,23-4-13,1512,Mokatako Health Post,20023,33,1,1,,00000000014DC18F,,,Mokatako Health Post
+403,08-4-08,1378,Mokgenene Health Post,20008,33,1,1,,00000000014DC190,,,Mokgenene Health Post
+404,23-4-14,1513,Mokgomane Health Post,20023,33,1,1,,00000000014DC191,,,Mokgomane Health Post
+405,12-3-17,1670,Mokgoro Clinic,20012,33,1,1,,00000000014DC192,,,Mokgoro Memorial Clinic
+406,03-4-24,1274,Mokgware Health Post,20003,33,1,1,,00000000014DC193,,,Mokgware Health Post
+407,22-4-04,1335,Mokhomma Health Post,20022,33,1,1,,00000000014DC194,,,Mokhomma
+408,08-4-20,1379,Mokobeng Health Post,20008,33,1,1,,00000000014DC195,,,Mokobeng Health Post
+409,03-4-21,1275,Mokokwana/Mosweu H/Post,20003,33,1,1,,00000000014DC196,,,Mokokwana/Mosweu H/Post
+410,08-4-19,1380,Mokoswane Health Post,20008,33,1,1,,00000000014DC197,,,Mokoswane Health Post
+411,13-4-11,1460,Mokubilo  Health Post,20013,20,1,1,,00000000014DC198,,,Mokubilo Health Post
+412,03-4-12,1646,Mokungwana Health Post ,20003,33,1,1,,00000000014DC199,,,Mokungwana Health Post 
+413,04-4-09,1296,Molalatau Health Post,20004,33,1,1,,00000000014DC19A,,,Molalatau Health Post
+414,18-3-10,1070,Molapowabojang Clinic,20018,33,1,1,,00000000014DC19B,,,Molapowabojang
+415,05-3-13 ,1058,Molepolole Council Clinic,20005,33,1,1,,00000000014DC19C,,,Molepolole Clinic
+416,05-3-15 ,1631,Molepolole College of Education Clinic,20005,33,1,1,,00000000014DC19D,,,Molepolole College of Education
+417,05-3-17,1059,Molepolole Prison Clinic,20005,33,1,1,,00000000014DC19E,,,Molepolole Prison Clinic
+418,04-4-10,1297,Moletemane Health Post,20004,33,1,1,,00000000014DC19F,,,Moletemane Health Post
+419,24-4-06,1529,Monong Health Post,20024,33,1,1,,00000000014DC1A0,,,Monong Health Post
+420,20-4-09,1496,Monwane Health Post,20020,33,1,1,,00000000014DC1A1,,,Monwane Health Post
+421,08-3-04,1087,Mookane Clinic,20008,29,1,1,,00000000014DC1A2,,,Mookane Clinic
+422,13-3-02,1128,Mopipi Clinic,20013,19,1,1,,00000000014DC1A3,,,Mopipi Clinic
+423,08-4-03,1657,Moralane Health Post,20008,33,1,1,,00000000014DC1A4,,,Moralane Health Post
+424,03-4-22,1276,Moremi Health Post,20003,33,1,1,,00000000014DC1A5,,,Moremi Health Post
+425,03-4-05,1277,Moreomabele Health Post,20003,33,1,1,,00000000014DC1A6,,,Moreomabele Health Post
+426,13-4-06,1461,Moreomaoto Health Post,20013,33,1,1,,00000000014DC1A7,,,Moreomaoto Health Post
+427,12-4-20,,Marobela  Health Post,20012,33,1,1,,00000000014DC1A8,,,Morobela Health Post
+428,02-3-13,1244,Moroka Clinic,20002,33,1,1,,00000000014DC1A9,,,Moroka Clinic
+429,03-3-06 ,1030,Morupule Colliary Clinic,20003,33,1,1,,00000000014DC1AA,,,Morupule Colliary Clinic
+430,03-3-12,1031,Morupule Power Station Clinic,20003,33,1,1,,00000000014DC1AB,,,Morupule Power Station Clinic
+431,09-3-11,1583,Morwa Clinic,20009,1,1,1,,00000000014DC1AC,,,Morwa Clinic
+432,09-4-12,1584,Morwa Health Post,20009,33,1,1,,00000000014DC1AD,,,Morwa Health Post
+433,21-3-03,1071,Morwamosu Clinic,20021,33,1,1,,00000000014DC1AE,,,Morwamosu Clinic
+434,12-4-13,1444,Mosetse  Health Post,20012,33,1,1,,00000000014DC1AF,,,Mosetse Health Post
+435,06-4-04,1336,Moshaneng Health Post,20006,33,1,1,,00000000014DC1B0,,,Moshaneng Health Post
+436,20-3-06,1497,Moshaweng Clinic,20020,33,1,1,,00000000014DC1B1,,,Moshaweng Clinic
+437,26-4-08,1337,Moshupa Health Post,20042,33,1,1,,00000000014DC1B2,,,Moshopa Health Post
+438,08-4-21,1381,Moshopha Health Post,20008,33,1,1,,00000000014DC1B3,,,Moshopha Health Post
+439,26-3-04,1072,Moshupa Council Clinic,20042,6,1,1,,00000000014DC1B4,,,Moshupa Council Clinic
+440,26-3-05,1073,Moshupa S.D.A. Clinic,20042,33,1,1,,00000000014DC1B5,,,Moshupa S.D.A. Clinic
+441,02-4-09,1245,Mosojane Health Post,20002,33,1,1,,00000000014DC1B6,,,Mosojane Health Post
+442,08-4-22,1382,Mosolotshane Health Post,20008,33,1,1,,00000000014DC1B7,,,Mosolotshane Health Post
+443,13-4-07,1462,Mosu Health Post,20013,33,1,1,,00000000014DC1B8,,,Mosu Health Post
+444,04-4-13,1298,Motlhabaneng Health Post,20004,33,1,1,,00000000014DC1B9,,,Motlhabaneng Health Post
+445,24-3-03,1191,Motokwe Clinic,20020,33,1,1,,00000000016B1983,,,Motokwe Clinic.
+446,13-3-03,,Motopi Clinic,20013,18,1,1,,00000000014DC1BB,,,Motopi Clinic
+447,23-4-15,1514,Motsentshe Health Post,20023,33,1,1,,00000000014DC1BC,,,Motsentshe Health Post
+448,08-4-06,,Mowana Health Post (Mahalapye),20008,33,1,1,,00000000014DC1BD,,,Mowana Health Post
+449,02-4-27,,Mowana Health Post (North East),20002,33,1,1,,00000000014DC1BE,,,Mowana Health Post
+450,02-4-26,,Mulambakwena Health Post,20002,33,1,1,,00000000014DC1BF,,,Mulambakwena Health Post
+451,12-3-05,1115,Nata Clinic,20012,17,1,1,,00000000014DC1C0,,,Nata Clinic
+452,16-4-12,1445,Natale Health Post,20016,33,1,1,,00000000014DC1C1,,,Natale Health Post
+453,24-4-01,1606,Ncaang Health Post,20024,33,1,1,,00000000014DC1C2,,,Ncaang Health Post
+454,08-3-14,1360,New Shoshong/ ( Sheleketla) Clinic,20008,33,1,1,,00000000014DC1C3,,,New Shoshong(Sheleketla) Clinic
+455,29-3-04,1032,Newtown Clinic,20044,23,1,1,,00000000014DC1C4,,,New Town Clinic
+456,07-3-05,,New Xade Clinic ,20007,14,1,1,,00000000014DC1C5,,,New Xade Clinic 
+457,28-4-05,,New Xanagas/Tsawe Health Post,20043,33,1,1,,00000000014DC1C6,,,New Xanagas/Tsawe H/Post
+458,14-4-12,1473,Ngarange Health Post,20014,33,1,1,,00000000014DC1C7,,,Ngarange Health Post
+459,08-4-23,1384,Ngwapa Health Post,20008,33,1,1,,00000000014DC1C8,,,Ngwapa Health Post
+460,20-3-03,1192,Ngware Clinic,20020,33,1,1,,00000000014DC1C9,,,Ngware Clinic
+461,15-4-05,,Nkaikela Health Post,20025,33,1,1,,00000000014DC1CA,,,Nkaikela Hedalth Post
+462,12-3-06,1116,Nkange Clinic,20012,33,1,1,,00000000014DC1CB,,,Nkange Clinic
+463,15-3-29,1634,Nkoyaphiri Clinic,20025,31,1,1,,00000000014DC1CC,,,Nkoyaphiri Clinic
+464,02-3-10,1017,Nlapkhwane Clinic,20002,33,1,1,,00000000014DC1CD,,,Nlaphwane Clinic
+465,28-3-03,1081,Nojane Clinic,20043,14,1,1,,00000000014DC1CE,,,Nojane Clinic
+466,14-3-04,1135,Nokaneng Clinic,20014,15,1,1,,00000000014DC1CF,,,Nokaneng Clinic
+467,12-4-14,1608,Nshakashokwe  Health Post,20012,33,1,1,,00000000014DC1D0,,,Nshakashokwe Health Post
+468,12-3-16,1117,Nswazwi Clinic,20012,33,1,1,,00000000014DC1D1,,,Nswazwi Clinic
+469,26-3-06,1074,Ntlhantlhe Clinic,20042,33,1,1,,00000000014DC1D2,,,Ntlhantlhe Clinic
+470,29-3-05,,Nutrition Clinic,20044,23,1,1,,00000000014DC1D3,,,Nutrition Clinic
+471,14-4-14,1474,Nxamasere Health Post,20014,33,1,1,,00000000014DC1D4,,,Nxamasere Health Post
+472,14-4-07,1475,Nxaunxau Health Post,20014,33,1,1,,00000000014DC1D5,,,Nxaunxau Health Post
+473,14-4-08 ,1655,Nxomokao Health Post,20014,33,1,1,,00000000014DC1D6,,,Nxomokao Health Post
+474,16-1-01,1557,Nyangabgwe Referral Hospital,20016,4,1,1,,00000000014DC1D7,,,Nyangabgwe Referal Hospital
+475,03-10-01,,O.H.S,20003,33,1,1,,00000000014DC1D8,,,O.H.S
+476,15-3-08,1015,Old Naledi Clinic,20025,33,1,1,,00000000014DC1D9,,,Old Naledi Clinic
+477,09-3-06,1100,Oliphant's Drift  Clinic,20009,33,1,1,,00000000014DC1DA,,,Oliphants Drift Clinic
+478,11-4-05,1425,Omaweneno Health Post,20041,33,1,1,,00000000014DC1DB,,,Omaweneno Health Post
+479,09-3-07,1101,Oodi Clinic,20009,1,1,1,,00000000014DC1DC,,,Oodi Clinic.
+480,01-10-01,,Oral Health Services,20001,33,1,1,,00000000014DC1DD,,,Oral Health Services
+481,13-1-01,1536,Orapa Hospital,20013,19,1,1,,00000000014DC1DE,,,Orapa Mine Hospital
+482,17-3-02,1171,Otse Clinic,20017,2,1,1,,00000000014DC1DF,,,Otse Clinic
+483,08-4-26,1385,Otse Health Post,20008,33,1,1,,00000000014DC1E0,,,Otse Health Post
+484,29-4-09,,Paje BDF Health Post,20044,33,1,1,,00000000016BB802,,,Paje BDF Health Post 
+485,29-4-03,1278,Paje Health Post,20044,33,1,1,,00000000014DC1E2,,,Paje Health post
+486,03-2-01,1541,Palapye Primary Hospital,20003,24,1,1,,00000000014DC1E3,,,Palapye Primary Hospital
+487,08-4-24,1386,Palla Road Health Post,20008,33,1,1,,00000000014DC1E4,,,Palla Road Health Post
+488,10-3-03,1413,Pandamatenga BDF Clinic,20040,33,1,1,,00000000014DC1E5,,,Pandamatenga BDF Clinic
+489,10-3-02,1610,Pandamatenga Clinic,20040,32,1,1,,00000000014DC1E6,,,Pandamatenga Clinic
+490,23-4-16,1515,Papatlo Health Post,20023,33,1,1,,00000000014DC1E7,,,Papatlo Health Post
+491,10-4-08,1414,Parakarangu Health Post,20040,33,1,1,,00000000014DC1E8,,,Parakarangu Health Post
+492,18-3-03,1179,Peleng Central Clinic,20018,7,1,1,,00000000014DC1E9,,,Peleng Central Clinic
+493,18-3-04,1180,Peleng East Clinic,20018,7,1,1,,00000000014DC1EA,,,Peleng East Clinic
+494,09-3-10,1102,Phaphane Clinic,20009,33,1,1,,00000000014DC1EB,,,Phaphane Clinic
+495,15-3-15,1151,Phase II Clinic,20025,33,1,1,,00000000014DC1EC,,,Phase II Clinic
+496,16-3-16,,Ntshe Clinic,20016,33,1,1,,00000000014DC1ED,,,Phase 6 Clinic
+497,16-4-05,1480,Phase 6 Health Post,20016,33,1,1,,00000000014DC1EE,,,Phase 6 Health Post
+498,23-4-23,1516,Phihetswane Health Post,20023,33,1,1,,00000000014DC1EF,,,Phihetswane Health Post
+499,23-3-06,1667,Phitshane Molopo Clinic,20023,8,1,1,,00000000014DC1F0,,,Phitshane Molopo Clinic
+500,23-4-24  ,1517,Phitshane Potlokwe H/Post,20023,33,1,1,,00000000014DC1F1,,,Phitshane Potlokwe H/Post
+501,24-4-08,1586,Phuduhudu Health Post (Kgalagadi North),20024,33,1,1,,00000000014DC1F2,,,Phuduhudu Health Post
+502,01-4-12,1585,Phuduhudu Health Post (Ngamiland),20001,33,1,1,,00000000014DC1F3,,,Phuduhudu Health Post
+503,05-3-18,1637,Phuthadikobo Clinic,20005,30,1,1,,00000000014DC1F4,,,Phuthadikobo Clinic
+504,05-4-13,1320,Phuting Health Post,20005,33,1,1,,00000000014DC1F5,,,Phuting Health Post
+505,09-4-13,1402,Pilane Health Post,20009,33,1,1,,00000000014DC1F6,,,Pilane Health Post
+506,08-3-05,1088,Pilikwe Clinic,20008,25,1,1,,00000000014DC1F7,,,Pilikwe Clinic
+507,23-3-07,1201,Pitsane Clinic,20023,33,1,1,,00000000014DC1F8,,,Pitsane Clinic
+508,26-3-07,1075,Pitseng Clinic,20042,33,1,1,,00000000014DC1F9,,,Pitseng Clinic
+509,10-4-11,1415,Plateau Clinic,20040,32,1,1,,00000000016BB803,,,Plateau Clinic
+510,02-4-16,1754,Pole Health Post,20002,33,1,1,,00000000014DC1FB,,,Pole Health Post
+511,17-3-09,1638,Police Clinic,20017,33,1,1,,00000000014DC1FC,,,Police Clinic
+512,08-4-25,1387,Poloka Health Post,20008,33,1,1,,00000000014DC1FD,,,Poloka Health Post
+513,15-1-01,1556,Princess Marina Referral Hospital,20025,33,1,1,,00000000014DC1FE,,,Princess Marina Referral Hospital
+514,07-4-18,,Prison Health Post,20007,33,1,1,,00000000014DC1FF,,,Prison Health Post
+515,15-3-09,,Prisons Clinic,20025,33,1,1,,00000000014DC201,,,Prisons Clinic
+517,07-4-15,1361,Qabo Health Post,20007,33,1,1,,00000000014DC202,,,Qabo Health Post
+518,14-3-05,1136,Qangwa Clinic,20014,33,1,1,,00000000014DC203,,,Qangwa Clinic
+519,03-3-15,1279,Radisele Clinic,20003,33,1,1,,00000000014DC204,,,Radisele Clinic
+520,08-3-09,,Railway Clinic,20008,33,1,1,,00000000014DC205,,,Railway Clinic
+521,16-4-01,,Railway Health Post,20016,33,1,1,,00000000014DC206,,,Railway Health Post
+522,23-4-17,1518,Rakhuna Health Post,20023,33,1,1,,00000000014DC207,,,Rakhuna Health Post
+523,13-4-03,1463,Rakops Health Post,20013,33,1,1,,00000000014DC208,,,Rakops Health Post
+524,13-2-01,1552,Rakops Primary Hospital,20013,18,1,1,,00000000014DC209,,,Rakops Primary Hospital
+525,26-4-09,1338,Ralekgetho Health Post,20042,33,1,1,,00000000014DC20A,,,Ralekgetho Health Post
+526,02-3-12,1247,Ramokgwebana Clinic,20002,33,1,1,,00000000014DC20B,,,Ramakgwebana Clinic
+527,23-3-08,1202,Ramatlabama Clinic,20023,33,1,1,,00000000014DC20C,,,Ramatlabama Clinic
+528,08-3-06,1089,Ramokgonami Clinic,20008,33,1,1,,00000000014DC20D,,,Ramokgonami Clinic
+529,09-4-02,1403,Ramonaka Health Post,20009,33,1,1,,00000000014DC20E,,,Ramonaka Health Post
+530,09-4-14,1404,Ramotlabaki Health Post,20009,33,1,1,,00000000014DC20F,,,Ramotlabaki Health Post
+531,17-3-03,1172,Ramotswa Station/Taung Clinic,20017,33,1,1,,00000000014DC210,,,Ramotswa Station/Taung Clinic
+532,26-3-08,1076,Ranaka Clinic,20042,33,1,1,,00000000014DC211,,,Ranaka
+533,11-4-07,1426,Rappels pan Health Post,20041,33,1,1,,00000000014DC212,,,Rappel’span Health Post
+534,09-3-14,1405,Rasesa Clinic,20009,33,1,1,,00000000014DC213,,,Rasesa Health Post
+535,03-4-14,1280,Ratholo Health Post,20003,33,1,1,,00000000014DC214,,,Ratholo Health Post
+536,04-4-06,1299,Robelela Health Post,20004,33,1,1,,00000000014DC215,,,Robelela Health Post
+537,05-4-24,1321,Rungwana Health Post ,20005,33,1,1,,00000000014DC216,,,Rungwana Health Post 
+538,29-3-06,1035,Russel May Clinic,20044,33,1,1,,00000000014DC217,,,Russel May Clinic
+539,06-1-01,,Kanye S.D.A Hospital,20006,6,1,1,,00000000014DC218,,,Kanye S.D.A Hospital
+540,04-5-02,,Safe Life Medical Centre,20004,33,1,1,,00000000014DC219,,,Safe Life Medical Centre
+541,20-3-04,1193,Salajwe Clinic,20020,33,1,1,,00000000014DC21A,,,Salajwe Clinic
+542,22-4-02,1339,Samane Health Post,20022,33,1,1,,00000000014DC21B,,,Samane Health Post
+543,01-4-13,1222,Sankoyo Health Post,20001,33,1,1,,00000000014DC21C,,,Sankoyo Health Post
+544,10-4-07,1416,Satau Health Post,20040,33,1,1,,00000000014DC21D,,,Satau Health Post
+545,05-3-14,,Schatter & Namder (Lazane Kaplan) Clinic,20005,33,1,1,,00000000014DC21E,,,Schatter& Namder (Lazane Kaplan) clinic
+546,05-1-01,1208,Scottish Livingstone Hospital,20005,30,1,1,,00000000014DC21F,,,Scottish Livingstone Hospital
+547,06-4-01,1340,Sebego Clinic,20006,33,1,1,,00000000016BB805,,,Sebego Health Post
+548,15-3-13,1153,Sebele Clinic,20025,33,1,1,,00000000014DC221,,,Sebele Clinic
+549,12-3-07,1118,Sebina Clinic,20012,21,1,1,,00000000014DC222,,,Sebina Clinic
+550,02-4-12,1248,Sechele Health Post,20002,33,1,1,,00000000014DC223,,,Sechele Health Post
+551,23-4-18,1248,Sedibeng Health Post,20023,33,1,1,,00000000014DC224,,,Sedibeng Health Post
+552,01-3-12,1008,Sedie Clinic,20001,16,1,1,,00000000014DC225,,,Sedie Clinic
+553,08-2-01,1546,Sefhare Primary Hospital,20008,25,1,1,,00000000014DC226,,,Sefhare Primary Hospital
+554,04-3-02,1041,Sefhophe Clinic,20004,28,1,1,,00000000014DC227,,,Sefhophe Clinic
+555,06-4-07,1520,Segwagwa Health Post,20006,33,1,1,,00000000014DC228,,,Segwagwa Health Post
+556,15-3-23,,Segwana Clinic,20025,33,1,1,,00000000014DC229,,,Segwana Clinic
+557,01-3-05,1009,Sehithwa Clinic,20001,16,1,1,,00000000014DC22A,,,Sehitwa Clinic
+558,02-3-07,1018,Sekakangwe Clinic,20002,33,1,1,,00000000014DC22B,,,Sekakangwe Clinic
+559,29-1-01,1207,Sekgoma Memorial Hospital,20044,23,1,1,,00000000014DC22C,,,Sekgoma Memorial Hospital
+560,23-4-21,1521,Sekhutlane  Health Post,20023,33,1,1,,00000000014DC22D,,,Sekhutlane Health Post
+561,21-4-06,1341,Sekoma Health Post,20021,33,1,1,,00000000014DC22E,,,Sekoma Health Post
+562,08-3-12,1090,Tumasera-Seleka Clinic,20008,33,1,1,,00000000014DC22F,,,Seleka Clinic
+563,19-3-09,,Selibe North First Aid Clinic,20019,33,1,1,,00000000014DC230,,,Selibe North First Aid Clinic
+564,04-3-03,,Selibe Phikwe BDF Clinic ,20004,26,1,1,,00000000014DC231,,,Selibe Phikwe BDF Clinic 
+565,04-3-04,,Selibe Phikwe Prisons Clinic,20004,33,1,1,,00000000014DC232,,,Selibe Phikwe Prisons Clinic
+566,19-1-02,1210,Selibe Phikwe Government Hospital,20019,27,1,1,,00000000014DC233,,,Selibe Phikwe Government Hospital
+567,02-3-06,,Selkirk Clinic,20002,33,1,1,,00000000014DC234,,,Selkirk Clinic
+568,06-4-10,1342,Selokolela Health Post,20006,33,1,1,,00000000014DC235,,,Selokolela Health Post
+569,01-4-06,1223,Semboyo Health Post,20001,33,1,1,,00000000014DC236,,,Semboyo Health Post
+570,04-3-05,1044,Semolale Clinic,20004,28,1,1,,00000000014DC237,,,Semolale Clinic
+571,12-4-11,1446,Senete Health Post,20012,33,1,1,,00000000014DC238,,,Senete Clinic
+572,02-4-14,,Senyawe Health Post,20002,33,1,1,,00000000014DC239,,,Senyawe Health Post
+573,03-4-15,1281,Seolwane Health post,20003,33,1,1,,00000000014DC23A,,,Seolwane Health post
+574,12-4-16,1447,Sepako  Health Post,20012,33,1,1,,00000000014DC23B,,,Sepako Health Post
+575,14-3-09,1137,Sepopa Clinic,20014,33,1,1,,00000000014DC23C,,,Sepopa Clinic
+576,14-3-02,1138,Seronga Clinic,20014,15,1,1,,00000000014DC23D,,,Seronga Clinic
+577,29-3-02,1036,Serowe Clinic,20044,23,1,1,,00000000014DC23E,,,Serowe  Clinic
+578,29-3-12,1282,Serowe  Men's Prison Clinic,20044,33,1,1,,00000000014DC23F,,,Serowe New Men's Prison Health Post
+579,03-4-26  ,1283,Serowe Women's Prison Health Post,20003,33,1,1,,00000000014DC240,,,Serowe Women's Prison Health Post
+580,16-3-23,1284,Serule Clinic,20016,33,1,1,,00000000014DC241,,,Serule Clinic
+581,19-3-08,1187,Sesame Clinic,20019,33,1,1,,00000000014DC242,,,Sesame Clinic
+582,22-3-07,1343,Sese Clinic,20022,33,1,1,,00000000014DC243,,,Sese Health Post 
+583,26-4-13,1588,Sesung Health Post (Moshupa),20042,33,1,1,,00000000014DC244,,,Sesung Health Post
+584,20-4-11,1587,Sesung Health Post (Kweneng West),20020,33,1,1,,00000000014DC245,,,Sesung Health Post
+585,07-4-16,,SHAA Health Post,20007,33,1,1,,00000000014DC246,,,SHAA Health Post
+586,05-4-14,,Shadishadi Health Post,20005,33,1,1,,00000000014DC247,,,Shadishadi Health Post
+587,14-3-10,,Shakawe BDF Clinic( only observes patients),20014,33,1,1,,00000000014DC248,,,Shakawe BDF Clinic
+588,14-3-03,1139,Shakawe Clinic,20014,15,1,1,,00000000014DC249,,,Shakawe Clinic
+589,08-4-28,1388,Shakwe Health Post,20008,33,1,1,,00000000014DC24A,,,Shakwe Health Post
+590,16-4-16,1250,Shashe Bridge Health Post,20016,33,1,1,,00000000014DC24B,,,Shashe Bridge Health Post
+591,01-4-19,1224,Shashe Health Post,20001,33,1,1,,00000000014DC24C,,,Shashe Health Post
+592,16-4-14,1449,Shashe Mooke Health Post,20016,33,1,1,,00000000014DC24D,,,Shashe- Mooke Health Post
+593,16-4-06,1448,Shashe Station Health Post,20016,33,1,1,,00000000014DC24E,,,Shashe Station Health Post
+594,23-4-25,1522,Sheep farm Health Post,20023,33,1,1,,00000000014DC24F,,,Sheep farm Health Post
+595,20-4-13,,Sorilatholo Health Post,20020,33,1,1,,00000000014DC250,,,Shorilatholo Health Post 
+596,01-3-07,1010,Shorobe Clinic,20001,16,1,1,,00000000014DC251,,,Shorobe Clinic
+597,08-3-08,1092,Shoshong Clinic,20008,29,1,1,,00000000014DC252,,,Shoshong Clinic
+598,17-3-04,1173,Siga Clinic,20017,2,1,1,,00000000014DC253,,,Siga Clinic
+599,09-4-16,1406,Sikwane Health Post,20009,33,1,1,,00000000014DC254,,,Sikwane Health Post
+600,02-4-15,1251,Siviya Health Post,20002,33,1,1,,00000000014DC255,,,Siviya Health Post
+601,12-3-12,1119,Soda Ash / Botash Clinic,20012,33,1,1,,00000000014DC256,,,Soda Ash Clinic
+602,05-3-19,1323,Sojwe Clinic,20005,30,1,1,,00000000014DC257,,,Sojwe Clinic
+603,01-4-15,1645,Somelo Health Post,20001,33,1,1,,00000000014DC258,,,Somelo Health Post
+604,19-3-10,,South East (Extension) Clinic,20019,33,1,1,,00000000016BB806,,,South East Extension Clinic
+605,12-3-11,1120,Sowa Township Clinic,20012,21,1,1,,00000000014DC25A,,,Sowa Township Clinic
+606,17-3-05,1174,St Condrads Clinic,20017,33,1,1,,00000000014DC25B,,,St. Condrads Clinic
+607,15-3-37,1175,St. Joseph's Mission Clinic,20025,33,1,1,,00000000014DC25C,,,St. Joseph’s (Kgale) Clinc
+608,18-1-02,,Sbrana Referral Hospital,20018,33,1,1,,00000000014DC25D,,,State Mental Referal Hospital Lobatse
+609,15-3-17,,STD Clinic,20025,33,1,1,,00000000014DC25E,,,STD Clinic
+610,11-4-08,1427,Struizendam Health Post,20041,33,1,1,,00000000014DC25F,,,Struizendam Health Post
+611,20-3-05,1194,Takatokwane Clinic,20020,33,1,1,,00000000014DC260,,,Takatokwane Clinic
+612,03-4-16,1285,Tamasane Health Post,20003,33,1,1,,00000000014DC261,,,Tamasane Health Post
+613,19-3-12,,Tapologong Clinic,20019,33,1,1,,00000000014DC262,,,Tapologo Clinic
+614,16-3-21,1019,Tati Siding Clinic,20016,22,1,1,,00000000014DC263,,,Tati Siding Clinic
+615,16-3-08,1167,Tati Town Clinic,20016,33,1,1,,00000000014DC264,,,Tati Town Clinic
+616,08-4-29,1389,Taupye Health Post,20008,33,1,1,,00000000014DC265,,,Taupye Health Post
+617,13-3-09,1130,Tawana Clinic,20013,20,1,1,,00000000014DC266,,,Tawana Clinic
+618,29-3-09,,Teemane Clinic (CLOSED),20044,33,1,1,,00000000014DC267,,,Teemane Clinic
+619,08-4-01,1390,Tewane Health Post,20008,33,1,1,,00000000014DC268,,,Tewane Health Post
+620,29-3-11,1037,Thabala Clinic,20044,33,1,1,,00000000014DC269,,,Thabala Clinic
+621,16-4-13,,Chadibe/Tlhalogang Health Post,20016,33,1,1,,00000000014DC26A,,,Thalogang/Chadibe Health Post
+622,05-3-20,1666,Thamaga Clinic,20005,31,1,1,,00000000014DC26B,,,Thamaga Clinic
+624,22-4-01,1642,Thankane Health Post,20022,33,1,1,,00000000014DC26C,,,Thankane Health Post
+625,20-2-01,1641,Thebephatshwa Primary Hospital,20020,11,1,1,,00000000014DC26D,,,Thebephatswa Primary Hospital
+626,02-3-09,1020,Themashanga Clinic,20002,33,1,1,,00000000014DC26E,,,Themashanga Clinic
+627,12-3-10,1450,Thini Clinic,20012,21,1,1,,00000000014DC26F,,,Thini Clinic
+628,01-4-16,1226,Thitoyamokodi (Thito) Health Post,20001,33,1,1,,00000000014DC270,,,Thitoyamokodi Health Post
+629,14-4-17,,Tjukumuchu Health Post,20014,33,1,1,,00000000014DC271,,,Tjukumuchu Health Post
+630,23-4-22,1523,Tlhareseleele Health Post,20023,33,1,1,,00000000014DC272,,,Tlhareseleele Health Post
+631,15-3-35,1176,Tlokweng Main Clinic,20025,2,1,1,,00000000014DC273,,,Tlokweng Clinic
+632,04-4-12,1301,Tobane Health Post,20004,33,1,1,,00000000014DC274,,,Tobane Health Post
+633,16-3-22,1122,Tonota Clinic,20016,21,1,1,,00000000014DC275,,,Tonota Clinic
+634,16-3-24,,Tonota College of Education Clinic,20016,33,1,1,,00000000014DC276,,,Tonota College of Education Clinic
+635,03-4-18,1286,Topisi Health Post,20003,33,1,1,,00000000014DC277,,,Topisi Health Post
+636,13-4-09,1464,Toromoja Health Post ,20013,33,1,1,,00000000014DC278,,,Toromoja Health Post 
+637,01-4-08,1227,Toteng Health Post,20001,33,1,1,,00000000014DC279,,,Toteng Health Post
+638,11-3-06,1698,Tsabong Clinic,20041,33,1,1,,00000000014DC27A,,,Tsabong Clinc
+639,11-2-01,1548,Tsabong Primary Hospital,20041,9,1,1,,00000000014DC27B,,,Tsabong Primary Hospital
+640,11-4-06,1428,Tsabong Prisons Health Post,20041,33,1,1,,00000000014DC27C,,,Tsabong Prisons Health Post
+641,02-3-05,1021,Tsamaya Clinic,20002,22,1,1,,00000000014DC27D,,,Tsamaya Clinic
+642,01-3-11,1011,Tsau Clinic,20001,16,1,1,,00000000014DC27E,,,Tsau. Clinic
+643,04-3-06,1045,Tsetsejwe Clinic,20004,28,1,1,,00000000014DC27F,,,Tsetsejwe Clinic
+644,24-4-15,1499,Tsetseng Health Post,20020,33,1,1,,00000000016B1985,,,Tsetseng Health Post
+645,24-4-07,1530,Tshane Health Post,20024,33,1,1,,00000000014DC281,,,Tshane Health Post
+646,02-3-14,1252,Tshesebe Clinic,20002,33,1,1,,00000000014DC282,,,Tshesebe Clinic
+647,23-3-09,1203,Tshidilamolomo Clinic,20023,33,1,1,,00000000014DC283,,,Tshidilamolomo Clinic
+648,22-3-03,1061,Tshimologo Clinic ,20022,33,1,1,,00000000014DC284,,,Tshimologo Clinic 
+649,29-4-04,1287,Tshimoyapula Health Post,20044,33,1,1,,00000000014DC285,,,Tshimoyapula Health Post
+650,04-4-11,1302,Tshokwe Health Post,20004,33,1,1,,00000000014DC286,,,Tshokwe Health Post
+651,15-3-10,,Tsholofelo /BH3 Clinic,20025,33,1,1,,00000000014DC287,,,Tsholofelo Clinic/BH3.
+652,20-4-14,1150,Tshwaane Health Post (Kweneng West),20020,33,1,1,,00000000014DC288,,,Tshwaane Health Post
+653,26-4-15,1345,Tshwaane Health Post (Moshupa),20042,33,1,1,,00000000014DC289,,,Tshwaane Health post
+654,16-3-03,1168,Tshwaragano Clinic,20016,33,1,1,,00000000014DC28A,,,Tshwaragano Clinic
+655,12-4-12,1452,Tsokotshaa  Health Post,20012,33,1,1,,00000000014DC28B,,,Tsokotshaa Health Post
+656,22-4-05,1346,Tsonyane Health Post,20022,33,1,1,,00000000014DC28C,,,Tsonyane Health Post
+657,18-3-07,1181,Tsopeng Clinic,20018,7,1,1,,00000000014DC28D,,,Tsopeng Clinic.
+658,14-4-09,1653,Tubu Health Post,20014,33,1,1,,00000000014DC28E,,,Tubu Health Post
+659,12-2-01,1550,Tutume Primary Hospital,20012,21,1,1,,00000000014DC28F,,,Tutume Primary Hospital
+660,15-3-19,,UB (FET) Clinic (CLOSED),20025,33,1,1,,00000000014DC290,,,UB Clinic (FET)
+661,15-3-11,,UB (Main Campus) Clinic,20025,33,1,1,,00000000014DC291,,,UB Clinic (Main Campus)
+662,24-4-09,1531,Ukhwi Health Post,20024,33,1,1,,00000000014DC292,,,Ukhwi Health Post
+663,11-3-05,1109,Werda Clinic,20041,33,1,1,,00000000014DC293,,,Werda Clinic
+664,07-4-08,1362,West Hanahai Health Post,20007,33,1,1,,00000000014DC294,,,West Hanahai Health Post
+665,18-3-05,,Woodhall Clinic,20018,33,1,1,,00000000014DC295,,,Woodhall Clinic
+666,14-3-06,1140,Xakao Clinic,20014,15,1,1,,00000000014DC296,,,Xakao Clinic
+667,28-4-04,,Xanagas Health Post,20043,33,1,1,,00000000014DC297,,,Xanagas Health Post
+668,14-4-16,,Xaxa Health Post,20014,33,1,1,,00000000014DC298,,,Xaxa Health Post
+669,13-4-12,1476,Xere Health Post ,20013,33,1,1,,00000000014DC299,,,Xere Health Post 
+670,08-3-01,1093,Xhosa Clinic,20008,33,1,1,,00000000014DC29A,,,Xhosa Clinic
+671,13-3-08,1131,Xhumo Clinic,20013,18,1,1,,00000000014DC29B,,,Xumo Clinic
+672,24-4-10,1532,Zutshwa Health Post,20024,33,1,1,,00000000014DC29C,,,Zutshwa Health Post
+673,02-4-19,1253,Zwenshambe Health Post,20002,33,1,1,,00000000014DC29D,,,Zwenshambe Health Post
+674,00-00-01,,Private facility,20025,33,1,2,,00000000014DC29E,,,Private facility
+675,00-00-02,,PPP,20025,33,1,2,,00000000014DC29F,,,PPP
+676,00-0-10,,Unspecified,20025,33,1,1,,00000000014DC2A0,2009-06-12 08:49:02.007000000,28,Unspecified
+682,00-00-03,,Other VCT,20025,33,,2,,00000000014DC2A1,,,Other VCT
+685,08-3-10,,Air Strip Clinic,20008,29,8,1,,00000000014DC2A2,2009-06-29 13:12:23.720000000,,Air Strip Clinic
+687,00-00-04,,Foreign facility,20025,33,,1,,00000000014DC2A3,,,Foreign facility
+688,18-3-08,18,Motswedi Clinic,20018,7,1,1,,00000000014DC2A4,,,Motswedi Clinic
+689,19-3-11,,Industrial Clinic,20019,27,1,1,,00000000014DC2A5,2013-08-07 22:47:23.623000000,,Industrial Clinic
+690,18-3-11,,Lorwana Clinic,20018,7,8,1,,00000000014DC2A6,2013-08-07 22:49:09.470000000,,Lorwana Clinic
+691,00-0-00,,Botswana Harvard Health Referral Lab,20025,33,11,2,,00000000014DC2A7,2013-08-07 22:50:26.360000000,,Botswana Harvard Health Referral Lab
+692,00-0-01,,Emmanuel Youth Centre,20025,2,11,2,,00000000014DC2A8,2013-08-07 22:51:08.547000000,,Emmanuel Youth Centre
+693,06-3-05,,Ebrahim Mariam Dada Clinic,20006,6,8,1,,00000000014DC2A9,2013-08-25 15:19:33.373000000,,Ebrahim Mariam Dada Clinic
+694,05-1-02,,Bokamoso Private Hospital,20005,33,11,2,,00000000014DC2AA,2013-09-03 15:32:30.780000000,,Bokamoso Private Hospital
+695,00-0-01,,BHP BHS,20025,33,11,2,,00000000014DC2AB,2013-09-22 01:21:03.967000000,,BHP BHS
+696,00-0-02,,Tebelopele VCT,20025,33,11,2,,00000000014DC2AC,2013-09-22 01:22:10.827000000,,Tebelopele VCT
+697,00-0-03,,Tebelepele HTC (Ya Tsie),20025,33,11,2,,00000000014DC2AD,,,Tebelepele HCT (Ya Tsie)
+698,09-3-12,,Boseja Clinic 2 (Kgatleng),20009,1,1,1,,00000000014DC2AE,2014-03-27 17:08:09.327000000,,Boseja Clinic 2 (Kgatleng)
+699,15-3-24,,Block 6/Botshelo Clinic,20025,,,1,,00000000016C6143,,,
+702,29-3-10,,Boipelego Clinic,20044,,,1,,00000000016C6144,,,
+703,16-3-28,,Boipuso Surgery Private Clinic,20016,,,1,,00000000016C6145,,,
+704,05-3-23,,Boswelakoko Clinic,20005,,,1,,00000000016C6146,,,
+705,16-3-29,,Botshelo Consultation Private Clinic,20016,,,1,,00000000016C6147,,,
+706,09-3-16,,Botsogo Medical Center Private Clinic,20009,,,1,,00000000016C6148,,,
+707,15-3-39,,Botswana College of Agriculture (BCA),20025,,,1,,00000000016C6149,,,
+708,01-3-16,,Botswana Meat Commission Clinic,20001,,,1,,00000000016C614A,,,
+709,16-3-32,,Consolata Medical Centre,20016,,,1,,00000000016C614B,,,
+710,15-3-27,,Diamond Trading Company Clinic (DTCB),20025,,,1,,00000000016C614C,,,
+711,23-4-09,,Dikhukhung Health Post,20023,,,1,,00000000016C614D,,,
+712,01-3-18,,Disaneng Clinic,20001,16,1,1,,00000000016DA96A,,,
+713,16-3-18,,Donga  Clinic,20016,,,1,,00000000016C614F,,,
+714,14-4-21,,Eretsha Health Post,20014,,,1,,00000000016C6150,,,
+715,16-3-04,,F/town Prisons (Sickbay) Clinic,20016,,,1,,00000000016C6151,,,
+716,23-4-27,,Gamokoto Health Post,20023,,,1,,00000000016C6152,,,
+717,07-3-07,,Gantsi Senior Secondary School Clinic,20007,,,1,,00000000016C6153,,,
+718,01-3-01,,Global Mission Centre (private) Clinic,20001,,,1,,00000000016C6154,,,
+719,23-3-11,,Goodhope Clinic,20023,,,1,,00000000016C6155,,,
+720,02-4-29,,Gungwe Health Post,20002,,,1,,00000000016C6156,,,
+721,15-3-26,,H & A Cutting Works Clinic (SDDS),20025,,,1,,00000000016C6157,,,
+722,05-3-21,,Ikago Clinic,20005,,,1,,00000000016C6158,,,
+723,16-3-30,,Jepro Private Clinic,20016,,,1,,00000000016C6159,,,
+724,14-4-22,,Kajaja Health Post,20014,,,1,,00000000016C615A,,,
+725,13-3-13,,Karowe Diamond Mine Clinic,20013,,,1,,00000000016C615B,,,
+726,24-4-14,,Khekhenye Health Post,20020,,,1,,00000000016C615C,,,
+727,22-4-03,,Lefhoko Health Post,20022,,,1,,00000000016C615D,,,
+728,23-4-28,,Lejwana Health Post,20023,,,1,,00000000016C615E,,,
+729,15-3-31,,Lesirane Clinic,20025,,,1,,00000000016C615F,,,
+730,15-3-40,,Limkokwing University of Creative Techn,20025,,,1,,00000000016C6160,,,
+731,05-4-25,,Loologane Health Post,20005,,,1,,00000000016C6161,,,
+732,06-4-08,,Lorolwana  Health Post,20006,,,1,,00000000016C6162,,,
+733,03-3-25,,Lotsane Senior Secondary School Clinic,20003,,,1,,00000000016C6163,,,
+734,29-4-08,,Mabuo Health Post,20044,,,1,,00000000016C6164,,,
+735,16-3-17,,Mater Spei College Clinic,20016,,,1,,00000000016C6165,,,
+736,16-4-04,,Matopi Health Post (Francistown),20016,,,1,,00000000016C6166,,,
+737,01-4-14,,Matsaudi Health Post,20001,,,1,,00000000016C6167,,,
+738,01-3-19,,Matshwane Clinic,20001,,,1,,00000000016C6168,,,
+739,01-3-17,,Maun General Clinic,20001,,,1,,00000000016C6169,,,
+740,20-4-15,,Metsibotlhoko Health Post,20020,,,1,,00000000016C616A,,,
+741,15-3-34,,Mmokolodi Clinic,20025,,,1,,00000000016C616B,,,
+742,09-3-15,,Molefi Senior Secondary School Clinic,20009,,,1,,00000000016C616C,,,
+743,07-3-06,,Morama Clinic,20007,,,1,,00000000016C616D,,,
+744,12-3-18,,Mowana Mine/African Copper Clinic,20012,,,1,,00000000016C616E,,,
+745,02-3-15,,Mupane Gold Mine Clinic,20002,,,1,,00000000016C616F,,,
+746,15-3-38,,N.J.Private Clinic,20025,,,1,,00000000016C6170,,,
+747,01-3-20,,Ngami Junior Secondary Clinic,20001,,,1,,00000000016C6171,,,
+748,23-4-24,,Phitshane Potlokwe Health Post,20023,,,,,00000000016C8083,,,
+749,23-3-12,,Rakhuna Military Garrison Clinic,20023,,,1,,00000000016C6173,,,
+750,04-3-09,,Richmark/ Bokomo Clinic,20004,,,1,,00000000016C6174,,,
+751,16-1-02,,Riverside Private Hospital,20016,,,1,,00000000016C6175,,,
+752,26-4-19,,Seherelela Health post,20042,,,1,,00000000016C6176,,,
+753,14-4-20,,Sekondomboro Health Post,20014,,,1,,00000000016C6177,,,
+754,19-3-13,,Selibe First Aid Clinic,20019,,,1,,00000000016C6178,,,
+755,12-4-29,,Selolwane Health Post,20012,,,1,,00000000016C6179,,,
+756,12-4-28,,Semitwe Health Post,20012,,,1,,00000000016C617A,,,
+757,20-4-16,,Serinane Health Post,20020,,,1,,00000000016C617B,,,
+758,29-3-12,,Serowe Men's Prison Clinic,20044,,,1,,00000000016C617C,,,
+759,07-4-17,,SHAA/Bosele Health Post,20007,,,1,,00000000016C617D,,,
+760,14-3-12,,Shakawe Senior Secondary School Clinic,20014,,,1,,00000000016C617E,,,
+761,16-3-33,,Tati Nickel Mine (Selkirk) Clinic,20016,,,1,,00000000016C617F,,,
+762,16-3-31,,Tati River private Clinic,20016,,,1,,00000000016C6180,,,
+763,16-3-27,,Thusong Surgery Private Clinic,20016,,,1,,00000000016C6181,,,
+764,15-4-02,,Tloaneng Health Post,20025,,,1,,00000000016C6182,,,
+765,24-4-12,,Tshane Prison Health Post,20024,,,1,,00000000016C6183,,,
+766,29-4-04,,Tsimoyapula  Health Post,20044,,,1,,00000000016C6184,,,
+767,03-3-24,,University of Science & Technology Clinic (BIUST),20003,,,1,,00000000016C6185,,,
+768,11-4-16,,Vaalhoek Health Post,20041,,,1,,00000000016C6186,,,
+769,01-3-14,,Wilderness  Safari Clinic,20001,,,1,,00000000016C6187,,,
+771,03-4-30,,TBA,20003,,,,,00000000014DB845,,,
+772,03-4-31,,TBA,20003,,,,,00000000014DB846,,,
+773,03-3-01,,TBA,20003,,,,,00000000014DB847,,,
+774,07-3-01,,TBA,20007,,,,,00000000014DB848,,,
+775,19-3-01,,TBA,20019,,,,,00000000014DB849,,,
+776,23-3-01,,TBA,20023,,,,,00000000014DB84A,,,
+777,26-3-01,,TBA,20042,,,,,00000000014DB84B,,,
+778,04-4-01,,TBA,20004,,,,,00000000014DB84C,,,
+779,12-4-01,,TBA,20012,,,,,00000000014DB84D,,,
+780,14-4-01,,TBA,20014,,,,,00000000014DB84E,,,
+781,17-4-01,,TBA,20017,,,,,00000000014DB84F,,,
+782,20-4-01,,TBA,20020,,,,,00000000014DB850,,,
+783,26-4-01,,TBA,20042,,,,,00000000014DB851,,,
+784,28-4-01,,TBA,20043,,,,,00000000014DB852,,,
+785,03-3-02,,TBA,20003,,,,,00000000014DB853,,,
+786,07-3-02,,TBA,20007,,,,,00000000014DB854,,,
+787,18-3-02,,TBA,20018,,,,,00000000014DB855,,,
+788,20-3-02,,TBA,20020,,,,,00000000014DB856,,,
+789,03-4-02,,TBA,20003,,,,,00000000014DB857,,,
+790,17-4-02,,TBA,20017,,,,,00000000014DB858,,,
+791,26-4-02,,TBA,20042,,,,,00000000014DB859,,,
+792,28-4-02,,TBA,20043,,,,,00000000014DB85A,,,
+793,07-3-03,,TBA,20007,,,,,00000000014DB85B,,,
+794,19-3-03,,TBA,20019,,,,,00000000014DB85C,,,
+795,26-3-03,,TBA,20042,,,,,00000000014DB85D,,,
+796,21-4-03,,TBA,20021,,,,,00000000014DB85E,,,
+797,23-4-03,,TBA,20023,,,,,00000000014DB85F,,,
+798,26-4-03,,TBA,20042,,,,,00000000014DB860,,,
+799,02-3-04,,TBA,20002,,,,,00000000014DB861,,,
+800,05-3-04,,TBA,20005,,,,,00000000014DB862,,,
+801,12-3-04,,TBA,20012,,,,,00000000014DB863,,,
+802,21-3-04,,TBA,20021,,,,,00000000014DB864,,,
+803,07-4-04,,TBA,20007,,,,,00000000014DB865,,,
+804,03-3-05,,TBA,20003,,,,,00000000014DB866,,,
+805,17-4-05,,TBA,20017,,,,,00000000014DB867,,,
+806,02-3-06,,TBA,20002,,,,,00000000014DB868,,,
+807,13-3-06,,TBA,20013,,,,,00000000014DB869,,,
+808,17-3-06,,TBA,20017,,,,,00000000014DB86A,,,
+809,07-4-06,,TBA,20007,,,,,00000000014DB86B,,,
+810,03-3-07,,TBA,20003,,,,,00000000014DB86C,,,
+811,17-3-07,,TBA,20017,,,,,00000000014DB86D,,,
+812,01-4-07,,TBA,20001,,,,,00000000014DB86E,,,
+813,04-4-07,,TBA,20004,,,,,00000000014DB86F,,,
+814,07-4-07,,TBA,20007,,,,,00000000014DB870,,,
+815,21-4-07,,TBA,20021,,,,,00000000014DB871,,,
+816,26-4-07,,TBA,20042,,,,,00000000014DB872,,,
+817,02-3-08,,TBA,20002,,,,,00000000014DB873,,,
+818,03-3-08,,TBA,20003,,,,,00000000014DB874,,,
+819,12-3-08,,TBA,20012,,,,,00000000014DB875,,,
+820,02-4-08,,TBA,20002,,,,,00000000014DB876,,,
+821,09-4-08,,TBA,20009,,,,,00000000014DB877,,,
+822,21-4-08,,TBA,20021,,,,,00000000014DB878,,,
+823,03-3-09,,TBA,20003,,,,,00000000014DB879,,,
+824,05-3-09,,TBA,20005,,,,,00000000014DB87A,,,
+825,26-3-09,,TBA,20042,,,,,00000000014DB87B,,,
+826,21-4-09,,TBA,20021,,,,,00000000014DB87C,,,
+827,17-3-10,,TBA,20017,,,,,00000000014DB87D,,,
+828,23-3-10,,TBA,20023,,,,,00000000014DB87E,,,
+829,07-4-10,,TBA,20007,,,,,00000000014DB87F,,,
+830,14-4-10,,TBA,20014,,,,,00000000014DB880,,,
+831,21-4-10,,TBA,20021,,,,,00000000014DB881,,,
+832,26-4-10,,TBA,20042,,,,,00000000014DB882,,,
+833,02-3-11,,TBA,20002,,,,,00000000014DB883,,,
+834,03-3-11,,TBA,20003,,,,,00000000014DB884,,,
+835,05-3-11,,TBA,20005,,,,,00000000014DB885,,,
+836,02-4-11,,TBA,20002,,,,,00000000014DB886,,,
+837,03-4-11,,TBA,20003,,,,,00000000014DB887,,,
+838,07-4-11,,TBA,20007,,,,,00000000014DB888,,,
+839,08-4-11,,TBA,20008,,,,,00000000014DB889,,,
+840,14-4-11,,TBA,20014,,,,,00000000014DB88A,,,
+841,16-4-11,,TBA,20016,,,,,00000000014DB88B,,,
+842,26-4-11,,TBA,20042,,,,,00000000014DB88C,,,
+843,05-3-12,,TBA,20005,,,,,00000000014DB88D,,,
+844,05-4-12,,TBA,20005,,,,,00000000014DB88E,,,
+845,07-4-12,,TBA,20007,,,,,00000000014DB88F,,,
+846,09-4-12,,TBA,20009,,,,,00000000014DB890,,,
+847,20-4-12,,TBA,20020,,,,,00000000014DB891,,,
+848,23-4-12,,TBA,20023,,,,,00000000014DB892,,,
+849,26-4-12,,TBA,20042,,,,,00000000014DB893,,,
+850,12-3-13,,TBA,20012,,,,,00000000014DB894,,,
+851,03-4-13,,TBA,20003,,,,,00000000014DB895,,,
+852,14-4-13,,TBA,20014,,,,,00000000014DB896,,,
+853,03-3-14,,TBA,20003,,,,,00000000014DB897,,,
+854,12-3-14,,TBA,20012,,,,,00000000014DB898,,,
+855,07-4-14,,TBA,20007,,,,,00000000014DB899,,,
+856,26-4-14,,TBA,20042,,,,,00000000014DB89A,,,
+857,12-3-15,,TBA,20012,,,,,00000000014DB89B,,,
+858,04-4-15,,TBA,20004,,,,,00000000014DB89C,,,
+859,05-4-15,,TBA,20005,,,,,00000000014DB89D,,,
+860,09-4-15,,TBA,20009,,,,,00000000014DB89E,,,
+861,12-4-15,,TBA,20012,,,,,00000000014DB89F,,,
+862,05-3-16,,TBA,20005,,,,,00000000014DB8A0,,,
+863,07-4-16,,TBA,20007,,,,,00000000014DB8A1,,,
+864,26-4-16,,TBA,20042,,,,,00000000014DB8A2,,,
+865,03-3-17,,TBA,20003,,,,,00000000014DB8A3,,,
+866,03-4-17,,TBA,20003,,,,,00000000014DB8A4,,,
+867,12-4-17,,TBA,20012,,,,,00000000014DB8A5,,,
+868,03-3-18,,TBA,20003,,,,,00000000014DB8A6,,,
+869,12-4-18,,TBA,20012,,,,,00000000014DB8A7,,,
+870,03-4-19,,TBA,20003,,,,,00000000014DB8A8,,,
+871,12-4-19,,TBA,20012,,,,,00000000014DB8A9,,,
+872,23-4-19,,TBA,20023,,,,,00000000014DB8AA,,,
+873,02-4-20,,TBA,20002,,,,,00000000014DB8AB,,,
+874,03-4-20,,TBA,20003,,,,,00000000014DB8AC,,,
+875,03-3-21,,TBA,20003,,,,,00000000014DB8AD,,,
+876,02-4-21,,TBA,20002,,,,,00000000014DB8AE,,,
+877,12-4-21,,TBA,20012,,,,,00000000014DB8AF,,,
+878,05-3-22,,TBA,20005,,,,,00000000014DB8B0,,,
+879,12-4-22,,TBA,20012,,,,,00000000014DB8B1,,,
+880,03-3-23,,TBA,20003,,,,,00000000014DB8B2,,,
+881,05-4-23,,TBA,20005,,,,,00000000014DB8B3,,,
+882,12-4-23,,TBA,20012,,,,,00000000014DB8B4,,,
+883,05-3-24,,TBA,20005,,,,,00000000014DB8B5,,,
+884,03-4-25,,TBA,20003,,,,,00000000014DB8B6,,,
+885,12-4-25,,TBA,20012,,,,,00000000014DB8B7,,,
+886,03-4-26,,TBA,20003,,,,,00000000014DB8B8,,,
+887,12-4-26,,TBA,20012,,,,,00000000014DB8B9,,,
+888,03-4-27,,TBA,20003,,,,,00000000014DB8BA,,,
+889,03-4-28,,TBA,20003,,,,,00000000014DB8BB,,,
+890,00-0-10,,Community Health Site,20025,33,11,1,,000000000161F163,,,
+891,10-3-07,10-3-07,Weighbridge Clinic,20040,32,8,1,,00000000016B6749,2018-04-11 10:28:31.203000000,,
+892,17-4-06,,Sakutswane Health Post,20017,2,8,1,,00000000016B674C,2018-04-11 10:47:27.407000000,,
+893,18-4-02,,Gopong Health Post,20018,7,8,1,,00000000016B674E,2018-04-11 10:50:48.850000000,,
+894,22-3-08,,Majwe Mining Clinic,20022,5,8,1,,00000000016B6750,2018-04-11 10:52:54.830000000,,
+895,26-3-10,,Moshupa Prison Clinic,20042,6,8,1,,00000000016B6753,2018-04-11 10:54:40.347000000,,
+896,15-3-41,,Mahlaku Lekganyane (Mmopane Block 1),20025,3,8,1,,00000000016B6756,2018-04-11 10:58:07.913000000,,
+898,0-0-0,,BOFWA,20025,,,3,,00000000016BBA45,,,
