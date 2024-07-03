@@ -1,16 +1,14 @@
 import { R4 } from '@ahryman40k/ts-fhir-types';
-import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
+import * as crypto from 'crypto';
+import { getBundleEntries, getBundleEntry } from '../../common/utils/fhir';
 import config from '../../config';
 import { LoggerService } from '../../logger/logger.service';
-import { getBundleEntries, getBundleEntry } from '../../common/utils/fhir';
-import * as crypto from 'crypto';
 import facilityMappings from '../utils/locationMap';
 
 @Injectable()
 export class MflService {
   constructor(
-    private readonly httpService: HttpService,
     private readonly logger: LoggerService,
   ) {}
 

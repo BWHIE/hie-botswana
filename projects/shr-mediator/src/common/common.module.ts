@@ -9,5 +9,6 @@ import { FhirController } from './controllers/fhir.controller';
   imports: [HttpModule],
   controllers: [IpsController, FhirController],
   providers: [FhirService, IpsService],
+  exports: [FhirService, IpsService],
 })
 export class CommonModule {}
