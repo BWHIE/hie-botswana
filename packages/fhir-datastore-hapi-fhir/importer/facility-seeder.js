@@ -48,6 +48,7 @@ async function processBundles() {
   const facilityData = require('./facility_bundle.json');
   const firstLocationData = require('./location_bundle_part1.json');
   const secondLocationData = require('./location_bundle_part2.json');
+  const pimsLocationData = require('./pims_location_bundle.json');
 
   try {
     await saveBundle(facilityData); // Call saveBundle function with the parsed bundle
@@ -67,6 +68,14 @@ async function processBundles() {
 
   try {
     await saveBundle(secondLocationData); // Call saveBundle function with the parsed bundle
+    console.log(`Seeder successfully finished execution!`);
+  } catch (error) {
+    console.error(`Error processing bundle: ${error.message}`);
+    process.exit(1);
+  }
+
+  try {
+    await saveBundle(pimsLocationData); // Call saveBundle function with the parsed bundle
     console.log(`Seeder successfully finished execution!`);
   } catch (error) {
     console.error(`Error processing bundle: ${error.message}`);
