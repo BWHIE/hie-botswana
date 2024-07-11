@@ -1,8 +1,8 @@
-version: '3.9'
+version: '3.8'
 
 services:
-  shared-health-record:
-    entrypoint: node --inspect=0.0.0.0:9230 /app/dist/app.js
+  shr-mediator:
+    # entrypoint: node --inspect=0.0.0.0:9230 /app/dist/app.js
     ports:
       - target: 9230
         published: 9230

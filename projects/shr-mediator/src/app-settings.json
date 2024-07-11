@@ -10,16 +10,15 @@
     "ImmigrationSystem": "http://moh.bw.org/ext/identifier/ppn",
     "devMode": "true"
   },
-
   "fhirServer": {
-    "baseURL": "http://shr-fhir:8080/fhir",
-    "username": "shr",
-    "password": "shr"
+    "baseURL": "http://hapi-fhir:8080/fhir",
+    "username": "",
+    "password": ""
   },
   "clientRegistryUrl": "http://openhim-core:5001/CR/fhir",
   "fhirConverterUrl": "http://openhim-core:5001/72f",
   "taskRunner": {
-    "brokers": ["kafka:9092"]
+    "brokers": ["kafka-01:9092"]
   },
   "retryConfig": {
     "translatorMaxRetries": 5,

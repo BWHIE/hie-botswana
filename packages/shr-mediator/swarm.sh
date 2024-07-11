@@ -1,11 +1,9 @@
-#!/bin/bash
-
 declare ACTION=""
 declare MODE=""
 declare COMPOSE_FILE_PATH=""
 declare UTILS_PATH=""
 declare SERVICE_NAMES=()
-declare STACK="shared-health-record"
+declare STACK="shr-mediator"
 
 function init_vars() {
   ACTION=$1
@@ -19,7 +17,7 @@ function init_vars() {
   UTILS_PATH="${COMPOSE_FILE_PATH}/../utils"
 
   SERVICE_NAMES=(
-    "shared-health-record"
+    "shr-mediator"
   )
 
   readonly ACTION
@@ -57,6 +55,7 @@ function initialize_package() {
   (
     docker::deploy_service $STACK "${COMPOSE_FILE_PATH}" "docker-compose.yml" "$package_dev_compose_filename" "$package_mnt_compose_filename"
   ) || {
+    docker stack deploy -c "${COMPOSE_FILE_PATH}/docker-compose.yml" -c "${COMPOSE_FILE_PATH}/${package_dev_compose_filename}" -c "${COMPOSE_FILE_PATH}/${package_mnt_compose_filename}" $STACK
     log error "Failed to deploy package"
     exit 1
   }
@@ -75,7 +74,7 @@ main() {
   if [[ "${ACTION}" == "init" ]] || [[ "${ACTION}" == "up" ]]; then
     log info "Running package in Single node mode"
 
-    IMAGE_NAME="itechuw/shared-health-record"
+    IMAGE_NAME="jembi/shr-mediator"
     IMAGE_TAG="local"
 
     # Check if the Docker image exists

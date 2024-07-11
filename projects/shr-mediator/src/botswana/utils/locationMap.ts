@@ -23,8 +23,6 @@ async function getFacilityMappings() {
     '../../config/ipms_facility_mappings.xlsx',
   );
 
-  console.log('>>>>>>', locationMapFile)
-
   const workbook = new Excel.Workbook();
   const content = await workbook.xlsx.readFile(locationMapFile);
   const worksheet = content.getWorksheet('LIVE');

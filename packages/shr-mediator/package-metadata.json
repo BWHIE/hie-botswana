@@ -1,15 +1,21 @@
 {
-  "id": "shared-health-record",
-  "name": "Shared Health Record",
-  "description": "A shared health record for storing longitudinal patient level health data from across the health system.",
+  "id": "shr-mediator",
+  "name": "shr-mediator",
+  "description": "A shared health record mediator for storing longitudinal patient level health data from across the health system and managing the Botswana Lab Workflow.",
   "type": "infrastructure",
   "version": "0.0.1",
-  "dependencies": ["fhir-datastore-hapi-fhir", "interoperability-layer-openhim", "client-registry-opencr", "message-bus-kafka", "openhim-mediator-fhir-converter"],
+  "dependencies": [
+    "fhir-datastore-hapi-fhir",
+    "interoperability-layer-openhim",
+    "client-registry-opencr",
+    "message-bus-kafka",
+    "openhim-mediator-fhir-converter"
+  ],
   "environmentVariables": {
     "OPENHIM_USERNAME": "root@openhim.org",
     "OPENHIM_PASSWORD": "instant101",
     "OPENHIM_URL": "https://openhim-core:8080",
-    "OPENHIM_MEDIATOR_URN": "urn:mediator:bw-shared-health-record",
+    "OPENHIM_MEDIATOR_URN": "urn:mediator:bw-shr-mediator",
     "OPENHIM_CLIENT_ID": "shr-client",
     "OPENHIM_CLIENT_PW": "shr-client",
     "FHIR_STORE_URL": "http://hapi-fhir:8080/fhir",

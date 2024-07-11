@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  shr-mediator:
+    image: jembi/shr-mediator:local
+    networks:
+      - default
+      - hapi-fhir
+      - shr
+      - kafka
+      - opencr
+      - openhim
+      - converter
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+networks:
+  default:
+  kafka:
+    name: kafka_public
+    external: true
+  hapi-fhir:
+    name: hapi-fhir_public
+    external: true
+  shr:
+    name: shr_public
+    external: true
+  opencr:
+    name: opencr_public
+    external: true
+  openhim:
+    name: openhim_public
+    external: true
+  converter:
+    name: converter_public
+    external: true
