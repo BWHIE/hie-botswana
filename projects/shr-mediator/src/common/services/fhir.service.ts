@@ -27,19 +27,26 @@ export class FhirService {
     private readonly logger: LoggerService,
   ) {}
 
-  passthrough(req: Request, res: Response, url?: string): Observable<any> {
-    const fhirUrl = `${config.get('fhirServer:baseURL')}${req.url}`;
-    return this.httpService
-      .request({
-        url: url || fhirUrl,
-        method: req.method,
-        responseType: 'stream',
-        headers: req.headers,
-        auth: {
-          username: config.get('fhirServer:username'),
-          password: config.get('fhirServer:password'),
-        },
-      })
+  passthrough(req: Request, res: Response, path: string): Observable<any> {
+    path = path.startsWith('/fhir') ? path.replace('/fhir', '') : path;
+    const requestOptions: AxiosRequestConfig = {
+      url: `${config.get('fhirServer:baseURL')}/${path}`,
+      method: req.method,
+      responseType: 'stream',
+      headers: req.headers,
+      auth: {
+        username: config.get('fhirServer:username'),
+        password: config.get('fhirServer:password'),
+      },
+    }
+    
+    if (req.method === 'POST') {
+      requestOptions.data = req.body;
+    }
+
+    this.logger.debug('FHIR REQ :', requestOptions);
+  
+    return this.httpService.request(requestOptions)
       .pipe(
         tap((response) => {
           res.status(response.status);
@@ -67,19 +74,11 @@ export class FhirService {
         id,
     );
 
-    let uri;
+    let path;
     if (req.method === 'POST') {
-      uri =
-        config.get('fhirServer:baseURL') +
-        '/' +
-        getResourceTypeEnum(resourceType).toString();
+      path = '/' + getResourceTypeEnum(resourceType).toString();
     } else if (req.method === 'PUT') {
-      uri =
-        config.get('fhirServer:baseURL') +
-        '/' +
-        getResourceTypeEnum(resourceType).toString() +
-        '/' +
-        id;
+      path = '/' + getResourceTypeEnum(resourceType).toString() + '/' + id;
     } else {
       // Invalid request method
       throw new BadGatewayException('Invalid request method');
@@ -87,9 +86,9 @@ export class FhirService {
 
     try {
       // Perform  request
-      this.logger.log('Sending ' + req.method + ' request to ' + uri);
+      this.logger.log('Sending ' + req.method + ' request to ' + path);
 
-      return this.passthrough(req, res, uri);
+      return this.passthrough(req, res, path);
     } catch (error) {
       this.logger.error(error);
       throw new InternalServerErrorException();

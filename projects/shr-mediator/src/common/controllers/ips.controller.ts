@@ -32,7 +32,7 @@ export class IpsController {
 
   @Get('/metadata')
   passThrough(@Req() req: Request, @Res() res: Response): Observable<any> {
-    return this.fhirService.passthrough(req, res);
+    return this.fhirService.passthrough(req, res, '/metadata');
   }
 
   @Get('/Patient/cruid/:id/:lastUpdated?')
