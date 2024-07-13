@@ -27,71 +27,70 @@ export class FhirService {
     private readonly logger: LoggerService,
   ) {}
 
+  
   passthrough(req: Request, res: Response, path: string): Observable<any> {
-    path = path.startsWith('/fhir') ? path.replace('/fhir', '') : path;
+
     const requestOptions: AxiosRequestConfig = {
       url: `${config.get('fhirServer:baseURL')}/${path}`,
       method: req.method,
-      responseType: 'stream',
-      headers: req.headers,
+      headers: {
+        ...req.headers,
+        host: undefined,
+        'content-length': undefined,
+        'transfer-encoding': undefined,
+      },
       auth: {
         username: config.get('fhirServer:username'),
         password: config.get('fhirServer:password'),
       },
-    }
+      responseType: 'stream',
+      data: req.method === 'GET' ? undefined : req.body,
+    };
     
-    if (req.method === 'POST') {
-      requestOptions.data = req.body;
-    }
-
-    this.logger.debug('FHIR REQ :', requestOptions);
-  
-    return this.httpService.request(requestOptions)
-      .pipe(
-        tap((response) => {
-          res.status(response.status);
-          response.data.pipe(res);
-        }),
-        catchError((error) => {
+    return this.httpService.request(requestOptions).pipe(
+      tap((response) => {
+        res.status(response.status);
+        response.data.pipe(res);
+      }),
+      catchError((error) => {
+        if (error.response) {
+          res.status(error.response.status).json(error.response.data);
+        } else {
           res.status(HttpStatus.BAD_GATEWAY).json({ error: error.message });
-          return throwError(() => new Error(error));
-        }),
-      );
+        }
+        return throwError(() => new Error(error));
+      }),
+    );
   }
 
   async saveResource(req: Request, res: Response) {
     const resource = req.body;
     const resourceType = req.params.resourceType;
     const id = req.params.id;
+  
     if (id && !resource.id) {
       resource.id = id;
     }
-
-    this.logger.log(
-      'Received a request to add resource type ' +
-        resourceType +
-        ' with id ' +
-        id,
-    );
-
-    let path;
+  
+    this.logger.log(`Received request to add resource type ${resourceType} with id ${id}`);
+  
+    let path: string;
     if (req.method === 'POST') {
-      path = '/' + getResourceTypeEnum(resourceType).toString();
+      path = `${getResourceTypeEnum(resourceType)}`;
     } else if (req.method === 'PUT') {
-      path = '/' + getResourceTypeEnum(resourceType).toString() + '/' + id;
+      path = `${getResourceTypeEnum(resourceType)}/${id}`;
     } else {
-      // Invalid request method
       throw new BadGatewayException('Invalid request method');
     }
-
     try {
-      // Perform  request
-      this.logger.log('Sending ' + req.method + ' request to ' + path);
-
-      return this.passthrough(req, res, path);
+      const result = await this.passthrough(req, res, path).toPromise();
+      return result; // Handle the result if needed
     } catch (error) {
-      this.logger.error(error);
-      throw new InternalServerErrorException();
+      if (error.response) {
+        throw new InternalServerErrorException(error.response.data);
+      } else {
+        throw new InternalServerErrorException('Internal server error');
+      }
     }
   }
 
@@ -111,8 +110,13 @@ export class FhirService {
         );
         return data; // If request is successful, return the response
       } catch (error) {
-        this.logger.error(`Attempt ${attempt} failed`, error);
-
+        this.logger.error(`Attempt ${attempt} failed`, JSON.stringify({
+          error: error.message,
+          status: error.response?.status,
+          data: error.response?.data,
+          headers: error.response?.headers,
+        }));
+        
         // Sleep for a given amount of time
         await new Promise((resolve) => setTimeout(resolve, timeout));
 

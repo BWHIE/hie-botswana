@@ -14,8 +14,7 @@ import {
 import { Request, Response } from 'express';
 import { Observable } from 'rxjs';
 import { LoggerService } from 'src/logger/logger.service';
-import URI from 'urijs';
-import config from '../../config';
+import * as URI from 'urijs';
 import { FhirService } from '../services/fhir.service';
 import { IpsService } from '../services/ips.service';
 import {
@@ -64,6 +63,7 @@ export class FhirController {
 
       if (req.params.id && /^[a-zA-Z0-9\-_]+$/.test(req.params.id)) {
         path = path.segment(encodeURIComponent(req.params.id));
+        console.log("THE PATHHH " + path);
       } else {
         this.logger.log(
           `Invalid id ${req.params.id} - falling back on pass-through to HAPI FHIR server`,

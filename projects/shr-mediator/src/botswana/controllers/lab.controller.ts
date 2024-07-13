@@ -15,7 +15,6 @@ import { LoggerService } from 'src/logger/logger.service';
 import { FhirService } from '../../common/services/fhir.service';
 import { invalidBundle, invalidBundleMessage } from '../../common/utils/fhir';
 import { LabWorkflowService } from '../services/lab-workflow.service';
-import config from '../../config';
 
 @Controller('lab')
 export class LabController {
@@ -73,7 +72,7 @@ export class LabController {
 
   @Get('/metadata')
   passThrough(@Req() req: Request, @Res() res: Response): Observable<any> {
-    return this.fhirService.passthrough(req, res, '/metadata');
+    return this.fhirService.passthrough(req, res, 'metadata');
   }
 
   @Get('/orders/target/:facilityId/:_lastUpdated?')
