@@ -13,7 +13,7 @@ import { throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import config from '../../config';
 import { LoggerService } from '../../logger/logger.service';
-import { ResourceType, getResourceTypeEnum } from '../utils/fhir';
+import { ResourceType, getCircularReplacer, getResourceTypeEnum } from '../utils/fhir';
 
 export interface FhirClientConfig {
   serverUrl: string;
@@ -177,15 +177,4 @@ export class FhirService {
   }
 }
 
-function getCircularReplacer() {
-  const seen = new WeakSet();
-  return (key: any, value: any) => {
-    if (typeof value === 'object' && value !== null) {
-      if (seen.has(value)) {
-        return;
-      }
-      seen.add(value);
-    }
-    return value;
-  };
-}
+
