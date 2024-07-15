@@ -6,9 +6,10 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
+import { Request as NestRequest, Res } from '@nestjs/common';
 import { AxiosRequestConfig } from 'axios';
 import { Request, Response } from 'express';
-import { Observable, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import config from '../../config';
 import { LoggerService } from '../../logger/logger.service';
@@ -27,37 +28,52 @@ export class FhirService {
     private readonly logger: LoggerService,
   ) {}
 
-  
-  passthrough(req: Request, res: Response, path: string): Observable<any> {
-
+  async passthrough(
+    @NestRequest() req: Request,
+    @Res() res: Response,
+    path: string,
+  ): Promise<any> {
     const requestOptions: AxiosRequestConfig = {
       url: `${config.get('fhirServer:baseURL')}/${path}`,
       method: req.method,
       headers: {
         ...req.headers,
-        host: undefined,
-        'content-length': undefined,
-        'transfer-encoding': undefined,
+        'X-Forwarded-For': req.headers['x-forwarded-for'] || req.ip,
+        'X-Forwarded-Proto': req.protocol,
+        'X-Forwarded-Host': req.get('host'),
+        'X-Forwarded-Port': req.get('x-forwarded-port') || req.socket.localPort,
       },
       auth: {
         username: config.get('fhirServer:username'),
         password: config.get('fhirServer:password'),
       },
       responseType: 'stream',
-      data: req.method === 'GET' ? undefined : req.body,
+      // @ts-ignore
+      data: req.rawBody,
     };
-    
+
     return this.httpService.request(requestOptions).pipe(
       tap((response) => {
         res.status(response.status);
         response.data.pipe(res);
       }),
       catchError((error) => {
-        if (error.response) {
-          res.status(error.response.status).json(error.response.data);
-        } else {
-          res.status(HttpStatus.BAD_GATEWAY).json({ error: error.message });
-        }
+        const errorResponse = error.response
+          ? JSON.stringify(error.response.data, getCircularReplacer())
+          : error.message;
+        const errorStatus = error.response
+          ? error.response.status
+          : HttpStatus.BAD_GATEWAY;
+
+        this.logger.error('FHIR Request Error:', errorResponse);
+
+        res.status(errorStatus).json({
+          error: errorResponse,
+          message: 'An error occurred while processing the FHIR request.',
+          method: req.method,
+          url: requestOptions.url,
+          status: errorStatus,
+        });
         return throwError(() => new Error(error));
       }),
     );
@@ -67,13 +83,15 @@ export class FhirService {
     const resource = req.body;
     const resourceType = req.params.resourceType;
     const id = req.params.id;
-  
+
     if (id && !resource.id) {
       resource.id = id;
     }
-  
-    this.logger.log(`Received request to add resource type ${resourceType} with id ${id}`);
-  
+
+    this.logger.log(
+      `Received request to add resource type ${resourceType} with id ${id}`,
+    );
+
     let path: string;
     if (req.method === 'POST') {
       path = `${getResourceTypeEnum(resourceType)}`;
@@ -83,7 +101,7 @@ export class FhirService {
       throw new BadGatewayException('Invalid request method');
     }
     try {
-      const result = await this.passthrough(req, res, path).toPromise();
+      const result = await this.passthrough(req, res, path);
       return result; // Handle the result if needed
     } catch (error) {
       if (error.response) {
@@ -110,13 +128,16 @@ export class FhirService {
         );
         return data; // If request is successful, return the response
       } catch (error) {
-        this.logger.error(`Attempt ${attempt} failed`, JSON.stringify({
-          error: error.message,
-          status: error.response?.status,
-          data: error.response?.data,
-          headers: error.response?.headers,
-        }));
-        
+        this.logger.error(
+          `Attempt ${attempt} failed`,
+          JSON.stringify({
+            error: error.message,
+            status: error.response?.status,
+            data: error.response?.data,
+            headers: error.response?.headers,
+          }),
+        );
+
         // Sleep for a given amount of time
         await new Promise((resolve) => setTimeout(resolve, timeout));
 
@@ -154,4 +175,17 @@ export class FhirService {
       throw new InternalServerErrorException(error);
     }
   }
+}
+
+function getCircularReplacer() {
+  const seen = new WeakSet();
+  return (key: any, value: any) => {
+    if (typeof value === 'object' && value !== null) {
+      if (seen.has(value)) {
+        return;
+      }
+      seen.add(value);
+    }
+    return value;
+  };
 }

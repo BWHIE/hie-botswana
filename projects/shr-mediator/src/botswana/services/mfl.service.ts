@@ -8,9 +8,7 @@ import facilityMappings from '../utils/locationMap';
 
 @Injectable()
 export class MflService {
-  constructor(
-    private readonly logger: LoggerService,
-  ) {}
+  constructor(private readonly logger: LoggerService) {}
 
   async mapLocations(labBundle: R4.IBundle): Promise<R4.IBundle> {
     this.logger.log('Mapping Locations!');

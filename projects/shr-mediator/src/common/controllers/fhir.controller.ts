@@ -12,7 +12,6 @@ import {
   Res,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { Observable } from 'rxjs';
 import { LoggerService } from 'src/logger/logger.service';
 import * as URI from 'urijs';
 import { FhirService } from '../services/fhir.service';
@@ -38,7 +37,7 @@ export class FhirController {
   }
 
   @Get('/metadata')
-  passThrough(@Req() req: Request, @Res() res: Response): Observable<any> {
+  async passThrough(@Req() req: Request, @Res() res: Response): Promise<any> {
     return this.fhirService.passthrough(req, res, '/metadata');
   }
 
@@ -54,7 +53,9 @@ export class FhirController {
       let path = URI();
 
       if (isValidResourceType(req.params.resource)) {
-        path = path.segment(getResourceTypeEnum(req.params.resource).toString());
+        path = path.segment(
+          getResourceTypeEnum(req.params.resource).toString(),
+        );
       } else {
         throw new BadRequestException(
           `Invalid resource type ${req.params.resource}`,
@@ -63,7 +64,6 @@ export class FhirController {
 
       if (req.params.id && /^[a-zA-Z0-9\-_]+$/.test(req.params.id)) {
         path = path.segment(encodeURIComponent(req.params.id));
-        console.log("THE PATHHH " + path);
       } else {
         this.logger.log(
           `Invalid id ${req.params.id} - falling back on pass-through to HAPI FHIR server`,
@@ -125,7 +125,10 @@ export class FhirController {
     @Res() res: Response,
   ) {
     try {
-      this.logger.log('Received a request to add a bundle of resources', bundle);
+      this.logger.log(
+        'Received a request to add a bundle of resources',
+        bundle,
+      );
 
       // Verify the bundle
       if (invalidBundle(bundle)) {
