@@ -11,6 +11,8 @@ services:
       - opencr
       - openhim
       - converter
+    environment:
+      TASK_RUNNER__BROKERS: ${TASK_RUNNER__BROKERS}
     deploy:
       replicas: 1
       restart_policy:

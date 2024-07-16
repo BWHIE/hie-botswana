@@ -22,6 +22,7 @@
     "CLIENT_REGISTRY_CHANNEL": "/CR/fhir",
     "FHIR_COVERTER_CHANNEL": "/72f",
     "KAFKA_URL": "kafka-01:9092",
-    "SHR_DEV_MOUNT_FOLDER": ""
+    "SHR_DEV_MOUNT_FOLDER": "",
+    "TASK_RUNNER__BROKERS": "kafka-01:9092"
   }
 }

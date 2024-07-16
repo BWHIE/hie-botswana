@@ -26,7 +26,6 @@ const setNestedConfig = (keyParts: string[], value: any) => {
   });
   const configKey = normalizedKeyParts.join(':');
   nconf.set(configKey, value);
-  console.log(`Normalized key: ${configKey} = ${JSON.stringify(value)}`);
 };
 
 const jsonEnvVariables = process.env.JSON_ENV_VARIABLES
@@ -43,7 +42,6 @@ Object.keys(process.env).forEach((key) => {
   const keyParts = key.split('__');
 
   setNestedConfig(keyParts, value);
-  console.log(`Original env variable: ${key} = ${JSON.stringify(value)}`);
 });
 
 export { nconf as config };

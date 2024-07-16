@@ -25,8 +25,8 @@ profiles:
       - fhir-datastore-hapi-fhir
       #- monitoring
       #- identity-access-manager-keycloak
-      - client-registry-opencr
-      - analytics-datastore-elastic-search
+      # - client-registry-opencr
+      # - analytics-datastore-elastic-search
       - message-bus-kafka
       #- omang-service-mediator
       - openhim-mediator-fhir-converter
