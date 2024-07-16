@@ -13,6 +13,7 @@ services:
       - converter
     environment:
       TASK_RUNNER__BROKERS: ${TASK_RUNNER__BROKERS}
+      JSON_ENV_VARIABLES: ${JSON_ENV_VARIABLES}
     deploy:
       replicas: 1
       restart_policy:
