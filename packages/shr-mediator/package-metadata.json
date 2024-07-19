@@ -23,7 +23,6 @@
     "FHIR_COVERTER_CHANNEL": "/72f",
     "KAFKA_URL": "kafka-01:9092",
     "SHR_DEV_MOUNT_FOLDER": "",
-    "TASK_RUNNER__BROKERS": ["kafka-02:9092", "kafka-03:9092"],
-    "JSON_ENV_VARIABLES": "TASK_RUNNER__BROKERS"
+    "BROKERS": ["kafka-02:9092", "kafka-03:9092"]
   }
 }

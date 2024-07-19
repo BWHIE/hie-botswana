@@ -55,7 +55,9 @@ export class FhirController {
       let path = URI();
 
       if (isValidResourceType(req.params.resource)) {
-        path = path.segment(getResourceTypeEnum(req.params.resource).toString());
+        path = path.segment(
+          getResourceTypeEnum(req.params.resource).toString(),
+        );
       } else {
         throw new BadRequestException(
           `Invalid resource type ${req.params.resource}`,
@@ -125,7 +127,10 @@ export class FhirController {
     @Res() res: Response,
   ) {
     try {
-      this.logger.log('Received a request to add a bundle of resources', bundle);
+      this.logger.log(
+        'Received a request to add a bundle of resources',
+        bundle,
+      );
 
       // Verify the bundle
       if (invalidBundle(bundle)) {

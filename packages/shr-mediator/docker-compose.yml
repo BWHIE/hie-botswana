@@ -12,8 +12,7 @@ services:
       - openhim
       - converter
     environment:
-      TASK_RUNNER__BROKERS: ${TASK_RUNNER__BROKERS}
-      JSON_ENV_VARIABLES: ${JSON_ENV_VARIABLES}
+      BROKERS: ${BROKERS}
     deploy:
       replicas: 1
       restart_policy:

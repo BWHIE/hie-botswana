@@ -1,7 +1,7 @@
 import { IBundle } from '@ahryman40k/ts-fhir-types/lib/R4';
 import { MllpServer } from '@i-tech-uw/mllp-server';
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { config } from '../../config';
+import config from '../../config';
 import { Hl7Service } from './hl7.service';
 import { LoggerService } from '../../logger/logger.service';
 

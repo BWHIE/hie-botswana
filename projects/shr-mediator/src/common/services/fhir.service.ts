@@ -38,25 +38,24 @@ export class FhirService {
         username: config.get('fhirServer:username'),
         password: config.get('fhirServer:password'),
       },
-    }
-    
+    };
+
     if (req.method === 'POST') {
       requestOptions.data = req.body;
     }
 
     this.logger.debug('FHIR REQ :', requestOptions);
-  
-    return this.httpService.request(requestOptions)
-      .pipe(
-        tap((response) => {
-          res.status(response.status);
-          response.data.pipe(res);
-        }),
-        catchError((error) => {
-          res.status(HttpStatus.BAD_GATEWAY).json({ error: error.message });
-          return throwError(() => new Error(error));
-        }),
-      );
+
+    return this.httpService.request(requestOptions).pipe(
+      tap((response) => {
+        res.status(response.status);
+        response.data.pipe(res);
+      }),
+      catchError((error) => {
+        res.status(HttpStatus.BAD_GATEWAY).json({ error: error.message });
+        return throwError(() => new Error(error));
+      }),
+    );
   }
 
   async saveResource(req: Request, res: Response) {
