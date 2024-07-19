@@ -23,15 +23,15 @@ profiles:
       - interoperability-layer-openhim
       - database-postgres
       - fhir-datastore-hapi-fhir
-      # - monitoring
+      - monitoring
       - identity-access-manager-keycloak
       - client-registry-opencr
-      # - analytics-datastore-elastic-search
+      - analytics-datastore-elastic-search
       - message-bus-kafka
       - omang-service-mediator
       - openhim-mediator-fhir-converter
       - shr-mediator
-      # - dashboard-visualiser-kibana
+      - dashboard-visualiser-kibana
     envFiles:
       - .env.local
     dev: true
