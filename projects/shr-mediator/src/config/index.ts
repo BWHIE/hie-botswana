@@ -3,14 +3,6 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 class Config {
-  private static parseJsonEnvVariable(envVar: string): any {
-    try {
-      return JSON.parse(envVar);
-    } catch (error) {
-      throw new Error(`Failed to parse JSON environment variable: ${envVar}`);
-    }
-  }
-
   private static mergeEnvVariables(): any {
     const envConfig: any = {
       app: {
@@ -19,6 +11,10 @@ class Config {
       },
       ClientRegistry: {
         ApiUrl: process.env.CLIENT_REGISTRY_API_URL,
+        OmangSystem: process.env.OMANG_SYSTEM,
+        BdrsSystem: process.env.BDRS_SYSTEM,
+        ImmigrationSystem: process.env.IMMIGRATION_SYSTEM,
+        devMode: process.env.DEV_MODE
       },
       fhirServer: {
         baseURL: process.env.FHIR_SERVER_BASE_URL,
@@ -94,12 +90,95 @@ class Config {
           version: process.env.MEDIATOR_SETUP_VERSION,
           name: process.env.MEDIATOR_SETUP_NAME,
           description: process.env.MEDIATOR_SETUP_DESCRIPTION,
-          defaultChannelConfig: process.env.DEFAULT_CHANNEL_CONFIG
-            ? Config.parseJsonEnvVariable(process.env.DEFAULT_CHANNEL_CONFIG)
-            : undefined,
-          endpoints: process.env.ENDPOINTS
-            ? Config.parseJsonEnvVariable(process.env.ENDPOINTS)
-            : undefined,
+          defaultChannelConfig: [
+            {
+              "methods": ["GET", "POST", "PUT", "PATCH"],
+              "type": "http",
+              "whitelist": [],
+              "authType": "private",
+              "matchContentTypes": [],
+              "properties": [],
+              "txViewAcl": [],
+              "txViewFullAcl": [],
+              "txRerunAcl": [],
+              "status": "enabled",
+              "rewriteUrls": false,
+              "addAutoRewriteRules": true,
+              "autoRetryEnabled": false,
+              "autoRetryPeriodMinutes": 60,
+              "requestBody": true,
+              "responseBody": true,
+              "name": "SHR - FHIR Passthrough",
+              "description": "Get or Post a new FHIR Resource to the SHR",
+              "urlPattern": "^/SHR/fhir.*$",
+              "routes": [
+                {
+                  "type": "http",
+                  "status": "enabled",
+                  "forwardAuthHeader": false,
+                  "name": "SHR - Get/Create/Update Resource",
+                  "secured": false,
+                  "host": "shr",
+                  "port": 3000,
+                  "path": "",
+                  "pathTransform": "s/SHR\\/fhir/fhir/g",
+                  "primary": true,
+                  "username": "",
+                  "password": ""
+                }
+              ],
+              "priority": 1
+            },
+            {
+              "methods": ["GET", "POST", "DELETE", "PUT"],
+              "type": "http",
+              "whitelist": [],
+              "authType": "private",
+              "matchContentTypes": [],
+              "properties": [],
+              "status": "enabled",
+              "rewriteUrls": false,
+              "addAutoRewriteRules": true,
+              "autoRetryEnabled": false,
+              "autoRetryPeriodMinutes": 60,
+              "requestBody": true,
+              "responseBody": true,
+              "description": "Get or Update the Lab Workflow Bundles in the SHR",
+              "urlPattern": "^/SHR/lab.*$",
+              "routes": [
+                {
+                  "type": "http",
+                  "status": "enabled",
+                  "forwardAuthHeader": false,
+                  "name": "SHR - Get Lab Bundle",
+                  "secured": false,
+                  "host": "shr",
+                  "port": 3000,
+                  "path": "",
+                  "pathTransform": "s/SHR\\/lab/lab/g",
+                  "primary": true,
+                  "username": "",
+                  "password": ""
+                }
+              ],
+              "alerts": [],
+              "rewriteUrlsConfig": [],
+              "priority": 3,
+              "name": "SHR Lab"
+            }
+          ],
+          endpoints: [
+            {
+              "name": "SHR Endpoint",
+              "host": "shr",
+              "path": "/",
+              "port": 3000,
+              "primary": true,
+              "forwardAuthHeader": false,
+              "status": "enabled",
+              "type": "http"
+            }
+          ]
         },
       },
     };
