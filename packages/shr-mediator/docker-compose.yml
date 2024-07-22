@@ -12,7 +12,7 @@ services:
       - openhim
       - converter
     environment:
-      BROKERS: ${BROKERS}
+      BROKERS: ${SHR_BROKERS}
     deploy:
       replicas: 1
       restart_policy:

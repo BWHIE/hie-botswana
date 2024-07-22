@@ -1,27 +1,8 @@
 import * as dotenv from 'dotenv';
-import * as fs from 'fs';
-import * as path from 'path';
-import { merge } from 'lodash';
 
 dotenv.config();
 
 class Config {
-  private static loadDefaultConfig(): any {
-    const configPath = path.join(__dirname, '../../src/app-settings.json');
-    try {
-      const fileContent = fs.readFileSync(configPath, 'utf-8');
-      return JSON.parse(fileContent);
-    } catch (error) {
-      throw new Error(
-        `Failed to load default configuration from ${configPath}: ${error.message}`,
-      );
-    }
-  }
-
-  private static defaultConfig: any = Config.loadDefaultConfig();
-
-  private static config: any = Config.mergeEnvVariables(Config.defaultConfig);
-
   private static parseJsonEnvVariable(envVar: string): any {
     try {
       return JSON.parse(envVar);
@@ -30,7 +11,7 @@ class Config {
     }
   }
 
-  private static mergeEnvVariables(config: any): any {
+  private static mergeEnvVariables(): any {
     const envConfig: any = {
       app: {
         port: process.env.SHR_HTTP_PORT,
@@ -123,8 +104,10 @@ class Config {
       },
     };
 
-    return merge(config, envConfig);
+    return envConfig;
   }
+
+  private static config: any = Config.mergeEnvVariables();
 
   public get(path: string): any {
     const keys = path.split(':');

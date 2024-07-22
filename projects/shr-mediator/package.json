@@ -34,7 +34,6 @@
     "fhirclient": "^2.5.3",
     "hl7": "^1.1.1",
     "kafkajs": "^2.2.4",
-    "lodash": "^4.17.21",
     "nconf": "^0.12.1",
     "openhim-mediator-utils": "^0.4.0",
     "reflect-metadata": "^0.2.0",
