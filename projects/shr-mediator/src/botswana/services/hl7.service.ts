@@ -34,7 +34,6 @@ export class Hl7Service {
       // Determine Message Type
       const parsed = hl7.parseString(data);
       const msgType: string = parsed[0][9][0][0];
-
       if (msgType == 'ADT') {
         this.logger.log('Handling ADT Message');
         return this.handleAdtMessage(data);
@@ -60,6 +59,7 @@ export class Hl7Service {
   }
 
   async handleAdtMessage(hl7Msg: string): Promise<void> {
+    this.logger.log(hl7Msg);
     try {
       this.kafkaProducerService.sendPayloadWithRetryDMQ(
         { message: hl7Msg },
@@ -175,16 +175,16 @@ export class Hl7Service {
       const { data: translatedMessage } = await this.httpService.axiosRef.post<{
         fhirResource: R4.IBundle;
       }>(
-        `${config.get('fhirConverterUrl')}/convert/hl7v2/${template}`,
+        `${config.get('fhirConverterUrl')}/api/convert/hl7v2/${template}`,
         hl7Message.replace(/\r/g, '\n'),
         {
           headers: {
             'content-type': 'text/plain',
           },
-          auth: {
-            username: config.get('mediator:client:username'),
-            password: config.get('mediator:client:password'),
-          },
+          // auth: {
+          //   username: config.get('mediator:client:username'),
+          //   password: config.get('mediator:client:password'),
+          // },
         },
       );
 
@@ -205,17 +205,13 @@ export class Hl7Service {
     template: string,
   ): Promise<string> {
     try {
-      const { data } = await this.httpService.axiosRef.request<string>({
-        url: `${config.get('fhirConverterUrl')}/convert/fhir/${template}`,
+      const { data } = await this.httpService.axiosRef.request<any>({
+        url: `${config.get('fhirConverterUrl')}/api/convert/fhir/${template}`,
         headers: {
-          'content-type': 'text/plain',
+          'content-type': 'application/json',
         },
         data: JSON.stringify(bundle),
         method: 'POST',
-        auth: {
-          username: config.get('mediator:client:username'),
-          password: config.get('mediator:client:password'),
-        },
       });
 
       return data;

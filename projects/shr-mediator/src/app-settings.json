@@ -16,7 +16,7 @@
     "password": ""
   },
   "clientRegistryUrl": "http://openhim-core:5001/CR/fhir",
-  "fhirConverterUrl": "http://openhim-core:5001/72f",
+  "fhirConverterUrl": "http://openhim-mediator-fhir-converter:2019",
   "taskRunner": {
     "brokers": ["kafka-01:9092"]
   },
@@ -51,9 +51,9 @@
     "toIpmsOrmTemplate": "ORM_O01_TO_IPMS.hbs",
     "fromIpmsOruTemplate": "ORU_R01_FROM_IPMS.hbs",
     "mllp": {
-      "targetIp": "10.175.5.69",
-      "targetAdtPort": 3001,
-      "targetOrmPort": 3002
+      "targetIp": "10.0.22.10",
+      "targetAdtPort": 2575,
+      "targetOrmPort": 2575
     }
   },
   "Logger": {
