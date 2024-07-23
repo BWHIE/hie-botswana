@@ -8,9 +8,7 @@ import facilityMappings from '../utils/locationMap';
 
 @Injectable()
 export class MflService {
-  constructor(
-    private readonly logger: LoggerService,
-  ) {}
+  constructor(private readonly logger: LoggerService) {}
 
   async mapLocations(labBundle: R4.IBundle): Promise<R4.IBundle> {
     this.logger.log('Mapping Locations!');
@@ -70,6 +68,8 @@ export class MflService {
         let orderingLocation = <R4.ILocation>(
           getBundleEntry(bundle.entry, 'Location', locationId)
         );
+        
+        //@TODO fix
         let orderingOrganization = <R4.IOrganization>(
           getBundleEntry(bundle.entry, 'Organization', uniqueOrgIds[0])
         );
@@ -81,31 +81,29 @@ export class MflService {
           orderingLocation = <R4.ILocation>(
             getBundleEntry(bundle.entry, 'Location')
           );
-        }
-
-        if (orderingLocation) {
-          if (!orderingOrganization) {
-            this.logger.warn(
-              'No ordering Organization found - copying location info!',
-            );
-            orderingOrganization = {
-              resourceType: 'Organization',
-              id: crypto
-                .createHash('md5')
-                .update('Organization/' + orderingLocation.name)
-                .digest('hex'),
-              identifier: orderingLocation.identifier,
-              name: orderingLocation.name,
-            };
-          } else if (
-            !orderingLocation.managingOrganization ||
-            orderingLocation.managingOrganization.reference?.split('/')[1] !=
-              orderingOrganization.id
-          ) {
-            this.logger.error(
-              'Ordering Organization is not the managing Organziation of Location!',
-            );
-          }
+        } else if (orderingLocation) {
+            if (!orderingOrganization) {
+              this.logger.warn(
+                'No ordering Organization found - copying location info!',
+              );
+              orderingOrganization = {
+                resourceType: 'Organization',
+                id: crypto
+                  .createHash('md5')
+                  .update('Organization/' + orderingLocation.name)
+                  .digest('hex'),
+                identifier: orderingLocation.identifier,
+                name: orderingLocation.name,
+              };
+            } else if (
+              !orderingLocation.managingOrganization ||
+              orderingLocation.managingOrganization.reference?.split('/')[1] !=
+                orderingOrganization.id
+            ) {
+              this.logger.error(
+                'Ordering Organization is not the managing Organziation of Location!',
+              );
+            }
 
           mappedLocation = await this.translateLocation(orderingLocation);
           mappedOrganization = {
@@ -117,7 +115,6 @@ export class MflService {
             identifier: mappedLocation.identifier,
             name: mappedLocation.name,
           };
-
           const mappedLocationRef: R4.IReference = {
             reference: `Location/${mappedLocation.id}`,
           };
@@ -160,26 +157,30 @@ export class MflService {
 
             task.requester = orderingOrganizationRef;
 
-            bundle.entry.push({
-              resource: orderingOrganization,
-              request: {
-                method: R4.Bundle_RequestMethodKind._put,
-                url: orderingOrganizationRef.reference,
-              },
-            });
+            /**
+             * //@TODO fix double persistence issues of ordering facilities and locations in the submitted FHIR Bundle.
+             */
+
+            // bundle.entry.push({
+            //   resource: orderingOrganization,
+            //   request: {
+            //     method: R4.Bundle_RequestMethodKind._put,
+            //     url: orderingOrganizationRef.reference,
+            //   },
+            // });
           }
           if (orderingLocation && orderingLocation.id) {
             const orderingLocationRef: R4.IReference = {
               reference: `Location/${orderingLocation.id}`,
             };
 
-            bundle.entry.push({
-              resource: orderingLocation,
-              request: {
-                method: R4.Bundle_RequestMethodKind._put,
-                url: orderingLocationRef.reference,
-              },
-            });
+            // bundle.entry.push({
+            //   resource: orderingLocation,
+            //   request: {
+            //     method: R4.Bundle_RequestMethodKind._put,
+            //     url: orderingLocationRef.reference,
+            //   },
+            // });
           }
         }
       }

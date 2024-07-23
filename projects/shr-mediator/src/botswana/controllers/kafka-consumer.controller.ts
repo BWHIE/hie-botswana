@@ -15,6 +15,7 @@ import { MflService } from '../services/mfl.service';
 import { MpiService } from '../services/mpi.service';
 import { TerminologyService } from '../services/terminology.service';
 import { topicList } from '../utils/topics';
+import { BundlePayload } from '../../common/utils/fhir';
 
 @Controller()
 export class KafkaConsumerController {
@@ -38,11 +39,12 @@ export class KafkaConsumerController {
 
   @EventPattern(topicList.SEND_ADT_TO_IPMS)
   async handleSendAdtToIpms(
-    @Payload() val: string,
+    @Payload() val: BundlePayload,
     @Ctx() context: KafkaContext,
   ) {
     try {
-      const origBundle = JSON.parse(val).bundle;
+
+      const origBundle: IBundle = val.bundle;
 
       let enrichedBundle =
         await this.terminologyService.mapConcepts(origBundle);
@@ -110,11 +112,11 @@ export class KafkaConsumerController {
 
   @EventPattern(topicList.SAVE_PIMS_PATIENT)
   async handleSavePimsPatient(
-    @Payload() val: string,
+    @Payload() val: BundlePayload,
     @Ctx() context: KafkaContext,
   ) {
     try {
-      const origBundle = JSON.parse(val).bundle;
+      const origBundle: IBundle = val.bundle;
       await this.mpiService.updateCrPatient(origBundle);
       await this.commitOffsets(context);
     } catch (err) {
@@ -124,16 +126,15 @@ export class KafkaConsumerController {
 
   @EventPattern(topicList.SAVE_IPMS_PATIENT)
   async handleSaveIpmsPatient(
-    @Payload() val: string,
+    @Payload() val: IPatient,
     @Ctx() context: KafkaContext,
   ) {
     try {
-      const patient: IPatient = JSON.parse(val);
       const bundle: IBundle = {
         resourceType: 'Bundle',
         entry: [
           {
-            resource: patient,
+            resource: val,
           },
         ],
       };

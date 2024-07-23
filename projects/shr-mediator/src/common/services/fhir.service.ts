@@ -6,13 +6,14 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
+import { Request as NestRequest, Res } from '@nestjs/common';
 import { AxiosRequestConfig } from 'axios';
 import { Request, Response } from 'express';
-import { Observable, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import config from '../../config';
 import { LoggerService } from '../../logger/logger.service';
-import { ResourceType, getResourceTypeEnum } from '../utils/fhir';
+import { ResourceType, getCircularReplacer, getResourceTypeEnum } from '../utils/fhir';
 
 export interface FhirClientConfig {
   serverUrl: string;
@@ -27,71 +28,87 @@ export class FhirService {
     private readonly logger: LoggerService,
   ) {}
 
-  passthrough(req: Request, res: Response, path: string): Observable<any> {
-    path = path.startsWith('/fhir') ? path.replace('/fhir', '') : path;
+  async passthrough(
+    @NestRequest() req: Request,
+    @Res() res: Response,
+    path: string,
+  ): Promise<any> {
     const requestOptions: AxiosRequestConfig = {
       url: `${config.get('fhirServer:baseURL')}/${path}`,
       method: req.method,
-      responseType: 'stream',
-      headers: req.headers,
+      headers: {
+        ...req.headers,
+        'X-Forwarded-For': req.headers['x-forwarded-for'] || req.ip,
+        'X-Forwarded-Proto': req.protocol,
+        'X-Forwarded-Host': req.get('host'),
+        'X-Forwarded-Port': req.get('x-forwarded-port') || req.socket.localPort,
+      },
       auth: {
         username: config.get('fhirServer:username'),
         password: config.get('fhirServer:password'),
       },
-    }
-    
-    if (req.method === 'POST') {
-      requestOptions.data = req.body;
-    }
+      responseType: 'stream',
+      // @ts-ignore
+      data: req.rawBody,
+    };
 
-    this.logger.debug('FHIR REQ :', requestOptions);
-  
-    return this.httpService.request(requestOptions)
-      .pipe(
-        tap((response) => {
-          res.status(response.status);
-          response.data.pipe(res);
-        }),
-        catchError((error) => {
-          res.status(HttpStatus.BAD_GATEWAY).json({ error: error.message });
-          return throwError(() => new Error(error));
-        }),
-      );
+    return this.httpService.request(requestOptions).pipe(
+      tap((response) => {
+        res.status(response.status);
+        response.data.pipe(res);
+      }),
+      catchError((error) => {
+        const errorResponse = error.response
+          ? JSON.stringify(error.response.data, getCircularReplacer())
+          : error.message;
+        const errorStatus = error.response
+          ? error.response.status
+          : HttpStatus.BAD_GATEWAY;
+
+        this.logger.error('FHIR Request Error:', errorResponse);
+
+        res.status(errorStatus).json({
+          error: errorResponse,
+          message: 'An error occurred while processing the FHIR request.',
+          method: req.method,
+          url: requestOptions.url,
+          status: errorStatus,
+        });
+        return throwError(() => new Error(error));
+      }),
+    );
   }
 
   async saveResource(req: Request, res: Response) {
     const resource = req.body;
     const resourceType = req.params.resourceType;
     const id = req.params.id;
+
     if (id && !resource.id) {
       resource.id = id;
     }
 
     this.logger.log(
-      'Received a request to add resource type ' +
-        resourceType +
-        ' with id ' +
-        id,
+      `Received request to add resource type ${resourceType} with id ${id}`,
     );
 
-    let path;
+    let path: string;
     if (req.method === 'POST') {
-      path = '/' + getResourceTypeEnum(resourceType).toString();
+      path = getResourceTypeEnum(resourceType);
     } else if (req.method === 'PUT') {
-      path = '/' + getResourceTypeEnum(resourceType).toString() + '/' + id;
+      path = `${getResourceTypeEnum(resourceType)}/${id}`;
     } else {
-      // Invalid request method
       throw new BadGatewayException('Invalid request method');
     }
-
     try {
-      // Perform  request
-      this.logger.log('Sending ' + req.method + ' request to ' + path);
-
-      return this.passthrough(req, res, path);
+      const result = await this.passthrough(req, res, path);
+      return result; // Handle the result if needed
     } catch (error) {
-      this.logger.error(error);
-      throw new InternalServerErrorException();
+      if (error.response) {
+        throw new InternalServerErrorException(error.response.data);
+      } else {
+        throw new InternalServerErrorException('Internal server error');
+      }
     }
   }
 
@@ -101,17 +118,26 @@ export class FhirService {
     options?: AxiosRequestConfig<any>,
     retryLimit = 2,
     timeout = 30000,
+    path: string = ''
   ) {
     for (let attempt = 1; attempt <= retryLimit; attempt++) {
       try {
-        const { data } = await this.httpService.axiosRef.post<R4.IBundle>(
-          config.get('fhirServer:baseURL'),
+        const { data } = await this.httpService.axiosRef.post<any>(
+          `${config.get('fhirServer:baseURL')}/${path}`,
           payload,
           options,
         );
         return data; // If request is successful, return the response
       } catch (error) {
-        this.logger.error(`Attempt ${attempt} failed`, error);
+        this.logger.error(
+          `Attempt ${attempt} failed`,
+          JSON.stringify({
+            error: error.message,
+            status: error.response?.status,
+            data: error.response?.data,
+            headers: error.response?.headers,
+          }),
+        );
 
         // Sleep for a given amount of time
         await new Promise((resolve) => setTimeout(resolve, timeout));
@@ -125,10 +151,14 @@ export class FhirService {
     }
   }
 
-  async get(resource: ResourceType, options: AxiosRequestConfig): Promise<any> {
-    const targetUri = config.get('fhirServer:baseURL') + '/' + resource;
+  async get(resource: ResourceType, options: AxiosRequestConfig, id?: string,): Promise<any> {
+    let targetUri = config.get('fhirServer:baseURL') + '/' + resource;
 
-    this.logger.log(`Getting ${targetUri}`);
+
+    // Account for READ Operation
+    if (id) {
+      targetUri += `/${id}`;
+    }
 
     try {
       const { data: result } = await this.httpService.axiosRef.get<R4.IBundle>(
@@ -151,3 +181,5 @@ export class FhirService {
     }
   }
 }
+
+
