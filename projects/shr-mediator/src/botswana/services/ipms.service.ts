@@ -56,11 +56,11 @@ export class IpmsService {
 
       this.logger.log(`adt:\n${adtMessage}`);
 
-      const targetIp = config.get('bwConfig:mllp:targetIp');
+      const targetHost = config.get('bwConfig:mllp:targetHost');
       const targetPort = config.get('bwConfig:mllp:targetAdtPort');
 
       const adtResult: string = <string>(
-        await this.mllpService.send(adtMessage, targetIp, targetPort)
+        await this.mllpService.send(adtMessage, targetHost, targetPort)
       );
 
       if (adtResult.includes && adtResult.includes('AA')) {
