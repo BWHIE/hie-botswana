@@ -52,4 +52,4 @@ To stop and remove the service, use:
 docker-compose down
 ```
 
-Connect the IPMS Mock MLLP Server to the SHR mediator network : `docker network connect shr_public ipms-server`
+Connect the IPMS Mock MLLP Server to the SHR mediator network : `docker network connect --ip <your-chosen-ip> --link <SHR mediator conatiner ID or name>:shr-mediator shr_public ipms-server`

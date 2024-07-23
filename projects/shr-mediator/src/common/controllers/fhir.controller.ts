@@ -12,10 +12,8 @@ import {
   Res,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { Observable } from 'rxjs';
 import { LoggerService } from 'src/logger/logger.service';
-import URI from 'urijs';
-import config from '../../config';
+import * as URI from 'urijs';
 import { FhirService } from '../services/fhir.service';
 import { IpsService } from '../services/ips.service';
 import {
@@ -39,8 +37,8 @@ export class FhirController {
   }
 
   @Get('/metadata')
-  passThrough(@Req() req: Request, @Res() res: Response): Observable<any> {
-    return this.fhirService.passthrough(req, res);
+  async passThrough(@Req() req: Request, @Res() res: Response): Promise<any> {
+    return this.fhirService.passthrough(req, res, '/metadata');
   }
 
   @Get(':resource/:id?/:operation?')
@@ -52,10 +50,12 @@ export class FhirController {
     @Param('operation') operation: string,
   ) {
     try {
-      let uri = URI(config.get('fhirServer:baseURL'));
+      let path = URI();
 
       if (isValidResourceType(req.params.resource)) {
-        uri = uri.segment(getResourceTypeEnum(req.params.resource).toString());
+        path = path.segment(
+          getResourceTypeEnum(req.params.resource).toString(),
+        );
       } else {
         throw new BadRequestException(
           `Invalid resource type ${req.params.resource}`,
@@ -63,27 +63,27 @@ export class FhirController {
       }
 
       if (req.params.id && /^[a-zA-Z0-9\-_]+$/.test(req.params.id)) {
-        uri = uri.segment(encodeURIComponent(req.params.id));
+        path = path.segment(encodeURIComponent(req.params.id));
       } else {
         this.logger.log(
           `Invalid id ${req.params.id} - falling back on pass-through to HAPI FHIR server`,
         );
-        return this.fhirService.passthrough(req, res);
+        return this.fhirService.passthrough(req, res, req.url);
       }
 
       for (const param in req.query) {
         const value = req.query[param];
         if (value && /^[a-zA-Z0-9\-_]+$/.test(value.toString())) {
-          uri.addQuery(param, encodeURIComponent(value.toString()));
+          path.addQuery(param, encodeURIComponent(value.toString()));
         } else {
           this.logger.log(
             `Invalid query parameter ${param}=${value} - falling back on pass-through to HAPI FHIR server`,
           );
-          return this.fhirService.passthrough(req, res);
+          return this.fhirService.passthrough(req, res, req.url);
         }
       }
 
-      this.logger.log(`Getting ${uri.toString()}`);
+      this.logger.log(`Getting ${path.toString()}`);
 
       if (
         id &&
@@ -110,7 +110,7 @@ export class FhirController {
           throw new InternalServerErrorException('Unsupported Operation');
         }
       } else {
-        return this.fhirService.passthrough(req, res, uri.toString());
+        return this.fhirService.passthrough(req, res, path.toString());
       }
     } catch (error) {
       this.logger.error(error);
@@ -125,7 +125,10 @@ export class FhirController {
     @Res() res: Response,
   ) {
     try {
-      this.logger.log('Received a request to add a bundle of resources');
+      this.logger.log(
+        'Received a request to add a bundle of resources',
+        bundle,
+      );
 
       // Verify the bundle
       if (invalidBundle(bundle)) {
@@ -136,7 +139,7 @@ export class FhirController {
         throw new BadRequestException(invalidBundleMessage());
       }
 
-      return this.fhirService.passthrough(req, res);
+      return this.fhirService.passthrough(req, res, '');
     } catch (error) {
       this.logger.error(error);
       throw new InternalServerErrorException();

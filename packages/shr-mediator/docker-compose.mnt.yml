@@ -1,0 +1,7 @@
+version: "3.8"
+
+services:
+  shr-mediator:
+    volumes:
+      - ${SHR_DEV_MOUNT_FOLDER}/src:/app/src
+      - ${SHR_DEV_MOUNT_FOLDER}/node_modules:/app/node_modules

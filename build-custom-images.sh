@@ -29,9 +29,9 @@ docker build \
     --no-cache
 
 docker build \
-    -t itechuw/shared-health-record:local \
-    -f projects/shared-health-record/Dockerfile \
-    projects/shared-health-record/ \
+    -t jembi/shr-mediator:local \
+    -f projects/shr-mediator/Dockerfile \
+    projects/shr-mediator/ \
     --no-cache
 
 # Build the Platform to contain the above custom builds

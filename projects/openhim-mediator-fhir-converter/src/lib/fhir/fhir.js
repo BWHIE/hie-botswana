@@ -168,8 +168,12 @@ module.exports = class fhir extends dataHandler {
 
     setPatientData(patient, res) { 
         res.patientId = patient.id;
-        res.patientDob = patient.birthDate.split('-').join('');
-        res.patientSex = patient.gender && patient.gender == 'male' ? "M" : "F";
+        if ( patient.birthDate){
+            res.patientDob = patient.birthDate.split('-').join('');
+        }
+        if (patient.gender){
+            res.patientSex = patient.gender && patient.gender == 'male' ? "M" : "F";
+             }
         
         if(patient.address && patient.address.length > 0){
             res.patientStreetAddress = patient.address[0].line && patient.address[0].line.length > 0 ? patient.address[0].line[0] : "";

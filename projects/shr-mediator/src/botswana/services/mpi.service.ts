@@ -31,12 +31,14 @@ export class MpiService {
           password: config.get('mediator:client:password'),
         },
       };
+      const thePatient = patResult.resource as R4.IPatient;
 
       const crResult = await this.fhirService.postWithRetry(
-        patResult.resource as R4.IPatient,
+        thePatient,
         options,
         config.get('bwConfig:retryCount'),
         config.get('bwConfig:retryDelay'),
+        thePatient.resourceType,
       );
 
       this.logger.debug(

@@ -11,7 +11,6 @@ import {
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import fhirClient from 'fhirclient';
-import { Observable } from 'rxjs';
 import { LoggerService } from 'src/logger/logger.service';
 import config from '../../config';
 import { FhirService } from '../services/fhir.service';
@@ -31,8 +30,8 @@ export class IpsController {
   }
 
   @Get('/metadata')
-  passThrough(@Req() req: Request, @Res() res: Response): Observable<any> {
-    return this.fhirService.passthrough(req, res);
+  async passThrough(@Req() req: Request, @Res() res: Response): Promise<any> {
+    return this.fhirService.passthrough(req, res, '/metadata');
   }
 
   @Get('/Patient/cruid/:id/:lastUpdated?')

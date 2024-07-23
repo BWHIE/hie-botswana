@@ -4,6 +4,7 @@ import {
   BundleTypeKind,
   IBundle,
   IDiagnosticReport,
+  ILocation,
   IObservation,
   IPatient,
   ITask,
@@ -73,7 +74,7 @@ export class IpmsService {
 
   async sendOrmToIpms(bundles: any): Promise<R4.IBundle> {
     const srBundle: R4.IBundle = { resourceType: 'Bundle', entry: [] };
-    let labBundle = bundles.taskBundle;
+    let labBundle = bundles.taskBundle.data;
     const patient = bundles.patient;
 
     try {
@@ -136,8 +137,36 @@ export class IpmsService {
       // TODO: FIGURE OUT MANAGEMENT OF PANELS/PROFILES
       for (const sr of srBundle.entry) {
         // Send one ORM for each ServiceRequest
-        const outBundle = { ...sendBundle };
+        const outBundle: R4.IBundle = { ...sendBundle };
+
         outBundle.entry.push(sr);
+
+        //@TODO Temporary workaround to add location resource to bundle to avoid FHIR to HL7 conversion error when sending an ORM!
+        const task = <ITask>(
+          outBundle.entry.find(
+            (e: any) => e.resource && e.resource.resourceType == 'Task',
+          )!.resource!
+        );
+        const locationReference = task.requester || null;
+        if (locationReference) {
+          if (locationReference.reference.split('/')[0] == 'Organization') {
+            const { data: fetchedBundle } =
+              await this.httpService.axiosRef.get<R4.IBundle>(
+                `${config.get('fhirServer:baseURL')}/Location?organization=${locationReference.reference}`,
+              );
+            const locationResource = {
+              fullUrl: fetchedBundle.entry[0].fullUrl,
+              resource: <ILocation>fetchedBundle.entry[0].resource,
+            };
+
+            this.logger.log(
+              `Retrieved Location resource : ${JSON.stringify(locationResource)}`,
+            );
+            outBundle.entry.push(locationResource);
+          }
+        }
+
+        // const translatedBundle = await this.labService.translateToTransactionBundle(outBundle);
 
         const ormMessage = await this.hl7Service.getFhirTranslationWithRetry(
           outBundle,
@@ -332,7 +361,7 @@ export class IpmsService {
     let resultBundle: R4.IBundle = { resourceType: 'Bundle' };
     let serviceRequestBundle: R4.IBundle = { resourceType: 'Bundle' };
 
-    let taskPatient, task;
+    let taskPatient: IPatient, task: ITask;
 
     try {
       if (!message) throw new Error('No message provided!');
@@ -391,14 +420,40 @@ export class IpmsService {
             : undefined;
 
         if (labOrderId && labOrderId.value) {
+          const formerOptions: AxiosRequestConfig = {
+            timeout: config.get('bwConfig:requestTimeout'),
+            params: {},
+          };
+
+          /**
+         * When an ORU (Observation Result) message is received, the 'Based-on' parameter of the Task resource is never updated.
+         * To address this, we need to use the previous Service Request resource. 
+         * This is done by retrieving the 'based-on' reference parameter of the Service Request resource 
+         * that corresponds to the given 'labOrderId.value'. 
+   
+         * The following options include parameters to:
+         * 1. Retrieve the Task resource that includes the referenced Patient resource ('Task:patient').
+         * 2. Retrieve the Task resource that includes the referenced Service Request resource ('Task:based-on').
+         * 3. Specify the 'based-on' reference using the provided labOrderId value.
+         */
+
+          const previousSr = <R4.IServiceRequest>(
+            await this.fhirService.get(
+              ResourceType.ServiceRequest,
+              formerOptions,
+              labOrderId.value,
+            )
+          );
+          const formerLabOrderId =
+            previousSr.basedOn[0].reference.split('/')[1];
+
           const options: AxiosRequestConfig = {
             timeout: config.get('bwConfig:requestTimeout'),
             params: {},
           };
 
-          options.params['_include'] = 'Task:patient';
-          options.params['_include'] = 'Task:based-on';
-          options.params['based-on'] = labOrderId.value;
+          (options.params['_include'] = 'Task:patient'), 'Task:based-on';
+          options.params['based-on'] = formerLabOrderId;
 
           serviceRequestBundle = await this.fhirService.get(
             ResourceType.Task,
@@ -424,8 +479,11 @@ export class IpmsService {
             )!.resource!
           );
 
-          // TODO: Validate Patient Match by Identifier/CR match
-          // taskPatient.identifier == patient.identifier (for omang/brn/ppn) or make sure the two are linked in CR
+          /**
+           * TODO: Validate Patient Match by Identifier/CR match
+           *  taskPatient.identifier == patient.identifier (for omang/brn/ppn) or make sure the two are linked in CR.
+           * Retrieve Golden Record from the Client Registry?
+           */
         } else {
           this.logger.error(
             'Could not find ServiceRequest with Lab Order ID ' +
@@ -447,8 +505,11 @@ export class IpmsService {
         if (!dr.basedOn) dr.basedOn = [];
         if (!task.basedOn) task.basedOn = [];
 
-        dr.basedOn.push({ reference: 'ServiceRequest/' + labOrderId });
+        dr.basedOn.push({ reference: 'ServiceRequest/' + labOrderId.value });
         task.basedOn.push({ reference: 'DiagnosticReport/' + dr.id });
+
+        // Update Task Resource with the new based-on Value for Service Request
+        task.basedOn.push({ reference: 'ServiceRequest/' + labOrderId.value });
 
         // Generate SendBundle with Task, DiagnosticReport, Patient, and Observation
         const entry = this.createSendBundleEntry(task, dr, obs);
