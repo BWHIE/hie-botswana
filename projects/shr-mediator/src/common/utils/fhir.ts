@@ -1,4 +1,5 @@
 import { R4 } from '@ahryman40k/ts-fhir-types';
+import { IBundle } from '@ahryman40k/ts-fhir-types/lib/R4';
 
 export enum ResourceType {
   Account = 'Account',
@@ -277,4 +278,8 @@ export function getCircularReplacer() {
     }
     return value;
   };
+}
+
+export interface BundlePayload {
+  bundle: IBundle;
 }

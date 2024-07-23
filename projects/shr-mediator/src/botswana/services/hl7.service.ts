@@ -181,10 +181,6 @@ export class Hl7Service {
           headers: {
             'content-type': 'text/plain',
           },
-          // auth: {
-          //   username: config.get('mediator:client:username'),
-          //   password: config.get('mediator:client:password'),
-          // },
         },
       );
 

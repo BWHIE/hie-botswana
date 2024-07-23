@@ -157,6 +157,10 @@ export class MflService {
 
             task.requester = orderingOrganizationRef;
 
+            /**
+             * //@TODO fix double persistence issues of ordering facilities and locations in the submitted FHIR Bundle.
+             */
+
             // bundle.entry.push({
             //   resource: orderingOrganization,
             //   request: {

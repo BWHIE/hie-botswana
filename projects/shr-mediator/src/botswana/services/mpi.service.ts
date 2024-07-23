@@ -34,11 +34,11 @@ export class MpiService {
       const thePatient = patResult.resource as R4.IPatient
 
       const crResult = await this.fhirService.postWithRetry(
-        patResult.resource as R4.IPatient,
+        thePatient,
         options,
         config.get('bwConfig:retryCount'),
         config.get('bwConfig:retryDelay'),
-        patResult.resource.resourceType
+        thePatient.resourceType
       );
 
       this.logger.debug(

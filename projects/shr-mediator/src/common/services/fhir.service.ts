@@ -118,13 +118,10 @@ export class FhirService {
     options?: AxiosRequestConfig<any>,
     retryLimit = 2,
     timeout = 30000,
-    path?: string
+    path: string = ''
   ) {
     for (let attempt = 1; attempt <= retryLimit; attempt++) {
       try {
-        if(!path){
-          path=''
-        }
         const { data } = await this.httpService.axiosRef.post<any>(
           `${config.get('fhirServer:baseURL')}/${path}`,
           payload,
