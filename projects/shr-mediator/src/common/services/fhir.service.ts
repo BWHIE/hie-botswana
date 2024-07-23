@@ -13,7 +13,11 @@ import { throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import config from '../../config';
 import { LoggerService } from '../../logger/logger.service';
-import { ResourceType, getCircularReplacer, getResourceTypeEnum } from '../utils/fhir';
+import {
+  ResourceType,
+  getCircularReplacer,
+  getResourceTypeEnum,
+} from '../utils/fhir';
 
 export interface FhirClientConfig {
   serverUrl: string;
@@ -118,7 +122,7 @@ export class FhirService {
     options?: AxiosRequestConfig<any>,
     retryLimit = 2,
     timeout = 30000,
-    path: string = ''
+    path: string = '',
   ) {
     for (let attempt = 1; attempt <= retryLimit; attempt++) {
       try {
@@ -151,9 +155,12 @@ export class FhirService {
     }
   }
 
-  async get(resource: ResourceType, options: AxiosRequestConfig, id?: string,): Promise<any> {
+  async get(
+    resource: ResourceType,
+    options: AxiosRequestConfig,
+    id?: string,
+  ): Promise<any> {
     let targetUri = config.get('fhirServer:baseURL') + '/' + resource;
-
 
     // Account for READ Operation
     if (id) {
@@ -181,5 +188,3 @@ export class FhirService {
     }
   }
 }
-
-

@@ -68,7 +68,7 @@ export class MflService {
         let orderingLocation = <R4.ILocation>(
           getBundleEntry(bundle.entry, 'Location', locationId)
         );
-        
+
         //@TODO fix
         let orderingOrganization = <R4.IOrganization>(
           getBundleEntry(bundle.entry, 'Organization', uniqueOrgIds[0])
@@ -82,28 +82,28 @@ export class MflService {
             getBundleEntry(bundle.entry, 'Location')
           );
         } else if (orderingLocation) {
-            if (!orderingOrganization) {
-              this.logger.warn(
-                'No ordering Organization found - copying location info!',
-              );
-              orderingOrganization = {
-                resourceType: 'Organization',
-                id: crypto
-                  .createHash('md5')
-                  .update('Organization/' + orderingLocation.name)
-                  .digest('hex'),
-                identifier: orderingLocation.identifier,
-                name: orderingLocation.name,
-              };
-            } else if (
-              !orderingLocation.managingOrganization ||
-              orderingLocation.managingOrganization.reference?.split('/')[1] !=
-                orderingOrganization.id
-            ) {
-              this.logger.error(
-                'Ordering Organization is not the managing Organziation of Location!',
-              );
-            }
+          if (!orderingOrganization) {
+            this.logger.warn(
+              'No ordering Organization found - copying location info!',
+            );
+            orderingOrganization = {
+              resourceType: 'Organization',
+              id: crypto
+                .createHash('md5')
+                .update('Organization/' + orderingLocation.name)
+                .digest('hex'),
+              identifier: orderingLocation.identifier,
+              name: orderingLocation.name,
+            };
+          } else if (
+            !orderingLocation.managingOrganization ||
+            orderingLocation.managingOrganization.reference?.split('/')[1] !=
+              orderingOrganization.id
+          ) {
+            this.logger.error(
+              'Ordering Organization is not the managing Organziation of Location!',
+            );
+          }
 
           mappedLocation = await this.translateLocation(orderingLocation);
           mappedOrganization = {

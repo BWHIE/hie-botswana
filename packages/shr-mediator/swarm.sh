@@ -52,6 +52,8 @@ function initialize_package() {
   
   log info "Deploying package with compose file: ${COMPOSE_FILE_PATH}/docker-compose.yml ${package_dev_compose_filename}"
   
+  docker::await_service_status "kafka" "kafka-01" "Running"
+
   (
     docker::deploy_service $STACK "${COMPOSE_FILE_PATH}" "docker-compose.yml" "$package_dev_compose_filename" "$package_mnt_compose_filename"
   ) || {

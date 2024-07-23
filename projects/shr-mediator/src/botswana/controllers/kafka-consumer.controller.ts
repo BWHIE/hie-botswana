@@ -43,7 +43,6 @@ export class KafkaConsumerController {
     @Ctx() context: KafkaContext,
   ) {
     try {
-
       const origBundle: IBundle = val.bundle;
 
       let enrichedBundle =

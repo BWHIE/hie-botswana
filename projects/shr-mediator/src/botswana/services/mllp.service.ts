@@ -1,6 +1,6 @@
 import { MllpServer } from '@i-tech-uw/mllp-server';
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { config } from '../../config';
+import config from '../../config';
 import { Hl7Service } from './hl7.service';
 import { LoggerService } from '../../logger/logger.service';
 import { IBundle } from '@ahryman40k/ts-fhir-types/lib/R4';
@@ -36,7 +36,8 @@ export class MllpService implements OnModuleInit {
       this.logger.debug('Received message:', data.toString());
       const checkChar: string = data[data.length - 1];
       if (checkChar == '\r') {
-        const response: IBundle | undefined = await this.hl7Handler.handleMessage(data);
+        const response: IBundle | undefined =
+          await this.hl7Handler.handleMessage(data);
       } else {
         this.logger.warn('Malformed HL7 Message:\n' + data);
       }
