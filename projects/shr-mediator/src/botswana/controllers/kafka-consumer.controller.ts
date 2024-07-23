@@ -38,11 +38,13 @@ export class KafkaConsumerController {
 
   @EventPattern(topicList.SEND_ADT_TO_IPMS)
   async handleSendAdtToIpms(
-    @Payload() val: string,
+    @Payload() val: IBundle,
     @Ctx() context: KafkaContext,
   ) {
     try {
-      const origBundle = JSON.parse(val).bundle;
+
+      //@ts-ignore
+      const origBundle: IBundle = val.bundle;
 
       let enrichedBundle =
         await this.terminologyService.mapConcepts(origBundle);
@@ -114,7 +116,8 @@ export class KafkaConsumerController {
     @Ctx() context: KafkaContext,
   ) {
     try {
-      const origBundle = JSON.parse(val).bundle;
+      //@ts-ignore
+      const origBundle: IBundle = val.bundle;
       await this.mpiService.updateCrPatient(origBundle);
       await this.commitOffsets(context);
     } catch (err) {
@@ -128,7 +131,8 @@ export class KafkaConsumerController {
     @Ctx() context: KafkaContext,
   ) {
     try {
-      const patient: IPatient = JSON.parse(val);
+      //@ts-ignore
+      const patient: IPatient = val;
       const bundle: IBundle = {
         resourceType: 'Bundle',
         entry: [

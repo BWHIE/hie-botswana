@@ -94,7 +94,7 @@ export class FhirService {
 
     let path: string;
     if (req.method === 'POST') {
-      path = `${getResourceTypeEnum(resourceType)}`;
+      path = getResourceTypeEnum(resourceType);
     } else if (req.method === 'PUT') {
       path = `${getResourceTypeEnum(resourceType)}/${id}`;
     } else {
@@ -118,11 +118,15 @@ export class FhirService {
     options?: AxiosRequestConfig<any>,
     retryLimit = 2,
     timeout = 30000,
+    path?: string
   ) {
     for (let attempt = 1; attempt <= retryLimit; attempt++) {
       try {
-        const { data } = await this.httpService.axiosRef.post<R4.IBundle>(
-          config.get('fhirServer:baseURL'),
+        if(!path){
+          path=''
+        }
+        const { data } = await this.httpService.axiosRef.post<any>(
+          `${config.get('fhirServer:baseURL')}/${path}`,
           payload,
           options,
         );
@@ -150,10 +154,14 @@ export class FhirService {
     }
   }
 
-  async get(resource: ResourceType, options: AxiosRequestConfig): Promise<any> {
-    const targetUri = config.get('fhirServer:baseURL') + '/' + resource;
+  async get(resource: ResourceType, options: AxiosRequestConfig, id?: string,): Promise<any> {
+    let targetUri = config.get('fhirServer:baseURL') + '/' + resource;
 
-    this.logger.log(`Getting ${targetUri}`);
+
+    // Account for READ Operation
+    if (id) {
+      targetUri += `/${id}`;
+    }
 
     try {
       const { data: result } = await this.httpService.axiosRef.get<R4.IBundle>(
