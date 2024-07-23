@@ -1,9 +1,9 @@
-import { IBundle } from '@ahryman40k/ts-fhir-types/lib/R4';
 import { MllpServer } from '@i-tech-uw/mllp-server';
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import config from '../../config';
 import { Hl7Service } from './hl7.service';
 import { LoggerService } from '../../logger/logger.service';
+import { IBundle } from '@ahryman40k/ts-fhir-types/lib/R4';
 
 @Injectable()
 export class MllpService implements OnModuleInit {
@@ -16,7 +16,7 @@ export class MllpService implements OnModuleInit {
     this.mllpServer = new MllpServer(
       '0.0.0.0',
       config.get('app:mllpPort'),
-      logger,
+      // logger,
     );
   }
 
@@ -36,9 +36,8 @@ export class MllpService implements OnModuleInit {
       this.logger.debug('Received message:', data.toString());
       const checkChar: string = data[data.length - 1];
       if (checkChar == '\r') {
-        const response: IBundle = await this.hl7Handler.handleMessage(data);
-
-        this.logger.log('HL7 Response:\n' + JSON.stringify(response));
+        const response: IBundle | undefined =
+          await this.hl7Handler.handleMessage(data);
       } else {
         this.logger.warn('Malformed HL7 Message:\n' + data);
       }

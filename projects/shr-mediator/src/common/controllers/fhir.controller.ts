@@ -12,10 +12,8 @@ import {
   Res,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { Observable } from 'rxjs';
 import { LoggerService } from 'src/logger/logger.service';
-import URI from 'urijs';
-import config from '../../config';
+import * as URI from 'urijs';
 import { FhirService } from '../services/fhir.service';
 import { IpsService } from '../services/ips.service';
 import {
@@ -39,7 +37,7 @@ export class FhirController {
   }
 
   @Get('/metadata')
-  passThrough(@Req() req: Request, @Res() res: Response): Observable<any> {
+  async passThrough(@Req() req: Request, @Res() res: Response): Promise<any> {
     return this.fhirService.passthrough(req, res, '/metadata');
   }
 
