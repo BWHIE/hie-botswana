@@ -4,7 +4,6 @@ import config from '../../config';
 import { Hl7Service } from './hl7.service';
 import { LoggerService } from '../../logger/logger.service';
 import { IBundle } from '@ahryman40k/ts-fhir-types/lib/R4';
-import * as dns from 'dns';
 
 @Injectable()
 export class MllpService implements OnModuleInit {
@@ -49,13 +48,12 @@ export class MllpService implements OnModuleInit {
     const targeHostToSend = targetHost || 'example.com';
     const portToSend = port || 3000;
 
-    const targetIpToSend = await this.getIpFromHostname(targeHostToSend);
     message = message.replace(/[\n\r]/g, '\r');
     const firstNewline = message.match(/\r/);
     const header = firstNewline ? message.substring(0, firstNewline.index) : '';
     return new Promise((resolve, reject) => {
       this.mllpServer.send(
-        targetIpToSend,
+        targeHostToSend,
         portToSend,
         message,
         (err: any, ackData: any) => {
@@ -74,17 +72,6 @@ export class MllpService implements OnModuleInit {
           }
         },
       );
-    });
-  }
-  async getIpFromHostname(hostname: string): Promise<string> {
-    return new Promise((resolve, reject) => {
-      dns.lookup(hostname, (err, address) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(address);
-        }
-      });
     });
   }
 }
