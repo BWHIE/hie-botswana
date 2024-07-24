@@ -1,28 +1,31 @@
 {
-    "id": "omang-service-mediator",
-    "name": "Omang Service Mediator",
-    "description": "Omang Service is a OpenHIM Mediator to help communicate with registries (external Oracle DB)",
-    "type": "infrastructure",
-    "version": "0.0.1",
-    "dependencies": ["fhir-datastore-hapi-fhir", "analytics-datastore-elastic-search", "interoperability-layer-openhim", "client-registry-opencr"],
-    "environmentVariables": {
-      "OMANG_ORACLE_DOCKER_IMAGE": "gvenzl/oracle-xe",
-      "OMANG_ORACLE_PASSWORD": "dev_password_only",
-      "OMANG_SERVICE_DB_HOST": "omang-service-mediator_oracle-db",
-      "OMANG_ORACLE_PORT": "1521",
-      "OMANG_ORACLE_SID": "XE",
-      "OMANG_ORACLE_CITIZEN_VIEW": "OMANG_CITIZEN",
-      "OMANG_ORACLE_CITIZEN_USERNAME": "omang",
-      "OMANG_ORACLE_CITIZEN_PASSWORD": "some-password",
-      "OMANG_ORACLE_BDRS_BIRTH_VIEW": "V_BIRTH",
-      "OMANG_ORACLE_BDRS_DEATH_VIEW": "V_DEATH",
-      "OMANG_ORACLE_BDRS_USERNAME": "bdr",
-      "OMANG_ORACLE_BDRS_PASSWORD": "some-password",
-      "OMANG_ORACLE_IMMIGRATION_VIEW": "V_MOH",
-      "OMANG_ORACLE_IMMIGRATION_USERNAME": "immigration",
-      "OMANG_ORACLE_IMMIGRATION_PASSWORD": "some-password",
-      "OMANG_DEV_MOUNT_FOLDER": ""
-    }
+  "id": "omang-service-mediator",
+  "name": "Omang Service Mediator",
+  "description": "Omang Service is a OpenHIM Mediator to help communicate with registries (external Oracle DB)",
+  "type": "infrastructure",
+  "version": "0.0.1",
+  "dependencies": [
+    "fhir-datastore-hapi-fhir",
+    "analytics-datastore-elastic-search",
+    "interoperability-layer-openhim",
+    "client-registry-opencr"
+  ],
+  "environmentVariables": {
+    "OMANG_ORACLE_DOCKER_IMAGE": "gvenzl/oracle-xe",
+    "OMANG_ORACLE_PASSWORD": "dev_password_only",
+    "OMANG_SERVICE_DB_HOST": "omang-service-mediator_oracle-db",
+    "OMANG_ORACLE_PORT": "1521",
+    "OMANG_ORACLE_SID": "XE",
+    "OMANG_ORACLE_CITIZEN_VIEW": "OMANG_CITIZEN",
+    "OMANG_ORACLE_CITIZEN_USERNAME": "omang",
+    "OMANG_ORACLE_CITIZEN_PASSWORD": "some-password",
+    "OMANG_ORACLE_BDRS_BIRTH_VIEW": "V_BIRTH",
+    "OMANG_ORACLE_BDRS_DEATH_VIEW": "V_DEATH",
+    "OMANG_ORACLE_BDRS_USERNAME": "bdr",
+    "OMANG_ORACLE_BDRS_PASSWORD": "some-password",
+    "OMANG_ORACLE_IMMIGRATION_VIEW": "V_MOH",
+    "OMANG_ORACLE_IMMIGRATION_USERNAME": "immigration",
+    "OMANG_ORACLE_IMMIGRATION_PASSWORD": "some-password",
+    "OMANG_DEV_MOUNT_FOLDER": ""
   }
-  
-  
+}

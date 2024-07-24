@@ -14,7 +14,7 @@ packages:
   - message-bus-kafka
   - omang-service-mediator
   - openhim-mediator-fhir-converter
-  - shared-health-record
+  - shr-mediator
   - dashboard-visualiser-kibana
 
 profiles:
@@ -30,7 +30,7 @@ profiles:
       - message-bus-kafka
       - omang-service-mediator
       - openhim-mediator-fhir-converter
-      - shared-health-record
+      - shr-mediator
       - dashboard-visualiser-kibana
     envFiles:
       - .env.local
@@ -50,7 +50,7 @@ profiles:
       - message-bus-kafka
       - omang-service-mediator
       - openhim-mediator-fhir-converter
-      - shared-health-record
+      - shr-mediator
     envFiles:
       - .env.qa
     dev: true

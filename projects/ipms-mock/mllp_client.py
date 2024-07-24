@@ -9,9 +9,12 @@ class MLLPClient:
     def send_message(self, message):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
+            """Instead of  manually setting the IP each time, use the client's hostname"""
+
             sock.connect((self.host, self.port))
             sock.sendall(message.encode('UTF-8'))
             received = sock.recv(1024 * 1024)
             logging.info("Received response: %s", received.decode('UTF-8'))
+            
         finally:
             sock.close()

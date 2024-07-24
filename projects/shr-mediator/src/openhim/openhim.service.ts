@@ -9,7 +9,7 @@ import {
   fetchConfig,
   registerMediator,
 } from 'openhim-mediator-utils';
-import { config } from 'src/config';
+import config from 'src/config';
 import { IncomingHttpHeaders } from 'http';
 import { HttpService } from '@nestjs/axios';
 import {
