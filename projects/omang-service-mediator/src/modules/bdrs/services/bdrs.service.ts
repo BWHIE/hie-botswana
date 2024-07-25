@@ -9,7 +9,7 @@ import { fhirR4 } from '@smile-cdr/fhirts';
 import { calculateMD5Hash } from 'src/utils/hash';
 import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { MpiService } from '../../mpi/services/mpi.service';
-import { config } from 'src/config';
+import config from 'src/config';
 import { BaseService } from 'src/services/base.service';
 
 @Injectable()

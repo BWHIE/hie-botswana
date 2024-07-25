@@ -3,7 +3,7 @@ import { Pager } from 'src/utils/pager';
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectConnection } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
-import { config } from 'src/config';
+import config from 'src/config';
 
 @Injectable()
 export class ImmigrationRepository {

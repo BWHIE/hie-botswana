@@ -1,6 +1,6 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { BundleUtils, fhirR4 } from '@smile-cdr/fhirts';
-import { config } from 'src/config';
+import config from 'src/config';
 import { Pager } from 'src/utils/pager';
 import { BDRSService } from '../../bdrs/services/bdrs.service';
 import { ImmigrationService } from '../../immigration/services/immigration.service';

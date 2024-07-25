@@ -2,7 +2,7 @@ import { Global, Injectable, Logger } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { AxiosRequestConfig } from 'axios';
 import { Agent } from 'https';
-import { config } from 'src/config';
+import config from 'src/config';
 import { Bundle } from 'fhir/r4';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { FhirSearchParams } from 'src/utils/fhir-search.pipe';
