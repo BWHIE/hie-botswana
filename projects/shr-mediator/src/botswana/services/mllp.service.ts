@@ -44,8 +44,8 @@ export class MllpService implements OnModuleInit {
     });
   }
 
-  send(message: string, targetIp?: string, port?: number, retries?: number) {
-    const targetIpToSend = targetIp || '0.0.0.0';
+  async send(message: string, targetHost?: string, port?: number, retries?: number) {
+    const targeHostToSend = targetHost || 'example.com';
     const portToSend = port || 3000;
 
     message = message.replace(/[\n\r]/g, '\r');
@@ -53,7 +53,7 @@ export class MllpService implements OnModuleInit {
     const header = firstNewline ? message.substring(0, firstNewline.index) : '';
     return new Promise((resolve, reject) => {
       this.mllpServer.send(
-        targetIpToSend,
+        targeHostToSend,
         portToSend,
         message,
         (err: any, ackData: any) => {

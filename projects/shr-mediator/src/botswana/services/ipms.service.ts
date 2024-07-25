@@ -56,11 +56,11 @@ export class IpmsService {
 
       this.logger.log(`adt:\n${adtMessage}`);
 
-      const targetIp = config.get('bwConfig:mllp:targetIp');
+      const targetHost = config.get('bwConfig:mllp:targetHost');
       const targetPort = config.get('bwConfig:mllp:targetAdtPort');
 
       const adtResult: string = <string>(
-        await this.mllpService.send(adtMessage, targetIp, targetPort)
+        await this.mllpService.send(adtMessage, targetHost, targetPort)
       );
 
       if (adtResult.includes && adtResult.includes('AA')) {
@@ -173,7 +173,7 @@ export class IpmsService {
           config.get('bwConfig:toIpmsOrmTemplate'),
         );
 
-        const targetIp = config.get('bwConfig:mllp:targetIp');
+        const targetHost = config.get('bwConfig:mllp:targetHost');
         const targetPort = config.get('bwConfig:mllp:targetOrmPort');
 
         this.logger.log('Sending ORM message to IPMS!');
@@ -183,7 +183,7 @@ export class IpmsService {
         if (ormMessage && ormMessage != '') {
           const result: any = await this.mllpService.send(
             ormMessage,
-            targetIp,
+            targetHost,
             targetPort,
           );
           if (result.includes('AA')) {

@@ -6,8 +6,8 @@ class Config {
   private static mergeEnvVariables(): any {
     const envConfig: any = {
       app: {
-        port: process.env.SHR_HTTP_PORT,
-        mllpPort: process.env.SHR_MLLP_PORT,
+        port: process.env.HTTP_PORT,
+        mllpPort: process.env.MLLP_PORT,
       },
       ClientRegistry: {
         ApiUrl: process.env.CLIENT_REGISTRY_API_URL,
@@ -59,7 +59,7 @@ class Config {
         toIpmsOrmTemplate: process.env.TO_IPMS_ORM_TEMPLATE,
         fromIpmsOruTemplate: process.env.FROM_IPMS_ORU_TEMPLATE,
         mllp: {
-          targetIp: process.env.MLLP_TARGET_IP,
+          targetHost: process.env.MLLP_TARGET_HOST,
           targetAdtPort: process.env.MLLP_TARGET_ADT_PORT,
           targetOrmPort: process.env.MLLP_TARGET_ORM_PORT,
         },
