@@ -1,4 +1,6 @@
 import {
+  BadRequestException,
+  Body,
   Controller,
   Get,
   Header,
@@ -6,8 +8,10 @@ import {
   Inject,
   InternalServerErrorException,
   Logger,
+  NotFoundException,
+  Post,
   Query,
-  UseGuards
+  UseGuards,
 } from '@nestjs/common';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { MpiService } from 'src/modules/mpi/services/mpi.service';
@@ -36,6 +40,42 @@ export class PatientController {
     } catch (error) {
       this.logger.error(error);
       throw new InternalServerErrorException();
+    }
+  }
+
+  /**
+   * The following endpoint proxies incoming requests to OpenCR
+   * to create a patient record. This is a temporary measure until
+   * OpenCR fixs the issue of returning an array of outcomes instead
+   * of the patient resource being submitted.
+   *
+   * See issue : https://github.com/intrahealth/client-registry/issues/147
+   */
+  @Post('Post')
+  @Header('Content-Type', 'application/fhir+json')
+  async post(
+    @Headers('x-openhim-clientid') clientId = 'OmangSvc',
+    @Body() body: fhirR4.Patient,
+  ) {
+    try {
+      const result = await this.mpi.createPatient(body, clientId);
+      const response = await Promise.all(result.map(({ response }) => {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const [_resourceType, id, ..._rest] = response.location.split('/');
+          return this.mpi.getPatientById(id, clientId);
+        }),
+      );
+      const patientRecord = response.find(
+        (resource) => 'identifier' in resource,
+      );
+      if (!patientRecord) {
+        throw new NotFoundException();
+      }
+
+      return patientRecord;
+    } catch (err) {
+      this.logger.error('Unable to proxy patient create request', err);
+      throw new BadRequestException(err.message);
     }
   }
 
