@@ -293,7 +293,8 @@ export class OmangRepository {
       parameters['birthDate'] = birthDate + '%';
     }
 
-    const whereClause = conditions.length > 0 ? conditions.join(' AND ') : '1=1'; // if no conditions, select all
+    const whereClause =
+      conditions.length > 0 ? conditions.join(' AND ') : '1=1'; // if no conditions, select all
     const query = `
       SELECT *
       FROM (

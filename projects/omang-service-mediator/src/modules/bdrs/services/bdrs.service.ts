@@ -196,7 +196,7 @@ export class BDRSService extends BaseService {
       entry.fullUrl =
         config.get('ClientRegistry:BdrsSystem') +
         patient.constructor.name +
-        (patient.identifier[0].value);
+        patient.identifier[0].value;
 
       entry.resource = patient;
       searchBundle.entry.push(entry);
@@ -216,7 +216,7 @@ export class BDRSService extends BaseService {
       entry.fullUrl =
         config.get('ClientRegistry:BdrsSystem') +
         patient.constructor.name +
-        (patient.identifier[0].value);
+        patient.identifier[0].value;
 
       entry.resource = patient;
       searchBundle.entry.push(entry);
@@ -236,7 +236,7 @@ export class BDRSService extends BaseService {
       entry.fullUrl =
         config.get('ClientRegistry:BdrsSystem') +
         patient.constructor.name +
-        (patient.identifier[0].value);
+        patient.identifier[0].value;
 
       entry.resource = patient;
       searchBundle.entry.push(entry);
@@ -327,7 +327,7 @@ export class BDRSService extends BaseService {
         {
           system: 'http://openclientregistry.org/fhir/source',
           code: 'bdrs',
-        }
+        },
       ],
     };
 

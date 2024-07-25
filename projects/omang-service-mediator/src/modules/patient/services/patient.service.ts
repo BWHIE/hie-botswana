@@ -22,7 +22,9 @@ export class PatientService extends BaseService {
     private readonly bdrs: BDRSService,
     @Inject(ImmigrationService)
     private readonly immigration: ImmigrationService,
-  ) {super(mpi)}
+  ) {
+    super(mpi);
+  }
 
   //@TODO retrieve Patient by applying FHIR compliant search ?
 
@@ -59,17 +61,36 @@ export class PatientService extends BaseService {
     const searchBundle: fhirR4.Bundle = FhirAPIResponses.RecordInitialized;
 
     // Execute all promises in parallel and destructure their resolved values
-    const [omangResponse, immigrationResponse, bdrsResponse] = await Promise.all([
-      this.omang.findOmangByDemographicData(firstName, lastName, gender, birthDate, pager),
-      this.immigration.getByDemographicData(firstName, lastName, gender, birthDate, pager),
-      this.bdrs.findBirthByDemographicDataFHIR(firstName, lastName, gender, birthDate, pager)
-    ]);
+    const [omangResponse, immigrationResponse, bdrsResponse] =
+      await Promise.all([
+        this.omang.findOmangByDemographicData(
+          firstName,
+          lastName,
+          gender,
+          birthDate,
+          pager,
+        ),
+        this.immigration.getByDemographicData(
+          firstName,
+          lastName,
+          gender,
+          birthDate,
+          pager,
+        ),
+        this.bdrs.findBirthByDemographicDataFHIR(
+          firstName,
+          lastName,
+          gender,
+          birthDate,
+          pager,
+        ),
+      ]);
 
     // Combine all entries into one array
     const allEntries = [
       ...omangResponse.entry,
       ...immigrationResponse.entry,
-      ...bdrsResponse.entry
+      ...bdrsResponse.entry,
     ];
 
     // Adding all found entries to the searchBundle
@@ -79,7 +100,7 @@ export class PatientService extends BaseService {
     searchBundle.total = allEntries.length;
 
     return searchBundle;
-  } 
+  }
 
   async getPatientByID(
     identifier: string,
@@ -90,7 +111,10 @@ export class PatientService extends BaseService {
     this.logger.log('Getting patient by ID');
 
     if (system === config.get('ClientRegistry:OmangSystem')) {
-      return this.omang.getOmangByID([identifier], new Pager(pageNum, pageSize));
+      return this.omang.getOmangByID(
+        [identifier],
+        new Pager(pageNum, pageSize),
+      );
     } else if (system === config.get('ClientRegistry:ImmigrationSystem')) {
       return this.immigration.getPatientByPassportNumber(
         [identifier],

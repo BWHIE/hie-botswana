@@ -26,7 +26,6 @@ export class ImmigrationService extends BaseService {
     ppn: string[],
     pager: Pager,
   ): Promise<fhirR4.Bundle> {
-
     const results: ImmigrationRecord[] = await this.repo.getMany(ppn, pager);
     if (results.length > 0) {
       const bundle: fhirR4.Bundle =
@@ -185,7 +184,7 @@ export class ImmigrationService extends BaseService {
       entry.fullUrl =
         config.get('ClientRegistry:ImmigrationSystem') +
         patient.constructor.name +
-        (patient.identifier[0].value);
+        patient.identifier[0].value;
 
       entry.resource = patient;
       searchBundle.entry.push(entry);

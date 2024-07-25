@@ -23,14 +23,8 @@ import { IpWhitelistGuard } from './utils/middlewares';
     ImmigrationModule,
     PatientModule,
   ],
-  controllers: [
-    AppController,
-  ],
-  providers: [
-    AppService,
-    IpWhitelistGuard,
-    BasicAuthGuard,
-  ],
+  controllers: [AppController],
+  providers: [AppService, IpWhitelistGuard, BasicAuthGuard],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

@@ -7,12 +7,8 @@ import { ImmigrationRepository } from './repositories/immigration-repository';
 import { ImmigrationService } from './services/immigration.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([], 'immigrationConnection'),
-  ],
-  controllers: [
-    ImmigrationController,
-  ],
+  imports: [TypeOrmModule.forFeature([], 'immigrationConnection')],
+  controllers: [ImmigrationController],
   providers: [
     {
       provide: 'immigrationConnectionDataSource',
@@ -20,7 +16,7 @@ import { ImmigrationService } from './services/immigration.service';
         await createConnection(immigrationDataSourceOptions),
     },
     ImmigrationRepository,
-    ImmigrationService
+    ImmigrationService,
   ],
   exports: [ImmigrationService],
 })

@@ -1,21 +1,21 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { birthDataSourceOptions, deathDataSourceOptions } from 'src/config/ormconfig';
+import {
+  birthDataSourceOptions,
+  deathDataSourceOptions,
+} from 'src/config/ormconfig';
 import { createConnection } from 'typeorm';
 import { BDRSController } from './controllers/bdrs.controller';
 import { BirthRepository } from './repositories/birth.repository';
 import { DeathRepository } from './repositories/death.repository';
 import { BDRSService } from './services/bdrs.service';
 
-  
 @Module({
   imports: [
     TypeOrmModule.forFeature([], 'birthConnection'), // Import entities related to BirthService
     TypeOrmModule.forFeature([], 'deathConnection'),
   ],
-  controllers: [
-    BDRSController
-  ],
+  controllers: [BDRSController],
   providers: [
     {
       provide: 'birthConnectionDataSource',
@@ -27,7 +27,7 @@ import { BDRSService } from './services/bdrs.service';
     },
     BirthRepository,
     DeathRepository,
-    BDRSService
+    BDRSService,
   ],
   exports: [BDRSService],
 })

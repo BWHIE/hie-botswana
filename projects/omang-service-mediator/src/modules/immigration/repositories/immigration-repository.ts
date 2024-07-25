@@ -134,7 +134,6 @@ export class ImmigrationRepository {
     } finally {
       await queryRunner.release();
     }
-
   }
 
   async getByLastName(
@@ -177,7 +176,6 @@ export class ImmigrationRepository {
     } finally {
       await queryRunner.release();
     }
-
   }
 
   async getByName(
@@ -221,7 +219,6 @@ export class ImmigrationRepository {
     } finally {
       await queryRunner.release();
     }
-
   }
 
   async getByNameWithMiddleName(
@@ -272,7 +269,6 @@ export class ImmigrationRepository {
     } finally {
       await queryRunner.release();
     }
-
   }
 
   async getByDemographicData(
@@ -285,7 +281,7 @@ export class ImmigrationRepository {
     // Build dynamic SQL conditions based on input values
     let conditions = [];
     let parameters = {};
-  
+
     if (firstName) {
       conditions.push('UPPER(FIRST_NAME) LIKE UPPER(:firstName)');
       parameters['firstName'] = firstName + '%';
@@ -302,8 +298,9 @@ export class ImmigrationRepository {
       conditions.push('BIRTH_DATE LIKE :birthDate');
       parameters['birthDate'] = birthDate + '%';
     }
-  
-    const whereClause = conditions.length > 0 ? conditions.join(' AND ') : '1=1'; // If no conditions, select all
+
+    const whereClause =
+      conditions.length > 0 ? conditions.join(' AND ') : '1=1'; // If no conditions, select all
     const query = `
       SELECT *
       FROM (
@@ -318,15 +315,15 @@ export class ImmigrationRepository {
       )
       WHERE r >= (((${pager.pageNum} - 1) * ${pager.pageSize}) + 1)
     `;
-  
+
     const queryRunner = this.connection.createQueryRunner();
-  
+
     try {
       await queryRunner.connect();
       const rows = await queryRunner.query(query, Object.values(parameters));
       await queryRunner.release();
-  
-      return rows.map(row => this.getImmigrationRecordFromRow(row));
+
+      return rows.map((row) => this.getImmigrationRecordFromRow(row));
     } catch (error) {
       await queryRunner.release();
       throw error; // Rethrow to maintain stack trace
@@ -386,7 +383,6 @@ export class ImmigrationRepository {
     } finally {
       await queryRunner.release();
     }
-
   }
 
   async findByBirthDate(
@@ -433,7 +429,6 @@ export class ImmigrationRepository {
     } finally {
       await queryRunner.release();
     }
-
   }
 
   async findByEntryDate(
@@ -479,7 +474,6 @@ export class ImmigrationRepository {
     } finally {
       await queryRunner.release();
     }
-
   }
 
   async findByPassportExpiryDate(

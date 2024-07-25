@@ -7,7 +7,6 @@ import { Bundle } from 'fhir/r4';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { FhirSearchParams } from 'src/utils/fhir-search.pipe';
 
-
 @Injectable()
 export class MpiService {
   private readonly logger = new Logger(MpiService.name);
@@ -39,7 +38,10 @@ export class MpiService {
     return options;
   }
 
-  async searchPatientByIdentifier(params: FhirSearchParams, clientId: string): Promise<any> {
+  async searchPatientByIdentifier(
+    params: FhirSearchParams,
+    clientId: string,
+  ): Promise<any> {
     try {
       const searchResponse = await this.httpService.axiosRef.get<Bundle>(
         `${this.clientRegistryUrl}/Patient`,
@@ -47,7 +49,7 @@ export class MpiService {
           params,
           headers: {
             'Content-Type': 'application/fhir+json',
-            'x-openhim-clientid': clientId
+            'x-openhim-clientid': clientId,
           },
         },
       );
@@ -55,7 +57,7 @@ export class MpiService {
       return searchResponse.data;
     } catch (error) {
       this.logger.error(
-        `Could not get CR bundle for patient with ${JSON.stringify(params)} \n ${error}`
+        `Could not get CR bundle for patient with ${JSON.stringify(params)} \n ${error}`,
       );
     }
   }
@@ -73,7 +75,7 @@ export class MpiService {
     }
   }
 
-  async createPatient(patient: fhirR4.Patient, clientId:string): Promise<any> {
+  async createPatient(patient: fhirR4.Patient, clientId: string): Promise<any> {
     try {
       // Fix for date default formatting issue in FHIR SDK
       if (patient.birthDate) {

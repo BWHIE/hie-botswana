@@ -11,16 +11,14 @@ import { OmangService } from './services/omang.service';
     TypeOrmModule.forFeature([], 'omangConnection'),
     forwardRef(() => OmangModule),
   ],
-  controllers: [
-    OmangController,
-  ],
+  controllers: [OmangController],
   providers: [
     {
       provide: 'omangConnectionDataSource',
       useFactory: async () => await createConnection(omangDataSourceOptions),
     },
     OmangRepository,
-    OmangService
+    OmangService,
   ],
   exports: [OmangService],
 })
