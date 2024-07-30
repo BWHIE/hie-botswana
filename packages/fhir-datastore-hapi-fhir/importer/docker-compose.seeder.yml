@@ -7,12 +7,6 @@ services:
     configs:
       - target: /importer/package.json
         source: package.json
-      - target: /importer/location_bundle_part1.json
-        source: location_bundle_part1.json
-      - target: /importer/location_bundle_part2.json
-        source: location_bundle_part2.json
-      - target: /importer/facility_bundle.json
-        source: facility_bundle.json
       - target: /importer/facility-seeder.js
         source: facility-seeder.js
     networks:
@@ -27,9 +21,6 @@ networks:
   public:
     name: hapi-fhir_public
     external: true
-  # postgres:
-  #   name: postgres_public
-  #   external: true
 
 configs:
   package.json:
@@ -40,22 +31,6 @@ configs:
   facility-seeder.js:
     file: ./facility-seeder.js
     name: facility-seeder.js-${facility_seeder_js_DIGEST:?err}
-    labels:
-      name: hapi-fhir
-  facility_bundle.json:
-    file: ./facility_bundle.json
-    name: facility_bundle.json-${facility_bundle_json_DIGEST:?err}
-    labels:
-      name: hapi-fhir
-
-  location_bundle_part1.json:
-    file: ./location_bundle_part1.json
-    name: location_bundle_part1.json-${location_bundle_part1_json_DIGEST:?err}
-    labels:
-      name: hapi-fhir
-  location_bundle_part2.json:
-    file: ./location_bundle_part2.json
-    name: location_bundle_part2.json-${location_bundle_part2_json_DIGEST:?err}
     labels:
       name: hapi-fhir
 

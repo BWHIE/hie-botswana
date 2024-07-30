@@ -1,4 +1,5 @@
-const got = require('got'); 
+const got = require('got');
+const fetch = require('node-fetch');
 
 async function postWithRetry(fhirUrl, options, retryLimit = 5, timeout = 30000) {
   for (let attempt = 1; attempt <= retryLimit; attempt++) {
@@ -37,36 +38,69 @@ async function saveBundle(bundle) {
     console.log(`Saved bundle to FHIR store!`);
     return ret;
   } catch (error) {
-    console.error(`Could not save bundle: ${error.response.body}`);
-
-    throw new HapiError('Could not save bundle to hapi server!');
+    console.error(`Could not save bundle: ${error.message}`);
+    throw new Error('Could not save bundle to HAPI server!');
   }
 }
 
-
-async function processBundles() {
-  const facilityData = require('./facility_bundle.json');
-  const firstLocationData = require('./location_bundle_part1.json');
-  const secondLocationData = require('./location_bundle_part2.json');
-
+async function fetchDataFromUrl(url) {
   try {
-    await saveBundle(facilityData); // Call saveBundle function with the parsed bundle
-    console.log(`Seeder successfully finished execution!`);
+    const response = await fetch(url);
+    if (!response.ok) {
+     return null;
+    }
+    const data = await response.json();
+    return data;
   } catch (error) {
-    console.error(`Error processing bundle: ${error.message}`);
-    process.exit(1);
+    console.error(`An error occurred: ${error.message}`);
+    throw error;
   }
+}
 
-  try {
-    await saveBundle(firstLocationData); // Call saveBundle function with the parsed bundle
-    console.log(`Seeder successfully finished execution!`);
-  } catch (error) {
-    console.error(`Error processing bundle: ${error.message}`);
-    process.exit(1);
+async function extractAndResourcesFromBundleEntryUrls(data) {
+  const resources = [];
+  for (const item of data.entry) {
+    let resource = await fetchDataFromUrl(item.fullUrl);
+
+    if (!resource) {
+      resource = item.resource;
+      resource.identifier = [{
+        use: "official",
+        system: "http://moh.bw.org/ext/identifier/mfl-code",
+        value: resource.id
+      }];
+    }
+    if(!resource.id){
+      resource.id = item.resource.id;
+    }
+    resources.push(resource);
   }
+   
+  return resources;
+}
 
+async function generateTransactionBundle(data) {
+  return {
+    resourceType: "Bundle",
+    type: "transaction",
+    entry: data.map(item => ({
+      fullUrl: `https://mfldit.gov.org.bw/api/v1/mfl/fhir/location/${item.id}`,
+      resource: item,
+      request: {
+        method: 'PUT',
+        url: `${item.resourceType}/${item.id}`
+      }
+    }))
+  };
+}
+
+async function processBundle() {
   try {
-    await saveBundle(secondLocationData); // Call saveBundle function with the parsed bundle
+    const locationData = await fetchDataFromUrl("https://mfldit.gov.org.bw/api/v1/mfl/fhir/bundle/location");
+    const locationResources = await  extractAndResourcesFromBundleEntryUrls(locationData);
+    const obtainedBundle = await generateTransactionBundle(locationResources);
+
+    await saveBundle(obtainedBundle); // Call saveBundle function with the parsed bundle
     console.log(`Seeder successfully finished execution!`);
   } catch (error) {
     console.error(`Error processing bundle: ${error.message}`);
@@ -75,5 +109,5 @@ async function processBundles() {
 }
 
 // Call the async function
-processBundles();
+processBundle();
 
