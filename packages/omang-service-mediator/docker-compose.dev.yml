@@ -28,8 +28,6 @@ services:
         published: 8098
         mode: host
     command: ["npm", "run", "start:dev"]
-    depends_on:
-      - oracle-db
 
 configs:
   init_sql:
