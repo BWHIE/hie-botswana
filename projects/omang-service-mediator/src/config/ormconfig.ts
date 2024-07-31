@@ -1,5 +1,5 @@
 import { DataSourceOptions } from 'typeorm';
-import config from '.';
+import config from 'src/config';
 
 const createOracleDataSourceOptions = (
   name: string,

@@ -62,12 +62,10 @@ class Config {
           username: process.env.MEDIATOR_CONFIG_OPENHIM_AUTH_USERNAME,
           password: process.env.MEDIATOR_CONFIG_OPENHIM_AUTH_PASSWORD,
           trustSelfSigned:
-            process.env.MEDIATOR_CONFIG_OPENHIM_AUTH_TRUST_SELF_SIGNED ===
-            'true',
+            process.env.MEDIATOR_CONFIG_OPENHIM_AUTH_TRUST_SELF_SIGNED,
           apiURL: process.env.MEDIATOR_CONFIG_OPENHIM_AUTH_API_URL,
           rejectUnauthorized:
-            process.env.MEDIATOR_CONFIG_OPENHIM_AUTH_REJECT_UNAUTHORIZED ===
-            'true',
+            process.env.MEDIATOR_CONFIG_OPENHIM_AUTH_REJECT_UNAUTHORIZED,
           urn: process.env.MEDIATOR_CONFIG_OPENHIM_AUTH_URN,
         },
         mediatorCore: {
@@ -81,8 +79,7 @@ class Config {
           heartbeatInterval:
             process.env.MEDIATOR_CONFIG_MEDIATOR_CORE_HEARTBEAT_INTERVAL,
           isHeartbeatDisabled:
-            process.env.MEDIATOR_CONFIG_MEDIATOR_CORE_IS_HEARTBEAT_DISABLED ===
-            'true',
+            process.env.MEDIATOR_CONFIG_MEDIATOR_CORE_IS_HEARTBEAT_DISABLED,
         },
         mediatorSetup: {
           urn: process.env.MEDIATOR_CONFIG_MEDIATOR_SETUP_URN,
@@ -191,6 +188,15 @@ class Config {
           ],
         },
       },
+      DB_HOST: process.env.DB_HOST,
+      DB_SID: process.env.DB_SID,
+      DB_PORT: process.env.DB_PORT,
+      CITIZEN_USERNAME: process.env.CITIZEN_USERNAME,
+      CITIZEN_PASSWORD: process.env.CITIZEN_PASSWORD,
+      BDRS_USERNAME: process.env.BDRS_USERNAME,
+      BDRS_PASSWORD: process.env.BDRS_PASSWORD,
+      IMMIGRATION_USERNAME: process.env.IMMIGRATION_USERNAME,
+      IMMIGRATION_PASSWORD: process.env.IMMIGRATION_PASSWORD,
     };
 
     return envConfig;
