@@ -34,6 +34,8 @@ class Config {
           TimeoutSecs: process.env.ORACLE_OMANG_TIMEOUT_SECS,
           ViewName: process.env.ORACLE_OMANG_VIEW_NAME,
           InstanceID: process.env.ORACLE_OMANG_INSTANCE_ID,
+          CitizenUsername: process.env.ORACLE_OMANG_CITIZEN_USERNAME,
+          CitizenPassword: process.env.ORACLE_OMANG_CITIZEN_PASSWORD,
         },
         Immigration: {
           ConnectionDesc: process.env.ORACLE_IMMIGRATION_CONNECTION_DESC,
@@ -41,6 +43,8 @@ class Config {
           TimeoutSecs: process.env.ORACLE_IMMIGRATION_TIMEOUT_SECS,
           ViewName: process.env.ORACLE_IMMIGRATION_VIEW_NAME,
           InstanceID: process.env.ORACLE_IMMIGRATION_INSTANCE_ID,
+          ImmigrationUsername: process.env.ORACLE_IMMIGRATION_USERNAME,
+          ImmigrationPassword: process.env.ORACLE_IMMIGRATION_PASSWORD,
         },
         Births: {
           ConnectionDesc: process.env.ORACLE_BIRTHS_CONNECTION_DESC,
@@ -48,6 +52,8 @@ class Config {
           TimeoutSecs: process.env.ORACLE_BIRTHS_TIMEOUT_SECS,
           ViewName: process.env.ORACLE_BIRTHS_VIEW_NAME,
           InstanceID: process.env.ORACLE_BIRTHS_INSTANCE_ID,
+          BdrsUsername: process.env.ORACLE_BDRS_USERNAME,
+          BdrsPassword: process.env.ORACLE_BDRS_PASSWORD,
         },
         Deaths: {
           ConnectionDesc: process.env.ORACLE_DEATHS_CONNECTION_DESC,
@@ -55,7 +61,12 @@ class Config {
           TimeoutSecs: process.env.ORACLE_DEATHS_TIMEOUT_SECS,
           ViewName: process.env.ORACLE_DEATHS_VIEW_NAME,
           InstanceID: process.env.ORACLE_DEATHS_INSTANCE_ID,
+          BdrsUsername: process.env.ORACLE_BDRS_USERNAME,
+          BdrsPassword: process.env.ORACLE_BDRS_PASSWORD,
         },
+        DbHost: process.env.ORACLE_DB_HOST,
+        DbSid: process.env.ORACLE_DB_SID,
+        DbPort: process.env.ORACLE_DB_PORT,
       },
       mediatorConfig: {
         openHimAuth: {
@@ -188,15 +199,6 @@ class Config {
           ],
         },
       },
-      DB_HOST: process.env.DB_HOST,
-      DB_SID: process.env.DB_SID,
-      DB_PORT: process.env.DB_PORT,
-      CITIZEN_USERNAME: process.env.CITIZEN_USERNAME,
-      CITIZEN_PASSWORD: process.env.CITIZEN_PASSWORD,
-      BDRS_USERNAME: process.env.BDRS_USERNAME,
-      BDRS_PASSWORD: process.env.BDRS_PASSWORD,
-      IMMIGRATION_USERNAME: process.env.IMMIGRATION_USERNAME,
-      IMMIGRATION_PASSWORD: process.env.IMMIGRATION_PASSWORD,
     };
 
     return envConfig;

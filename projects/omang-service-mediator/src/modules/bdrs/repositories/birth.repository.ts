@@ -62,8 +62,8 @@ export class BirthRepository {
     'MOTHER_MARITAL_STATUS',
   ];
   private readonly logger = new Logger(BirthRepository.name);
-  private readonly viewName = config.get('BDRS_BIRTH_VIEW');
-  private readonly _death_viewName = config.get('BDRS_DEATH_VIEW');
+  private readonly viewName = config.get('Oracle:Births:ViewName');
+  private readonly _death_viewName = config.get('Oracle:Deaths:ViewName');
 
   constructor(
     @InjectConnection('birthConnection')
