@@ -8,7 +8,7 @@ import config from 'src/config';
 @Injectable()
 export class ImmigrationRepository {
   private readonly logger = new Logger(ImmigrationRepository.name);
-  private readonly viewName = config.get('Oracle:Omang:ViewName');
+  private readonly viewName = config.get('Oracle:Immigration:ViewName');
 
   constructor(
     @InjectConnection('immigrationConnection')
