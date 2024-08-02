@@ -1,7 +1,7 @@
 import { DataSourceOptions } from 'typeorm';
-import config from 'src/config';
+import config from './index';
 
-const createOracleDataSourceOptions = (
+export const createOracleDataSourceOptions = (
   name: string,
   userConfigKey: string,
   passwordConfigKey: string,
@@ -10,8 +10,8 @@ const createOracleDataSourceOptions = (
 ): DataSourceOptions => ({
   name,
   type: 'oracle',
-  username: config.get(userConfigKey),
-  password: config.get(passwordConfigKey),
+  username: userConfigKey,
+  password: passwordConfigKey,
   connectString: `(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = ${config.get('Oracle:DbHost')})(PORT = ${config.get('Oracle:DbPort')}))(CONNECT_DATA = (SID = ${config.get('Oracle:DbSid')})${hasServiceName ? `(SERVICE_NAME = ${config.get('Oracle:DbSid')})` : ''}))`,
   synchronize,
 });

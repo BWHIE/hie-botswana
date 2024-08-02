@@ -325,8 +325,8 @@ export class BirthRepository {
     pager: Pager,
   ): Promise<BirthRecord[]> {
     // Build dynamic SQL conditions based on input values
-    let conditions = [];
-    let parameters = {};
+    const conditions = [];
+    const parameters = {};
 
     if (firstName) {
       conditions.push('UPPER(FORENAME) LIKE UPPER(:firstName)');
