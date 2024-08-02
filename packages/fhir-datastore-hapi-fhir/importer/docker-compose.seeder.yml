@@ -11,6 +11,9 @@ services:
         source: facility-seeder.js
     networks:
       public:
+    environment:
+    - LOCATIONS_URL=${MFL_LOCATIONS_URL}
+    - ORGANIZATIONS_URL=${MFL_ORGANIZATIONS_URL}
     deploy:
       replicas: 1
       restart_policy:

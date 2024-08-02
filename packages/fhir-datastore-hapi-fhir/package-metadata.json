@@ -29,7 +29,9 @@
       "HF_POSTGRES_FAILOVER": "automatic",
       "HF_POSTGRES_DEGRADED_MONITORING_TIMEOUT": "5",
       "IPS_ENABLED": "true",
-      "ENABLE_RUNTIME_IG_UPLOAD": "false"
+      "ENABLE_RUNTIME_IG_UPLOAD": "false",
+      "MFL_LOCATIONS_URL": "https://mfldit.gov.org.bw/api/v1/mfl/fhir/bundle/location",
+      "MFL_ORGANIZATIONS_URL": "https://mfldit.gov.org.bw/api/v1/mfl/fhir/bundle/organization"
     }
   }
   

@@ -1,5 +1,8 @@
 const got = require('got');
 const fetch = require('node-fetch');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 async function postWithRetry(fhirUrl, options, retryLimit = 5, timeout = 30000) {
   for (let attempt = 1; attempt <= retryLimit; attempt++) {
@@ -123,12 +126,15 @@ async function processBundleEntriesAndGenerateTransactionBundle(data) {
 
 async function processBundle() {
   try {
-    const locationData = await fetchDataFromUrl("https://mfldit.gov.org.bw/api/v1/mfl/fhir/bundle/location");
+    const locationsUrl = process.env.LOCATIONS_URL;
+    const organizationUrl = process.env.ORGANIZATIONS_URL;
+
+    const locationData = await fetchDataFromUrl(locationsUrl);
     const locationResources = await  processBundleEntriesAndGenerateTransactionBundle(locationData);
 
     await saveBundle(locationResources); // Call saveBundle function with the parsed bundle
 
-    const organizationData = await fetchDataFromUrl("https://mfldit.gov.org.bw/api/v1/mfl/fhir/bundle/organization");
+    const organizationData = await fetchDataFromUrl(organizationUrl);
     const organizationResources = await  processBundleEntriesAndGenerateTransactionBundle(organizationData);
 
     await saveBundle(organizationResources); // Call saveBundle function with the parsed bundle
