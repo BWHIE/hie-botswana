@@ -72,10 +72,49 @@ services:
       MEDIATOR_SETUP_VERSION: ${SHR_MEDIATOR_CONFIG_MEDIATOR_SETUP_VERSION}
       MEDIATOR_SETUP_NAME: ${SHR_MEDIATOR_CONFIG_MEDIATOR_SETUP_NAME}
       MEDIATOR_SETUP_DESCRIPTION: ${SHR_MEDIATOR_CONFIG_MEDIATOR_SETUP_DESCRIPTION}
+    configs:
+      - target: /app/dist/botswana/ocl_json/IPMSLAB_to_CIEL.json
+        source: IPMSLAB_to_CIEL.json
+      - target: /app/dist/botswana/ocl_json/IPMSLAB_to_PIMSLAB.json
+        source: IPMSLAB_to_PIMSLAB.json
+      - target: /app/dist/botswana/ocl_json/PIMSLAB_to_CIEL.json
+        source: PIMSLAB_to_CIEL.json
+      - target: /app/dist/botswana/ocl_json/PIMSLAB_to_IPMSLAB.json
+        source: PIMSLAB_to_IPMSLAB.json
+      - target: /app/dist/botswana/ocl_json/IPMS_Coding.json
+        source: IPMS_Coding.json
     deploy:
       replicas: 1
       restart_policy:
         condition: on-failure
+
+configs:
+  IPMSLAB_to_CIEL.json:
+    file: ./config/ocl_json/IPMSLAB_to_CIEL.json
+    name: IPMSLAB_to_CIEL.json-${IPMSLAB_to_CIEL_json_DIGEST:?err}
+    labels:
+      name: shr-mediator
+  IPMSLAB_to_PIMSLAB.json:
+    file: ./config/ocl_json/IPMSLAB_to_PIMSLAB.json
+    name: IPMSLAB_to_PIMSLAB.json-${IPMSLAB_to_PIMSLAB_json_DIGEST:?err}
+    labels:
+      name: shr-mediator
+  PIMSLAB_to_CIEL.json:
+    file: ./config/ocl_json/PIMSLAB_to_CIEL.json
+    name: PIMSLAB_to_CIEL.json-${PIMSLAB_to_CIEL_json_DIGEST:?err}
+    labels:
+      name: shr-mediator
+  PIMSLAB_to_IPMSLAB.json:
+    file: ./config/ocl_json/PIMSLAB_to_IPMSLAB.json
+    name: PIMSLAB_to_IPMSLAB.json-${PIMSLAB_to_IPMSLAB_json_DIGEST:?err}
+    labels:
+      name: shr-mediator
+  IPMS_Coding.json:
+    file: ./config/ocl_json/IPMS_Coding.json
+    name: IPMS_Coding.json-${IPMS_Coding_json_DIGEST:?err}
+    labels:
+      name: shr-mediator
+
 
 networks:
   default:
