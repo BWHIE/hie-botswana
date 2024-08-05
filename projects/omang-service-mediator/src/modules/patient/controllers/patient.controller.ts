@@ -15,7 +15,10 @@ import {
 } from '@nestjs/common';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { MpiService } from 'src/modules/mpi/services/mpi.service';
-import { FhirSearchParamsValidationPipe, FhirSearchParams } from 'src/utils/fhir-search.pipe';
+import {
+  FhirSearchParamsValidationPipe,
+  FhirSearchParams,
+} from 'src/utils/fhir-search.pipe';
 import { Pager } from 'src/utils/pager';
 import { ImmigrationService } from '../../immigration/services/immigration.service';
 import { BasicAuthGuard } from '../../user/models/authentification';
@@ -85,15 +88,22 @@ export class PatientController {
     @Headers('x-openhim-clientid') clientId = 'OmangSvc',
     @Query(new FhirSearchParamsValidationPipe()) queryParams: FhirSearchParams,
   ): Promise<fhirR4.Bundle> {
-    const { identifier, given, family, gender, birthdate, _page = 1, _count = 25 } = queryParams;
+    const {
+      identifier,
+      given,
+      family,
+      gender,
+      birthdate,
+      _page = 1,
+      _count = 25,
+    } = queryParams;
     if (identifier) {
       // Search by identifier
       try {
-        const searchBundle =
-          await this.patientService.retrySearchPatient(
-            {identifier, _page, _count},
-            clientId,
-          );
+        const searchBundle = await this.patientService.retrySearchPatient(
+          { identifier, _page, _count },
+          clientId,
+        );
 
         // Return results from client registry, otherwise search in national registries
         if (searchBundle.total > 0) {
@@ -109,7 +119,7 @@ export class PatientController {
 
           // Async push to openCR
           this.mpi.pushToClientRegistry(result, clientId);
-          
+
           return result;
         }
       } catch (error) {
@@ -121,7 +131,7 @@ export class PatientController {
       try {
         const [openCrBundle, registriesBundle] = await Promise.all([
           this.patientService.retrySearchPatient(
-            {identifier, given, family, gender, birthdate, _page, _count},
+            { identifier, given, family, gender, birthdate, _page, _count },
             clientId,
           ),
           this.patientService.getPatientByDemographicData(
@@ -130,28 +140,35 @@ export class PatientController {
             gender,
             birthdate,
             new Pager(_page, _count),
-          )
+          ),
         ]);
 
         // Deduplicate
-        registriesBundle.entry = registriesBundle.entry?.filter(registryEntry => {
-          return !openCrBundle.entry?.find(openCrEntry => {
-              const openCrIdentifiers = (openCrEntry.resource as fhirR4.Patient).identifier || [];
-              const registryIdentifiers = (registryEntry.resource as fhirR4.Patient).identifier || [];
+        registriesBundle.entry =
+          registriesBundle.entry?.filter((registryEntry) => {
+            return !openCrBundle.entry?.find((openCrEntry) => {
+              const openCrIdentifiers =
+                (openCrEntry.resource as fhirR4.Patient).identifier || [];
+              const registryIdentifiers =
+                (registryEntry.resource as fhirR4.Patient).identifier || [];
               return registryIdentifiers.some(({ system, value }) =>
-                  openCrIdentifiers.some(({ system: s, value: v }) => s === system && v === value)
+                openCrIdentifiers.some(
+                  ({ system: s, value: v }) => s === system && v === value,
+                ),
               );
-          });
-        }) || [];
+            });
+          }) || [];
         registriesBundle.total = registriesBundle.entry.length;
-        
+
         // Async push to OpenCR
         if (registriesBundle.total > 0) {
           this.mpi.pushToClientRegistry(registriesBundle, clientId);
         }
 
         // Concat results
-        openCrBundle.entry = (openCrBundle.entry || []).concat(registriesBundle.entry);
+        openCrBundle.entry = (openCrBundle.entry || []).concat(
+          registriesBundle.entry,
+        );
         openCrBundle.total = openCrBundle.total + registriesBundle.total;
 
         return openCrBundle;

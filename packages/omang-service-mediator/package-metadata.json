@@ -11,21 +11,62 @@
     "client-registry-opencr"
   ],
   "environmentVariables": {
-    "OMANG_ORACLE_DOCKER_IMAGE": "gvenzl/oracle-xe",
-    "OMANG_ORACLE_PASSWORD": "dev_password_only",
-    "OMANG_SERVICE_DB_HOST": "omang-service-mediator_oracle-db",
-    "OMANG_ORACLE_PORT": "1521",
-    "OMANG_ORACLE_SID": "XE",
-    "OMANG_ORACLE_CITIZEN_VIEW": "OMANG_CITIZEN",
+
+    "OMANG_CLIENT_REGISTRY_API_URL": "http://client-registry-opencr_opencr:3000/fhir",
+    "OMANG_CLIENT_REGISTRY_OMANG_SYSTEM": "http://moh.bw.org/ext/identifier/omang",
+    "OMANG_CLIENT_REGISTRY_BDRS_SYSTEM": "http://moh.bw.org/ext/identifier/bcn",
+    "OMANG_CLIENT_REGISTRY_IMMIGRATION_SYSTEM": "http://moh.bw.org/ext/identifier/ppn",
+
+    "OMANG_CLIENT_REGISTRY_MAX_DAYS_BEFORE_UPDATE": "2",
+    "OMANG_CLIENT_REGISTRY_DEV_MODE": "true",
+
+    "OMANG_LOGGER_MAX_LOG_SIZE": "10MB",
+    "OMANG_LOGGER_MAX_NUM_OF_LOGS": "10",
+
+    "OMANG_AUTH_BASIC_ID": "1",
+    "OMANG_AUTH_BASIC_USERNAME": "omanghie",
+    "OMANG_AUTH_BASIC_PASSWORD": "omanghie",
+
+    "OMANG_SAFE_LIST_IP": "::1;127.0.0.1",
+
+
+    "OMANG_ORACLE_OMANG_VIEW_NAME": "OMANG_CITIZEN",
     "OMANG_ORACLE_CITIZEN_USERNAME": "omang",
     "OMANG_ORACLE_CITIZEN_PASSWORD": "some-password",
-    "OMANG_ORACLE_BDRS_BIRTH_VIEW": "V_BIRTH",
-    "OMANG_ORACLE_BDRS_DEATH_VIEW": "V_DEATH",
-    "OMANG_ORACLE_BDRS_USERNAME": "bdr",
-    "OMANG_ORACLE_BDRS_PASSWORD": "some-password",
-    "OMANG_ORACLE_IMMIGRATION_VIEW": "V_MOH",
+
+    "OMANG_ORACLE_IMMIGRATION_VIEW_NAME": "V_MOH",
     "OMANG_ORACLE_IMMIGRATION_USERNAME": "immigration",
     "OMANG_ORACLE_IMMIGRATION_PASSWORD": "some-password",
+
+    "OMANG_ORACLE_BIRTHS_VIEW_NAME": "V_BIRTH",
+    "OMANG_ORACLE_DEATHS_VIEW_NAME": "V_DEATH",
+    "OMANG_ORACLE_BDRS_USERNAME": "bdr",
+    "OMANG_ORACLE_BDRS_PASSWORD": "some-password",
+
+    "OMANG_OPENHIM_AUTH_USERNAME": "root@openhim.org",
+    "OMANG_OPENHIM_AUTH_PASSWORD": "instant101",
+    "OMANG_OPENHIM_AUTH_TRUST_SELF_SIGNED": "true",
+    "OMANG_OPENHIM_AUTH_API_URL": "https://openhim-core:8080",
+    "OMANG_OPENHIM_AUTH_REJECT_UNAUTHORIZED": "false",
+    "OMANG_OPENHIM_AUTH_URN": "urn:uuid:3332e057-2ef5-4586-a437-105c9916147f",
+
+    "OMANG_MEDIATOR_CORE_OPENHIM_CORE_HOST": "https://openhim-core:8080",
+    "OMANG_MEDIATOR_CORE_OPENHIM_REGISTER_MEDIATOR_PATH": "mediators",
+    "OMANG_MEDIATOR_CORE_OPENHIM_HEARTBEAT_PATH": "heartbeat",
+    "OMANG_MEDIATOR_CORE_HEARTBEAT_INTERVAL": "10",
+    "OMANG_MEDIATOR_CORE_IS_HEARTBEAT_DISABLED": "false",
+
+    "OMANG_MEDIATOR_SETUP_URN": "urn:uuid:3332e057-2ef5-4586-a437-105c9916147f",
+    "OMANG_MEDIATOR_SETUP_VERSION": "0.1.0",
+    "OMANG_MEDIATOR_SETUP_NAME": "BW Health Identity Mediator",
+    "OMANG_MEDIATOR_SETUP_DESCRIPTION": "Provides access to services to validate the identitity of Botswana Patients",
+
+    "OMANG_ORACLE_DB_HOST": "omang-service-mediator_oracle-db",
+    "OMANG_ORACLE_DB_SID": "XE",
+    "OMANG_ORACLE_DB_PORT": "1521",
+    "OMANG_ORACLE_DOCKER_IMAGE": "gvenzl/oracle-xe",
+    "OMANG_ORACLE_PASSWORD": "dev_password_only",
+
     "OMANG_DEV_MOUNT_FOLDER": ""
   }
 }

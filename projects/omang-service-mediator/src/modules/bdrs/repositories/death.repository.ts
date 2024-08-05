@@ -42,7 +42,7 @@ export class DeathRepository {
   ];
 
   private readonly logger = new Logger(DeathRepository.name);
-  private readonly viewName = config.get('BDRS_DEATH_VIEW');
+  private readonly viewName = config.get('Oracle:Deaths:ViewName');
 
   constructor(
     @InjectConnection('deathConnection')

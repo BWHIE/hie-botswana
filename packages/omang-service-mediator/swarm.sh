@@ -45,7 +45,6 @@ function initialize_package() {
   else
     log info "Running package in PROD mode"
   fi
- 
   (
     docker::deploy_service "$STACK" "${COMPOSE_FILE_PATH}" "docker-compose.yml" "$package_dev_compose_filename" "$package_mnt_compose_filename"
   ) ||

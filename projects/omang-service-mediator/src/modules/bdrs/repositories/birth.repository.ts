@@ -62,8 +62,8 @@ export class BirthRepository {
     'MOTHER_MARITAL_STATUS',
   ];
   private readonly logger = new Logger(BirthRepository.name);
-  private readonly viewName = config.get('BDRS_BIRTH_VIEW');
-  private readonly _death_viewName = config.get('BDRS_DEATH_VIEW');
+  private readonly viewName = config.get('Oracle:Births:ViewName');
+  private readonly _death_viewName = config.get('Oracle:Deaths:ViewName');
 
   constructor(
     @InjectConnection('birthConnection')
@@ -325,9 +325,9 @@ export class BirthRepository {
     pager: Pager,
   ): Promise<BirthRecord[]> {
     // Build dynamic SQL conditions based on input values
-    let conditions = [];
-    let parameters = {};
-  
+    const conditions = [];
+    const parameters = {};
+
     if (firstName) {
       conditions.push('UPPER(FORENAME) LIKE UPPER(:firstName)');
       parameters['firstName'] = firstName + '%';
@@ -344,8 +344,9 @@ export class BirthRepository {
       conditions.push('DATE_OF_BIRTH LIKE :birthDate');
       parameters['birthDate'] = birthDate + '%';
     }
-  
-    const whereClause = conditions.length > 0 ? conditions.join(' AND ') : '1=1'; // If no conditions, default to a condition that's always true
+
+    const whereClause =
+      conditions.length > 0 ? conditions.join(' AND ') : '1=1'; // If no conditions, default to a condition that's always true
     const query = `
       SELECT *
       FROM (
@@ -360,21 +361,20 @@ export class BirthRepository {
       )
       WHERE r >= (((${pager.pageNum} - 1) * ${pager.pageSize}) + 1)
     `;
-  
+
     const queryRunner = this.connection.createQueryRunner();
-  
+
     try {
       await queryRunner.connect();
       const rows = await queryRunner.query(query, Object.values(parameters));
       await queryRunner.release();
-  
-      return rows.map(row => this.getBirthFromRow(row));
+
+      return rows.map((row) => this.getBirthFromRow(row));
     } catch (error) {
       await queryRunner.release();
       throw error; // Rethrow to maintain stack trace
     }
   }
-  
 
   async getByNameWithMiddleName(
     firstName: string,

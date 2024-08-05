@@ -2,11 +2,12 @@ import {
   BadRequestException,
   Controller,
   Get,
-  Header, Headers,
+  Header,
+  Headers,
   InternalServerErrorException,
   Logger,
   Query,
-  UseGuards
+  UseGuards,
 } from '@nestjs/common';
 import { Pager } from 'src/utils/pager';
 import { BasicAuthGuard } from '../../user/models/authentification';
@@ -35,7 +36,7 @@ export class BDRSController {
     @Query('ID') id: string[],
     @Query('pageNum') pageNum: number = 1,
     @Query('pageSize') pageSize: number = 100,
-    @Headers('x-openhim-clientid') clientId = 'OmangSvc'
+    @Headers('x-openhim-clientid') clientId = 'OmangSvc',
   ): Promise<any> {
     try {
       if (!id || id.length === 0) {

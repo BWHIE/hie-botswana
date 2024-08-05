@@ -2,11 +2,10 @@ import { Injectable, Logger } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { AxiosRequestConfig } from 'axios';
 import { Agent } from 'https';
-import { config } from 'src/config';
+import config from 'src/config';
 import { Bundle } from 'fhir/r4';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { FhirSearchParams } from 'src/utils/fhir-search.pipe';
-
 
 @Injectable()
 export class MpiService {
@@ -68,7 +67,7 @@ export class MpiService {
           params,
           headers: {
             'Content-Type': 'application/fhir+json',
-            'x-openhim-clientid': clientId
+            'x-openhim-clientid': clientId,
           },
         },
       );
@@ -76,7 +75,7 @@ export class MpiService {
       return searchResponse.data;
     } catch (error) {
       this.logger.error(
-        `Could not get CR bundle for patient with ${JSON.stringify(params)} \n ${error}`
+        `Could not get CR bundle for patient with ${JSON.stringify(params)} \n ${error}`,
       );
       throw error;
     }

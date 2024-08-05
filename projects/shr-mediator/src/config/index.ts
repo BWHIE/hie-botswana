@@ -1,7 +1,3 @@
-import * as dotenv from 'dotenv';
-
-dotenv.config();
-
 class Config {
   private static mergeEnvVariables(): any {
     const envConfig: any = {

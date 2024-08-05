@@ -9,7 +9,7 @@ import { fhirR4 } from '@smile-cdr/fhirts';
 import { calculateMD5Hash } from 'src/utils/hash';
 import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { MpiService } from '../../mpi/services/mpi.service';
-import { config } from 'src/config';
+import config from 'src/config';
 import { BaseService } from 'src/services/base.service';
 
 @Injectable()
@@ -196,7 +196,7 @@ export class BDRSService extends BaseService {
       entry.fullUrl =
         config.get('ClientRegistry:BdrsSystem') +
         patient.constructor.name +
-        (patient.identifier[0].value);
+        patient.identifier[0].value;
 
       entry.resource = patient;
       searchBundle.entry.push(entry);
@@ -216,7 +216,7 @@ export class BDRSService extends BaseService {
       entry.fullUrl =
         config.get('ClientRegistry:BdrsSystem') +
         patient.constructor.name +
-        (patient.identifier[0].value);
+        patient.identifier[0].value;
 
       entry.resource = patient;
       searchBundle.entry.push(entry);
@@ -236,7 +236,7 @@ export class BDRSService extends BaseService {
       entry.fullUrl =
         config.get('ClientRegistry:BdrsSystem') +
         patient.constructor.name +
-        (patient.identifier[0].value);
+        patient.identifier[0].value;
 
       entry.resource = patient;
       searchBundle.entry.push(entry);
@@ -327,7 +327,7 @@ export class BDRSService extends BaseService {
         {
           system: 'http://openclientregistry.org/fhir/source',
           code: 'bdrs',
-        }
+        },
       ],
     };
 
