@@ -4,7 +4,7 @@ services:
   oracle-db:
     image: ${OMANG_ORACLE_DOCKER_IMAGE}
     environment:
-      - ORACLE_SID=${OMANG_ORACLE_SID}
+      - ORACLE_SID=${OMANG_ORACLE_DB_SID}
       - ORACLE_ALLOW_REMOTE=true
       - TZ=GMT
       - ORACLE_PASSWORD=${OMANG_ORACLE_PASSWORD}

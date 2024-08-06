@@ -32,7 +32,7 @@ export abstract class BaseService {
     }
 
     this.logger.error(
-      `All attempts to get search bundle failed after ${maxAttempts} retries. `
+      `All attempts to get search bundle failed after ${maxAttempts} retries. `,
     );
     return null;
   }

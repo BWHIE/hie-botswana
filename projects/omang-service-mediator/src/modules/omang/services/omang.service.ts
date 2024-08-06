@@ -94,7 +94,6 @@ export class OmangService extends BaseService {
     } else return FhirAPIResponses.RecordInitialized;
   }
 
-
   async findOmangByDemographicData(
     firstName: string,
     lastName: string,
@@ -102,7 +101,13 @@ export class OmangService extends BaseService {
     birthDate: string,
     pager: Pager,
   ): Promise<fhirR4.Bundle> {
-    const results = await this.repo.getByDemographicData(firstName, lastName, gender, birthDate, pager);
+    const results = await this.repo.getByDemographicData(
+      firstName,
+      lastName,
+      gender,
+      birthDate,
+      pager,
+    );
     if (results.length > 0) {
       return this.mapOmangToSearchBundle(results);
     } else return FhirAPIResponses.RecordInitialized;
@@ -249,7 +254,7 @@ export class OmangService extends BaseService {
       entry.fullUrl =
         config.get('ClientRegistry:OmangSystem') +
         patient.constructor.name +
-        (patient.identifier[0].value);
+        patient.identifier[0].value;
 
       entry.resource = patient;
       searchBundle.entry.push(entry);
@@ -258,5 +263,4 @@ export class OmangService extends BaseService {
 
     return searchBundle;
   }
-
 }

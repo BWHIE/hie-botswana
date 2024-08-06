@@ -7,7 +7,7 @@ import {
   InternalServerErrorException,
   Logger,
   Query,
-  UseGuards
+  UseGuards,
 } from '@nestjs/common';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { BasicAuthGuard } from '../../user/models/authentification';
@@ -18,9 +18,7 @@ import { ImmigrationService } from '../services/immigration.service';
 export class ImmigrationController {
   private readonly logger = new Logger(ImmigrationController.name);
 
-  constructor(
-    private readonly immigration: ImmigrationService,
-  ) {}
+  constructor(private readonly immigration: ImmigrationService) {}
 
   @Get('Online')
   async online(): Promise<boolean> {
@@ -57,5 +55,4 @@ export class ImmigrationController {
       throw new InternalServerErrorException();
     }
   }
-
 }

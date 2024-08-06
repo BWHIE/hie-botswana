@@ -15,11 +15,9 @@ import { PatientService } from './services/patient.service';
     HttpModule,
     BdrsModule,
     OmangModule,
-    ImmigrationModule
+    ImmigrationModule,
   ],
-  controllers: [
-    PatientController
-  ],
+  controllers: [PatientController],
   providers: [PatientService],
   exports: [PatientService],
 })

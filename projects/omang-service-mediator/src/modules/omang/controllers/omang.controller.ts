@@ -6,7 +6,7 @@ import {
   InternalServerErrorException,
   Logger,
   Query,
-  UseGuards
+  UseGuards,
 } from '@nestjs/common';
 import { Pager } from 'src/utils/pager';
 import { BasicAuthGuard } from '../../user/models/authentification';
