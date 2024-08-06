@@ -1,80 +1,70 @@
 {
   "Users": [
     {
+      "provider": "token",
+      "groups": ["admin"],
       "firstname": "Super",
       "surname": "User",
       "email": "root@openhim.org",
-      "provider": "token",
-      "groups": [
-        "admin"
-      ],
-      "passwordAlgorithm": null,
-      "passwordHash": null,
-      "passwordSalt": null,
       "expiry": null,
       "locked": false,
       "token": null,
       "tokenType": null
+    }
+  ],
+  "Passports": [
+    {
+      "protocol": "local",
+      "email": "root@openhim.org",
+      "password": "$2a$10$qvja1lAaItmcZolkoKCPn.9EXY2b8s9dTlUFx36Q7ey0rieXXnxVC"
     },
     {
-      "firstname": "test",
-      "surname": "test",
-      "email": "test@jembi.org",
-      "provider": "openid",
-      "groups": [
-        "admin"
-      ],
-      "token": null,
-      "tokenType": null,
-      "expiry": null,
-      "locked": false
+      "protocol": "token",
+      "email": "root@openhim.org",
+      "passwordHash": "c5e14f0062bfac45bf20f0fcf0403e758a2233756e40e7b328e1f10dfef3d8ba57c2bf230ee9fd627956fbb4e57fab7e32efe108db76d515f1f61f6b853ffba3",
+      "passwordAlgorithm": "sha512",
+      "passwordSalt": "c5f2a9fd7907e1a1c6658841426e6f5d"
     }
   ],
   "Clients": [
     {
+      "roles": ["instant"],
+      "customTokenID": "instant",
       "clientID": "instant",
-      "name": "Instant Test Client",
-      "roles": [
-        "instant"
-      ],
-      "customTokenID": "instant"
+      "name": "Instant Test Client"
     },
     {
+      "roles": [
+        "test"
+      ],
       "clientID": "tester",
       "name": "tester",
+      "passwordAlgorithm": "sha512",
+      "passwordSalt": "0cce6dd3e3fe58ad1b471f3859cefc50",
+      "passwordHash": "6a9785631997f32b1805fd768ee51206ffecc8ddbe5639851debd99b78eff61c70231c0ece2b3d077c87930f5bc30840b4c15676ba3fe2bf9b4219541bb27fa9"
+    },
+    {
       "roles": [
         "test"
       ],
-      "passwordAlgorithm": "sha512",
-      "passwordHash": "6a9785631997f32b1805fd768ee51206ffecc8ddbe5639851debd99b78eff61c70231c0ece2b3d077c87930f5bc30840b4c15676ba3fe2bf9b4219541bb27fa9",
-      "passwordSalt": "0cce6dd3e3fe58ad1b471f3859cefc50"
-    },
-    {
       "clientID": "postman",
       "name": "postman",
-      "roles": [
-        "test"
-      ],
       "passwordAlgorithm": "sha512",
-      "passwordHash": "804c621f67f7260438c27a8bce6665b807d3143e78ae441215b3decc99d3404f64596a6378714c175279863018313b5d9fd6bf466f88fef3557d549a159f1d7d",
-      "passwordSalt": "cfd861e74551d1f624ffe304caf0412a"
+      "passwordSalt": "ad7aff63dc3b5c4f347e35d111f0166a",
+      "passwordHash": "ef907ec096cb64b9a194d3c17aa19df4dff6538305443395089bb694b6e2913197dd8feb527e254dea75af0eccd10d503cb521468e476c8c9fbdabf65ca53c14"
     },
-    {
+    { 
+      "roles": ["shr"],
       "clientID": "shr-client",
       "name": "SHR Client",
-      "roles": [
-        "shr"
-      ],
       "passwordAlgorithm": "sha512",
       "passwordHash": "f113b998ec11f7a29cb2a55a7ff7264d92045c89113a3d00875ffb439a99f9b6797da71b0c1a57a5839ded9bb8bc3c825cb26788f2e4681f73e5bdf6bce0edc1",
       "passwordSalt": "ddc029f1d9e69c8996dc0ace598f32e1"
     },
     {
+      "roles": ["test"],
       "clientID": "pims-client",
       "name": "PIMS Client",
-      "roles": [
-        "test"
-      ],
       "passwordAlgorithm": "sha512",
       "passwordHash": "57dee175ee6087211ee2b1de15b102b9e66245ce7c3a4219f9408cf7f9d82ea93c2863b4f3be5f725b66f8f1db2c8250ff2a9f7fb3dd3528f3803e1902fc57f9",
       "passwordSalt": "054e055ae69bca813684143bcfce9ce0"
@@ -637,7 +627,7 @@
     {
       "name": "Add Patient to OpenCR (IN USE)",
       "description": "The following endpoint proxies incoming requests to OpenCR\nto create a patient record. This is a temporary measure until\nOpenCR fixs the issue of returning an array of outcomes instead\nof the patient resource being submitted.\n\nSee issue : https://github.com/intrahealth/client-registry/issues/147",
-      "urlPattern": "^^/CR/fhir/Patient$$",
+      "urlPattern": "^/CR/fhir/Patient$",
       "isAsynchronousProcess": false,
       "methods": [
         "POST"
