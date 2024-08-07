@@ -21,7 +21,8 @@
     "ipmsPatientStatusSystemUrl": "http://moh.bw.org/ext/ipms-patient-status",
     "ipmsXLocationSystemUrl": "http://moh.bw.org/ext/ipms-xlocation",
     "ipmsOrderTypeSystemUrl": "http://moh.bw.org/ext/ipms-order-type",
-    "MflfacilityCodeSystemUrl": "http://moh.bw.org/ext/identifier/mfl-code"
+    "MflfacilityCodeSystemUrl": "http://moh.bw.org/ext/identifier/mfl-code",
+    "PimsFacilityCodeSystemUrl":  "https://bummhi.org/facility"
  
 
 }

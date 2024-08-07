@@ -109,3 +109,50 @@ export function generateLocationBundle(locations:any[] , facilities:any[]){
   myBundle.entry = locEntries;
   return myBundle;
 }
+
+
+export function generatePimsLocation(location: any): fhirR4.Location{
+  let theLocation = new fhirR4.Location();
+  theLocation.resourceType = 'Location';
+  theLocation.id = '';
+
+  const pims_identifier = new fhirR4.Identifier()
+  pims_identifier.system = config.get('bwConfig:PimsFacilityCodeSystemUrl');
+  pims_identifier.value = location.FacilityCode;
+
+  theLocation.identifier = [ pims_identifier];
+
+
+  theLocation.name = location.Facility;
+
+  theLocation.id = createHash('md5')
+  .update('Location/' + location.FacilityID)
+  .digest('hex');
+
+  return theLocation;
+
+}
+
+
+export function generatePimsLocationBundle(locations:any[]){
+  const myBundle = new fhirR4.Bundle();
+  myBundle.resourceType = 'Bundle';
+  myBundle.type = 'transaction';
+  const locEntries: fhirR4.BundleEntry[] = []
+
+  locations.forEach(location => {
+
+    // Create a new Bundle entry for each location 
+    const entry = new fhirR4.BundleEntry();
+    entry.resource = generatePimsLocation(location);
+    const theRequest = new fhirR4.BundleRequest();
+    theRequest.method = 'PUT';
+    theRequest.url = `${entry.resource.resourceType}/${entry.resource.id}`
+    entry.request = theRequest
+    locEntries.push(entry);
+
+  });
+
+  myBundle.entry = locEntries;
+  return myBundle;
+}
