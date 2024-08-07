@@ -73,15 +73,15 @@ services:
       MEDIATOR_SETUP_NAME: ${SHR_MEDIATOR_CONFIG_MEDIATOR_SETUP_NAME}
       MEDIATOR_SETUP_DESCRIPTION: ${SHR_MEDIATOR_CONFIG_MEDIATOR_SETUP_DESCRIPTION}
     configs:
-      - target: /app/dist/botswana/ocl_json/IPMSLAB_to_CIEL.json
+      - target: /app/src/botswana/ocl_json/IPMSLAB_to_CIEL.json
         source: IPMSLAB_to_CIEL.json
-      - target: /app/dist/botswana/ocl_json/IPMSLAB_to_PIMSLAB.json
+      - target: /app/src/botswana/ocl_json/IPMSLAB_to_PIMSLAB.json
         source: IPMSLAB_to_PIMSLAB.json
-      - target: /app/dist/botswana/ocl_json/PIMSLAB_to_CIEL.json
+      - target: /app/src/botswana/ocl_json/PIMSLAB_to_CIEL.json
         source: PIMSLAB_to_CIEL.json
-      - target: /app/dist/botswana/ocl_json/PIMSLAB_to_IPMSLAB.json
+      - target: /app/src/botswana/ocl_json/PIMSLAB_to_IPMSLAB.json
         source: PIMSLAB_to_IPMSLAB.json
-      - target: /app/dist/botswana/ocl_json/IPMS_Coding.json
+      - target: /app/src/botswana/ocl_json/IPMS_Coding.json
         source: IPMS_Coding.json
     deploy:
       replicas: 1
