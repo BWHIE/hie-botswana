@@ -31,7 +31,9 @@
       "IPS_ENABLED": "true",
       "ENABLE_RUNTIME_IG_UPLOAD": "false",
       "MFL_LOCATIONS_URL": "https://mfldit.gov.org.bw/api/v1/mfl/fhir/bundle/location",
-      "MFL_ORGANIZATIONS_URL": "https://mfldit.gov.org.bw/api/v1/mfl/fhir/bundle/organization"
+      "MFL_ORGANIZATIONS_URL": "https://mfldit.gov.org.bw/api/v1/mfl/fhir/bundle/organization",
+      "MFL_LOCATION_SYSTEM": "http://moh.bw.org/ext/identifier/mfl-code",
+      "MFL_ORGANIZATION_SYSTEM": "https://www.hl7.org/fhir/organization.html"
     }
   }
   

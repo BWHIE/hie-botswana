@@ -86,14 +86,14 @@ async function processBundleEntriesAndGenerateTransactionBundle(data) {
       resource = item.resource;
       resource.identifier = [{
         use: "official",
-        system: "http://moh.bw.org/ext/identifier/mfl-code",
+        system: process.env.LOCATION_SYSTEM,
         value: resource.id
       }];
     } else if (!resource && item.resource.resourceType === 'Organization') {
       resource = item.resource;
       resource.identifier = [{
         use: "official",
-        system: "https://www.hl7.org/fhir/organization.html",
+        system: process.env.ORGANIZATION_SYSTEM,
         value: resource.id
       }];
     }

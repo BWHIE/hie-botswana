@@ -14,6 +14,8 @@ services:
     environment:
     - LOCATIONS_URL=${MFL_LOCATIONS_URL}
     - ORGANIZATIONS_URL=${MFL_ORGANIZATIONS_URL}
+    - LOCATION_SYSTEM=${MFL_LOCATION_SYSTEM}
+    - ORGANIZATION_SYSTEM=${MFL_ORGANIZATION_SYSTEM}
     deploy:
       replicas: 1
       restart_policy:
