@@ -6,6 +6,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import config from '../../config';
 import { LoggerService } from '../../logger/logger.service';
+import { Mapping } from './interfaces';
 
 @Injectable()
 export class TerminologyService {
@@ -18,13 +19,12 @@ export class TerminologyService {
     this.loadJsonData();
   }
 
-  private loadJsonData() {
+  private async loadJsonData() {
     try {
-      const dataPath = path.resolve(__dirname, '..', 'ocl_json');
-      this.ipmsToPimsMappings = JSON.parse(fs.readFileSync(path.join(dataPath, 'IPMSLAB_to_PIMSLAB.json'), 'utf8'));
-      this.ipmsToCielMappings = JSON.parse(fs.readFileSync(path.join(dataPath, 'IPMSLAB_to_CIEL.json'), 'utf8'));
-      this.pimsToIpmsMappings = JSON.parse(fs.readFileSync(path.join(dataPath, 'PIMSLAB_to_IPMSLAB.json'), 'utf8'));
-      this.ipmsCodingInfo = JSON.parse(fs.readFileSync(path.join(dataPath, 'IPMS_Coding.json'), 'utf8'));
+      this.ipmsToPimsMappings = await this.loadJSONFile('IPMSLAB_to_PIMSLAB.json') || {};
+      this.ipmsToCielMappings = await this.loadJSONFile('IPMSLAB_to_CIEL.json') || {};
+      this.pimsToIpmsMappings = await this.loadJSONFile('PIMSLAB_to_IPMSLAB.json') || {};
+      this.ipmsCodingInfo = await this.loadJSONFile('IPMS_Coding.json') || [];
 
       if (!Array.isArray(this.ipmsCodingInfo)) {
         this.logger.error('IPMS Coding info is not an array');
@@ -32,6 +32,18 @@ export class TerminologyService {
       }
     } catch (error) {
       this.logger.error('Error loading JSON data: ', error);
+    }
+  }
+
+  private async loadJSONFile(fileName: string): Promise<any> {
+    try {
+      const dataPath = path.resolve(__dirname, '..', 'ocl_json');
+      const filePath = path.join(dataPath, fileName);
+      const fileContents = await fs.promises.readFile(filePath, 'utf8');
+      return JSON.parse(fileContents);
+    } catch (error) {
+      this.logger.error(`Error loading JSON data from ${fileName}: `, error);
+      return null;  // or return an empty array/object based on expected data structure
     }
   }
 
@@ -80,7 +92,6 @@ export class TerminologyService {
         this.logger.log(`IPMS Coding: ${JSON.stringify(ipmsCoding)}`);
 
         if (ipmsCoding && ipmsCoding.code) {
-
           // 1. IPMS Resulting Workflow:
           //    Translation from IPMS --> PIMS and CIEL
           pimsCoding = this.getMappedCodeFromMemory(this.ipmsToPimsMappings, ipmsCoding.code);
@@ -161,7 +172,7 @@ export class TerminologyService {
     }
   }
 
-  getIpmsCodeFromMemory(mappings: any[], code: string) {
+  getIpmsCodeFromMemory(mappings: Mapping[], code: string) {
     try {
       // Prioritize "Broader Than Mappings"
       let mappingIndex = mappings.findIndex(
@@ -175,15 +186,15 @@ export class TerminologyService {
         );
       }
       if (mappingIndex >= 0) {
-        const ipmsCode = mappings[mappingIndex].from_concept_code;
-        const ipmsDisplay = mappings[mappingIndex].from_concept_name_resolved;
+        const ipmsCode = mappings[mappingIndex].from_concept_code ?? null;
+        const ipmsDisplay = mappings[mappingIndex].from_concept_name_resolved ?? null;
         const ipmsCodingInfoID = this.ipmsCodingInfo.find((concept: any) => concept.id === ipmsCode);
 
         let ipmsMnemonic, hl7Flag;
         if (ipmsCodingInfoID) {
           ipmsMnemonic = ipmsCodingInfoID.names.find(
             (x: any) => x.name_type == 'Short',
-          ).name;
+          ).name ?? null;
           hl7Flag =
           ipmsCodingInfoID.extras && ipmsCodingInfoID.extras.IPMS_HL7_ORM_TYPE
               ? ipmsCodingInfoID.extras.IPMS_HL7_ORM_TYPE
@@ -205,15 +216,15 @@ export class TerminologyService {
     }
   }
 
-  getMappedCodeFromMemory(mappings: any[], code: string): any {
+  getMappedCodeFromMemory(mappings: Mapping[], code: string): any {
     try {
-      this.logger.log(`Code: ${code}`)
+      this.logger.log(`Terminology mapping for code: ${code}`)
       const mapping = mappings.find((x: any) => x.from_concept_code === code);
 
       if (mapping) {
         return {
-          code: mapping.to_concept_code,
-          display: mapping.to_concept_name_resolved,
+          code: mapping.to_concept_code ?? null,
+          display: mapping.to_concept_name_resolved ?? null,
         };
       } else {
         return {};
