@@ -59,7 +59,7 @@ export class LabController {
         resultBundle.entry.length == orderBundle.entry.length
       ) {
         this.labService.handleLabOrder(orderBundle);
-        return resultBundle;
+        return res.status(201).json(resultBundle);
       } else {
         throw new BadRequestException(resultBundle);
       }
