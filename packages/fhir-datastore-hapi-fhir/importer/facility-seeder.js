@@ -1,4 +1,8 @@
-const got = require('got'); 
+const got = require('got');
+const fetch = require('node-fetch');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 async function postWithRetry(fhirUrl, options, retryLimit = 5, timeout = 30000) {
   for (let attempt = 1; attempt <= retryLimit; attempt++) {
@@ -37,36 +41,104 @@ async function saveBundle(bundle) {
     console.log(`Saved bundle to FHIR store!`);
     return ret;
   } catch (error) {
-    console.error(`Could not save bundle: ${error.response.body}`);
-
-    throw new HapiError('Could not save bundle to hapi server!');
+    console.error(`Could not save bundle: ${error.message}`);
+    throw new Error('Could not save bundle to HAPI server!');
   }
 }
 
+async function fetchDataFromUrl(url, maxRetries = 3, delay = 2000) {
+  let attempt = 0;
 
-async function processBundles() {
-  const facilityData = require('./facility_bundle.json');
-  const firstLocationData = require('./location_bundle_part1.json');
-  const secondLocationData = require('./location_bundle_part2.json');
+  while (attempt < maxRetries) {
+    try {
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        console.warn(`Attempt ${attempt + 1}: Request failed with status ${response.status}`);
+      } else {
+        const data = await response.json();
+        return data;
+      }
+    } catch (error) {
+      console.error(`Attempt ${attempt + 1}: An error occurred: ${error.message}`);
+    }
 
-  try {
-    await saveBundle(facilityData); // Call saveBundle function with the parsed bundle
-    console.log(`Seeder successfully finished execution!`);
-  } catch (error) {
-    console.error(`Error processing bundle: ${error.message}`);
-    process.exit(1);
+    attempt++;
+
+    if (attempt < maxRetries) {
+      // Wait for a specified delay before retrying
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
   }
 
-  try {
-    await saveBundle(firstLocationData); // Call saveBundle function with the parsed bundle
-    console.log(`Seeder successfully finished execution!`);
-  } catch (error) {
-    console.error(`Error processing bundle: ${error.message}`);
-    process.exit(1);
+  return null;
+}
+
+async function processBundleEntriesAndGenerateTransactionBundle(data) {
+  const resources = [];
+
+  for (const item of data.entry) {
+    // Fetch the resource from the URL
+    let resource = await fetchDataFromUrl(item.fullUrl);
+
+    // Assign identifiers if the resource is a Location or Organization
+    if (!resource && item.resource.resourceType === 'Location') {
+      resource = item.resource;
+      resource.identifier = [{
+        use: "official",
+        system: process.env.LOCATION_SYSTEM,
+        value: resource.id
+      }];
+    } else if (!resource && item.resource.resourceType === 'Organization') {
+      resource = item.resource;
+      resource.identifier = [{
+        use: "official",
+        system: process.env.ORGANIZATION_SYSTEM,
+        value: resource.id
+      }];
+    }
+
+    // Ensure the resource has an ID
+    if (!resource.id) {
+      resource.id = item.resource.id;
+    }
+
+    console.log("mapped resource ", JSON.stringify(resource));
+
+    // Push the resource into the resources array
+    resources.push({
+      resource: resource,
+      request: {
+        method: 'POST',
+        url: resource.resourceType,
+        ifNoneExist: `identifier=${resource.identifier[0].system}|${resource.identifier[0].value}`
+      }
+    });
   }
 
+  // Return the transaction bundle
+  return {
+    resourceType: "Bundle",
+    type: "transaction",
+    entry: resources
+  };
+}
+
+async function processBundle() {
   try {
-    await saveBundle(secondLocationData); // Call saveBundle function with the parsed bundle
+    const locationsUrl = process.env.LOCATIONS_URL;
+    const organizationUrl = process.env.ORGANIZATIONS_URL;
+
+    const locationData = await fetchDataFromUrl(locationsUrl);
+    const locationResources = await  processBundleEntriesAndGenerateTransactionBundle(locationData);
+
+    await saveBundle(locationResources); // Call saveBundle function with the parsed bundle
+
+    const organizationData = await fetchDataFromUrl(organizationUrl);
+    const organizationResources = await  processBundleEntriesAndGenerateTransactionBundle(organizationData);
+
+    await saveBundle(organizationResources); // Call saveBundle function with the parsed bundle
+
     console.log(`Seeder successfully finished execution!`);
   } catch (error) {
     console.error(`Error processing bundle: ${error.message}`);
@@ -75,5 +147,4 @@ async function processBundles() {
 }
 
 // Call the async function
-processBundles();
-
+processBundle();
