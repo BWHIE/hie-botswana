@@ -2,15 +2,50 @@ import { R4 } from '@ahryman40k/ts-fhir-types';
 import { IBundle } from '@ahryman40k/ts-fhir-types/lib/R4';
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
+import * as fs from 'fs';
+import * as path from 'path';
 import config from '../../config';
 import { LoggerService } from '../../logger/logger.service';
+import { Mapping } from './interfaces';
 
 @Injectable()
 export class TerminologyService {
-  constructor(
-    private readonly httpService: HttpService,
-    private readonly logger: LoggerService,
-  ) {}
+  private ipmsToPimsMappings: any[];
+  private ipmsToCielMappings: any[];
+  private pimsToIpmsMappings: any[];
+  private ipmsCodingInfo: any;
+
+  constructor(private readonly logger: LoggerService) {
+    this.loadJsonData();
+  }
+
+  private async loadJsonData() {
+    try {
+      this.ipmsToPimsMappings = await this.loadJSONFile('IPMSLAB_to_PIMSLAB.json') || {};
+      this.ipmsToCielMappings = await this.loadJSONFile('IPMSLAB_to_CIEL.json') || {};
+      this.pimsToIpmsMappings = await this.loadJSONFile('PIMSLAB_to_IPMSLAB.json') || {};
+      this.ipmsCodingInfo = await this.loadJSONFile('IPMS_Coding.json') || [];
+
+      if (!Array.isArray(this.ipmsCodingInfo)) {
+        this.logger.error('IPMS Coding info is not an array');
+        this.ipmsCodingInfo = [];
+      }
+    } catch (error) {
+      this.logger.error('Error loading JSON data: ', error);
+    }
+  }
+
+  private async loadJSONFile(fileName: string): Promise<any> {
+    try {
+      const dataPath = path.resolve(__dirname, '..', 'ocl_json');
+      const filePath = path.join(dataPath, fileName);
+      const fileContents = await fs.promises.readFile(filePath, 'utf8');
+      return JSON.parse(fileContents);
+    } catch (error) {
+      this.logger.error(`Error loading JSON data from ${fileName}: `, error);
+      return null;  // or return an empty array/object based on expected data structure
+    }
+  }
 
   async mapConcepts(labBundle: IBundle): Promise<IBundle> {
     this.logger.log('Mapping Concepts!');
@@ -59,10 +94,8 @@ export class TerminologyService {
         if (ipmsCoding && ipmsCoding.code) {
           // 1. IPMS Resulting Workflow:
           //    Translation from IPMS --> PIMS and CIEL
-          pimsCoding = await this.getMappedCode(
-            `/orgs/I-TECH-UW/sources/IPMSLAB/mappings/?toConceptSource=PIMSLAB&fromConcept=${ipmsCoding.code}`,
-          );
-
+          pimsCoding = this.getMappedCodeFromMemory(this.ipmsToPimsMappings, ipmsCoding.code);
+          
           if (pimsCoding && pimsCoding.code) {
             r.code.coding.push({
               system: config.get('bwConfig:pimsSystemUrl'),
@@ -71,9 +104,7 @@ export class TerminologyService {
             });
           }
 
-          cielCoding = await this.getMappedCode(
-            `/orgs/I-TECH-UW/sources/IPMSLAB/mappings/?toConceptSource=CIEL&fromConcept=${ipmsCoding.code}`,
-          );
+          cielCoding = this.getMappedCodeFromMemory(this.ipmsToCielMappings, ipmsCoding.code);
 
           if (cielCoding && cielCoding.code) {
             r.code.coding.push({
@@ -88,15 +119,11 @@ export class TerminologyService {
           if (pimsCoding && pimsCoding.code) {
             // 2. PIMS Order Workflow:
             //    Translation from PIMS --> IMPS and CIEL
-            computedIpmsCoding = await this.getIpmsCode(
-              `/orgs/I-TECH-UW/sources/IPMSLAB/mappings?toConcept=${pimsCoding.code}&toConceptSource=PIMSLAB`,
-              pimsCoding.code,
-            );
+            computedIpmsCoding = this.getIpmsCodeFromMemory(this.ipmsToPimsMappings, pimsCoding.code);
+            this.logger.log(`PIMS Coding: ${JSON.stringify(computedIpmsCoding)}`);
 
             if (computedIpmsCoding && computedIpmsCoding.code) {
-              cielCoding = await this.getMappedCode(
-                `/orgs/I-TECH-UW/sources/IPMSLAB/mappings/?toConceptSource=CIEL&fromConcept=${computedIpmsCoding.code}`,
-              );
+              cielCoding = this.getMappedCodeFromMemory(this.ipmsToCielMappings, computedIpmsCoding.code);
             }
 
             if (cielCoding && cielCoding.code) {
@@ -109,10 +136,7 @@ export class TerminologyService {
           } else if (cielCoding && cielCoding.code) {
             // 3. OpenMRS Order Workflow:
             //    Translation from CIEL to IPMS
-            computedIpmsCoding = await this.getIpmsCode(
-              `/orgs/I-TECH-UW/sources/IPMSLAB/mappings?toConcept=${cielCoding.code}&toConceptSource=CIEL`,
-              cielCoding.code,
-            );
+            computedIpmsCoding = this.getIpmsCodeFromMemory(this.ipmsToCielMappings, cielCoding.code);
           }
 
           // Add IPMS Coding if found successfully
@@ -148,44 +172,35 @@ export class TerminologyService {
     }
   }
 
-  async getIpmsCode(q: string, c = '') {
+  getIpmsCodeFromMemory(mappings: Mapping[], code: string) {
     try {
-      const ipmsMappings = await this.getOclMapping(q);
-
-      //this.logger.log(`IPMS Mappings: ${JSON.stringify(ipmsMappings)}`)
-
       // Prioritize "Broader Than Mappings"
-      //TODO: Figure out if this is proper way to handle panels / broad to narrow
-      let mappingIndex = ipmsMappings.findIndex(
-        (x: any) => x.map_type == 'BROADER-THAN' && x.to_concept_code == c,
+      let mappingIndex = mappings.findIndex(
+        (x: any) => x.map_type == 'BROADER-THAN' && x.to_concept_code == code,
       );
 
       // Fall back to "SAME AS"
       if (mappingIndex < 0) {
-        mappingIndex = ipmsMappings.findIndex(
-          (x: any) => x.map_type == 'SAME-AS' && x.to_concept_code == c,
+        mappingIndex = mappings.findIndex(
+          (x: any) => x.map_type == 'SAME-AS' && x.to_concept_code == code,
         );
       }
-
       if (mappingIndex >= 0) {
-        const ipmsCode = ipmsMappings[mappingIndex].from_concept_code;
-        const ipmsDisplay =
-          ipmsMappings[mappingIndex].from_concept_name_resolved;
-        const ipmsCodingInfo: any = await this.getOclMapping(
-          `/orgs/I-TECH-UW/sources/IPMSLAB/concepts/${ipmsCode}`,
-        );
-        // this.logger.log(`IPMS Coding Info: ${JSON.stringify(ipmsCodingInfo)}`)
+        const ipmsCode = mappings[mappingIndex].from_concept_code ?? null;
+        const ipmsDisplay = mappings[mappingIndex].from_concept_name_resolved ?? null;
+        const ipmsCodingInfoID = this.ipmsCodingInfo.find((concept: any) => concept.id === ipmsCode);
+
         let ipmsMnemonic, hl7Flag;
-        if (ipmsCodingInfo) {
-          ipmsMnemonic = ipmsCodingInfo.names.find(
+        if (ipmsCodingInfoID) {
+          ipmsMnemonic = ipmsCodingInfoID.names.find(
             (x: any) => x.name_type == 'Short',
-          ).name;
+          ).name ?? null;
           hl7Flag =
-            ipmsCodingInfo.extras && ipmsCodingInfo.extras.IPMS_HL7_ORM_TYPE
-              ? ipmsCodingInfo.extras.IPMS_HL7_ORM_TYPE
+          ipmsCodingInfoID.extras && ipmsCodingInfoID.extras.IPMS_HL7_ORM_TYPE
+              ? ipmsCodingInfoID.extras.IPMS_HL7_ORM_TYPE
               : 'LAB';
         }
-
+       
         return {
           code: ipmsCode,
           display: ipmsDisplay,
@@ -201,49 +216,23 @@ export class TerminologyService {
     }
   }
 
-  async getMappedCode(q: string): Promise<any> {
+  getMappedCodeFromMemory(mappings: Mapping[], code: string): any {
     try {
-      const codeMapping = await this.getOclMapping(q);
+      this.logger.log(`Terminology mapping for code: ${code}`)
+      const mapping = mappings.find((x: any) => x.from_concept_code === code);
 
-      //this.logger.log(`Code Mapping: ${JSON.stringify(codeMapping)}`)
-
-      if (codeMapping && codeMapping.length > 0) {
+      if (mapping) {
         return {
-          code: codeMapping[0].to_concept_code,
-          display: codeMapping[0].to_concept_name_resolved,
+          code: mapping.to_concept_code ?? null,
+          display: mapping.to_concept_name_resolved ?? null,
         };
       } else {
         return {};
       }
     } catch (e) {
-      this.logger.error(e);
+      this.logger.error("Could not find any codings to translate");
       return {};
     }
-  }
-
-  async getOclMapping(queryString: string): Promise<any[]> {
-    const options = { timeout: config.get('bwConfig:requestTimeout') || 1000 };
-
-    this.logger.log(`${config.get('bwConfig:oclUrl')}${queryString}`);
-
-    // TODO: Add retry logic
-    const { data } = await this.httpService.axiosRef.get(
-      `${config.get('bwConfig:oclUrl')}${queryString}`,
-      options,
-    );
-    return data;
-  }
-
-  async getOclConcept(conceptCode: string): Promise<any> {
-    const options = { timeout: config.get('bwConfig:requestTimeout') || 1000 };
-
-    // TODO: Add retry logic
-    const { data } = await this.httpService.axiosRef.get(
-      `${config.get('bwConfig:oclUrl')}/orgs/I-TECH-UW/sources/IPMSLAB/concepts/${conceptCode}`,
-      options,
-    );
-
-    return data;
   }
 
   getCoding(
