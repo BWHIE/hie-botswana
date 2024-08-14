@@ -4,11 +4,11 @@ import * as crypto from 'crypto';
 import { getBundleEntries, getBundleEntry } from '../../common/utils/fhir';
 import config from '../../config';
 import { LoggerService } from '../../logger/logger.service';
-import facilityMappings from '../utils/locationMap';
+import { HttpService } from '@nestjs/axios';
 
 @Injectable()
 export class MflService {
-  constructor(private readonly logger: LoggerService) {}
+  constructor(private readonly logger: LoggerService, private readonly httpService: HttpService) {}
 
   async mapLocations(labBundle: R4.IBundle): Promise<R4.IBundle> {
     this.logger.log('Mapping Locations!');
@@ -26,8 +26,8 @@ export class MflService {
   // This method assumes that the Task resource has a reference to the recieving facility
   // under the `owner` field. This is the facility that the lab order is being sent to.
   async addBwLocations(bundle: R4.IBundle): Promise<R4.IBundle> {
-    let mappedLocation: R4.ILocation | undefined;
-    let mappedOrganization: R4.IOrganization | undefined;
+    let mappedLocation: R4.ILocation | R4.IOrganization | undefined;
+    let mappedOrganization: R4.IOrganization | R4.ILocation | undefined;
 
     try {
       this.logger.log('Adding Location Info to Bundle');
@@ -106,15 +106,8 @@ export class MflService {
           }
 
           mappedLocation = await this.translateLocation(orderingLocation);
-          mappedOrganization = {
-            resourceType: 'Organization',
-            id: crypto
-              .createHash('md5')
-              .update('Organization/' + mappedLocation.name)
-              .digest('hex'),
-            identifier: mappedLocation.identifier,
-            name: mappedLocation.name,
-          };
+          mappedOrganization = await this.translateLocation(orderingOrganization);
+
           const mappedLocationRef: R4.IReference = {
             reference: `Location/${mappedLocation.id}`,
           };
@@ -122,8 +115,9 @@ export class MflService {
             reference: `Organization/${mappedOrganization.id}`,
           };
 
-          mappedLocation.managingOrganization = mappedOrganizationRef;
-
+          if (mappedLocation.resourceType == 'Location'){
+            mappedLocation.managingOrganization = mappedOrganizationRef;
+          }
           if (mappedLocation && mappedLocation.id) {
             task.location = mappedLocationRef;
 
@@ -157,30 +151,11 @@ export class MflService {
 
             task.requester = orderingOrganizationRef;
 
-            /**
-             * //@TODO fix double persistence issues of ordering facilities and locations in the submitted FHIR Bundle.
-             */
-
-            // bundle.entry.push({
-            //   resource: orderingOrganization,
-            //   request: {
-            //     method: R4.Bundle_RequestMethodKind._put,
-            //     url: orderingOrganizationRef.reference,
-            //   },
-            // });
           }
           if (orderingLocation && orderingLocation.id) {
             const orderingLocationRef: R4.IReference = {
               reference: `Location/${orderingLocation.id}`,
             };
-
-            // bundle.entry.push({
-            //   resource: orderingLocation,
-            //   request: {
-            //     method: R4.Bundle_RequestMethodKind._put,
-            //     url: orderingLocationRef.reference,
-            //   },
-            // });
           }
         }
       }
@@ -195,77 +170,51 @@ export class MflService {
    * @param location
    * @returns R4.ILocation
    */
-  async translateLocation(location: R4.ILocation): Promise<R4.ILocation> {
+  async translateLocation(location: R4.ILocation | R4.IOrganization): Promise<R4.ILocation | R4.IOrganization> {
     this.logger.log('Translating Location Data');
 
     const returnLocation: R4.ILocation = {
       resourceType: 'Location',
     };
-    const mappings = await facilityMappings;
-    let targetMapping;
-    this.logger.log('Facility mappings: ' + mappings.length);
+    let targetMapping: R4.ILocation |  R4.IOrganization |null = null;
+    try {
+      // First, attempt to find the mapping by identifier
+      const identifier = location.identifier?.[0];
+      if (identifier) {
+          this.logger.log(`Looking up location by identifier: ${JSON.stringify(identifier)}`);
+          const { data: fetchedBundleByIdentifier } = await this.httpService.axiosRef.get<R4.IBundle>(
+              `${config.get('fhirServer:baseURL')}/${location.resourceType}?identifier=${identifier.value}`
+          );
 
-    for (const mapping of mappings) {
-      // TODO: Match on system when we decide on MFL system
-      if (
-        mapping.orderingFacilityMflCode &&
-        location.identifier &&
-        location.identifier.length > 0 &&
-        mapping.orderingFacilityMflCode == location.identifier[0].value
-      ) {
-        this.logger.log('Matching location by MFL Code');
-        targetMapping = mapping;
-      } else if (
-        mapping.orderingFacilityName &&
-        mapping.orderingFacilityName == location.name
-      ) {
-        this.logger.warn(
-          'MFL Code not found. Falling back to matching location by facility name.',
-        );
-        targetMapping = mapping;
+          if (fetchedBundleByIdentifier.entry?.[0]?.resource) {
+              targetMapping = fetchedBundleByIdentifier.entry[0].resource as R4.ILocation;
+          }
       }
-    }
 
-    if (targetMapping) {
-      this.logger.log(
-        `Mapped location '${location.name}' to '${targetMapping.orderingFacilityMflCode}'|'${targetMapping.orderingFacilityName}'`,
-      );
+      // If not found, attempt to find the mapping by name
+      if (!targetMapping && location.name) {
+          this.logger.log(`Looking up location by name: ${location.name}`);
+          const { data: fetchedBundleByName } = await this.httpService.axiosRef.get<R4.IBundle>(
+              `${config.get('fhirServer:baseURL')}/${location.resourceType}?name=${location.name}`
+          );
 
-      returnLocation.id = crypto
-        .createHash('md5')
-        .update('Organization/' + returnLocation.name)
-        .digest('hex');
-      returnLocation.identifier = [
-        {
-          system: config.get('bwConfig:ipmsCodeSystemUrl'),
-          value: targetMapping.receivingFacility,
-        },
-      ];
+          if (fetchedBundleByName.entry?.[0]?.resource) {
+              targetMapping = fetchedBundleByName.entry[0].resource as R4.ILocation;
+          }
+      }
 
-      returnLocation.name = targetMapping.receivingFacility;
-      returnLocation.extension = [];
-      returnLocation.extension.push({
-        url: config.get('bwConfig:ipmsProviderSystemUrl'),
-        valueString: targetMapping.provider,
-      });
-      returnLocation.extension.push({
-        url: config.get('bwConfig:ipmsPatientTypeSystemUrl'),
-        valueString: targetMapping.patientType,
-      });
-      returnLocation.extension.push({
-        url: config.get('bwConfig:ipmsPatientStatusSystemUrl'),
-        valueString: targetMapping.patientStatus,
-      });
-      returnLocation.extension.push({
-        url: config.get('bwConfig:ipmsXLocationSystemUrl'),
-        valueString: targetMapping.xLocation,
-      });
-    } else {
-      this.logger.error(
-        'Could not find a location mapping for:\n' +
-          JSON.stringify(location.name),
-      );
-    }
+      // If target mapping was found, update returnLocation with the target mapping's details
+      if (targetMapping) {
+        return targetMapping;
+
+      } else {
+          this.logger.warn('No matching location found.');
+          // Handle the case where no matching location is found
+      }
+  } catch (error) {
+      this.logger.error('Error translating location:', error);
+      // Handle the error appropriately
+  }
 
     this.logger.log(`Translated Location:\n${JSON.stringify(returnLocation)}`);
     return returnLocation;
