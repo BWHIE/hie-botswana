@@ -187,7 +187,7 @@ export class MflService {
           );
 
           if (fetchedBundleByIdentifier.entry?.[0]?.resource) {
-              targetMapping = fetchedBundleByIdentifier.entry[0].resource as R4.ILocation;
+              targetMapping = fetchedBundleByIdentifier.entry[0].resource as R4.ILocation | R4.IOrganization;
           }
       }
 
