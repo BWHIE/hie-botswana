@@ -3,27 +3,30 @@ import { Injectable, OnModuleInit } from '@nestjs/common';
 import config from '../../config';
 import { Hl7Service } from './hl7.service';
 import { LoggerService } from '../../logger/logger.service';
-import { IBundle } from '@ahryman40k/ts-fhir-types/lib/R4';
 
 @Injectable()
 export class MllpService implements OnModuleInit {
+  // Used to send ADT/ORM and receive ADT and ACK back (listens on 3001)
   private mllpServer: MllpServer;
+
+  // Used to receive ORU (listens on 3002)
+  private oruMllpServer: MllpServer;
 
   constructor(
     private readonly hl7Handler: Hl7Service,
     private readonly logger: LoggerService,
   ) {
-    this.mllpServer = new MllpServer(
+    this.mllpServer = new MllpServer('0.0.0.0', config.get('app:mllpPort'));
+    this.oruMllpServer = new MllpServer(
       '0.0.0.0',
-      config.get('app:mllpPort'),
-      // logger,
+      config.get('app:oruMllpPort'),
     );
   }
 
   onModuleInit() {
     this.mllpServer.listen((err?: Error) => {
       if (err) {
-        this.logger.error('Unable to start the MLLP server', err);
+        this.logger.error('Unable to start the ADT/ORM MLLP server', err);
         return;
       }
 
@@ -32,19 +35,44 @@ export class MllpService implements OnModuleInit {
       );
     });
 
+    this.oruMllpServer.listen((err?: Error) => {
+      if (err) {
+        this.logger.error('Unable to start the ORU MLLP server', err);
+        return;
+      }
+
+      this.logger.log(
+        `TCP Server is up and listening on port: ${config.get('app:oruMllpPort')}`,
+      );
+    });
+
     this.mllpServer.on('hl7', async (data: any) => {
       this.logger.debug('Received message:', data.toString());
       const checkChar: string = data[data.length - 1];
       if (checkChar == '\r') {
-        const response: IBundle | undefined =
-          await this.hl7Handler.handleMessage(data);
+        await this.hl7Handler.handleMessage(data);
       } else {
         this.logger.warn('Malformed HL7 Message:\n' + data);
       }
     });
+
+    this.oruMllpServer.on('hl7', async (data: any) => {
+      this.logger.debug('Received ORU message:', data.toString());
+      const checkChar: string = data[data.length - 1];
+      if (checkChar == '\r') {
+        await this.hl7Handler.handleMessage(data);
+      } else {
+        this.logger.warn('Malformed HL7 ORU Message:\n' + data);
+      }
+    });
   }
 
-  async send(message: string, targetHost?: string, port?: number, retries?: number) {
+  async send(
+    message: string,
+    targetHost?: string,
+    port?: number,
+    retries?: number,
+  ) {
     const targeHostToSend = targetHost || 'example.com';
     const portToSend = port || 3000;
 
