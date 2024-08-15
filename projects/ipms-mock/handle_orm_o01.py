@@ -39,7 +39,7 @@ def handle_orm_o01(incoming_message, datastore):
 def schedule_oru_o01_response(data):
     time.sleep(10)
     orm_a01_response_message = create_oru_r01_response_message(data)
-    send_message_to_client(orm_a01_response_message)
+    send_message_to_client(orm_a01_response_message, True)
 
 def create_oru_r01_response_message(data):
     # def create_oru_r01_response_message(self):
