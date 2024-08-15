@@ -3,7 +3,8 @@ class Config {
     const envConfig: any = {
       app: {
         port: process.env.HTTP_PORT,
-        mllpPort: process.env.MLLP_PORT,
+        mllpPort: process.env.SHR_MLLP_PORT,
+        oruMllpPort: process.env.SHR_MLLP_ORU_PORT,
       },
       ClientRegistry: {
         ApiUrl: process.env.CLIENT_REGISTRY_API_URL,
