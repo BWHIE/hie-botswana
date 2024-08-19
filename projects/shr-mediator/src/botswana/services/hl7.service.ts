@@ -133,6 +133,7 @@ export class Hl7Service {
         result = await func();
         // Check if the result meets the criteria to be considered successful
         if (!errorCheck(result)) {
+          this.logger.log("HL7 message successfully translated");
           return result; // If result is satisfactory, return it
         }
         // If result is not satisfactory, log and prepare for a retry
