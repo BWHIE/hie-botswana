@@ -67,7 +67,12 @@ export class FhirController {
         this.logger.log(
           `Invalid id ${req.params.id} - falling back on pass-through to HAPI FHIR server`,
         );
-        return this.fhirService.passthrough(req, res, req.url);
+
+        return this.fhirService.passthrough(
+          req,
+          res,
+          req.url.replace('/fhir/', ''),
+        );
       }
 
       for (const param in req.query) {
@@ -78,7 +83,12 @@ export class FhirController {
           this.logger.log(
             `Invalid query parameter ${param}=${value} - falling back on pass-through to HAPI FHIR server`,
           );
-          return this.fhirService.passthrough(req, res, req.url);
+
+          return this.fhirService.passthrough(
+            req,
+            res,
+            req.url.replace('/fhir/', ''),
+          );
         }
       }
 

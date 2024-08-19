@@ -52,10 +52,12 @@ export class FhirService {
         password: config.get('fhirServer:password'),
       },
       responseType: 'stream',
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       data: req.rawBody,
     };
 
+    console.log('****', requestOptions);
     return this.httpService.request(requestOptions).pipe(
       tap((response) => {
         res.status(response.status);
