@@ -21,10 +21,13 @@ export class TerminologyService {
 
   private async loadJsonData() {
     try {
-      this.ipmsToPimsMappings = await this.loadJSONFile('IPMSLAB_to_PIMSLAB.json') || {};
-      this.ipmsToCielMappings = await this.loadJSONFile('IPMSLAB_to_CIEL.json') || {};
-      this.pimsToIpmsMappings = await this.loadJSONFile('PIMSLAB_to_IPMSLAB.json') || {};
-      this.ipmsCodingInfo = await this.loadJSONFile('IPMS_Coding.json') || [];
+      this.ipmsToPimsMappings =
+        (await this.loadJSONFile('IPMSLAB_to_PIMSLAB.json')) || {};
+      this.ipmsToCielMappings =
+        (await this.loadJSONFile('IPMSLAB_to_CIEL.json')) || {};
+      this.pimsToIpmsMappings =
+        (await this.loadJSONFile('PIMSLAB_to_IPMSLAB.json')) || {};
+      this.ipmsCodingInfo = (await this.loadJSONFile('IPMS_Coding.json')) || [];
 
       if (!Array.isArray(this.ipmsCodingInfo)) {
         this.logger.error('IPMS Coding info is not an array');
@@ -43,7 +46,7 @@ export class TerminologyService {
       return JSON.parse(fileContents);
     } catch (error) {
       this.logger.error(`Error loading JSON data from ${fileName}: `, error);
-      return null;  // or return an empty array/object based on expected data structure
+      return null; // or return an empty array/object based on expected data structure
     }
   }
 
@@ -94,8 +97,11 @@ export class TerminologyService {
         if (ipmsCoding && ipmsCoding.code) {
           // 1. IPMS Resulting Workflow:
           //    Translation from IPMS --> PIMS and CIEL
-          pimsCoding = this.getMappedCodeFromMemory(this.ipmsToPimsMappings, ipmsCoding.code);
-          
+          pimsCoding = this.getMappedCodeFromMemory(
+            this.ipmsToPimsMappings,
+            ipmsCoding.code,
+          );
+
           if (pimsCoding && pimsCoding.code) {
             r.code.coding.push({
               system: config.get('bwConfig:pimsSystemUrl'),
@@ -104,7 +110,10 @@ export class TerminologyService {
             });
           }
 
-          cielCoding = this.getMappedCodeFromMemory(this.ipmsToCielMappings, ipmsCoding.code);
+          cielCoding = this.getMappedCodeFromMemory(
+            this.ipmsToCielMappings,
+            ipmsCoding.code,
+          );
 
           if (cielCoding && cielCoding.code) {
             r.code.coding.push({
@@ -119,11 +128,19 @@ export class TerminologyService {
           if (pimsCoding && pimsCoding.code) {
             // 2. PIMS Order Workflow:
             //    Translation from PIMS --> IMPS and CIEL
-            computedIpmsCoding = this.getIpmsCodeFromMemory(this.ipmsToPimsMappings, pimsCoding.code);
-            this.logger.log(`PIMS Coding: ${JSON.stringify(computedIpmsCoding)}`);
+            computedIpmsCoding = this.getIpmsCodeFromMemory(
+              this.ipmsToPimsMappings,
+              pimsCoding.code,
+            );
+            this.logger.log(
+              `PIMS Coding: ${JSON.stringify(computedIpmsCoding)}`,
+            );
 
             if (computedIpmsCoding && computedIpmsCoding.code) {
-              cielCoding = this.getMappedCodeFromMemory(this.ipmsToCielMappings, computedIpmsCoding.code);
+              cielCoding = this.getMappedCodeFromMemory(
+                this.ipmsToCielMappings,
+                computedIpmsCoding.code,
+              );
             }
 
             if (cielCoding && cielCoding.code) {
@@ -136,7 +153,10 @@ export class TerminologyService {
           } else if (cielCoding && cielCoding.code) {
             // 3. OpenMRS Order Workflow:
             //    Translation from CIEL to IPMS
-            computedIpmsCoding = this.getIpmsCodeFromMemory(this.ipmsToCielMappings, cielCoding.code);
+            computedIpmsCoding = this.getIpmsCodeFromMemory(
+              this.ipmsToCielMappings,
+              cielCoding.code,
+            );
           }
 
           // Add IPMS Coding if found successfully
@@ -187,20 +207,23 @@ export class TerminologyService {
       }
       if (mappingIndex >= 0) {
         const ipmsCode = mappings[mappingIndex].from_concept_code ?? null;
-        const ipmsDisplay = mappings[mappingIndex].from_concept_name_resolved ?? null;
-        const ipmsCodingInfoID = this.ipmsCodingInfo.find((concept: any) => concept.id === ipmsCode);
+        const ipmsDisplay =
+          mappings[mappingIndex].from_concept_name_resolved ?? null;
+        const ipmsCodingInfoID = this.ipmsCodingInfo.find(
+          (concept: any) => concept.id === ipmsCode,
+        );
 
         let ipmsMnemonic, hl7Flag;
         if (ipmsCodingInfoID) {
-          ipmsMnemonic = ipmsCodingInfoID.names.find(
-            (x: any) => x.name_type == 'Short',
-          ).name ?? null;
+          ipmsMnemonic =
+            ipmsCodingInfoID.names.find((x: any) => x.name_type == 'Short')
+              .name ?? null;
           hl7Flag =
-          ipmsCodingInfoID.extras && ipmsCodingInfoID.extras.IPMS_HL7_ORM_TYPE
+            ipmsCodingInfoID.extras && ipmsCodingInfoID.extras.IPMS_HL7_ORM_TYPE
               ? ipmsCodingInfoID.extras.IPMS_HL7_ORM_TYPE
               : 'LAB';
         }
-       
+
         return {
           code: ipmsCode,
           display: ipmsDisplay,
@@ -218,7 +241,7 @@ export class TerminologyService {
 
   getMappedCodeFromMemory(mappings: Mapping[], code: string): any {
     try {
-      this.logger.log(`Terminology mapping for code: ${code}`)
+      this.logger.log(`Terminology mapping for code: ${code}`);
       const mapping = mappings.find((x: any) => x.from_concept_code === code);
 
       if (mapping) {
@@ -230,7 +253,7 @@ export class TerminologyService {
         return {};
       }
     } catch (e) {
-      this.logger.error("Could not find any codings to translate");
+      this.logger.error('Could not find any codings to translate');
       return {};
     }
   }
