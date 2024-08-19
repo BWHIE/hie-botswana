@@ -110,7 +110,8 @@ export class Hl7Service {
 
     // Use the retryOperation method with the new errorCheck criteria
     return await this.retryOperation(
-      () => this.getHl7Translation(hl7Msg, config.get(templateConfigKey)),
+      async () =>
+        await this.getHl7Translation(hl7Msg, config.get(templateConfigKey)),
       maxRetries,
       delay,
       errorCheck,
@@ -118,8 +119,8 @@ export class Hl7Service {
     );
   }
 
-  async retryOperation(
-    func: () => any,
+  async retryOperation<T>(
+    func: () => Promise<T>,
     maxRetries: number,
     delay: number,
     errorCheck: (result: any) => boolean,
@@ -235,7 +236,7 @@ export class Hl7Service {
     const payloadForDMQ = { bundle, template };
 
     return await this.retryOperation(
-      () => this.getFhirTranslation(bundle, template),
+      async () => await this.getFhirTranslation(bundle, template),
       maxRetries,
       delay,
       errorCheck,
