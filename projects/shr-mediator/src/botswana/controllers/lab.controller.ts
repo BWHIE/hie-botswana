@@ -12,7 +12,7 @@ import {
 import { Request, Response } from 'express';
 import { LoggerService } from 'src/logger/logger.service';
 import { FhirService } from '../../common/services/fhir.service';
-import { invalidBundle, invalidBundleMessage } from '../../common/utils/fhir';
+import { invalidBundle } from '../../common/utils/fhir';
 import { LabWorkflowService } from '../services/lab-workflow.service';
 
 @Controller('lab')
@@ -44,7 +44,7 @@ export class LabController {
 
       // Validate Bundle
       if (invalidBundle(orderBundle)) {
-        return res.status(400).json(invalidBundleMessage());
+        throw new BadRequestException('Invalid bundle submitted');
       }
 
       // Save Bundle

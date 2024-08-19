@@ -19,7 +19,6 @@ import { IpsService } from '../services/ips.service';
 import {
   getResourceTypeEnum,
   invalidBundle,
-  invalidBundleMessage,
   isValidResourceType,
 } from '../utils/fhir';
 
@@ -131,12 +130,8 @@ export class FhirController {
       );
 
       // Verify the bundle
-      if (invalidBundle(bundle)) {
-        throw new BadRequestException(invalidBundleMessage());
-      }
-
-      if (bundle.entry.length === 0) {
-        throw new BadRequestException(invalidBundleMessage());
+      if (invalidBundle(bundle) || bundle.entry.length === 0) {
+        throw new BadRequestException('Invalid bundle submitted');
       }
 
       return this.fhirService.passthrough(req, res, '');
