@@ -6,8 +6,10 @@ class Config {
         mllpPort: process.env.SHR_MLLP_PORT,
         oruMllpPort: process.env.SHR_MLLP_ORU_PORT,
       },
-      ClientRegistry: {
-        ApiUrl: process.env.CLIENT_REGISTRY_API_URL,
+      ClientRegistryMediator: {
+        apiUrl: process.env.CR_MEDIATOR_API_URL,
+        username: process.env.CR_MEDIATOR_API_USERNAME,
+        password: process.env.CR_MEDIATOR_API_PASSWORD,
         OmangSystem: process.env.OMANG_SYSTEM,
         BdrsSystem: process.env.BDRS_SYSTEM,
         ImmigrationSystem: process.env.IMMIGRATION_SYSTEM,
@@ -18,7 +20,7 @@ class Config {
         username: process.env.FHIR_SERVER_USERNAME,
         password: process.env.FHIR_SERVER_PASSWORD,
       },
-      clientRegistryUrl: process.env.CLIENT_REGISTRY_URL,
+      clientRegistryUrl: process.env.CR_MEDIATOR_URL,
       fhirConverterUrl: process.env.FHIR_CONVERTER_URL,
       taskRunner: {
         brokers: process.env.BROKERS
