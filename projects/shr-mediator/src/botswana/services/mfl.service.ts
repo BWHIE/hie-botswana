@@ -13,12 +13,6 @@ export class MflService {
     private readonly httpService: HttpService,
   ) {}
 
-  async mapLocations(labBundle: R4.IBundle): Promise<R4.IBundle> {
-    this.logger.log('Mapping Locations!');
-
-    return await this.addBwLocations(labBundle);
-  }
-
   //    * This method adds IPMS - specific location mappings to the order bundle based on the ordering
   //   * facility
   //   * @param bundle
@@ -28,7 +22,9 @@ export class MflService {
   //
   // This method assumes that the Task resource has a reference to the recieving facility
   // under the `owner` field. This is the facility that the lab order is being sent to.
-  async addBwLocations(bundle: R4.IBundle): Promise<R4.IBundle> {
+  async mapLocations(bundle: R4.IBundle): Promise<R4.IBundle> {
+    this.logger.log('Mapping Locations!');
+
     let mappedLocation: R4.ILocation | R4.IOrganization | undefined;
     let mappedOrganization: R4.IOrganization | R4.ILocation | undefined;
 

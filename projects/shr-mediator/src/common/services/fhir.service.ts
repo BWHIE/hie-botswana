@@ -118,6 +118,20 @@ export class FhirService {
     }
   }
 
+  async post(
+    payload: any,
+    options?: AxiosRequestConfig<any>,
+    path: string = '',
+  ) {
+    const { data } = await this.httpService.axiosRef.post<any>(
+      `${config.get('fhirServer:baseURL')}/${path}`,
+      payload,
+      options,
+    );
+
+    return data; // If request is successful, return the response
+  }
+
   // Wrapper function that includes retry logic
   async postWithRetry(
     payload: any,

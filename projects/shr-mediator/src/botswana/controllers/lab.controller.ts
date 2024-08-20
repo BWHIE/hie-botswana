@@ -3,17 +3,14 @@ import {
   BadRequestException,
   Controller,
   Get,
-  InternalServerErrorException,
   Post,
   Put,
   Req,
   Res,
-  Headers,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { LoggerService } from 'src/logger/logger.service';
 import { FhirService } from '../../common/services/fhir.service';
-import { invalidBundle } from '../../common/utils/fhir';
 import { LabWorkflowService } from '../services/lab-workflow.service';
 import { MpiService } from '../services/mpi.service';
 import { TerminologyService } from '../services/terminology.service';
@@ -30,11 +27,7 @@ export class LabController {
 
   @Post()
   @Put()
-  async saveOrder(
-    @Req() req: Request,
-    @Res() res: Response,
-    @Headers('x-openhim-clientid') clientId = 'ShrMediator',
-  ) {
+  async saveOrder(@Req() req: Request, @Res() res: Response) {
     let labOrderBundle: R4.IBundle;
 
     this.logger.log('Received a Lab Order bundle to save.');
@@ -49,42 +42,25 @@ export class LabController {
     }
 
     // Validate Bundle
-    if (invalidBundle(labOrderBundle)) {
-      throw new BadRequestException('Invalid bundle submitted');
-    }
-
-    const patientRecord = await this.mpiService.findOrCreatePatientInCR(
-      labOrderBundle,
-      clientId,
-    );
-
-    labOrderBundle = await this.labService.updateBundleWithPatientFromCR(
-      labOrderBundle,
-      patientRecord,
-    );
+    this.labService.validateBundle(labOrderBundle);
 
     // Map concepts
     labOrderBundle = await this.terminologyService.mapConcepts(labOrderBundle);
 
-    try {
-      // Save Bundle in FHIR Server
-      const resultBundle = await this.labService.saveBundle(labOrderBundle);
+    // Save Bundle in FHIR Server
+    const resultBundle = await this.labService.saveBundle(labOrderBundle);
 
-      // Trigger Background Tasks if bundle saved correctly
-      if (
-        resultBundle &&
-        resultBundle.entry &&
-        labOrderBundle.entry &&
-        resultBundle.entry.length == labOrderBundle.entry.length
-      ) {
-        //this.labService.handleLabOrder(labOrderBundle);
-        return res.status(201).json(resultBundle);
-      } else {
-        throw new BadRequestException(resultBundle);
-      }
-    } catch (e) {
-      this.logger.error(`Error saving bundle: ${e}`);
-      throw new InternalServerErrorException("Couldn't save bundle!");
+    // Trigger Background Tasks if bundle saved correctly
+    if (
+      resultBundle &&
+      resultBundle.entry &&
+      labOrderBundle.entry &&
+      resultBundle.entry.length == labOrderBundle.entry.length
+    ) {
+      //this.labService.handleLabOrder(labOrderBundle);
+      return res.status(201).json(resultBundle);
+    } else {
+      throw new BadRequestException(resultBundle);
     }
   }
 
