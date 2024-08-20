@@ -8,7 +8,10 @@ import { HttpService } from '@nestjs/axios';
 
 @Injectable()
 export class MflService {
-  constructor(private readonly logger: LoggerService, private readonly httpService: HttpService) {}
+  constructor(
+    private readonly logger: LoggerService,
+    private readonly httpService: HttpService,
+  ) {}
 
   async mapLocations(labBundle: R4.IBundle): Promise<R4.IBundle> {
     this.logger.log('Mapping Locations!');
@@ -106,7 +109,8 @@ export class MflService {
           }
 
           mappedLocation = await this.translateLocation(orderingLocation);
-          mappedOrganization = await this.translateLocation(orderingOrganization);
+          mappedOrganization =
+            await this.translateLocation(orderingOrganization);
 
           const mappedLocationRef: R4.IReference = {
             reference: `Location/${mappedLocation.id}`,
@@ -115,7 +119,7 @@ export class MflService {
             reference: `Organization/${mappedOrganization.id}`,
           };
 
-          if (mappedLocation.resourceType == 'Location'){
+          if (mappedLocation.resourceType == 'Location') {
             mappedLocation.managingOrganization = mappedOrganizationRef;
           }
           if (mappedLocation && mappedLocation.id) {
@@ -150,7 +154,6 @@ export class MflService {
             };
 
             task.requester = orderingOrganizationRef;
-
           }
           if (orderingLocation && orderingLocation.id) {
             const orderingLocationRef: R4.IReference = {
@@ -170,51 +173,58 @@ export class MflService {
    * @param location
    * @returns R4.ILocation
    */
-  async translateLocation(location: R4.ILocation | R4.IOrganization): Promise<R4.ILocation | R4.IOrganization> {
+  async translateLocation(
+    location: R4.ILocation | R4.IOrganization,
+  ): Promise<R4.ILocation | R4.IOrganization> {
     this.logger.log('Translating Location Data');
 
     const returnLocation: R4.ILocation = {
       resourceType: 'Location',
     };
-    let targetMapping: R4.ILocation |  R4.IOrganization |null = null;
+    let targetMapping: R4.ILocation | R4.IOrganization | null = null;
     try {
       // First, attempt to find the mapping by identifier
       const identifier = location.identifier?.[0];
       if (identifier) {
-          this.logger.log(`Looking up location by identifier: ${JSON.stringify(identifier)}`);
-          const { data: fetchedBundleByIdentifier } = await this.httpService.axiosRef.get<R4.IBundle>(
-              `${config.get('fhirServer:baseURL')}/${location.resourceType}?identifier=${identifier.value}`
+        this.logger.log(
+          `Looking up location by identifier: ${JSON.stringify(identifier)}`,
+        );
+        const { data: fetchedBundleByIdentifier } =
+          await this.httpService.axiosRef.get<R4.IBundle>(
+            `${config.get('fhirServer:baseURL')}/${location.resourceType}?identifier=${identifier.value}`,
           );
 
-          if (fetchedBundleByIdentifier.entry?.[0]?.resource) {
-              targetMapping = fetchedBundleByIdentifier.entry[0].resource as R4.ILocation | R4.IOrganization;
-          }
+        if (fetchedBundleByIdentifier.entry?.[0]?.resource) {
+          targetMapping = fetchedBundleByIdentifier.entry[0].resource as
+            | R4.ILocation
+            | R4.IOrganization;
+        }
       }
 
       // If not found, attempt to find the mapping by name
       if (!targetMapping && location.name) {
-          this.logger.log(`Looking up location by name: ${location.name}`);
-          const { data: fetchedBundleByName } = await this.httpService.axiosRef.get<R4.IBundle>(
-              `${config.get('fhirServer:baseURL')}/${location.resourceType}?name=${location.name}`
+        this.logger.log(`Looking up location by name: ${location.name}`);
+        const { data: fetchedBundleByName } =
+          await this.httpService.axiosRef.get<R4.IBundle>(
+            `${config.get('fhirServer:baseURL')}/${location.resourceType}?name=${location.name}`,
           );
 
-          if (fetchedBundleByName.entry?.[0]?.resource) {
-              targetMapping = fetchedBundleByName.entry[0].resource as R4.ILocation;
-          }
+        if (fetchedBundleByName.entry?.[0]?.resource) {
+          targetMapping = fetchedBundleByName.entry[0].resource as R4.ILocation;
+        }
       }
 
       // If target mapping was found, update returnLocation with the target mapping's details
       if (targetMapping) {
         return targetMapping;
-
       } else {
-          this.logger.warn('No matching location found.');
-          // Handle the case where no matching location is found
+        this.logger.warn('No matching location found.');
+        // Handle the case where no matching location is found
       }
-  } catch (error) {
+    } catch (error) {
       this.logger.error('Error translating location:', error);
       // Handle the error appropriately
-  }
+    }
 
     this.logger.log(`Translated Location:\n${JSON.stringify(returnLocation)}`);
     return returnLocation;
