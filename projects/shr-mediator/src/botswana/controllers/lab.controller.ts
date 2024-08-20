@@ -3,6 +3,7 @@ import {
   BadRequestException,
   Controller,
   Get,
+  Headers,
   Post,
   Put,
   Req,
@@ -27,7 +28,11 @@ export class LabController {
 
   @Post()
   @Put()
-  async saveOrder(@Req() req: Request, @Res() res: Response) {
+  async saveOrder(
+    @Req() req: Request,
+    @Res() res: Response,
+    @Headers('x-openhim-clientid') clientId = 'ShrMediator',
+  ) {
     let labOrderBundle: R4.IBundle;
 
     this.logger.log('Received a Lab Order bundle to save.');
@@ -43,6 +48,16 @@ export class LabController {
 
     // Validate Bundle
     this.labService.validateBundle(labOrderBundle);
+
+    const patientRecord = await this.mpiService.findOrCreatePatientInCR(
+      labOrderBundle,
+      clientId,
+    );
+
+    labOrderBundle = await this.labService.updateBundleWithPatientFromCR(
+      labOrderBundle,
+      patientRecord,
+    );
 
     // Map concepts
     labOrderBundle = await this.terminologyService.mapConcepts(labOrderBundle);

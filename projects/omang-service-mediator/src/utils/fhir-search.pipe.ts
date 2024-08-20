@@ -1,9 +1,4 @@
-import {
-  ArgumentMetadata,
-  BadRequestException,
-  Injectable,
-  PipeTransform,
-} from '@nestjs/common';
+import { BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
 
 export interface FhirSearchParams {
   identifier?: string; // Patient identifier (expected to include a system and value separated by '|')
@@ -13,11 +8,12 @@ export interface FhirSearchParams {
   birthdate?: string; // Birthdate in YYYY-MM-DD format
   _page?: number; // Page number for pagination (positive integer)
   _count?: number; // Number of records per page (positive integer, usually capped)
+  _tag?: string | string[];
 }
 
 @Injectable()
 export class FhirSearchParamsValidationPipe implements PipeTransform {
-  transform(value: any, metadata: ArgumentMetadata): FhirSearchParams {
+  transform(value: any): FhirSearchParams {
     if (value.identifier && !value.identifier.includes('|')) {
       throw new BadRequestException(
         'Identifier must include a system and value separated by "|"',

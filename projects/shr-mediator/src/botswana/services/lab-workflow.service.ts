@@ -23,6 +23,7 @@ export class LabWorkflowService {
     }
 
     const resources = {
+      Patient: 0,
       Practitioner: 0,
       ServiceRequest: 0,
       Task: 0,
@@ -51,6 +52,11 @@ export class LabWorkflowService {
     }
 
     // Validate resource counts
+    if (resources.Patient !== 1) {
+      throw new BadRequestException(
+        'Bundle must contain exactly 1 Patient resource',
+      );
+    }
     if (resources.Practitioner !== 1) {
       throw new BadRequestException(
         'Bundle must contain exactly 1 Practitioner resource',
@@ -72,18 +78,38 @@ export class LabWorkflowService {
       const resource = entry.resource;
 
       if (resource.resourceType === 'ServiceRequest') {
+        this.validateReference(resource.subject, resourceMap, 'Patient');
         this.validateReference(resource.requester, resourceMap, 'Practitioner');
+        this.validateExternalReference(
+          resource.performer[0],
+          /^Organization\/?\?identifier=.+$/,
+        );
       }
 
       if (resource.resourceType === 'Task') {
+        this.validateReference(resource.for, resourceMap, 'Patient');
         this.validateReference(
           resource.basedOn[0],
           resourceMap,
           'ServiceRequest',
         );
         this.validateReference(resource.requester, resourceMap, 'Practitioner');
+        this.validateExternalReference(
+          resource.owner,
+          /^Organization\/?\?identifier=.+$/,
+        );
+        this.validateExternalReference(
+          resource.location,
+          /^Location\/?\?identifier=.+$/,
+        );
       }
     });
+  }
+
+  private validateExternalReference(ref: R4.IReference, pattern: RegExp): void {
+    if (!pattern.test(ref.reference)) {
+      throw new BadRequestException(`Invalid Reference ${ref.reference}`);
+    }
   }
 
   private validateReference(
