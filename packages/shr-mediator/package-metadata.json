@@ -35,7 +35,7 @@
     "SHR_RETRY_CONFIG_KAFKA_RETRY_DELAY": 10000,
     "SHR_BW_CONFIG_PIMS_SYSTEM_URL": "https://api.openconceptlab.org/orgs/I-TECH-UW/sources/PIMSLAB/",
     "SHR_BW_CONFIG_IPMS_SYSTEM_URL": "https://api.openconceptlab.org/orgs/I-TECH-UW/sources/IPMSLAB/",
-    "SHR_BW_CONFIG_CIEL_SYSTEM_URL": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+    "SHR_BW_CONFIG_CIEL_SYSTEM_URL": "https://openconceptlab.org/orgs/CIEL/sources/CIEL/",
     "SHR_BW_CONFIG_LOINC_SYSTEM_URL": "https://api.openconceptlab.org/orgs/Regenstrief/sources/LOINC/",
     "SHR_BW_CONFIG_LAB_ORDER_SYSTEM_URL": "http://moh.bw.org/ext/identifier/lab-order-id",
     "SHR_BW_CONFIG_MRN_SYSTEM_URL": "http://moh.bw.org/ext/identifier/mrn",

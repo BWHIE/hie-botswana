@@ -1,14 +1,12 @@
+import { IBundle } from '@ahryman40k/ts-fhir-types/lib/R4';
 import { HttpService } from '@nestjs/axios';
 import { Test, TestingModule } from '@nestjs/testing';
-import config from '../../config';
 import { LoggerService } from '../../logger/logger.service';
+import { Mapping } from './interfaces';
 import { TerminologyService } from './terminology.service';
-import { IBundle } from '@ahryman40k/ts-fhir-types/lib/R4';
-import { R4 } from '@ahryman40k/ts-fhir-types';
 
 describe('TerminologyService', () => {
   let service: TerminologyService;
-  let httpService: HttpService;
   let logger: LoggerService;
 
   beforeEach(async () => {
@@ -34,7 +32,6 @@ describe('TerminologyService', () => {
     }).compile();
 
     service = module.get<TerminologyService>(TerminologyService);
-    httpService = module.get<HttpService>(HttpService);
     logger = module.get<LoggerService>(LoggerService);
   });
 
@@ -67,75 +64,183 @@ describe('TerminologyService', () => {
     });
   });
 
-  describe('getOclMapping', () => {
-    it('should return data from OCL API', async () => {
-      const responseData = [{ code: '123', display: 'Test Code' }];
-      jest
-        .spyOn(httpService.axiosRef, 'get')
-        .mockImplementation(() => Promise.resolve({ data: responseData }));
+  describe('getMappedCodeFromMemory', () => {
+    it('should return the mapped code and display when a matching mapping is found', () => {
+      const mappings = [
+        {
+          from_concept_code: '123',
+          to_concept_code: '456',
+          to_concept_name_resolved: 'Concept Name 456',
+        },
+      ] as Mapping[];
+      const code = '123';
+      const result = service.getMappedCodeFromMemory(mappings, code);
 
-      const result = await service.getOclMapping('/test-query');
-
-      expect(httpService.axiosRef.get).toHaveBeenCalledWith(
-        `${config.get('bwConfig:oclUrl')}/test-query`,
-        { timeout: config.get('bwConfig:requestTimeout') },
+      expect(result).toEqual({ code: '456', display: 'Concept Name 456' });
+      expect(logger.log).toHaveBeenCalledWith(
+        'Terminology mapping for code: 123',
       );
-      expect(result).toEqual(responseData);
+    });
+
+    it('should return an empty object when no matching mapping is found', () => {
+      const mappings = [
+        {
+          from_concept_code: '123',
+          to_concept_code: '456',
+          to_concept_name_resolved: 'Concept Name 456',
+        },
+      ] as Mapping[];
+      const code = '789';
+      const result = service.getMappedCodeFromMemory(mappings, code);
+
+      expect(result).toEqual({});
+      expect(logger.log).toHaveBeenCalledWith(
+        'Terminology mapping for code: 789',
+      );
+    });
+
+    it('should return an object with null values if mapping exists but codes are null', () => {
+      const mappings = [
+        {
+          from_concept_code: '123',
+          to_concept_code: null,
+          to_concept_name_resolved: null,
+        },
+      ] as Mapping[];
+      const code = '123';
+      const result = service.getMappedCodeFromMemory(mappings, code);
+
+      expect(result).toEqual({ code: null, display: null });
+      expect(logger.log).toHaveBeenCalledWith(
+        'Terminology mapping for code: 123',
+      );
+    });
+
+    it('should return an empty object and log an error if an exception occurs', () => {
+      const mappings = null; // This will cause an exception
+      const code = '123';
+
+      const result = service.getMappedCodeFromMemory(mappings, code);
+
+      expect(result).toEqual({});
+      expect(logger.error).toHaveBeenCalledWith(
+        'Could not find any codings to translate',
+      );
     });
   });
 
-  describe('translateCoding', () => {
-    it('should add translated codings when existing codings are provided', async () => {
-      const resource = {
-        resourceType: 'ServiceRequest',
-        code: {
-          coding: [{ system: 'http://ipms-system', code: '12345' }],
+  describe('getIpmsCodeFromMemory', () => {
+    it('should return the IPMS code and details when a "BROADER-THAN" mapping is found', () => {
+      const mappings = [
+        {
+          from_concept_code: '123',
+          from_concept_name_resolved: 'Concept Name 123',
+          to_concept_code: '456',
+          map_type: 'BROADER-THAN',
         },
-      } as R4.IServiceRequest;
+      ] as Mapping[];
+      const ipmsCodingInfo = [
+        {
+          id: '123',
+          names: [{ name_type: 'Short', name: 'Short Name 123' }],
+          extras: { IPMS_HL7_ORM_TYPE: 'ORM' },
+        },
+      ];
 
-      jest.spyOn(service, 'getCoding').mockImplementation((r, system) => {
-        return { system, code: '12345' };
+      service['ipmsCodingInfo'] = ipmsCodingInfo;
+      const code = '456';
+      const result = service.getIpmsCodeFromMemory(mappings, code);
+
+      expect(result).toEqual({
+        code: '123',
+        display: 'Concept Name 123',
+        mnemonic: 'Short Name 123',
+        hl7Flag: 'ORM',
       });
-
-      jest
-        .spyOn(service, 'getMappedCode')
-        .mockResolvedValueOnce({ code: '123', display: 'Test 1 Display' });
-      jest
-        .spyOn(service, 'getMappedCode')
-        .mockResolvedValueOnce({ code: '456', display: 'Test 2 Display' });
-      jest.spyOn(service, 'getIpmsCode').mockResolvedValue({
-        code: '67890',
-        mnemonic: 'MN123',
-        display: 'IPMS Display',
-        hl7Flag: 'LAB',
-      });
-
-      const result = await service.translateCoding(resource);
-
-      expect(result.code.coding).toHaveLength(3); // Existing plus new one
-      expect(logger.log).toHaveBeenCalledWith(
-        expect.stringContaining('PIMS Coding:'),
-      );
-      expect(service.getMappedCode).toHaveBeenCalledTimes(2); // Called for PIMS and CIEL
-      expect(service.getIpmsCode).not.toHaveBeenCalled(); // Not called because initial IPMS coding was found
     });
 
-    it('should handle no initial codings gracefully', async () => {
-      const resource = {
-        resourceType: 'ServiceRequest',
-        code: {
-          coding: [],
+    it('should return the IPMS code and details when a "SAME-AS" mapping is found if "BROADER-THAN" is not found', () => {
+      const mappings = [
+        {
+          from_concept_code: '789',
+          from_concept_name_resolved: 'Concept Name 789',
+          to_concept_code: '456',
+          map_type: 'SAME-AS',
         },
-      } as R4.IServiceRequest;
+      ] as Mapping[];
+      const ipmsCodingInfo = [
+        {
+          id: '789',
+          names: [{ name_type: 'Short', name: 'Short Name 789' }],
+          extras: { IPMS_HL7_ORM_TYPE: 'ORM' },
+        },
+      ];
 
-      const result = await service.translateCoding(resource);
+      service['ipmsCodingInfo'] = ipmsCodingInfo;
+      const code = '456';
+      const result = service.getIpmsCodeFromMemory(mappings, code);
 
-      expect(logger.error).toHaveBeenCalledWith(
-        expect.stringContaining('Could not any codings to translate'),
-      );
-      expect(result).toEqual(resource); // Expect the resource to be unchanged
+      expect(result).toEqual({
+        code: '789',
+        display: 'Concept Name 789',
+        mnemonic: 'Short Name 789',
+        hl7Flag: 'ORM',
+      });
     });
 
-    // Add more tests to cover other branches and error handling
+    it('should return null when no matching mapping is found', () => {
+      const mappings = [
+        {
+          from_concept_code: '123',
+          from_concept_name_resolved: 'Concept Name 123',
+          to_concept_code: '456',
+          map_type: 'BROADER-THAN',
+        },
+      ] as Mapping[];
+
+      const code = '789'; // No matching code in mappings
+      const result = service.getIpmsCodeFromMemory(mappings, code);
+
+      expect(result).toBeNull();
+    });
+
+    it('should return null and log an error if an exception occurs', () => {
+      const mappings = null; // This will cause an exception
+      const code = '123';
+
+      const result = service.getIpmsCodeFromMemory(mappings, code);
+
+      expect(result).toBeNull();
+      expect(logger.error).toHaveBeenCalled();
+    });
+
+    it('should return null and default HL7 flag "LAB" when extras are missing', () => {
+      const mappings = [
+        {
+          from_concept_code: '123',
+          from_concept_name_resolved: 'Concept Name 123',
+          to_concept_code: '456',
+          map_type: 'BROADER-THAN',
+        },
+      ] as Mapping[];
+      const ipmsCodingInfo = [
+        {
+          id: '123',
+          names: [{ name_type: 'Short', name: 'Short Name 123' }],
+          extras: {}, // No IPMS_HL7_ORM_TYPE provided
+        },
+      ];
+
+      service['ipmsCodingInfo'] = ipmsCodingInfo;
+      const code = '456';
+      const result = service.getIpmsCodeFromMemory(mappings, code);
+
+      expect(result).toEqual({
+        code: '123',
+        display: 'Concept Name 123',
+        mnemonic: 'Short Name 123',
+        hl7Flag: 'LAB', // Default value when not provided
+      });
+    });
   });
 });

@@ -1,7 +1,6 @@
 import { R4 } from '@ahryman40k/ts-fhir-types';
 import { IBundle } from '@ahryman40k/ts-fhir-types/lib/R4';
-import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
 import config from '../../config';
@@ -53,26 +52,26 @@ export class TerminologyService {
   async mapConcepts(labBundle: IBundle): Promise<IBundle> {
     this.logger.log('Mapping Concepts!');
 
-    return await this.addAllCodings(labBundle);
-  }
-
-  // Add terminology mappings info to Bundle
-  async addAllCodings(labBundle: IBundle): Promise<IBundle> {
-    try {
-      for (const e of labBundle.entry!) {
+    for (const e of labBundle.entry!) {
+      if (
+        e.resource &&
+        (e.resource.resourceType == 'ServiceRequest' ||
+          e.resource.resourceType == 'DiagnosticReport')
+      ) {
         if (
-          e.resource &&
-          e.resource.resourceType == 'ServiceRequest' &&
           e.resource.code &&
           e.resource.code.coding &&
           e.resource.code.coding.length > 0
         ) {
-          this.logger.log`Translating ServiceRequest Codings`;
+          this.logger.log(`Translating ${e.resource.resourceType} Codings`);
           e.resource = await this.translateCoding(e.resource);
+        } else {
+          this.logger.error('Unable to find coding', e);
+          throw new BadRequestException(
+            `Unable to find coding for ${e.resource.resourceType}.`,
+          );
         }
       }
-    } catch (e) {
-      this.logger.error(e);
     }
     return labBundle;
   }
@@ -82,113 +81,133 @@ export class TerminologyService {
   ): Promise<R4.IServiceRequest | R4.IDiagnosticReport> {
     let ipmsCoding, cielCoding, pimsCoding: any;
 
-    try {
-      // Check if any codings exist
-      if (r && r.code && r.code.coding && r.code.coding.length > 0) {
-        // Extract PIMS and CIEL Codings, if available
-        pimsCoding = this.getCoding(r, config.get('bwConfig:pimsSystemUrl'));
-        cielCoding = this.getCoding(r, config.get('bwConfig:cielSystemUrl'));
-        ipmsCoding = this.getCoding(r, config.get('bwConfig:ipmsSystemUrl'));
+    // Check if any codings exist
+    if (r && r.code && r.code.coding && r.code.coding.length > 0) {
+      // Extract PIMS and CIEL Codings, if available
+      pimsCoding = this.getCoding(r, config.get('bwConfig:pimsSystemUrl'));
+      cielCoding = this.getCoding(r, config.get('bwConfig:cielSystemUrl'));
+      ipmsCoding = this.getCoding(r, config.get('bwConfig:ipmsSystemUrl'));
 
-        this.logger.log(`PIMS Coding: ${JSON.stringify(pimsCoding)}`);
-        this.logger.log(`CIEL Coding: ${JSON.stringify(cielCoding)}`);
-        this.logger.log(`IPMS Coding: ${JSON.stringify(ipmsCoding)}`);
+      this.logger.log(`Codings: ${JSON.stringify(config.get('bwConfig'))}`);
+      this.logger.log(`CIEL Coding: ${JSON.stringify(cielCoding)}`);
+      this.logger.log(`IPMS Coding: ${JSON.stringify(ipmsCoding)}`);
+      this.logger.log(`PIMS Coding: ${JSON.stringify(pimsCoding)}`);
 
-        if (ipmsCoding && ipmsCoding.code) {
-          // 1. IPMS Resulting Workflow:
-          //    Translation from IPMS --> PIMS and CIEL
-          pimsCoding = this.getMappedCodeFromMemory(
-            this.ipmsToPimsMappings,
-            ipmsCoding.code,
-          );
+      if (ipmsCoding && ipmsCoding.code) {
+        // 1. IPMS Resulting Workflow:
+        //    Translation from IPMS --> PIMS and CIEL
+        pimsCoding = this.getMappedCodeFromMemory(
+          this.ipmsToPimsMappings,
+          ipmsCoding.code,
+        );
 
-          if (pimsCoding && pimsCoding.code) {
-            r.code.coding.push({
-              system: config.get('bwConfig:pimsSystemUrl'),
-              code: pimsCoding.code,
-              display: pimsCoding.display,
-            });
-          }
-
-          cielCoding = this.getMappedCodeFromMemory(
-            this.ipmsToCielMappings,
-            ipmsCoding.code,
-          );
-
-          if (cielCoding && cielCoding.code) {
-            r.code.coding.push({
-              system: config.get('bwConfig:cielSystemUrl'),
-              code: cielCoding.code,
-              display: cielCoding.display,
-            });
-          }
+        if (pimsCoding && pimsCoding.code) {
+          r.code.coding.push({
+            system: config.get('bwConfig:pimsSystemUrl'),
+            code: pimsCoding.code,
+            display: pimsCoding.display,
+          });
         } else {
-          let computedIpmsCoding;
-          // Lab Order Workflows
-          if (pimsCoding && pimsCoding.code) {
-            // 2. PIMS Order Workflow:
-            //    Translation from PIMS --> IMPS and CIEL
-            computedIpmsCoding = this.getIpmsCodeFromMemory(
-              this.ipmsToPimsMappings,
-              pimsCoding.code,
-            );
-            this.logger.log(
-              `PIMS Coding: ${JSON.stringify(computedIpmsCoding)}`,
-            );
+          throw new BadRequestException(
+            `Unable to translate IPMS code to PIMS code : ${ipmsCoding.code}`,
+          );
+        }
 
-            if (computedIpmsCoding && computedIpmsCoding.code) {
-              cielCoding = this.getMappedCodeFromMemory(
-                this.ipmsToCielMappings,
-                computedIpmsCoding.code,
-              );
-            }
+        cielCoding = this.getMappedCodeFromMemory(
+          this.ipmsToCielMappings,
+          ipmsCoding.code,
+        );
 
+        if (cielCoding && cielCoding.code) {
+          r.code.coding.push({
+            system: config.get('bwConfig:cielSystemUrl'),
+            code: cielCoding.code,
+            display: cielCoding.display,
+          });
+        } else {
+          throw new BadRequestException(
+            `Unable to translate IPMS code to CIEL code : ${ipmsCoding.code}`,
+          );
+        }
+      } else {
+        let computedIpmsCoding;
+        // Lab Order Workflows
+        if (pimsCoding && pimsCoding.code) {
+          // 2. PIMS Order Workflow:
+          //    Translation from PIMS --> IPMS and CIEL
+          computedIpmsCoding = this.getMappedCodeFromMemory(
+            this.pimsToIpmsMappings,
+            pimsCoding.code,
+          );
+          this.logger.log(`IPMS Coding: ${JSON.stringify(computedIpmsCoding)}`);
+
+          if (computedIpmsCoding && computedIpmsCoding.code) {
+            r.code.coding.push({
+              system: config.get('bwConfig:ipmsSystemUrl'),
+              code: computedIpmsCoding.code,
+              display: computedIpmsCoding.display,
+            });
+            cielCoding = this.getMappedCodeFromMemory(
+              this.ipmsToCielMappings,
+              computedIpmsCoding.code,
+            );
             if (cielCoding && cielCoding.code) {
               r.code.coding.push({
                 system: config.get('bwConfig:cielSystemUrl'),
                 code: cielCoding.code,
                 display: cielCoding.display,
               });
+            } else {
+              throw new BadRequestException(
+                `Unable to translate PIMS code to CIEL code : ${pimsCoding.code}`,
+              );
             }
-          } else if (cielCoding && cielCoding.code) {
-            // 3. OpenMRS Order Workflow:
-            //    Translation from CIEL to IPMS
-            computedIpmsCoding = this.getIpmsCodeFromMemory(
-              this.ipmsToCielMappings,
-              cielCoding.code,
+          } else {
+            throw new BadRequestException(
+              `Unable to translate PIMS code to IPMS code : ${pimsCoding.code}`,
             );
           }
+        } else if (cielCoding && cielCoding.code) {
+          // 3. OpenMRS Order Workflow:
+          //    Translation from CIEL to IPMS
+          computedIpmsCoding = this.getIpmsCodeFromMemory(
+            this.ipmsToCielMappings,
+            cielCoding.code,
+          );
 
           // Add IPMS Coding if found successfully
           if (computedIpmsCoding && computedIpmsCoding.code) {
-            const ipmsOrderTypeExt = {
-              url: config.get('bwConfig:ipmsOrderTypeSystemUrl'),
-              valueString: computedIpmsCoding.hl7Flag,
-            };
-
-            const srCoding = {
+            r.code.coding.push({
               system: config.get('bwConfig:ipmsSystemUrl'),
               code: computedIpmsCoding.mnemonic,
               display: computedIpmsCoding.display,
-              extension: [ipmsOrderTypeExt],
-            };
-
-            r.code.coding.push(srCoding);
+              extension: [
+                {
+                  url: config.get('bwConfig:ipmsOrderTypeSystemUrl'),
+                  valueString: computedIpmsCoding.hl7Flag,
+                },
+              ],
+            });
+          } else {
+            throw new BadRequestException(
+              `Unable to translate CIEL code to IPMS code : ${pimsCoding.code}`,
+            );
           }
+        } else {
+          throw new BadRequestException(
+            'Unknown coding for ' + r.resourceType + ' :\n' + JSON.stringify(r),
+          );
         }
-
-        return r;
-      } else {
-        this.logger.error(
-          'Could not any codings to translate in:\n' + JSON.stringify(r),
-        );
-        return r;
       }
-    } catch (e) {
-      this.logger.error(
-        `Error whil translating ServiceRequest codings: \n ${JSON.stringify(e)}`,
-      );
+
       return r;
+    } else {
+      throw new BadRequestException(
+        'Could not any codings to translate for ' +
+          r.resourceType +
+          ':\n' +
+          JSON.stringify(r),
+      );
     }
   }
 

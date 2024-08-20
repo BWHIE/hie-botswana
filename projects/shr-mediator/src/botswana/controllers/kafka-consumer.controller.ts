@@ -45,9 +45,7 @@ export class KafkaConsumerController {
     try {
       const origBundle: IBundle = val.bundle;
 
-      let enrichedBundle =
-        await this.terminologyService.mapConcepts(origBundle);
-      enrichedBundle = await this.mflService.mapLocations(enrichedBundle);
+      let enrichedBundle = await this.mflService.mapLocations(origBundle);
 
       this.kafkaProducerService.sendPayloadWithRetryDMQ(
         { bundle: enrichedBundle },
