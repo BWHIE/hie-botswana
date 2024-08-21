@@ -66,10 +66,10 @@ export class IpmsService {
       if (adtResult.includes && adtResult.includes('AA')) {
         labBundle = setTaskStatus(labBundle, R4.TaskStatusKind._received);
       }
+      return labBundle;
     } else {
-      this.logger.log('Order not ready for IPMS.');
+      throw new Error('Unsupported Task status');
     }
-    return labBundle;
   }
 
   async sendOrmToIpms(bundles: any): Promise<R4.IBundle> {

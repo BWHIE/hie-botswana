@@ -16,6 +16,7 @@ import { MpiService } from '../services/mpi.service';
 import { TerminologyService } from '../services/terminology.service';
 import { topicList } from '../utils/topics';
 import { BundlePayload } from '../../common/utils/fhir';
+import { R4 } from '@ahryman40k/ts-fhir-types';
 
 @Controller()
 export class KafkaConsumerController {
@@ -45,15 +46,32 @@ export class KafkaConsumerController {
     try {
       let bundle: IBundle = val.bundle;
 
-      this.kafkaProducerService.sendPayloadWithRetryDMQ(
-        { bundle: bundle },
-        topicList.SAVE_PIMS_PATIENT,
-      );
+      // @TODO : This can be deleted as we find or create the patient upfront
+      // this.kafkaProducerService.sendPayloadWithRetryDMQ(
+      //   { bundle: bundle },
+      //   topicList.SAVE_PIMS_PATIENT,
+      // );
 
+      // Sent ADT 04 to IPMS and update task status
       bundle = await this.ipmsService.sendAdtToIpms(bundle);
 
       // Succeed only if this bundle saves successfully
-      await this.labService.saveBundle(bundle);
+      const taskEntry = bundle.entry.find(
+        (e) => e.resource.resourceType === 'Task',
+      );
+      await this.labService.saveBundle({
+        resourceType: 'Bundle',
+        type: R4.BundleTypeKind._transaction,
+        entry: [
+          {
+            request: {
+              method: R4.Bundle_RequestMethodKind._put,
+              url: `Task/${taskEntry.resource.id}`,
+            },
+            resource: taskEntry.resource,
+          },
+        ],
+      });
 
       await this.commitOffsets(context);
     } catch (err) {

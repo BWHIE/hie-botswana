@@ -178,22 +178,22 @@ export function invalidBundle(resource: any): boolean {
 export function getTaskStatus(
   labBundle: R4.IBundle,
 ): R4.TaskStatusKind | undefined {
-  let taskResult, task;
-
   try {
-    taskResult = labBundle.entry!.find((entry) => {
+    const taskResult = labBundle.entry!.find((entry) => {
       return entry.resource && entry.resource.resourceType == 'Task';
     });
 
     if (taskResult) {
-      task = <R4.ITask>taskResult.resource!;
+      const task = <R4.ITask>taskResult.resource!;
 
       return task.status!;
+    } else {
+      throw new Error('Unable to extract Task from bundle');
     }
   } catch (error) {
     // @TODO: should we throw here ?
-    console.error(`Could not get Task status for task:\n${task}`);
-    return undefined;
+    console.error(`Could not get Task status for task`);
+    throw error;
   }
 }
 
@@ -201,21 +201,21 @@ export function setTaskStatus(
   labBundle: R4.IBundle,
   status: R4.TaskStatusKind,
 ): R4.IBundle {
-  let taskIndex, task;
-
   try {
-    taskIndex = labBundle.entry!.findIndex((entry) => {
+    const taskIndex = labBundle.entry!.findIndex((entry) => {
       return entry.resource && entry.resource.resourceType == 'Task';
     });
 
     if (labBundle.entry && labBundle.entry.length > 0 && taskIndex >= 0) {
       (<R4.ITask>labBundle.entry[taskIndex].resource!).status = status;
+    } else {
+      throw new Error('Unable to find the Task in the bundle');
     }
     return labBundle;
   } catch (error) {
     // @TODO: should we throw here ?
-    console.error(`Could not get Task status for task:\n${task}`);
-    return labBundle;
+    console.error(`Could not set Task status for task`);
+    throw error;
   }
 }
 
