@@ -1,17 +1,179 @@
 import { R4 } from '@ahryman40k/ts-fhir-types';
-import { Injectable } from '@nestjs/common';
+import { v4 as uuid } from 'uuid';
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import * as crypto from 'crypto';
 import { getBundleEntries, getBundleEntry } from '../../common/utils/fhir';
 import config from '../../config';
 import { LoggerService } from '../../logger/logger.service';
 import { HttpService } from '@nestjs/axios';
+import { FhirService } from 'src/common/services/fhir.service';
 
 @Injectable()
 export class MflService {
   constructor(
     private readonly logger: LoggerService,
     private readonly httpService: HttpService,
+    private readonly fhirService: FhirService,
   ) {}
+
+  async getLocationFromMfl(anyCode: string) {
+    const mflUrl = config.get('mflUrl');
+    try {
+      const { data } = await this.httpService.axiosRef.get<R4.ILocation>(
+        `${mflUrl}/location/${anyCode}`,
+      );
+
+      if (
+        !(
+          typeof data === 'object' &&
+          'resourceType' in data &&
+          data.resourceType === 'Location'
+        )
+      ) {
+        throw new InternalServerErrorException(
+          'Invalid MFL Response  : ',
+          JSON.stringify(data),
+        );
+      }
+
+      return data;
+    } catch (err) {
+      this.logger.error(err);
+      throw new BadRequestException(
+        `Unable to retrieve location from MFL ${anyCode}`,
+      );
+    }
+  }
+
+  async enrichWithMflData(labOrderBundle: R4.IBundle) {
+    // Sync with MFL
+    const serviceRequest = labOrderBundle.entry.find(
+      ({ resource }) => resource.resourceType === 'ServiceRequest',
+    ).resource as R4.IServiceRequest;
+    const task = labOrderBundle.entry.find(
+      ({ resource }) => resource.resourceType === 'Task',
+    ).resource as R4.ITask;
+
+    const regex = /identifier=([^|]+)\|(.+)/;
+    const labSiteOrgIdentifier =
+      serviceRequest.performer[0].reference.match(regex);
+    const labSiteLocIdentifier = task.location.reference.match(regex);
+    const orderingOrgIdentifier = task.owner.reference.match(regex);
+
+    if (!labSiteOrgIdentifier) {
+      throw new BadRequestException(
+        'Unable to extract Lab site identifier from the ServiceRequest.performer',
+      );
+    }
+
+    if (!labSiteLocIdentifier) {
+      throw new BadRequestException(
+        'Unable to extract Lab site identifier from the Task.location',
+      );
+    }
+
+    if (!orderingOrgIdentifier) {
+      throw new BadRequestException(
+        'Unable to extract ordering HF identifier from the Task.owner',
+      );
+    }
+
+    if (
+      labSiteOrgIdentifier[1] !== labSiteLocIdentifier[1] ||
+      labSiteOrgIdentifier[2] !== labSiteLocIdentifier[2]
+    ) {
+      throw new BadRequestException(
+        'Lab site identifier in ServiceRequest.performer does not match the Task.location',
+      );
+    }
+
+    // Get Data from MFL and create/update Organization and Locations in SHR
+    const labSiteLocation = await this.getLocationFromMfl(
+      labSiteOrgIdentifier[2],
+    );
+    const orderingLocation = await this.getLocationFromMfl(
+      orderingOrgIdentifier[2],
+    );
+
+    const [labSiteOrg, labSiteLoc] =
+      this.buildMflBundleEntries(labSiteLocation);
+    const [orderingOrg, orderingLoc] =
+      this.buildMflBundleEntries(orderingLocation);
+
+    serviceRequest.performer[0].reference = labSiteOrg.fullUrl;
+    task.owner.reference = orderingOrg.fullUrl;
+    task.location.reference = labSiteLoc.fullUrl;
+
+    return {
+      ...labOrderBundle,
+      entry: [
+        ...labOrderBundle.entry,
+        labSiteOrg,
+        labSiteLoc,
+        orderingOrg,
+        orderingLoc,
+      ],
+    };
+  }
+
+  buildMflBundleEntries(location: R4.ILocation): R4.IBundle['entry'] {
+    const identifier = location.identifier.find(({ system }) => {
+      return system === config.get('bwConfig:mflCodeSystemUrl');
+    });
+
+    if (!identifier) {
+      throw new InternalServerErrorException(
+        'Unable to find MFL system url in response',
+      );
+    }
+
+    const organization: R4.IOrganization = {
+      resourceType: 'Organization',
+      id: uuid(),
+      identifier: location.identifier,
+      name: location.managingOrganization?.display,
+      address: [
+        {
+          city: location.address.city,
+          country: location.address.country,
+          district: location.address.district,
+        },
+      ],
+      active: true,
+    };
+
+    const linkedLocation: R4.ILocation = {
+      ...location,
+      id: uuid(),
+      managingOrganization: {
+        reference: `urn:uuid:${organization.id}`,
+        display: organization.name,
+      },
+    };
+
+    return [
+      {
+        fullUrl: `urn:uuid:${organization.id}`,
+        resource: organization,
+        request: {
+          method: R4.Bundle_RequestMethodKind._put,
+          url: `Organization?identifier=${identifier.system}|${identifier.value}`,
+        },
+      },
+      {
+        fullUrl: `urn:uuid:${linkedLocation.id}`,
+        resource: linkedLocation,
+        request: {
+          method: R4.Bundle_RequestMethodKind._put,
+          url: `Location?identifier=${identifier.system}|${identifier.value}`,
+        },
+      },
+    ];
+  }
 
   //    * This method adds IPMS - specific location mappings to the order bundle based on the ordering
   //   * facility

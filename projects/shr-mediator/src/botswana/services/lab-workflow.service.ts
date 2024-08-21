@@ -137,7 +137,11 @@ export class LabWorkflowService {
     this.logger.log(`Posting ${bundle.resourceType}`);
 
     try {
-      const ret = await this.fhirService.post(bundle);
+      const ret = await this.fhirService.post<R4.IBundle>(bundle, {
+        headers: {
+          Prefer: 'return=representation',
+        },
+      });
       this.logger.log(`Saved bundle to FHIR store!`);
       return ret;
     } catch (error) {

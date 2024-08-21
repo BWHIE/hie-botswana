@@ -15,6 +15,7 @@ import { FhirService } from '../../common/services/fhir.service';
 import { LabWorkflowService } from '../services/lab-workflow.service';
 import { MpiService } from '../services/mpi.service';
 import { TerminologyService } from '../services/terminology.service';
+import { MflService } from '../services/mfl.service';
 
 @Controller('lab')
 export class LabController {
@@ -22,6 +23,7 @@ export class LabController {
     private readonly fhirService: FhirService,
     private readonly labService: LabWorkflowService,
     private readonly mpiService: MpiService,
+    private readonly mflService: MflService,
     private readonly terminologyService: TerminologyService,
     private readonly logger: LoggerService,
   ) {}
@@ -49,6 +51,7 @@ export class LabController {
     // Validate Bundle
     this.labService.validateBundle(labOrderBundle);
 
+    // Find or create patient in CR
     const patientRecord = await this.mpiService.findOrCreatePatientInCR(
       labOrderBundle,
       clientId,
@@ -59,23 +62,32 @@ export class LabController {
       patientRecord,
     );
 
+    // Temporary measure to sync MFL data until MFL is stable (re-enable HAPI FHIR provisioning from MFL in swarm.sh)
+    labOrderBundle = await this.mflService.enrichWithMflData(labOrderBundle);
+    // labOrderBundle = this.mflService.mapLocations(labOrderBundle)
+
     // Map concepts
     labOrderBundle = await this.terminologyService.mapConcepts(labOrderBundle);
 
     // Save Bundle in FHIR Server
-    const resultBundle = await this.labService.saveBundle(labOrderBundle);
+    labOrderBundle = await this.labService.saveBundle(labOrderBundle);
 
     // Trigger Background Tasks if bundle saved correctly
-    if (
-      resultBundle &&
-      resultBundle.entry &&
-      labOrderBundle.entry &&
-      resultBundle.entry.length == labOrderBundle.entry.length
-    ) {
-      //this.labService.handleLabOrder(labOrderBundle);
-      return res.status(201).json(resultBundle);
+    if (labOrderBundle) {
+      this.labService.handleLabOrder(labOrderBundle);
+
+      return res.status(201).json({
+        ...labOrderBundle,
+        // Filter out organizations and locations to keep consistency with FHIR standard
+        entry: labOrderBundle.entry.filter(
+          (e: R4.IBundle_Entry) =>
+            !['Location', 'Organization'].includes(e.resource.resourceType),
+        ),
+      });
     } else {
-      throw new BadRequestException(resultBundle);
+      throw new BadRequestException(
+        'Unable to save the bundle, empty response',
+      );
     }
   }
 

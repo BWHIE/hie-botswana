@@ -356,9 +356,8 @@ export class IpmsService {
   /**
    * Handles ORU (Observation Result) messages received from IPMS (Integrated Patient Management System).
    */
-  async handleOruFromIpms(message: any): Promise<R4.IBundle> {
+  async handleOruFromIpms(message: any) {
     let translatedBundle: R4.IBundle = { resourceType: 'Bundle' };
-    let resultBundle: R4.IBundle = { resourceType: 'Bundle' };
     let serviceRequestBundle: R4.IBundle = { resourceType: 'Bundle' };
 
     let taskPatient: IPatient, task: ITask;
@@ -522,14 +521,12 @@ export class IpmsService {
         };
 
         // Save to SHR
-        resultBundle = await this.labService.saveBundle(sendBundle);
+        await this.labService.saveBundle(sendBundle);
       }
     } catch (error: any) {
       this.logger.error(`Could not process ORU!\n${error}`);
       throw new InternalServerErrorException(error.toString());
     }
-
-    return resultBundle;
   }
 
   processIpmsPatient(patient: R4.IPatient): any {

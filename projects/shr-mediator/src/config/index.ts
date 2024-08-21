@@ -20,6 +20,7 @@ class Config {
         username: process.env.FHIR_SERVER_USERNAME,
         password: process.env.FHIR_SERVER_PASSWORD,
       },
+      mflUrl: process.env.MFL_URL,
       clientRegistryUrl: process.env.CR_MEDIATOR_URL,
       fhirConverterUrl: process.env.FHIR_CONVERTER_URL,
       taskRunner: {
@@ -46,7 +47,9 @@ class Config {
         mrnSystemUrl: process.env.MRN_SYSTEM_URL,
         immigrationSystemUrl: process.env.IMMIGRATION_SYSTEM_URL,
         oclUrl: process.env.OCL_URL,
-        facilityCodeSystemUrl: process.env.FACILITY_CODE_SYSTEM_URL,
+        oldCodeCodeSystemUrl: process.env.OLD_FACILITY_CODE_SYSTEM_URL,
+        mflCodeSystemUrl: process.env.MFL_FACILITY_CODE_SYSTEM_URL,
+        ipmsFacilityCodeSystemUrl: process.env.IPMS_FACILITY_CODE_SYSTEM_URL,
         ipmsProviderSystemUrl: process.env.IPMS_PROVIDER_SYSTEM_URL,
         ipmsPatientTypeSystemUrl: process.env.IPMS_PATIENT_TYPE_SYSTEM_URL,
         ipmsPatientStatusSystemUrl: process.env.IPMS_PATIENT_STATUS_SYSTEM_URL,
