@@ -8,57 +8,76 @@ import {
   Put,
   Req,
   Res,
+  Headers,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { LoggerService } from 'src/logger/logger.service';
 import { FhirService } from '../../common/services/fhir.service';
-import { invalidBundle, invalidBundleMessage } from '../../common/utils/fhir';
+import { invalidBundle } from '../../common/utils/fhir';
 import { LabWorkflowService } from '../services/lab-workflow.service';
+import { MpiService } from '../services/mpi.service';
+import { TerminologyService } from '../services/terminology.service';
 
 @Controller('lab')
 export class LabController {
   constructor(
     private readonly fhirService: FhirService,
     private readonly labService: LabWorkflowService,
+    private readonly mpiService: MpiService,
+    private readonly terminologyService: TerminologyService,
     private readonly logger: LoggerService,
   ) {}
 
   @Post()
   @Put()
-  async saveOrder(@Req() req: Request, @Res() res: Response) {
+  async saveOrder(
+    @Req() req: Request,
+    @Res() res: Response,
+    @Headers('x-openhim-clientid') clientId = 'ShrMediator',
+  ) {
+    let labOrderBundle: R4.IBundle;
+
+    this.logger.log('Received a Lab Order bundle to save.');
+
+    // Make sure JSON is parsed
+    if (req.is('text/plain')) {
+      labOrderBundle = JSON.parse(req.body);
+    } else if (req.is('application/json') || req.is('application/fhir+json')) {
+      labOrderBundle = req.body;
+    } else {
+      throw new BadRequestException(`Invalid content type! ${req.headers}`);
+    }
+
+    // Validate Bundle
+    if (invalidBundle(labOrderBundle)) {
+      throw new BadRequestException('Invalid bundle submitted');
+    }
+
+    const patientRecord = await this.mpiService.findOrCreatePatientInCR(
+      labOrderBundle,
+      clientId,
+    );
+
+    labOrderBundle = await this.labService.updateBundleWithPatientFromCR(
+      labOrderBundle,
+      patientRecord,
+    );
+
+    // Map concepts
+    labOrderBundle = await this.terminologyService.mapConcepts(labOrderBundle);
+
     try {
-      let orderBundle: R4.IBundle;
-      this.logger.log('Received a Lab Order bundle to save.');
-
-      // Make sure JSON is parsed
-      if (req.is('text/plain')) {
-        orderBundle = JSON.parse(req.body);
-      } else if (
-        req.is('application/json') ||
-        req.is('application/fhir+json')
-      ) {
-        orderBundle = req.body;
-      } else {
-        throw new BadRequestException(`Invalid content type! ${req.headers}`);
-      }
-
-      // Validate Bundle
-      if (invalidBundle(orderBundle)) {
-        return res.status(400).json(invalidBundleMessage());
-      }
-
-      // Save Bundle
-      const resultBundle: R4.IBundle =
-        await this.labService.saveBundle(orderBundle);
+      // Save Bundle in FHIR Server
+      const resultBundle = await this.labService.saveBundle(labOrderBundle);
 
       // Trigger Background Tasks if bundle saved correctly
       if (
         resultBundle &&
         resultBundle.entry &&
-        orderBundle.entry &&
-        resultBundle.entry.length == orderBundle.entry.length
+        labOrderBundle.entry &&
+        resultBundle.entry.length == labOrderBundle.entry.length
       ) {
-        this.labService.handleLabOrder(orderBundle);
+        //this.labService.handleLabOrder(labOrderBundle);
         return res.status(201).json(resultBundle);
       } else {
         throw new BadRequestException(resultBundle);

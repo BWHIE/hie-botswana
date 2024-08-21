@@ -3,11 +3,14 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
 import config from './config';
 import * as bodyParser from 'body-parser';
+import { FhirExceptionFilter } from './middlewares/fhir-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     bodyParser: false,
   });
+
+  app.useGlobalFilters(new FhirExceptionFilter());
 
   const rawBodyBuffer = (req, res, buf, encoding) => {
     if (buf && buf.length) {

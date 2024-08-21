@@ -24,7 +24,7 @@ export class IpsController {
     private readonly logger: LoggerService,
   ) {}
 
-  @Get('/')
+  @Get('ips')
   getRoot(@Req() req: Request) {
     return req.url;
   }
