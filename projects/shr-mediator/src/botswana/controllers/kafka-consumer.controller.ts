@@ -85,23 +85,44 @@ export class KafkaConsumerController {
     @Ctx() context: KafkaContext,
   ) {
     try {
-      const adtRes = await this.ipmsService.handleAdtFromIpms(hl7Message);
+      const adtResponseBundle =
+        await this.ipmsService.handleAdtFromIpms(hl7Message);
 
-      if (adtRes && adtRes.patient) {
-        this.kafkaProducerService.sendPayloadWithRetryDMQ(
-          adtRes.patient,
-          topicList.SAVE_IPMS_PATIENT,
+      // Update patient (add MRN number)
+      this.kafkaProducerService.sendPayloadWithRetryDMQ(
+        adtResponseBundle.entry.find(
+          ({ resource }) => resource.resourceType === 'Patient',
+        )?.resource as R4.IPatient,
+        topicList.SAVE_IPMS_PATIENT,
+      );
+
+      const task = adtResponseBundle.entry.find(
+        ({ resource }) => resource.resourceType === 'Task',
+      )?.resource as R4.ITask;
+
+      if (task) {
+        const bundle = await this.ipmsService.sendOrmToIpms(adtResponseBundle);
+
+        const taskEntry = bundle.entry.find(
+          (e) => e.resource.resourceType === 'Task',
         );
-      }
-
-      if (adtRes && adtRes.taskBundle && adtRes.patient) {
-        const enrichedBundle = await this.ipmsService.sendOrmToIpms(adtRes);
-
         // Succeed only if this bundle saves successfully
-        await this.labService.saveBundle(enrichedBundle);
+        await this.labService.saveBundle({
+          resourceType: 'Bundle',
+          type: R4.BundleTypeKind._transaction,
+          entry: [
+            {
+              request: {
+                method: R4.Bundle_RequestMethodKind._put,
+                url: `Task/${taskEntry.resource.id}`,
+              },
+              resource: taskEntry.resource,
+            },
+          ],
+        });
       } else {
         this.logger.error(
-          `Could not handle ADT from IPMS!\n${JSON.stringify(adtRes)}`,
+          `Could not handle ADT from IPMS!\n${JSON.stringify(adtResponseBundle)}`,
         );
       }
       await this.commitOffsets(context);

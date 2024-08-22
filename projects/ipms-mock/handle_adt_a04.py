@@ -1,7 +1,7 @@
 import logging
 import time
 from threading import Thread
-from hl7apy.core import Message
+from hl7apy.core import Message, Segment
 from helper import create_ack_response, send_message_to_client, generate_code
 from datetime import datetime
 
@@ -62,12 +62,16 @@ def create_adt_a04_response_message(data):
     add_msh_segments(adt_a04)
     add_evn_segments(adt_a04)
     add_pid_segments(adt_a04, data)
+    add_pv1_segments(adt_a04)
+    add_pv2_segments(adt_a04, data)
 
     # Convert to ER7 and manually add MLLP characters
     er7_message = adt_a04.to_er7()
     # # Manual MLLP encoding
     mllp_message = f"{chr(11)}{er7_message}{chr(28)}{chr(13)}" 
 
+    logging.debug("1111111")
+    logging.debug(er7_message)
     return mllp_message
 
 def add_msh_segments(adt_a04):
@@ -86,7 +90,7 @@ def add_msh_segments(adt_a04):
 
 def add_evn_segments(adt_a04):
     # EVN Segment (Updated)
-    evn = adt_a04.add_segment("EVN")
+    evn = Segment("EVN")
     evn.EVN_1.value = ""
     evn.EVN_2.value = datetime.now().strftime("%Y%m%d%H%M")
     evn.EVN_3.value = ""
@@ -94,9 +98,11 @@ def add_evn_segments(adt_a04):
     evn.EVN_5.value = "INFCE^INTERFACE"
     evn.EVN_6.value = datetime.now().strftime("%Y%m%d%H%M")
     evn.EVN_7.value = ""
+    adt_a04.add(evn)
 
 def add_pid_segments(adt_a04, data):
-    pid = adt_a04.add_segment("PID")
+    # pid = adt_a04.add_segment("PID")
+    pid = Segment("PID")
     pid.PID_1.value = "1" #Set ID
 
     for identifier in [
@@ -109,3 +115,20 @@ def add_pid_segments(adt_a04, data):
         cx.CX_1.value = identifier[0]
         cx.CX_5.value = identifier[1]
         cx.CX_6.value = identifier[2]
+    
+
+    pid.PID_18.value = data['pid']["patient_account_number"] # Set Account number
+    adt_a04.add(pid)
+
+def add_pv1_segments(adt_a04):
+    pv1 = Segment("PV1")
+    pv1.PV1_1.value = "1"
+    pv1.PV1_2.value = "O"
+    adt_a04.add(pv1)
+
+def add_pv2_segments(adt_a04, data):
+    pv2 = Segment("PV2")
+    task_id = data["pv2"]["accommodation_code"]
+    pv2.PV2_3.value = task_id
+    pv2.PV2_35.value = "N"
+    adt_a04.add(pv2)

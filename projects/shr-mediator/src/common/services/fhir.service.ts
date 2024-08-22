@@ -202,4 +202,19 @@ export class FhirService {
       throw new InternalServerErrorException(error);
     }
   }
+
+  async getAllResourcesByTask(taskId: string) {
+    // Grab bundle for task:
+    const { data } = await this.httpService.axiosRef.get<R4.IBundle>(
+      `${config.get('fhirServer:baseURL')}/Task`,
+      {
+        params: {
+          _include: '*',
+          _id: taskId,
+        },
+      },
+    );
+
+    return data;
+  }
 }

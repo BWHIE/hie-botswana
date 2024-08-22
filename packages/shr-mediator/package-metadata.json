@@ -40,6 +40,7 @@
     "SHR_BW_CONFIG_LOINC_SYSTEM_URL": "https://api.openconceptlab.org/orgs/Regenstrief/sources/LOINC/",
     "SHR_BW_CONFIG_LAB_ORDER_SYSTEM_URL": "http://moh.bw.org/ext/identifier/lab-order-id",
     "SHR_BW_CONFIG_MRN_SYSTEM_URL": "http://moh.bw.org/ext/identifier/mrn",
+    "SHR_BW_CONFIG_ACC_SYSTEM_URL": "http://moh.bw.org/ext/identifier/acc",
     "SHR_BW_CONFIG_OCL_URL": "https://api.openconceptlab.org",
     "SHR_BW_CONFIG_OLD_FACILITY_CODE_SYSTEM_URL": "http://moh.bw.org/ext/identifier/old-code",
     "SHR_BW_CONFIG_MFL_FACILITY_CODE_SYSTEM_URL": "http://moh.bw.org/ext/identifier/mfl-code",

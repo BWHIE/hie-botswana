@@ -110,6 +110,7 @@ module.exports = class fhir extends dataHandler {
         let patient = this.getResource(bundle, "Patient");
         let sourceLocation = this.getSourceLocation(bundle);
         let provider = this.getResource(bundle, "Practitioner");
+        let task = this.getResource(bundle, "Task");
 
         res = this.setPatientData(patient, res);
         res = this.setProviderData(provider, res);
@@ -124,6 +125,8 @@ module.exports = class fhir extends dataHandler {
         res.kinCity = "";
         res.kinProvince = "";
         res.kinPostalCode = "";
+
+        res.taskId = task ? task.id : "";
 
         return res;
     }

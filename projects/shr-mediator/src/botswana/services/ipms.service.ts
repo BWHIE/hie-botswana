@@ -2,9 +2,7 @@ import { R4 } from '@ahryman40k/ts-fhir-types';
 import {
   Bundle_RequestMethodKind,
   BundleTypeKind,
-  IBundle,
   IDiagnosticReport,
-  ILocation,
   IObservation,
   IPatient,
   ITask,
@@ -12,6 +10,8 @@ import {
 } from '@ahryman40k/ts-fhir-types/lib/R4';
 import { HttpService } from '@nestjs/axios';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { AxiosRequestConfig } from 'axios';
+import { FhirService } from 'src/common/services/fhir.service';
 import {
   getTaskStatus,
   ResourceType,
@@ -23,8 +23,6 @@ import { Hl7Service } from './hl7.service';
 import { LabWorkflowService } from './lab-workflow.service';
 import { MllpService } from './mllp.service';
 import { TerminologyService } from './terminology.service';
-import { AxiosRequestConfig } from 'axios';
-import { FhirService } from 'src/common/services/fhir.service';
 
 @Injectable()
 export class IpmsService {
@@ -72,101 +70,30 @@ export class IpmsService {
     }
   }
 
-  async sendOrmToIpms(bundles: any): Promise<R4.IBundle> {
-    const srBundle: R4.IBundle = { resourceType: 'Bundle', entry: [] };
-    let labBundle = bundles.taskBundle.data;
-    const patient = bundles.patient;
-
+  async sendOrmToIpms(labBundle: R4.IBundle): Promise<R4.IBundle> {
     try {
-      // Replace PIMS/OpenMRS Patient Resource with one From IPMS Lab System
-      const pindex = labBundle.entry!.findIndex((entry: any) => {
-        return entry.resource && entry.resource.resourceType == 'Patient';
-      });
-
-      labBundle.entry[pindex].resource = patient;
-
-      const options: AxiosRequestConfig = {
-        timeout: config.get('bwConfig:requestTimeout'),
-        params: {},
-      };
-
-      const sendBundle = { ...labBundle };
-      sendBundle.entry = [];
-      srBundle.entry = [];
-
-      // Compile sendBundle.entry from labBundle
-      // TODO: Outline Logic for mapping between Panels and sending multiple tests
-      for (const entry of labBundle.entry) {
-        // Isolate and process ServiceRequests
-        if (entry.resource && entry.resource.resourceType == 'ServiceRequest') {
-          // For PIMS - check if service request is profile-level and get child service requests:
-          options.params = {
-            'based-on': entry.resource.id,
-          };
-          // TODO: Retry logic
-          const { data: fetchedBundle } =
-            await this.httpService.axiosRef.get<R4.IBundle>(
-              `${config.get('fhirServer:baseURL')}/ServiceRequest`,
-              options,
-            );
-
-          if (fetchedBundle && fetchedBundle.entry && srBundle.entry) {
-            // Add child ServiceRequests if any exist
-            srBundle.entry = srBundle.entry.concat(fetchedBundle.entry);
-          } else if (
-            (!fetchedBundle ||
-              !(fetchedBundle.entry && fetchedBundle.entry.length > 0)) &&
-            srBundle.entry
-          ) {
-            // If no child ServiceRequests, add this one if it has a code entry
-            if (
-              entry.resource.code &&
-              entry.resource.code.coding &&
-              entry.resource.code.coding.length > 0
-            ) {
-              srBundle.entry.push(entry);
-            }
-          }
-        } else {
-          // Copy over everything else
-          sendBundle.entry.push(entry);
-        }
-      }
+      const task = labBundle.entry.find(
+        ({ resource }) => resource.resourceType === 'Task',
+      )?.resource as R4.ITask;
 
       // Send one ORM for each ServiceRequest
       // TODO: FIGURE OUT MANAGEMENT OF PANELS/PROFILES
-      for (const sr of srBundle.entry) {
+      for (const serviceRequestRef of task.basedOn) {
+        const [, serviceRequestId] = serviceRequestRef.reference.split('/');
         // Send one ORM for each ServiceRequest
-        const outBundle: R4.IBundle = { ...sendBundle };
-
-        outBundle.entry.push(sr);
-
-        //@TODO Temporary workaround to add location resource to bundle to avoid FHIR to HL7 conversion error when sending an ORM!
-        const task = <ITask>(
-          outBundle.entry.find(
-            (e: any) => e.resource && e.resource.resourceType == 'Task',
-          )!.resource!
-        );
-        const locationReference = task.requester || null;
-        if (locationReference) {
-          if (locationReference.reference.split('/')[0] == 'Organization') {
-            const { data: fetchedBundle } =
-              await this.httpService.axiosRef.get<R4.IBundle>(
-                `${config.get('fhirServer:baseURL')}/Location?organization=${locationReference.reference}`,
-              );
-            const locationResource = {
-              fullUrl: fetchedBundle.entry[0].fullUrl,
-              resource: <ILocation>fetchedBundle.entry[0].resource,
-            };
-
-            this.logger.log(
-              `Retrieved Location resource : ${JSON.stringify(locationResource)}`,
-            );
-            outBundle.entry.push(locationResource);
-          }
-        }
-
-        // const translatedBundle = await this.labService.translateToTransactionBundle(outBundle);
+        const outBundle: R4.IBundle = {
+          ...labBundle,
+          entry: [
+            ...labBundle.entry.filter(
+              ({ resource }) => resource.resourceType !== 'ServiceRequest',
+            ),
+            labBundle.entry.find(
+              ({ resource }) =>
+                resource.resourceType === 'ServiceRequest' &&
+                resource.id === serviceRequestId,
+            ),
+          ],
+        };
 
         const ormMessage = await this.hl7Service.getFhirTranslationWithRetry(
           outBundle,
@@ -192,13 +119,14 @@ export class IpmsService {
           this.logger.log(`*result:\n${result}\n`);
         }
       }
+
+      return labBundle;
     } catch (e) {
       this.logger.error(`Could not send ORM message to IPMS!\n${e}`);
       throw new InternalServerErrorException(
         `Could not send ORM message to IPMS!\n${e}`,
       );
     }
-    return labBundle;
   }
 
   /**
@@ -209,7 +137,7 @@ export class IpmsService {
    * @param registrationBundle - The registration bundle containing the patient information.
    * @returns A Promise that resolves to the registration bundle.
    */
-  async handleAdtFromIpms(adtMessage: string): Promise<any> {
+  async handleAdtFromIpms(adtMessage: string) {
     try {
       const registrationBundle: R4.IBundle =
         await this.hl7Service.translateBundle(
@@ -222,130 +150,65 @@ export class IpmsService {
       }
 
       // Get patient from registration Bundle
-      let patient: R4.IPatient,
-        omang: string,
-        ppn: string,
-        bcn: string,
-        identifierParam: string;
-
-      const patEntry = registrationBundle.entry!.find((entry) => {
+      const ipmsPatientEntry = registrationBundle.entry!.find((entry) => {
         return entry.resource && entry.resource.resourceType == 'Patient';
       });
 
-      if (patEntry && patEntry.resource) {
-        patient = <R4.IPatient>patEntry.resource;
+      if (ipmsPatientEntry && ipmsPatientEntry.resource) {
+        const ipmsPatient = <R4.IPatient>ipmsPatientEntry.resource;
 
-        // Find patient identifiers, if they exist
-        const omangEntry = patient.identifier?.find(
-          (i) => i.system && i.system == config.get('bwConfig:omangSystemUrl'),
-        );
+        const taskId = ipmsPatient.identifier.find(({ system }) =>
+          system.endsWith('task-id'),
+        )?.value;
 
-        const ppnEntry = patient.identifier?.find(
-          (i) =>
-            i.system && i.system == config.get('bwConfig:immigrationSystemUrl'),
-        );
-
-        const bcnEntry = patient.identifier?.find(
-          (i) => i.system && i.system == config.get('bwConfig:bdrsSystemUrl'),
-        );
-
-        if (omangEntry && omangEntry.value) {
-          omang = omangEntry.value;
-          identifierParam = `${config.get('bwConfig:omangSystemUrl')}|${omang}`;
-        } else if (bcnEntry && bcnEntry.value) {
-          bcn = bcnEntry.value;
-          identifierParam = `${config.get('bwConfig:bdrsSystemUrl')}|${bcn}`;
-        } else if (ppnEntry && ppnEntry.value) {
-          ppn = ppnEntry.value;
-          identifierParam = `${config.get('bwConfig:immigrationSystemUrl')}|${ppn}`;
-        } else {
-          const errorMessage =
-            'Patient missing a required identifier - matching supported only on Omang, birth certificate number, or passport number.';
-
-          this.logger.error(errorMessage);
-
-          throw new InternalServerErrorException(errorMessage);
-        }
-
-        // Find all patients with these identifiers and grab the related Tasks
-
-        let potentialPatientTasks: R4.IBundle;
-        try {
-          const { data } = await this.httpService.axiosRef.get<R4.IBundle>(
-            `${config.get('fhirServer:baseURL')}/Patient`,
-            {
-              params: {
-                identifier: `${identifierParam}`,
-                _revinclude: 'Task:patient',
-              },
-            },
+        if (!taskId) {
+          throw new InternalServerErrorException(
+            'Unable to find task id in the ADT response',
           );
-          potentialPatientTasks = data;
-        } catch (e) {
-          potentialPatientTasks = { resourceType: 'Bundle' };
-          this.logger.error(e);
         }
 
-        if (potentialPatientTasks && potentialPatientTasks.entry) {
-          // Get all Tasks with `received` status, which indicates the patient ADT has been sent to IPMS
+        // Grab bundle for task:
+        const bundle = await this.fhirService.getAllResourcesByTask(taskId);
 
-          // Filter and Sort all resources in entry to have tasks by decending order or creation
-          const patientTasks = potentialPatientTasks.entry
-            .filter(
-              (e) =>
-                e.resource &&
-                e.resource.resourceType == 'Task' &&
-                e.resource.status == TaskStatusKind._received,
-            )
-            .sort((a, b) => {
-              if (a.resource && b.resource) {
-                const at = <ITask>a.resource;
-                const bt = <ITask>b.resource;
-
-                return (
-                  new Date(bt.authoredOn || 0).getTime() -
-                  new Date(at.authoredOn || 0).getTime()
-                );
-              }
-              return 0;
-            });
-
-          // TODO: Account for multiple task results!
-
-          // For now, if multiple tasks exist, grab the most recent one and log a warning
-          if (patientTasks.length > 1) {
-            this.logger.warn(
-              `More than one task found for patient ${patient.id} with identifier ${identifierParam}! Processing most recent.`,
-            );
-          }
-
-          if (patientTasks.length > 0) {
-            const targetTask = patientTasks[0].resource;
-
-            if (targetTask) {
-              // Grab bundle for task:
-              const taskBundle: IBundle = await this.httpService.axiosRef.get(
-                `${config.get('fhirServer:baseURL')}/Task`,
-                {
-                  params: {
-                    _include: '*',
-                    _id: targetTask.id,
-                  },
-                },
-              );
-
-              return { patient: patient, taskBundle: taskBundle };
-            }
-          }
-          return { patient: undefined, taskBundle: undefined };
-        } else {
-          this.logger.error(
-            'Could not find any patient tasks for patient with identifier ' +
-              identifierParam +
-              '!',
+        const patient = bundle.entry.find(
+          ({ resource }) => resource.resourceType === 'Patient',
+        )?.resource as R4.IPatient;
+        if (!patient) {
+          throw new InternalServerErrorException(
+            'Unable to find patient in the task bundle',
           );
-          return { patient: undefined, taskBundle: undefined };
         }
+
+        // Add MRN Number
+        const mrnIdentifier = ipmsPatient.identifier.find(
+          ({ system }) => system === config.get('bwConfig:mrnSystemUrl'),
+        );
+        if (mrnIdentifier) {
+          patient.identifier.push(mrnIdentifier);
+        } else {
+          throw new InternalServerErrorException(
+            'Unable to find ipms patient MRN number in the task bundle',
+          );
+        }
+
+        // Add Account Number
+        const accIdentifier = ipmsPatient.identifier.find(
+          ({ system }) => system === config.get('bwConfig:accSystemUrl'),
+        );
+        if (accIdentifier) {
+          patient.identifier.push(accIdentifier);
+        } else {
+          throw new InternalServerErrorException(
+            'Unable to find ipms patient Account number in the task bundle',
+          );
+        }
+
+        return bundle;
+      } else {
+        throw new InternalServerErrorException(
+          'Could not find patient resource in translated ADT!\n' +
+            JSON.stringify(registrationBundle),
+        );
       }
     } catch (e) {
       this.logger.error('Could not process ADT!\n' + e);
