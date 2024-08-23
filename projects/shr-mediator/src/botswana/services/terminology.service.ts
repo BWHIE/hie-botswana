@@ -96,9 +96,15 @@ export class TerminologyService {
       if (ipmsCoding && ipmsCoding.code) {
         // 1. IPMS Resulting Workflow:
         //    Translation from IPMS --> PIMS and CIEL
+        const ipmsCodingInfoID = this.ipmsCodingInfo.find(
+          (concept: any) =>
+            concept.names.find((x: any) => x.name_type == 'Short').name ===
+            ipmsCoding.code,
+        );
+
         pimsCoding = this.getMappedCodeFromMemory(
           this.ipmsToPimsMappings,
-          ipmsCoding.code,
+          ipmsCodingInfoID.id,
         );
 
         if (pimsCoding && pimsCoding.code) {
@@ -115,7 +121,7 @@ export class TerminologyService {
 
         cielCoding = this.getMappedCodeFromMemory(
           this.ipmsToCielMappings,
-          ipmsCoding.code,
+          ipmsCodingInfoID.id,
         );
 
         if (cielCoding && cielCoding.code) {
@@ -135,17 +141,24 @@ export class TerminologyService {
         if (pimsCoding && pimsCoding.code) {
           // 2. PIMS Order Workflow:
           //    Translation from PIMS --> IPMS and CIEL
-          computedIpmsCoding = this.getMappedCodeFromMemory(
+          computedIpmsCoding = this.getIpmsCodeFromMemory(
             this.pimsToIpmsMappings,
             pimsCoding.code,
+            'to',
           );
           this.logger.log(`IPMS Coding: ${JSON.stringify(computedIpmsCoding)}`);
 
           if (computedIpmsCoding && computedIpmsCoding.code) {
             r.code.coding.push({
               system: config.get('bwConfig:ipmsSystemUrl'),
-              code: computedIpmsCoding.code,
+              code: computedIpmsCoding.mnemonic,
               display: computedIpmsCoding.display,
+              extension: [
+                {
+                  url: config.get('bwConfig:ipmsOrderTypeSystemUrl'),
+                  valueString: computedIpmsCoding.hl7Flag,
+                },
+              ],
             });
             cielCoding = this.getMappedCodeFromMemory(
               this.ipmsToCielMappings,
@@ -211,23 +224,31 @@ export class TerminologyService {
     }
   }
 
-  getIpmsCodeFromMemory(mappings: Mapping[], code: string) {
+  getIpmsCodeFromMemory(
+    mappings: Mapping[],
+    code: string,
+    attr: 'from' | 'to' = 'from',
+  ) {
     try {
       // Prioritize "Broader Than Mappings"
       let mappingIndex = mappings.findIndex(
-        (x: any) => x.map_type == 'BROADER-THAN' && x.to_concept_code == code,
+        (x: any) =>
+          x.map_type == 'BROADER-THAN' &&
+          x[`${attr === 'from' ? 'to' : 'from'}_concept_code`] == code,
       );
 
       // Fall back to "SAME AS"
       if (mappingIndex < 0) {
         mappingIndex = mappings.findIndex(
-          (x: any) => x.map_type == 'SAME-AS' && x.to_concept_code == code,
+          (x: any) =>
+            x.map_type == 'SAME-AS' &&
+            x[`${attr === 'from' ? 'to' : 'from'}_concept_code`] == code,
         );
       }
       if (mappingIndex >= 0) {
-        const ipmsCode = mappings[mappingIndex].from_concept_code ?? null;
+        const ipmsCode = mappings[mappingIndex][`${attr}_concept_code`] ?? null;
         const ipmsDisplay =
-          mappings[mappingIndex].from_concept_name_resolved ?? null;
+          mappings[mappingIndex][`${attr}_concept_name_resolved`] ?? null;
         const ipmsCodingInfoID = this.ipmsCodingInfo.find(
           (concept: any) => concept.id === ipmsCode,
         );

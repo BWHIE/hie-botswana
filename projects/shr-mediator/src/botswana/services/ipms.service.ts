@@ -221,7 +221,7 @@ export class IpmsService {
    */
   async handleOruFromIpms(message: any) {
     let translatedBundle: R4.IBundle = { resourceType: 'Bundle' };
-    let serviceRequestBundle: R4.IBundle = { resourceType: 'Bundle' };
+    let taskBundle: R4.IBundle = { resourceType: 'Bundle' };
 
     let taskPatient: IPatient, task: ITask;
 
@@ -233,34 +233,20 @@ export class IpmsService {
       translatedBundle = message.bundle;
 
       if (translatedBundle && translatedBundle.entry) {
-        // Extract Patient, DiagnosticReport, and Observation
-        const patient: IPatient = <IPatient>(
-          translatedBundle.entry.find(
-            (e: any) => e.resource && e.resource.resourceType == 'Patient',
-          )!.resource!
-        );
+        console.log('?????', JSON.stringify(translatedBundle));
 
-        let dr: IDiagnosticReport = <IDiagnosticReport>(
-          translatedBundle.entry.find(
-            (e: any) =>
-              e.resource && e.resource.resourceType == 'DiagnosticReport',
-          )!.resource!
-        );
+        let diagnosticReport = translatedBundle.entry.find(
+          (e) => e.resource && e.resource.resourceType == 'DiagnosticReport',
+        )?.resource as IDiagnosticReport;
 
-        const obs: IObservation = <IObservation>(
-          translatedBundle.entry.find(
-            (e: any) => e.resource && e.resource.resourceType == 'Observation',
-          )!.resource!
-        );
+        const observation = translatedBundle.entry.find(
+          (e) => e.resource && e.resource.resourceType == 'Observation',
+        )?.resource as IObservation;
 
         // Enrich DiagnosticReport with Terminology Mappings
-        dr = <R4.IDiagnosticReport>(
-          await this.terminologyService.translateCoding(dr)
+        diagnosticReport = <R4.IDiagnosticReport>(
+          await this.terminologyService.translateCoding(diagnosticReport)
         );
-
-        // Process Patient information
-        const { omang, bcn, ppn, patOptions } =
-          this.processIpmsPatient(patient);
 
         /** Matching Approach:
          *  Use provided Lab Order Identifier to link ServiceRequest, Task, and Diagnostic Report together.
@@ -268,46 +254,20 @@ export class IpmsService {
 
         // Extract Lab Order ID from Diagnostic Report
         const labOrderId =
-          dr.identifier && dr.identifier.length > 0
-            ? dr.identifier.find(
+          diagnosticReport.identifier && diagnosticReport.identifier.length > 0
+            ? diagnosticReport.identifier.find(
                 (i: any) =>
                   i.system == config.get('bwConfig:labOrderSystemUrl'),
               )
             : undefined;
-        const labOrderMrn =
-          dr.identifier && dr.identifier.length > 0
-            ? dr.identifier.find(
-                (i: any) => i.system == config.get('bwConfig:mrnSystemUrl'),
-              )
-            : undefined;
 
         if (labOrderId && labOrderId.value) {
-          const formerOptions: AxiosRequestConfig = {
-            timeout: config.get('bwConfig:requestTimeout'),
-            params: {},
-          };
-
           /**
-         * When an ORU (Observation Result) message is received, the 'Based-on' parameter of the Task resource is never updated.
-         * To address this, we need to use the previous Service Request resource. 
-         * This is done by retrieving the 'based-on' reference parameter of the Service Request resource 
-         * that corresponds to the given 'labOrderId.value'. 
-   
-         * The following options include parameters to:
-         * 1. Retrieve the Task resource that includes the referenced Patient resource ('Task:patient').
-         * 2. Retrieve the Task resource that includes the referenced Service Request resource ('Task:based-on').
-         * 3. Specify the 'based-on' reference using the provided labOrderId value.
-         */
-
-          const previousSr = <R4.IServiceRequest>(
-            await this.fhirService.get(
-              ResourceType.ServiceRequest,
-              formerOptions,
-              labOrderId.value,
-            )
-          );
-          const formerLabOrderId =
-            previousSr.basedOn[0].reference.split('/')[1];
+           * When an ORU (Observation Result) message is received, the 'Based-on' parameter of the Task resource is never updated.
+           * To address this, we need to use the previous Service Request resource.
+           * This is done by retrieving the 'based-on' reference parameter of the Service Request resource
+           * that corresponds to the given 'labOrderId.value'.
+           */
 
           const options: AxiosRequestConfig = {
             timeout: config.get('bwConfig:requestTimeout'),
@@ -315,37 +275,24 @@ export class IpmsService {
           };
 
           (options.params['_include'] = 'Task:patient'), 'Task:based-on';
-          options.params['based-on'] = formerLabOrderId;
+          options.params['based-on'] = labOrderId.value;
 
-          serviceRequestBundle = await this.fhirService.get(
-            ResourceType.Task,
-            options,
-          );
+          taskBundle = await this.fhirService.get(ResourceType.Task, options);
         }
 
-        if (
-          serviceRequestBundle &&
-          serviceRequestBundle.entry &&
-          serviceRequestBundle.entry.length > 0
-        ) {
+        if (taskBundle && taskBundle.entry && taskBundle.entry.length > 0) {
           // Extract Task and Patient Resources from ServiceRequest Bundle
           taskPatient = <IPatient>(
-            serviceRequestBundle.entry.find(
+            taskBundle.entry.find(
               (e: any) => e.resource && e.resource.resourceType == 'Patient',
             )!.resource!
           );
 
           task = <ITask>(
-            serviceRequestBundle.entry.find(
+            taskBundle.entry.find(
               (e: any) => e.resource && e.resource.resourceType == 'Task',
             )!.resource!
           );
-
-          /**
-           * TODO: Validate Patient Match by Identifier/CR match
-           *  taskPatient.identifier == patient.identifier (for omang/brn/ppn) or make sure the two are linked in CR.
-           * Retrieve Golden Record from the Client Registry?
-           */
         } else {
           this.logger.error(
             'Could not find ServiceRequest with Lab Order ID ' +
@@ -360,21 +307,26 @@ export class IpmsService {
         }
 
         // Update Obs and DR with Patient Reference
-        obs.subject = { reference: 'Patient/' + taskPatient.id };
-        dr.subject = { reference: 'Patient/' + taskPatient.id };
+        observation.subject = { reference: 'Patient/' + taskPatient.id };
+        diagnosticReport.subject = { reference: 'Patient/' + taskPatient.id };
 
         // Update DR with based-on
-        if (!dr.basedOn) dr.basedOn = [];
+        if (!diagnosticReport.basedOn) diagnosticReport.basedOn = [];
         if (!task.basedOn) task.basedOn = [];
 
-        dr.basedOn.push({ reference: 'ServiceRequest/' + labOrderId.value });
-        task.basedOn.push({ reference: 'DiagnosticReport/' + dr.id });
-
-        // Update Task Resource with the new based-on Value for Service Request
-        task.basedOn.push({ reference: 'ServiceRequest/' + labOrderId.value });
+        diagnosticReport.basedOn.push({
+          reference: 'ServiceRequest/' + labOrderId.value,
+        });
+        task.basedOn.push({
+          reference: 'DiagnosticReport/' + diagnosticReport.id,
+        });
 
         // Generate SendBundle with Task, DiagnosticReport, Patient, and Observation
-        const entry = this.createSendBundleEntry(task, dr, obs);
+        const entry = this.createSendBundleEntry(
+          task,
+          diagnosticReport,
+          observation,
+        );
 
         // TODO: Only send if valid details available
         const sendBundle: R4.IBundle = {
@@ -385,6 +337,10 @@ export class IpmsService {
 
         // Save to SHR
         await this.labService.saveBundle(sendBundle);
+      } else {
+        throw new InternalServerErrorException(
+          'No entry in translated ORU bundle',
+        );
       }
     } catch (error: any) {
       this.logger.error(`Could not process ORU!\n${error}`);

@@ -70,8 +70,6 @@ def create_adt_a04_response_message(data):
     # # Manual MLLP encoding
     mllp_message = f"{chr(11)}{er7_message}{chr(28)}{chr(13)}" 
 
-    logging.debug("1111111")
-    logging.debug(er7_message)
     return mllp_message
 
 def add_msh_segments(adt_a04):
@@ -101,7 +99,6 @@ def add_evn_segments(adt_a04):
     adt_a04.add(evn)
 
 def add_pid_segments(adt_a04, data):
-    # pid = adt_a04.add_segment("PID")
     pid = Segment("PID")
     pid.PID_1.value = "1" #Set ID
 

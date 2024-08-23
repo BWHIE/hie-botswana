@@ -46,12 +46,6 @@ export class KafkaConsumerController {
     try {
       let bundle: IBundle = val.bundle;
 
-      // @TODO : This can be deleted as we find or create the patient upfront
-      // this.kafkaProducerService.sendPayloadWithRetryDMQ(
-      //   { bundle: bundle },
-      //   topicList.SAVE_PIMS_PATIENT,
-      // );
-
       // Sent ADT 04 to IPMS and update task status
       bundle = await this.ipmsService.sendAdtToIpms(bundle);
 
@@ -160,7 +154,7 @@ export class KafkaConsumerController {
 
   @EventPattern(topicList.SAVE_IPMS_PATIENT)
   async handleSaveIpmsPatient(
-    @Payload() val: IPatient,
+    @Payload() patient: IPatient,
     @Ctx() context: KafkaContext,
   ) {
     try {
@@ -168,7 +162,12 @@ export class KafkaConsumerController {
         resourceType: 'Bundle',
         entry: [
           {
-            resource: val,
+            fullUrl: `Patient/${patient.id}`,
+            resource: patient,
+            request: {
+              method: R4.Bundle_RequestMethodKind._put,
+              url: `Patient/${patient.id}`,
+            },
           },
         ],
       };
