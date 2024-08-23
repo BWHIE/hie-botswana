@@ -1,9 +1,7 @@
 import { R4 } from '@ahryman40k/ts-fhir-types';
 import {
-  Bundle_RequestMethodKind,
   BundleTypeKind,
   IDiagnosticReport,
-  IObservation,
   IPatient,
   ITask,
   TaskStatusKind,
@@ -220,121 +218,148 @@ export class IpmsService {
    * Handles ORU (Observation Result) messages received from IPMS (Integrated Patient Management System).
    */
   async handleOruFromIpms(message: any) {
-    let translatedBundle: R4.IBundle = { resourceType: 'Bundle' };
-    let taskBundle: R4.IBundle = { resourceType: 'Bundle' };
-
-    let taskPatient: IPatient, task: ITask;
-
     try {
       if (!message) throw new Error('No message provided!');
 
       if (!message.bundle) message = JSON.parse(message);
 
-      translatedBundle = message.bundle;
+      const translatedBundle = message.bundle as R4.IBundle;
 
-      if (translatedBundle && translatedBundle.entry) {
-        console.log('?????', JSON.stringify(translatedBundle));
-
-        let diagnosticReport = translatedBundle.entry.find(
+      if (
+        translatedBundle &&
+        Array.isArray(translatedBundle.entry) &&
+        translatedBundle.entry.length > 0
+      ) {
+        // Matching Approach:
+        // Use provided Lab Order Identifier to link ServiceRequest, Task, and Diagnostic Report together.
+        const anyDiagnosticReport = translatedBundle.entry.find(
           (e) => e.resource && e.resource.resourceType == 'DiagnosticReport',
         )?.resource as IDiagnosticReport;
 
-        const observation = translatedBundle.entry.find(
-          (e) => e.resource && e.resource.resourceType == 'Observation',
-        )?.resource as IObservation;
-
-        // Enrich DiagnosticReport with Terminology Mappings
-        diagnosticReport = <R4.IDiagnosticReport>(
-          await this.terminologyService.translateCoding(diagnosticReport)
-        );
-
-        /** Matching Approach:
-         *  Use provided Lab Order Identifier to link ServiceRequest, Task, and Diagnostic Report together.
-         */
+        if (!anyDiagnosticReport) {
+          throw new Error(
+            'Unable to find any diagnostic report in ORU response',
+          );
+        }
 
         // Extract Lab Order ID from Diagnostic Report
         const labOrderId =
-          diagnosticReport.identifier && diagnosticReport.identifier.length > 0
-            ? diagnosticReport.identifier.find(
+          anyDiagnosticReport.identifier &&
+          anyDiagnosticReport.identifier.length > 0
+            ? anyDiagnosticReport.identifier.find(
                 (i: any) =>
                   i.system == config.get('bwConfig:labOrderSystemUrl'),
               )
             : undefined;
 
-        if (labOrderId && labOrderId.value) {
-          /**
-           * When an ORU (Observation Result) message is received, the 'Based-on' parameter of the Task resource is never updated.
-           * To address this, we need to use the previous Service Request resource.
-           * This is done by retrieving the 'based-on' reference parameter of the Service Request resource
-           * that corresponds to the given 'labOrderId.value'.
-           */
-
-          const options: AxiosRequestConfig = {
-            timeout: config.get('bwConfig:requestTimeout'),
-            params: {},
-          };
-
-          (options.params['_include'] = 'Task:patient'), 'Task:based-on';
-          options.params['based-on'] = labOrderId.value;
-
-          taskBundle = await this.fhirService.get(ResourceType.Task, options);
+        if (!labOrderId) {
+          throw new Error(
+            'Unable to find any lab order id in the diagnostic report',
+          );
         }
 
-        if (taskBundle && taskBundle.entry && taskBundle.entry.length > 0) {
-          // Extract Task and Patient Resources from ServiceRequest Bundle
-          taskPatient = <IPatient>(
-            taskBundle.entry.find(
-              (e: any) => e.resource && e.resource.resourceType == 'Patient',
-            )!.resource!
-          );
+        /**
+         * When an ORU (Observation Result) message is received, the 'Based-on' parameter of the Task resource is never updated.
+         * To address this, we need to use the previous Service Request resource.
+         * This is done by retrieving the 'based-on' reference parameter of the Service Request resource
+         * that corresponds to the given 'labOrderId.value'.
+         */
+        const taskBundle = await this.fhirService.get(ResourceType.Task, {
+          timeout: config.get('bwConfig:requestTimeout'),
+          params: {
+            _include: 'Task:patient',
+            'based-on': labOrderId.value,
+          },
+        });
 
-          task = <ITask>(
-            taskBundle.entry.find(
-              (e: any) => e.resource && e.resource.resourceType == 'Task',
-            )!.resource!
-          );
-        } else {
+        // Extract Task and Patient Resources from ServiceRequest Bundle
+        const patient = <IPatient>(
+          taskBundle.entry.find(
+            (e) => e.resource && e.resource.resourceType == 'Patient',
+          )!.resource!
+        );
+
+        const task = <ITask>(
+          taskBundle.entry.find(
+            (e) => e.resource && e.resource.resourceType == 'Task',
+          )!.resource!
+        );
+
+        if (!task || !patient) {
           this.logger.error(
-            'Could not find ServiceRequest with Lab Order ID ' +
+            'Could not find patient / task with Lab Order ORU ' +
               JSON.stringify(labOrderId) +
               '!',
           );
           throw new InternalServerErrorException(
-            'Could not find ServiceRequest with Lab Order ID ' +
+            'Could not find patient / task with Lab Order ORU ' +
               labOrderId +
               '!',
           );
         }
 
-        // Update Obs and DR with Patient Reference
-        observation.subject = { reference: 'Patient/' + taskPatient.id };
-        diagnosticReport.subject = { reference: 'Patient/' + taskPatient.id };
+        const diagnosticReports = translatedBundle.entry
+          .filter(({ resource }) => {
+            return resource.resourceType === 'DiagnosticReport';
+          })
+          .map((entry) => {
+            task.basedOn.push({
+              reference: 'DiagnosticReport/' + entry.resource.id,
+            });
+            task.output.push({
+              type: { text: 'DiagnosticReport' },
+              valueReference: {
+                reference: 'DiagnosticReport/' + entry.resource.id,
+              },
+            });
+            return {
+              ...entry,
+              resource: {
+                ...this.terminologyService.translateCoding(
+                  entry.resource as R4.IDiagnosticReport,
+                ),
+                subject: { reference: 'Patient/' + patient.id },
+                basedOn: [
+                  {
+                    reference: 'ServiceRequest/' + labOrderId.value,
+                  },
+                ],
+              },
+            } as R4.IBundle_Entry;
+          });
 
-        // Update DR with based-on
-        if (!diagnosticReport.basedOn) diagnosticReport.basedOn = [];
-        if (!task.basedOn) task.basedOn = [];
+        // Enrich DiagnosticReport with Terminology Mappings
+        const observations = translatedBundle.entry
+          .filter(({ resource }) => {
+            return resource.resourceType === 'Observation';
+          })
+          .map((entry) => {
+            return {
+              ...entry,
+              resource: {
+                ...entry.resource,
+                subject: { reference: 'Patient/' + patient.id },
+              },
+            } as R4.IBundle_Entry;
+          });
 
-        diagnosticReport.basedOn.push({
-          reference: 'ServiceRequest/' + labOrderId.value,
-        });
-        task.basedOn.push({
-          reference: 'DiagnosticReport/' + diagnosticReport.id,
-        });
+        task.status = TaskStatusKind._completed;
 
-        // Generate SendBundle with Task, DiagnosticReport, Patient, and Observation
-        const entry = this.createSendBundleEntry(
-          task,
-          diagnosticReport,
-          observation,
-        );
-
-        // TODO: Only send if valid details available
         const sendBundle: R4.IBundle = {
           resourceType: 'Bundle',
           type: BundleTypeKind._transaction,
-          entry: entry,
+          entry: [
+            {
+              resource: task,
+              request: {
+                method: R4.Bundle_RequestMethodKind._put,
+                url: 'Task/' + task.id,
+              },
+            },
+            ...diagnosticReports,
+            ...observations,
+          ],
         };
-
         // Save to SHR
         await this.labService.saveBundle(sendBundle);
       } else {
@@ -402,53 +427,5 @@ export class IpmsService {
     };
 
     return { omang: omang, bcn: bcn, ppn: ppn, options: options };
-  }
-
-  createSendBundleEntry(
-    task: R4.ITask | undefined,
-    dr: R4.IDiagnosticReport | undefined,
-    obs: R4.IObservation | undefined,
-  ): R4.IBundle_Entry[] {
-    const entry = [];
-    const output = [];
-
-    if (dr) {
-      output.push({
-        type: { text: 'DiagnosticReport' },
-        valueReference: { reference: 'DiagnosticReport/' + dr.id },
-      });
-
-      entry.push({
-        resource: dr,
-        request: {
-          method: Bundle_RequestMethodKind._put,
-          url: 'DiagnosticReport/' + dr.id,
-        },
-      });
-    }
-
-    if (obs) {
-      entry.push({
-        resource: obs,
-        request: {
-          method: Bundle_RequestMethodKind._put,
-          url: 'Observation/' + obs.id,
-        },
-      });
-    }
-
-    if (task) {
-      task.status = TaskStatusKind._completed;
-      task.output = output;
-      entry.push({
-        resource: task,
-        request: {
-          method: Bundle_RequestMethodKind._put,
-          url: 'Task/' + task.id,
-        },
-      });
-    }
-
-    return entry;
   }
 }
