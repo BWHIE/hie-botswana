@@ -43,19 +43,17 @@ export class KafkaConsumerController {
     @Ctx() context: KafkaContext,
   ) {
     try {
-      const origBundle: IBundle = val.bundle;
-
-      let enrichedBundle = await this.mflService.mapLocations(origBundle);
+      let bundle: IBundle = val.bundle;
 
       this.kafkaProducerService.sendPayloadWithRetryDMQ(
-        { bundle: enrichedBundle },
+        { bundle: bundle },
         topicList.SAVE_PIMS_PATIENT,
       );
 
-      enrichedBundle = await this.ipmsService.sendAdtToIpms(enrichedBundle);
+      bundle = await this.ipmsService.sendAdtToIpms(bundle);
 
       // Succeed only if this bundle saves successfully
-      await this.labService.saveBundle(enrichedBundle);
+      await this.labService.saveBundle(bundle);
 
       await this.commitOffsets(context);
     } catch (err) {

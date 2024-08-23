@@ -60,10 +60,13 @@ export class MpiService {
     const clientRegistryUrl = config.get('ClientRegistryMediator:apiUrl');
     const identifier = thePatient.identifier[0];
     const { data } = await this.httpService.axiosRef.get<R4.IBundle>(
-      `${clientRegistryUrl}/api/Patient/get`,
+      `${clientRegistryUrl}/api/Patient/find`,
       {
         params: {
           identifier: `${identifier.system}|${identifier.value}`,
+          _tag: thePatient.meta.tag.map(({ system, code }) => {
+            return `${system}|${code}`;
+          }),
         },
         auth: {
           username: config.get('ClientRegistryMediator:username'),

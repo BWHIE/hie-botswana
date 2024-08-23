@@ -40,26 +40,30 @@ export class MpiService {
 
   async getPatientById(id: string, clientId: string): Promise<fhirR4.Patient> {
     try {
-      const searchResponse = await this.httpService.axiosRef.get<fhirR4.Patient>(
+      const searchResponse =
+        await this.httpService.axiosRef.get<fhirR4.Patient>(
           `${this.clientRegistryUrl}/Patient/${id}`,
           {
             headers: {
-            'Content-Type': 'application/fhir+json',
-            'x-openhim-clientid': clientId,
+              'Content-Type': 'application/fhir+json',
+              'x-openhim-clientid': clientId,
+            },
           },
-        },
-      );
+        );
 
       return searchResponse.data;
     } catch (error) {
       this.logger.error(
-        `Could not get CR patient with ${JSON.stringify(id)} \n ${error}`
+        `Could not get CR patient with ${JSON.stringify(id)} \n ${error}`,
       );
       throw error;
     }
   }
 
-  async searchPatientByIdentifier(params: FhirSearchParams, clientId: string): Promise<any> {
+  async searchPatientByIdentifier(
+    params: FhirSearchParams,
+    clientId: string,
+  ): Promise<any> {
     try {
       const searchResponse = await this.httpService.axiosRef.get<Bundle>(
         `${this.clientRegistryUrl}/Patient`,
@@ -94,7 +98,10 @@ export class MpiService {
     }
   }
 
-  async createPatient(patient: fhirR4.Patient, clientId:string): Promise<{ response: fhirR4.BundleResponse }[]> {
+  async createPatient(
+    patient: fhirR4.Patient,
+    clientId: string,
+  ): Promise<{ response: fhirR4.BundleResponse }[]> {
     try {
       // Fix for date default formatting issue in FHIR SDK
       if (patient.birthDate) {

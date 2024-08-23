@@ -62,7 +62,8 @@ export class PatientController {
   ) {
     try {
       const result = await this.mpi.createPatient(body, clientId);
-      const response = await Promise.all(result.map(({ response }) => {
+      const response = await Promise.all(
+        result.map(({ response }) => {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const [_resourceType, id, ..._rest] = response.location.split('/');
           return this.mpi.getPatientById(id, clientId);
@@ -79,6 +80,25 @@ export class PatientController {
     } catch (err) {
       this.logger.error('Unable to proxy patient create request', err);
       throw new BadRequestException(err.message);
+    }
+  }
+
+  @Get('Find')
+  @Header('Content-Type', 'application/fhir+json')
+  async find(
+    @Headers('x-openhim-clientid') clientId = 'OmangSvc',
+    @Query(new FhirSearchParamsValidationPipe()) queryParams: FhirSearchParams,
+  ): Promise<fhirR4.Bundle> {
+    const { identifier, _tag } = queryParams;
+    try {
+      const searchBundle = await this.patientService.retrySearchPatient(
+        { identifier, _tag },
+        clientId,
+      );
+      return searchBundle;
+    } catch (error) {
+      this.logger.error(error);
+      throw new InternalServerErrorException();
     }
   }
 

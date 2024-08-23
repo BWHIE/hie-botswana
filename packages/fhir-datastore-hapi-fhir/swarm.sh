@@ -120,13 +120,13 @@ function initialize_package() {
 
     docker::deploy_service "$STACK" "${COMPOSE_FILE_PATH}" "docker-compose.yml" "$hapi_fhir_dev_compose_filename"
 
-    if [[ "${ACTION}" == "init" ]]; then
+    # if [[ "${ACTION}" == "init" ]]; then
 
-      docker::await_service_status "$STACK" "hapi-fhir" "Running"
+    #   docker::await_service_status "$STACK" "hapi-fhir" "Running"
 
-      docker::deploy_config_importer_variant "$STACK" "$COMPOSE_FILE_PATH/importer/docker-compose.seeder.yml" "hapi_seeder_config" "hapi-fhir"
-      log info "Hapi Fhir seeded successfully"
-    fi
+    #   docker::deploy_config_importer_variant "$STACK" "$COMPOSE_FILE_PATH/importer/docker-compose.seeder.yml" "hapi_seeder_config" "hapi-fhir"
+    #   log info "Hapi Fhir seeded successfully"
+    # fi
 
   ) ||
     {

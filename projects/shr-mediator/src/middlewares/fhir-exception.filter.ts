@@ -23,17 +23,26 @@ export class FhirExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const status = exception.getStatus();
 
-    const outcome: FhirOperationOutcome = {
-      resourceType: 'OperationOutcome',
-      issue: [
-        {
-          severity: 'error',
-          code: status === HttpStatus.BAD_REQUEST ? 'invalid' : 'exception',
-          diagnostics:
-            exception.getResponse()['message'] || 'Unexpected error occurred',
-        },
-      ],
-    };
+    const message = exception.getResponse()['message'];
+
+    const outcome: FhirOperationOutcome =
+      typeof message === 'object' &&
+      'resourceType' in message &&
+      message.resourceType === 'OperationOutcome'
+        ? message
+        : {
+            resourceType: 'OperationOutcome',
+            issue: [
+              {
+                severity: 'error',
+                code:
+                  status === HttpStatus.BAD_REQUEST ? 'invalid' : 'exception',
+                diagnostics:
+                  exception.getResponse()['message'] ||
+                  'Unexpected error occurred',
+              },
+            ],
+          };
 
     response.status(status).json(outcome);
   }

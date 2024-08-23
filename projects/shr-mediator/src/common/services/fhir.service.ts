@@ -57,7 +57,6 @@ export class FhirService {
       data: req.rawBody,
     };
 
-    console.log('****', requestOptions);
     return this.httpService.request(requestOptions).pipe(
       tap((response) => {
         res.status(response.status);
@@ -116,6 +115,20 @@ export class FhirService {
         throw new InternalServerErrorException('Internal server error');
       }
     }
+  }
+
+  async post<T, P = any>(
+    payload: P,
+    options?: AxiosRequestConfig<any>,
+    path: string = '',
+  ) {
+    const { data } = await this.httpService.axiosRef.post<T>(
+      `${config.get('fhirServer:baseURL')}/${path}`,
+      payload,
+      options,
+    );
+
+    return data; // If request is successful, return the response
   }
 
   // Wrapper function that includes retry logic
