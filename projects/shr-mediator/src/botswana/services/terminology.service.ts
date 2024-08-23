@@ -76,17 +76,35 @@ export class TerminologyService {
     return labBundle;
   }
 
-  async translateCoding(
-    r: R4.IServiceRequest | R4.IDiagnosticReport,
-  ): Promise<R4.IServiceRequest | R4.IDiagnosticReport> {
+  translateCoding<T extends R4.IServiceRequest | R4.IDiagnosticReport>(
+    resource: T,
+  ): T {
     let ipmsCoding, cielCoding, pimsCoding: any;
 
+    if (!(resource && 'code' in resource)) {
+      throw new Error('Unable translate coding : node code found');
+    }
+
     // Check if any codings exist
-    if (r && r.code && r.code.coding && r.code.coding.length > 0) {
+    if (
+      resource &&
+      resource.code &&
+      resource.code.coding &&
+      resource.code.coding.length > 0
+    ) {
       // Extract PIMS and CIEL Codings, if available
-      pimsCoding = this.getCoding(r, config.get('bwConfig:pimsSystemUrl'));
-      cielCoding = this.getCoding(r, config.get('bwConfig:cielSystemUrl'));
-      ipmsCoding = this.getCoding(r, config.get('bwConfig:ipmsSystemUrl'));
+      pimsCoding = this.getCoding(
+        resource,
+        config.get('bwConfig:pimsSystemUrl'),
+      );
+      cielCoding = this.getCoding(
+        resource,
+        config.get('bwConfig:cielSystemUrl'),
+      );
+      ipmsCoding = this.getCoding(
+        resource,
+        config.get('bwConfig:ipmsSystemUrl'),
+      );
 
       this.logger.log(`Codings: ${JSON.stringify(config.get('bwConfig'))}`);
       this.logger.log(`CIEL Coding: ${JSON.stringify(cielCoding)}`);
@@ -108,7 +126,7 @@ export class TerminologyService {
         );
 
         if (pimsCoding && pimsCoding.code) {
-          r.code.coding.push({
+          resource.code.coding.push({
             system: config.get('bwConfig:pimsSystemUrl'),
             code: pimsCoding.code,
             display: pimsCoding.display,
@@ -125,7 +143,7 @@ export class TerminologyService {
         );
 
         if (cielCoding && cielCoding.code) {
-          r.code.coding.push({
+          resource.code.coding.push({
             system: config.get('bwConfig:cielSystemUrl'),
             code: cielCoding.code,
             display: cielCoding.display,
@@ -149,7 +167,7 @@ export class TerminologyService {
           this.logger.log(`IPMS Coding: ${JSON.stringify(computedIpmsCoding)}`);
 
           if (computedIpmsCoding && computedIpmsCoding.code) {
-            r.code.coding.push({
+            resource.code.coding.push({
               system: config.get('bwConfig:ipmsSystemUrl'),
               code: computedIpmsCoding.mnemonic,
               display: computedIpmsCoding.display,
@@ -165,7 +183,7 @@ export class TerminologyService {
               computedIpmsCoding.code,
             );
             if (cielCoding && cielCoding.code) {
-              r.code.coding.push({
+              resource.code.coding.push({
                 system: config.get('bwConfig:cielSystemUrl'),
                 code: cielCoding.code,
                 display: cielCoding.display,
@@ -190,7 +208,7 @@ export class TerminologyService {
 
           // Add IPMS Coding if found successfully
           if (computedIpmsCoding && computedIpmsCoding.code) {
-            r.code.coding.push({
+            resource.code.coding.push({
               system: config.get('bwConfig:ipmsSystemUrl'),
               code: computedIpmsCoding.mnemonic,
               display: computedIpmsCoding.display,
@@ -208,18 +226,21 @@ export class TerminologyService {
           }
         } else {
           throw new BadRequestException(
-            'Unknown coding for ' + r.resourceType + ' :\n' + JSON.stringify(r),
+            'Unknown coding for ' +
+              resource.resourceType +
+              ' :\n' +
+              JSON.stringify(resource),
           );
         }
       }
 
-      return r;
+      return resource;
     } else {
       throw new BadRequestException(
         'Could not any codings to translate for ' +
-          r.resourceType +
+          resource.resourceType +
           ':\n' +
-          JSON.stringify(r),
+          JSON.stringify(resource),
       );
     }
   }

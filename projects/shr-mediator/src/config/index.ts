@@ -45,8 +45,7 @@ class Config {
         bdrsSystemUrl: process.env.BDRS_SYSTEM_URL,
         labOrderSystemUrl: process.env.LAB_ORDER_SYSTEM_URL,
         mrnSystemUrl: process.env.MRN_SYSTEM_URL,
-        accSystemUrl:
-          process.env.ACC_SYSTEM_URL || 'http://moh.bw.org/ext/identifier/acc',
+        accSystemUrl: process.env.ACC_SYSTEM_URL,
         immigrationSystemUrl: process.env.IMMIGRATION_SYSTEM_URL,
         oclUrl: process.env.OCL_URL,
         oldCodeCodeSystemUrl: process.env.OLD_FACILITY_CODE_SYSTEM_URL,
