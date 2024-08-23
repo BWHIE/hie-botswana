@@ -44,6 +44,12 @@
                     "value": "{{PID-18}}"
                 },
             {{/if}},
+            {{#if PV2}}
+                {
+                    "system": "http://moh.bw.org/ext/identifier/task-id",
+                    "value": "{{PV2-3}}"
+                },
+            {{/if}},
             {
                 {{>DataType/DLN.hbs DLN=PID-20}},
             },

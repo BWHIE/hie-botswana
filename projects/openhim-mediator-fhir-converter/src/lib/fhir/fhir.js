@@ -81,24 +81,25 @@ module.exports = class fhir extends dataHandler {
         try {
             let task = this.getResource(bundle, "Task")
             const targetLocationId = task.location ? task.location.reference.split('/')[1] : null
-
             let targetLocation = bundle.entry.find(e => e.resource.resourceType == "Location" && e.resource.id == targetLocationId)
             if(targetLocation && targetLocation.resource) {
                 let target = targetLocation.resource
-                let provider = target.extension.find(e => e && e.url && e.url.includes("ipms-provider") && e.valueString)
-                let patientType = target.extension.find(e => e && e.url && e.url.includes("ipms-patient-type") && e.valueString)
-                let patientStatus = target.extension.find(e => e && e.url && e.url.includes("ipms-patient-status") && e.valueString)
-                let ipmsXlocation = target.extension.find(e => e && e.url && e.url.includes("ipms-xlocation") && e.valueString)
+                let provider = target.extension && target.extension.find(e => e && e.url && e.url.includes("ipms-provider") && e.valueString)
+                let patientType = target.extension && target.extension.find(e => e && e.url && e.url.includes("ipms-patient-type") && e.valueString)
+                let patientStatus = target.extension && target.extension.find(e => e && e.url && e.url.includes("ipms-patient-status") && e.valueString)
+                // let ipmsXlocation = target.extension.find(e => e && e.url && e.url.includes("ipms-xlocation") && e.valueString)
+                let ipmsXlocation = target.identifier.find(({ system }) => system === "http://moh.bw.org/ext/identifier/facility-code")?.value
 
                 res.targetFacility = {
                     name: target.name,
                     provider: provider ? provider.valueString : "",
                     patientType: patientType ? patientType.valueString : "",
                     patientStatus: patientStatus ? patientStatus.valueString : "",
-                    ipmsXlocation: ipmsXlocation ? ipmsXlocation.valueString : ""
+                    ipmsXlocation: ipmsXlocation ? ipmsXlocation : ""
                 }
             }
         } catch (error) {
+            console.log("Error ", error)
             console.log(`Can't get target location information from \n${JSON.stringify(bundle)}`)
         }
             console.log(`Target facility: ${JSON.stringify(res.targetFacility)}`)
@@ -110,6 +111,7 @@ module.exports = class fhir extends dataHandler {
         let patient = this.getResource(bundle, "Patient");
         let sourceLocation = this.getSourceLocation(bundle);
         let provider = this.getResource(bundle, "Practitioner");
+        let task = this.getResource(bundle, "Task");
 
         res = this.setPatientData(patient, res);
         res = this.setProviderData(provider, res);
@@ -125,6 +127,8 @@ module.exports = class fhir extends dataHandler {
         res.kinProvince = "";
         res.kinPostalCode = "";
 
+        res.taskId = task ? task.id : "";
+
         return res;
     }
     parseOrm(bundle) {
@@ -135,12 +139,12 @@ module.exports = class fhir extends dataHandler {
         let serviceRequest = this.getResource(bundle, "ServiceRequest");
         let task = this.getResource(bundle, "Task");
         let org = this.getResource(bundle, "Organization");
-        let sourceLocation = this.getResource(bundle, "Location");
+        let labLocation = this.getResource(bundle, "Location");
 
         res = this.setPatientData(patient, res);
         res = this.setProviderData(provider, res);
 
-        res.facilityId = sourceLocation ? sourceLocation.id : "";
+        res.facilityId = labLocation ? labLocation.identifier.find(({ system }) => system === "http://moh.bw.org/ext/identifier/facility-code")?.value || '' : "";
         res.labOrderId = serviceRequest ? serviceRequest.id : "";
         
         let orderDateTime = new Date()
@@ -198,7 +202,7 @@ module.exports = class fhir extends dataHandler {
             q = patient.identifier.find(i => i.system == 'http://moh.bw.org/ext/identifier/omang');
             res.patientOmang = q ? q.value : "";
             
-            q = patient.identifier.find(i => i.system == 'http://moh.bw.org/ext/identifier/mr');
+            q = patient.identifier.find(i => i.system == 'http://moh.bw.org/ext/identifier/mrn');
             res.medicalRecordNumber = q ? q.value : "";
 
             q = patient.identifier.find(i => i.system == 'http://moh.bw.org/ext/identifier/acc');
