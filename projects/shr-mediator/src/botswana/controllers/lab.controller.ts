@@ -3,6 +3,7 @@ import {
   BadRequestException,
   Controller,
   Get,
+  Header,
   Headers,
   Post,
   Put,
@@ -92,6 +93,7 @@ export class LabController {
   }
 
   @Get('/metadata')
+  @Header('Content-Type', 'application/fhir+json')
   async passThrough(@Req() req: Request, @Res() res: Response): Promise<any> {
     return this.fhirService.passthrough(req, res, 'metadata');
   }
