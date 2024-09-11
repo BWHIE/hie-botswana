@@ -98,8 +98,8 @@ var getDateTimeComposition = function (ds){
     var day = ds.substring(6,8);
     var hours = ds.substring(8,10);
     var minutes = ds.substring(10,12);
-    var seconds = ds.substring(12,14);
-    var milliseconds = ds.substring(14, 17);
+    var seconds = ds.length >= 14 ? ds.substring(12, 14) : '00';
+    var milliseconds = ds.length >= 17 ? ds.substring(14, 17) : '000';
     var dateTimeComposition = {
         'year': year,
         'month': month,
