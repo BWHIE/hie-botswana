@@ -306,12 +306,12 @@ export class IpmsService {
             task.basedOn.push({
               reference: 'DiagnosticReport/' + entry.resource.id,
             });
-            task.output.push({
-              type: { text: 'DiagnosticReport' },
-              valueReference: {
-                reference: 'DiagnosticReport/' + entry.resource.id,
-              },
-            });
+            // task.output.push({
+            //   type: { text: 'DiagnosticReport' },
+            //   valueReference: {
+            //     reference: 'DiagnosticReport/' + entry.resource.id,
+            //   },
+            // });
             return {
               ...entry,
               resource: {
