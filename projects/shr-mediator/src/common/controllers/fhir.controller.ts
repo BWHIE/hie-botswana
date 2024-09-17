@@ -4,6 +4,7 @@ import {
   Body,
   Controller,
   Get,
+  Header,
   InternalServerErrorException,
   Param,
   Post,
@@ -41,6 +42,7 @@ export class FhirController {
   }
 
   @Get(':resource/:id?/:operation?')
+  @Header('Content-Type', 'application/fhir+json')
   async handleRequest(
     @Req() req: Request,
     @Res() res: Response,
