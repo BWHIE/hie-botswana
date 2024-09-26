@@ -10,6 +10,7 @@ services:
       MYSQL_USER: ${OPENMRS_DB_USER:-openmrs}
       MYSQL_PASSWORD: ${OPENMRS_DB_PASSWORD:-openmrs}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-openmrs}
+      MYSQL_LOG_BIN_TRUST_FUNCTION_CREATORS: 1
     volumes:
       - db-data:/var/lib/mysql
       - ./dbdump:/docker-entrypoint-initdb.d
@@ -28,7 +29,7 @@ services:
       OMRS_CONFIG_CONNECTION_SERVER: db
       OMRS_CONFIG_CONNECTION_URL: ${OPENMRS_DB_URL:-jdbc:mysql://localhost:3306/openmrs}
       OMRS_CONFIG_CONNECTION_DATABASE: ${OPENMRS_DB_NAME:-openmrs}
-      OMRS_CONFIG_CONNECTION_USERNAME: ${OPENMRS_DB_USER:-openmrs}
+      OMRS_CONFIG_CONNECTION_USERNAME: ${OPENMRS_DB_USER:-root}
       OMRS_CONFIG_CONNECTION_PASSWORD: ${OPENMRS_DB_PASSWORD:-openmrs}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8085/openmrs"]
