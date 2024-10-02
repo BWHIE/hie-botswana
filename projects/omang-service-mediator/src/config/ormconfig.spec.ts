@@ -12,6 +12,7 @@ process.env.ORACLE_DEATHS_VIEW_NAME = 'ORACLE_DEATHS_VIEW_NAME';
 process.env.ORACLE_DB_HOST = 'localhost';
 process.env.ORACLE_DB_SID = 'XE';
 process.env.ORACLE_DB_PORT = '1521';
+process.env.ORACLE_OMANG_CITIZEN_CONNECTION_STRING = '(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = omang-service-mediator_oracle-db)(PORT = 1521))(CONNECT_DATA = (SID = FREE))))';
 
 // Import necessary modules and methods
 import {
@@ -29,6 +30,7 @@ describe('DataSourceOptions creation', () => {
       'omangConnection',
       config.get('Oracle:Omang:CitizenUsername'),
       config.get('Oracle:Omang:CitizenPassword'),
+      '(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))(CONNECT_DATA = (SID = XE)))',
       false,
       false,
     );
@@ -44,7 +46,15 @@ describe('DataSourceOptions creation', () => {
   });
 
   test('should create correct DataSourceOptions for Births with service name', () => {
-    expect(birthDataSourceOptions).toEqual({
+    const options = createOracleDataSourceOptions(
+      'birthConnection',
+      config.get('Oracle:Births:BdrsUsername'),
+      config.get('Oracle:Births:BdrsPassword'),
+      '(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))(CONNECT_DATA = (SID = XE)(SERVICE_NAME = XE)))',
+      true,
+      true,
+    );
+    expect(options).toEqual({
       name: 'birthConnection',
       type: 'oracle',
       username: 'birthUser',
@@ -56,7 +66,14 @@ describe('DataSourceOptions creation', () => {
   });
 
   test('should create correct DataSourceOptions for Deaths without service name', () => {
-    expect(deathDataSourceOptions).toEqual({
+    const options = createOracleDataSourceOptions(
+      'deathConnection',
+      config.get('Oracle:Deaths:BdrsUsername'),
+      config.get('Oracle:Deaths:BdrsPassword'),
+      '(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))(CONNECT_DATA = (SID = XE)))',
+      true,
+    );
+    expect(options).toEqual({
       name: 'deathConnection',
       type: 'oracle',
       username: 'birthUser',
@@ -68,7 +85,14 @@ describe('DataSourceOptions creation', () => {
   });
 
   test('should create correct DataSourceOptions for Immigration without service name', () => {
-    expect(immigrationDataSourceOptions).toEqual({
+    const options = createOracleDataSourceOptions(
+      'immigrationConnection',
+      config.get('Oracle:Immigration:ImmigrationUsername'),
+      config.get('Oracle:Immigration:ImmigrationPassword'),
+      '(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))(CONNECT_DATA = (SID = XE)))',
+      true,
+    );
+    expect(options).toEqual({
       name: 'immigrationConnection',
       type: 'oracle',
       username: 'immigrationUser',

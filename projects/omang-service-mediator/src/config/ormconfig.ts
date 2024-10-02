@@ -5,6 +5,7 @@ export const createOracleDataSourceOptions = (
   name: string,
   userConfigKey: string,
   passwordConfigKey: string,
+  connectString: string,
   synchronize: boolean = false,
   hasServiceName: boolean = false,
 ): DataSourceOptions => ({
@@ -12,7 +13,7 @@ export const createOracleDataSourceOptions = (
   type: 'oracle',
   username: userConfigKey,
   password: passwordConfigKey,
-  connectString: `(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = ${config.get('Oracle:DbHost')})(PORT = ${config.get('Oracle:DbPort')}))(CONNECT_DATA = (SID = ${config.get('Oracle:DbSid')})${hasServiceName ? `(SERVICE_NAME = ${config.get('Oracle:DbSid')})` : ''}))`,
+  connectString: connectString,
   synchronize,
 });
 
@@ -21,6 +22,7 @@ export const omangDataSourceOptions: DataSourceOptions =
     'omangConnection',
     config.get('Oracle:Omang:CitizenUsername'),
     config.get('Oracle:Omang:CitizenPassword'),
+    config.get('Oracle:Omang:CitizenConnectionString'),
   );
 
 export const birthDataSourceOptions: DataSourceOptions =
@@ -28,6 +30,7 @@ export const birthDataSourceOptions: DataSourceOptions =
     'birthConnection',
     config.get('Oracle:Births:BdrsUsername'),
     config.get('Oracle:Births:BdrsPassword'),
+    config.get('Oracle:Births:BdrsConnectionString'),
     true,
     true,
   );
@@ -37,6 +40,7 @@ export const deathDataSourceOptions: DataSourceOptions =
     'deathConnection',
     config.get('Oracle:Deaths:BdrsUsername'),
     config.get('Oracle:Deaths:BdrsPassword'),
+    config.get('Oracle:Deaths:BdrsConnectionString'),
     true,
   );
 
@@ -45,5 +49,6 @@ export const immigrationDataSourceOptions: DataSourceOptions =
     'immigrationConnection',
     config.get('Oracle:Immigration:ImmigrationUsername'),
     config.get('Oracle:Immigration:ImmigrationPassword'),
+    config.get('Oracle:Immigration:ImmigrationConnectionString'),
     true,
   );

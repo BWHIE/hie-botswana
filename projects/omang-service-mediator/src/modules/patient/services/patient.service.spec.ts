@@ -4,8 +4,6 @@ import { ImmigrationService } from '../../immigration/services/immigration.servi
 import { PatientService } from './patient.service';
 import { OmangService } from '../../omang/services/omang.service';
 import { MpiService } from '../../mpi/services/mpi.service';
-import { BirthModule } from '../../bdrs/birth/birth.module';
-import { DeathModule } from '../../bdrs/death/death.module';
 import { ImmigrationModule } from '../../immigration/immigration.module';
 import { OmangModule } from '../../omang/omang.module';
 import { MpiModule } from '../../mpi/mpi.module';
@@ -13,6 +11,7 @@ import { UserModule } from '../../user/user.module';
 import { fhirR4 } from '@smile-cdr/fhirts';
 import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { Pager } from 'src/utils/pager';
+import { BdrsModule } from 'src/modules/bdrs/bdrs.module';
 
 /** Variables mock FHIR Patients  (expected output)*/
 
@@ -150,8 +149,7 @@ describe('PatientService', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
         UserModule,
-        BirthModule,
-        DeathModule,
+        BdrsModule,
         OmangModule,
         ImmigrationModule,
         MpiModule,
