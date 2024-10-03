@@ -34,19 +34,19 @@ class Config {
       },
       Immigration: {
         ImmigrationConnectionString:
-          process.env.ORACLE_OMANG_IMMIGRATION_CONNECTION_STRING,
+          process.env.ORACLE_IMMIGRATION_CONNECTION_STRING,
         ViewName: process.env.ORACLE_IMMIGRATION_VIEW_NAME,
         ImmigrationUsername: process.env.ORACLE_IMMIGRATION_USERNAME,
         ImmigrationPassword: process.env.ORACLE_IMMIGRATION_PASSWORD,
       },
       Births: {
-        BdrsConnectionString: process.env.ORACLE_OMANG_BDRS_CONNECTION_STRING,
+        BdrsConnectionString: process.env.ORACLE_BDRS_CONNECTION_STRING,
         ViewName: process.env.ORACLE_BIRTHS_VIEW_NAME,
         BdrsUsername: process.env.ORACLE_BDRS_USERNAME,
         BdrsPassword: process.env.ORACLE_BDRS_PASSWORD,
       },
       Deaths: {
-        BdrsConnectionString: process.env.ORACLE_OMANG_BDRS_CONNECTION_STRING,
+        BdrsConnectionString: process.env.ORACLE_BDRS_CONNECTION_STRING,
         ViewName: process.env.ORACLE_DEATHS_VIEW_NAME,
         BdrsUsername: process.env.ORACLE_BDRS_USERNAME,
         BdrsPassword: process.env.ORACLE_BDRS_PASSWORD,
