@@ -4,14 +4,13 @@ import { DeathRepository } from '../repositories/death.repository';
 import { BirthRepository } from '../repositories/birth.repository';
 import { MpiService } from '../../mpi/services/mpi.service';
 import { Pager } from 'src/utils/pager';
-import { BirthModule } from '../birth/birth.module';
-import { DeathModule } from '../death/death.module';
 import { MpiModule } from '../../mpi/mpi.module';
 import { UserModule } from '../../user/user.module';
 import { BirthRecord } from '../models/birth-record';
 import { DeathRecord } from '../models/death-record';
 import { FhirAPIResponses } from 'src/utils/fhir-responses';
 import { fhirR4 } from '@smile-cdr/fhirts';
+import { BdrsModule } from '../bdrs.module';
 
 describe('BDRSService', () => {
   let bdrsService: BDRSService;
@@ -21,7 +20,7 @@ describe('BDRSService', () => {
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [UserModule, BirthModule, DeathModule, MpiModule],
+      imports: [UserModule, BdrsModule, MpiModule],
     }).compile();
 
     mockDeathRepository = module.get<DeathRepository>(DeathRepository);
