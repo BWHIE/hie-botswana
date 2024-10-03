@@ -42,11 +42,6 @@ rm -r ~/openmrs/botswanaemr
 
 # TEMP: Comment out the labonfhir module - currently has a loading time issue
 # sed -i -r 's/^(omod\.labonfhir=).*/#&/' openmrs-distro.properties
-# sed -i -r 's/^(omod\.botswanaemrInventory=).*/#&/' openmrs-distro.properties
-# sed -i -r 's/^(omod\.stockmanagement=).*/#&/' openmrs-distro.properties
-# sed -i -r 's/^(omod\.botswanaemrreports=).*/#&/' openmrs-distro.properties
-# sed -i -r 's/^(omod\.botswanaemr=).*/#&/' openmrs-distro.properties
-# sed -i -r 's/^(omod\.billing=).*/#&/' openmrs-distro.properties
 
 mvn openmrs-sdk:build-distro -DdbSql=./db/initial_db.sql -Ddir=docker -Dreset
 
