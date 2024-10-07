@@ -34,8 +34,16 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8085/openmrs"]
       timeout: 5s
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3" 
     volumes:
       - openmrs-data:/openmrs/data/
+      - ./web/:/usr/local/tomcat/.OpenMRS
+      - ./web/modules/:/usr/local/tomcat/.OpenMRS/modules/ # used to mount persistent docker volume for modules
+      - ./web/owa/:/usr/local/tomcat/.OpenMRS/owa/     # used to mount persistent docker volume for owa
+      - ./web/configuration:/usr/local/tomcat/.OpenMRS/configuration/     # used to mount persistent docker volume for configuration
 
 volumes:
   db-data:
