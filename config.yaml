@@ -55,7 +55,25 @@ profiles:
       - .env.qa
     dev: true
     only: false
-  
+
+  - name: pilot
+    packages:
+      - interoperability-layer-openhim
+      - database-postgres
+      - fhir-datastore-hapi-fhir
+      - monitoring
+      - identity-access-manager-keycloak
+      - client-registry-opencr
+      - analytics-datastore-elastic-search
+      - message-bus-kafka
+      - omang-service-mediator
+      - openhim-mediator-fhir-converter
+      - shr-mediator
+    envFiles:
+      - .env.pilot
+    dev: true
+    only: false
+
   - name: uat
     packages:
       - reverse-proxy-nginx
@@ -72,5 +90,24 @@ profiles:
       - shr-mediator
     envFiles:
       - .env.uat
+    dev: false
+    only: false
+
+  - name: prod
+    packages:
+      - reverse-proxy-nginx
+      - interoperability-layer-openhim
+      - database-postgres
+      - fhir-datastore-hapi-fhir
+      - monitoring
+      - identity-access-manager-keycloak
+      - client-registry-opencr
+      - analytics-datastore-elastic-search
+      - message-bus-kafka
+      - omang-service-mediator
+      - openhim-mediator-fhir-converter
+      - shr-mediator
+    envFiles:
+      - .env.prod
     dev: false
     only: false
