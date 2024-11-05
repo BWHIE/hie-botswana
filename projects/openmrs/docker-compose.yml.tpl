@@ -27,7 +27,7 @@ services:
       OMRS_CONFIG_AUTO_UPDATE_DATABASE: "false"
       OMRS_CONFIG_CREATE_TABLES: "false"
       OMRS_CONFIG_CONNECTION_SERVER: db
-      OMRS_CONFIG_CONNECTION_URL: ${OPENMRS_DB_URL:-jdbc:mysql://localhost:3306/openmrs}
+      OMRS_CONFIG_CONNECTION_URL: ${OPENMRS_DB_URL:-jdbc:mysql://db:3306/openmrs?serverTimezone=UTC&autoReconnect=true&useSSL=false&failOverReadOnly=false&maxReconnects=3&sessionVariables=default_storage_engine%3DInnoDB&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true}
       OMRS_CONFIG_CONNECTION_DATABASE: ${OPENMRS_DB_NAME:-openmrs}
       OMRS_CONFIG_CONNECTION_USERNAME: ${OPENMRS_DB_USER:-root}
       OMRS_CONFIG_CONNECTION_PASSWORD: ${OPENMRS_DB_PASSWORD:-openmrs}
