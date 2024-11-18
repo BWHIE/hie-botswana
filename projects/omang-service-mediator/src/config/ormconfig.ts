@@ -15,6 +15,11 @@ export const createOracleDataSourceOptions = (
   password: passwordConfigKey,
   connectString: connectString,
   synchronize,
+  extra: {
+    enableLegacyTimestamp: true, // Enable support for Oracle 10 and above,
+    legacySupport: true,
+    connectTimeout: 60000,
+  }
 });
 
 export const omangDataSourceOptions: DataSourceOptions =
