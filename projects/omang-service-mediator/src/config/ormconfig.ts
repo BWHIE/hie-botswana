@@ -16,10 +16,19 @@ export const createOracleDataSourceOptions = (
   connectString: connectString,
   synchronize,
   extra: {
-    enableLegacyTimestamp: true, // Enable support for Oracle 10 and above,
+    enableLegacyTimestamp: true,
     legacySupport: true,
     connectTimeout: 60000,
-  }
+    prefetchRows: 100,
+    stmtCacheSize: 30,
+    poolMax: 10,
+    poolMin: 1,
+    poolIncrement: 1,
+    poolTimeout: 60,
+    _enableStats: true,
+    legacyStringSupport: true,
+    fetchAsString: ['DATE', 'TIMESTAMP', 'CLOB'],
+  },
 });
 
 export const omangDataSourceOptions: DataSourceOptions =
