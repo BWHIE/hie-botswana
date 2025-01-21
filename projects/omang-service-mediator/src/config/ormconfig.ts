@@ -15,6 +15,15 @@ export const createOracleDataSourceOptions = (
   password: passwordConfigKey,
   connectString: connectString,
   synchronize,
+  extra: {
+    poolMin: 1,
+    poolMax: 5,
+    poolIncrement: 1,
+    poolTimeout: 10,
+    queueTimeout: 5000,
+    enableStatistics: true,
+    poolPingInterval: 60
+  }
 });
 
 export const omangDataSourceOptions: DataSourceOptions =
