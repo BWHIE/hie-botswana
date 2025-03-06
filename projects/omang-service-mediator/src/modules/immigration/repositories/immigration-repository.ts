@@ -30,10 +30,10 @@ export class ImmigrationRepository {
       const result = await this.connection.query(query);
 
       if (result.length > 0) {
-        this.logger.log(`BDRS: ${this.viewName} is online`);
+        this.logger.log(`Immigration: ${this.viewName} is online`);
         isOnline = true;
       } else {
-        this.logger.error(`BDRS: ${this.viewName} is offline`);
+        this.logger.error(`Immigration: ${this.viewName} is offline`);
       }
     } catch (error) {
       this.logger.error(error);
