@@ -25,9 +25,10 @@ RUN apt-get update && \
 
 # Install Oracle Instant Client
 WORKDIR /opt/oracle
-RUN wget https://download.oracle.com/otn_software/linux/instantclient/219000/instantclient-basic-linux.x64-21.9.0.0.0dbru.zip && \
-    unzip instantclient-basic-linux.x64-21.9.0.0.0dbru.zip && \
-    rm instantclient-basic-linux.x64-21.9.0.0.0dbru.zip && \
+RUN wget --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" \
+    -O instantclient.zip https://download.oracle.com/otn_software/linux/instantclient/219000/instantclient-basic-linux.x64-21.9.0.0.0dbru.zip && \
+    unzip instantclient.zip && \
+    rm -f instantclient.zip && \
     sh -c "echo /opt/oracle/instantclient_21_9 > /etc/ld.so.conf.d/oracle-instantclient.conf" && \
     ldconfig
 
