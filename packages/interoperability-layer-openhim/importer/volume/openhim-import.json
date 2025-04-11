@@ -34,9 +34,7 @@
       "name": "Instant Test Client"
     },
     {
-      "roles": [
-        "test"
-      ],
+      "roles": ["test"],
       "clientID": "tester",
       "name": "tester",
       "passwordAlgorithm": "sha512",
@@ -44,16 +42,14 @@
       "passwordHash": "6a9785631997f32b1805fd768ee51206ffecc8ddbe5639851debd99b78eff61c70231c0ece2b3d077c87930f5bc30840b4c15676ba3fe2bf9b4219541bb27fa9"
     },
     {
-      "roles": [
-        "test"
-      ],
+      "roles": ["test"],
       "clientID": "postman",
       "name": "postman",
       "passwordAlgorithm": "sha512",
       "passwordSalt": "ad7aff63dc3b5c4f347e35d111f0166a",
       "passwordHash": "ef907ec096cb64b9a194d3c17aa19df4dff6538305443395089bb694b6e2913197dd8feb527e254dea75af0eccd10d503cb521468e476c8c9fbdabf65ca53c14"
     },
-    { 
+    {
       "roles": ["shr"],
       "clientID": "shr-client",
       "name": "SHR Client",
@@ -66,8 +62,16 @@
       "clientID": "pims-client",
       "name": "PIMS Client",
       "passwordAlgorithm": "sha512",
-      "passwordHash": "57dee175ee6087211ee2b1de15b102b9e66245ce7c3a4219f9408cf7f9d82ea93c2863b4f3be5f725b66f8f1db2c8250ff2a9f7fb3dd3528f3803e1902fc57f9",
-      "passwordSalt": "054e055ae69bca813684143bcfce9ce0"
+      "passwordHash": "719206d59a89306bf60a935cb505c80f0bfaa0271add9cb46c159be332fd6d8f803fcd7a257cafaecc752ceed7a9aafaf124ab2cf2ba5aa96a5ad913dea32f48",
+      "passwordSalt": "06fda59c620559bf694edd66ff79b96d"
+    },
+    {
+      "roles": ["test"],
+      "clientID": "bemr-client",
+      "name": "BEMR Client",
+      "passwordAlgorithm": "sha512",
+      "passwordHash": "2e1964fb956a2afd882f066afffc9497212f2ff5bd3c09d7594a87d79ca53b38042e786ba9dd1361dc89a97f3368bd073c9fe96ae9974bd4375505cb5dd2f21d",
+      "passwordSalt": "fabbbf218f13a14f0e21bfa716f2703a"
     }
   ],
   "Channels": [
@@ -76,12 +80,7 @@
       "description": "Get or Post a new FHIR Resource to the SHR",
       "urlPattern": "^/SHR/fhir.*$",
       "isAsynchronousProcess": false,
-      "methods": [
-        "GET",
-        "POST",
-        "PUT",
-        "PATCH"
-      ],
+      "methods": ["GET", "POST", "PUT", "PATCH"],
       "type": "http",
       "priority": 1,
       "tcpPort": null,
@@ -89,9 +88,7 @@
       "pollingSchedule": null,
       "requestBody": true,
       "responseBody": true,
-      "allow": [
-        "test"
-      ],
+      "allow": ["test"],
       "whitelist": [],
       "authType": "public",
       "routes": [
@@ -136,12 +133,7 @@
       "description": "OCL Cache",
       "urlPattern": "^/OCL.*$",
       "isAsynchronousProcess": false,
-      "methods": [
-        "GET",
-        "POST",
-        "PUT",
-        "PATCH"
-      ],
+      "methods": ["GET", "POST", "PUT", "PATCH"],
       "type": "http",
       "priority": 1,
       "tcpPort": null,
@@ -149,9 +141,7 @@
       "pollingSchedule": null,
       "requestBody": true,
       "responseBody": true,
-      "allow": [
-        "test"
-      ],
+      "allow": ["test"],
       "whitelist": [],
       "authType": "public",
       "routes": [
@@ -196,18 +186,12 @@
       "description": "Get or Update the International Patient Summary Bundle from the SHR",
       "urlPattern": "^/SHR/fhir/ips.*$",
       "isAsynchronousProcess": false,
-      "methods": [
-        "GET",
-        "POST",
-        "PUT"
-      ],
+      "methods": ["GET", "POST", "PUT"],
       "type": "http",
       "priority": 2,
       "requestBody": true,
       "responseBody": true,
-      "allow": [
-        "test"
-      ],
+      "allow": ["test"],
       "whitelist": [],
       "authType": "public",
       "routes": [
@@ -255,12 +239,7 @@
       "description": "Get or Update the Lab Workflow Bundles in the SHR",
       "urlPattern": "^/SHR/lab.*$",
       "isAsynchronousProcess": false,
-      "methods": [
-        "GET",
-        "POST",
-        "DELETE",
-        "PUT"
-      ],
+      "methods": ["GET", "POST", "DELETE", "PUT"],
       "type": "http",
       "priority": 3,
       "tcpPort": null,
@@ -268,9 +247,7 @@
       "pollingSchedule": null,
       "requestBody": true,
       "responseBody": true,
-      "allow": [
-        "test"
-      ],
+      "allow": ["test"],
       "whitelist": [],
       "authType": "private",
       "routes": [
@@ -315,11 +292,7 @@
       "description": "OpenCR Passthrough : GET, DELETE, PUT Methods",
       "urlPattern": "^/CR/fhir.*$",
       "isAsynchronousProcess": false,
-      "methods": [
-        "GET",
-        "DELETE",
-        "PUT"
-      ],
+      "methods": ["GET", "DELETE", "PUT"],
       "type": "http",
       "priority": 4,
       "tcpPort": null,
@@ -327,9 +300,7 @@
       "pollingSchedule": null,
       "requestBody": true,
       "responseBody": true,
-      "allow": [
-        "test"
-      ],
+      "allow": ["test"],
       "whitelist": [],
       "authType": "private",
       "routes": [
@@ -374,12 +345,7 @@
       "description": "HL7v2 Translator API Passthrough",
       "urlPattern": "^/72f/.*$",
       "isAsynchronousProcess": false,
-      "methods": [
-        "GET",
-        "POST",
-        "PUT",
-        "PATCH"
-      ],
+      "methods": ["GET", "POST", "PUT", "PATCH"],
       "type": "http",
       "priority": 3,
       "tcpPort": null,
@@ -387,9 +353,7 @@
       "pollingSchedule": null,
       "requestBody": true,
       "responseBody": true,
-      "allow": [
-        "test"
-      ],
+      "allow": ["test"],
       "whitelist": [],
       "authType": "private",
       "routes": [
@@ -434,16 +398,12 @@
       "description": "FHIR to HL7v2 Translation",
       "urlPattern": "^/f27/.*$",
       "isAsynchronousProcess": false,
-      "methods": [
-        "POST"
-      ],
+      "methods": ["POST"],
       "type": "http",
       "priority": 5,
       "requestBody": true,
       "responseBody": true,
-      "allow": [
-        "test"
-      ],
+      "allow": ["test"],
       "whitelist": [],
       "authType": "private",
       "routes": [
@@ -483,13 +443,9 @@
       "name": "Omang",
       "urlPattern": "^/omang.*$",
       "isAsynchronousProcess": false,
-      "methods": [
-        "GET"
-      ],
+      "methods": ["GET"],
       "type": "http",
-      "allow": [
-        "test"
-      ],
+      "allow": ["test"],
       "whitelist": [],
       "authType": "private",
       "routes": [
@@ -529,13 +485,9 @@
       "name": "BDRS",
       "urlPattern": "^/bdrs.*$",
       "isAsynchronousProcess": false,
-      "methods": [
-        "GET"
-      ],
+      "methods": ["GET"],
       "type": "http",
-      "allow": [
-        "test"
-      ],
+      "allow": ["test"],
       "whitelist": [],
       "authType": "private",
       "routes": [
@@ -575,13 +527,9 @@
       "name": "Omang Search By Identifier / Demographic Data (IN USE)",
       "urlPattern": "^/CR/validate/Patient.*$",
       "isAsynchronousProcess": false,
-      "methods": [
-        "GET"
-      ],
+      "methods": ["GET"],
       "type": "http",
-      "allow": [
-        "test"
-      ],
+      "allow": ["test"],
       "whitelist": [],
       "authType": "private",
       "routes": [
@@ -629,16 +577,12 @@
       "description": "The following endpoint proxies incoming requests to OpenCR\nto create a patient record. This is a temporary measure until\nOpenCR fixs the issue of returning an array of outcomes instead\nof the patient resource being submitted.\n\nSee issue : https://github.com/intrahealth/client-registry/issues/147",
       "urlPattern": "^/CR/fhir/Patient$",
       "isAsynchronousProcess": false,
-      "methods": [
-        "POST"
-      ],
+      "methods": ["POST"],
       "type": "http",
       "tcpPort": null,
       "tcpHost": null,
       "pollingSchedule": null,
-      "allow": [
-        "test"
-      ],
+      "allow": ["test"],
       "whitelist": [],
       "authType": "private",
       "routes": [
@@ -704,12 +648,7 @@
           "description": "HL7v2 Translator API Passthrough",
           "urlPattern": "^/72f/.*$",
           "isAsynchronousProcess": false,
-          "methods": [
-            "GET",
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
+          "methods": ["GET", "POST", "PUT", "PATCH"],
           "type": "http",
           "priority": 4,
           "requestBody": true,
@@ -751,9 +690,7 @@
           "description": "FHIR to HL7v2 Translation",
           "urlPattern": "^/f27/.*$",
           "isAsynchronousProcess": false,
-          "methods": [
-            "POST"
-          ],
+          "methods": ["POST"],
           "type": "http",
           "priority": 5,
           "requestBody": true,
@@ -818,12 +755,7 @@
           "description": "Add or Get Resource Data From/To openCR",
           "urlPattern": "^/CR/fhir.*$",
           "isAsynchronousProcess": false,
-          "methods": [
-            "GET",
-            "POST",
-            "PUT",
-            "DELETE"
-          ],
+          "methods": ["GET", "POST", "PUT", "DELETE"],
           "type": "http",
           "tcpPort": null,
           "tcpHost": null,
@@ -947,10 +879,7 @@
           "template": [
             {
               "type": "option",
-              "values": [
-                "mediator",
-                "elasticsearch"
-              ],
+              "values": ["mediator", "elasticsearch"],
               "description": "Tool to Use for Matching",
               "displayName": "Tool to Use for Matching",
               "param": "tool"
@@ -1001,12 +930,7 @@
           "description": "Get or Post a new FHIR Resource to the SHR",
           "urlPattern": "^/SHR/fhir.*$",
           "isAsynchronousProcess": false,
-          "methods": [
-            "GET",
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
+          "methods": ["GET", "POST", "PUT", "PATCH"],
           "type": "http",
           "priority": 1,
           "requestBody": true,
@@ -1048,11 +972,7 @@
           "description": "Get or Update the International Patient Summary Bundle from the SHR",
           "urlPattern": "^/SHR/fhir/ips.*$",
           "isAsynchronousProcess": false,
-          "methods": [
-            "GET",
-            "POST",
-            "PUT"
-          ],
+          "methods": ["GET", "POST", "PUT"],
           "type": "http",
           "priority": 2,
           "requestBody": true,
@@ -1094,12 +1014,7 @@
           "description": "Get or Update the Lab Workflow Bundles in the SHR",
           "urlPattern": "^/SHR/lab.*$",
           "isAsynchronousProcess": false,
-          "methods": [
-            "GET",
-            "POST",
-            "DELETE",
-            "PUT"
-          ],
+          "methods": ["GET", "POST", "DELETE", "PUT"],
           "type": "http",
           "priority": 3,
           "requestBody": true,
@@ -1183,13 +1098,9 @@
           "name": "Omang",
           "urlPattern": "^/omang.*$",
           "isAsynchronousProcess": false,
-          "methods": [
-            "GET"
-          ],
+          "methods": ["GET"],
           "type": "http",
-          "allow": [
-            "test"
-          ],
+          "allow": ["test"],
           "whitelist": [],
           "authType": "private",
           "routes": [
@@ -1222,13 +1133,9 @@
           "name": "BDRS",
           "urlPattern": "^/bdrs.*$",
           "isAsynchronousProcess": false,
-          "methods": [
-            "GET"
-          ],
+          "methods": ["GET"],
           "type": "http",
-          "allow": [
-            "test"
-          ],
+          "allow": ["test"],
           "whitelist": [],
           "authType": "private",
           "routes": [
@@ -1261,13 +1168,9 @@
           "name": "Patient",
           "urlPattern": "^/CR/validate/Patient.*$",
           "isAsynchronousProcess": false,
-          "methods": [
-            "GET"
-          ],
+          "methods": ["GET"],
           "type": "http",
-          "allow": [
-            "test"
-          ],
+          "allow": ["test"],
           "whitelist": [],
           "authType": "private",
           "routes": [
@@ -1300,13 +1203,9 @@
           "name": "Immigration",
           "urlPattern": "^/patient.*$",
           "isAsynchronousProcess": false,
-          "methods": [
-            "GET"
-          ],
+          "methods": ["GET"],
           "type": "http",
-          "allow": [
-            "test"
-          ],
+          "allow": ["test"],
           "whitelist": [],
           "authType": "private",
           "routes": [
