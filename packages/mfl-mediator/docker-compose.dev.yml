@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  mfl-api:
+    command: ["npm", "run", "start:dev"]
+    ports:
+      - target: 3000
+        published: 3000
+        mode: host
