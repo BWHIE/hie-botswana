@@ -1,13 +1,14 @@
 import { Module } from "@nestjs/common";
-import { HttpModule } from "@nestjs/axios";
-import { ConfigModule } from "@nestjs/config";
 import { MflService } from "./services/mfl.service";
 import { MflController } from "./controllers/mfl.controller";
-import { TransactionModule } from "../transaction/transaction.module";
+import { OpenhimModule } from "../../common/openhim/openhim.module";
+import { HttpModule } from "@nestjs/axios";
+import { ConfigModule } from "@nestjs/config";
 
 @Module({
-  imports: [HttpModule, ConfigModule, TransactionModule],
+  imports: [HttpModule, ConfigModule, OpenhimModule],
   controllers: [MflController],
   providers: [MflService],
+  exports: [MflService],
 })
 export class MflModule {}
