@@ -1,0 +1,29 @@
+{
+  "id": "mfl-mediator",
+  "name": "MFL Mediator",
+  "description": "Master Facility List (MFL) Mediator for Botswana HIE",
+  "type": "infrastructure",
+  "version": "0.0.1",
+  "dependencies": ["interoperability-layer-openhim"],
+  "environmentVariables": {
+    "MFL_HTTP_PORT": 3000,
+    "MFL_DEV_MODE": "true",
+    "MFL_LOGGER_MAX_LOG_SIZE": "10MB",
+    "MFL_LOGGER_MAX_NUM_OF_LOGS": 10,
+    "MFL_OPENHIM_USERNAME": "root@openhim.org",
+    "MFL_OPENHIM_PASSWORD": "instant101",
+    "MFL_OPENHIM_TRUST_SELF_SIGNED": true,
+    "MFL_MEDIATOR_CONFIG_OPENHIM_AUTH_API_URL": "https://openhim-core:8080",
+    "MFL_MEDIATOR_CONFIG_OPENHIM_AUTH_REJECT_UNAUTHORIZED": false,
+    "MFL_MEDIATOR_CONFIG_OPENHIM_AUTH_URN": "urn:mediator:master-facility-list",
+    "MFL_MEDIATOR_CONFIG_MEDIATOR_CORE_OPENHIM_CORE_HOST": "https://openhim-core:8080",
+    "MFL_MEDIATOR_CONFIG_MEDIATOR_CORE_OPENHIM_REGISTER_MEDIATOR_PATH": "mediators",
+    "MFL_MEDIATOR_CONFIG_MEDIATOR_CORE_OPENHIM_HEARTBEAT_PATH": "heartbeat",
+    "MFL_MEDIATOR_CONFIG_MEDIATOR_CORE_HEARTBEAT_INTERVAL": 10,
+    "MFL_MEDIATOR_CONFIG_MEDIATOR_CORE_IS_HEARTBEAT_DISABLED": false,
+    "MFL_MEDIATOR_CONFIG_MEDIATOR_SETUP_URN": "urn:mediator:master-facility-list",
+    "MFL_MEDIATOR_CONFIG_MEDIATOR_SETUP_VERSION": "v0.1.0",
+    "MFL_MEDIATOR_CONFIG_MEDIATOR_SETUP_NAME": "Master Facility List",
+    "MFL_MEDIATOR_CONFIG_MEDIATOR_SETUP_DESCRIPTION": "Provides access to Master Facility List data"
+  }
+}
