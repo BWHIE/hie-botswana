@@ -1,43 +1,37 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
-import { WinstonModule } from "nest-winston";
-import * as winston from "winston";
-import { ValidationPipe } from "@nestjs/common";
-import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
-import { LoggingInterceptor } from "./common/interceptors/logging.interceptor";
-import { HttpExceptionFilter } from "./common/filters/http-exception.filter";
+import config from "./config";
+import * as bodyParser from "body-parser";
+import { FhirExceptionFilter } from "./middlewares/fhir-exception.filter";
+import { Logger } from "@nestjs/common";
 
 async function bootstrap() {
+  const logger = new Logger("Bootstrap");
   const app = await NestFactory.create(AppModule, {
-    logger: WinstonModule.createLogger({
-      transports: [
-        new winston.transports.Console({
-          format: winston.format.combine(
-            winston.format.timestamp(),
-            winston.format.ms(),
-            winston.format.json()
-          ),
-        }),
-      ],
-    }),
+    bodyParser: false,
+    logger: ["error", "warn", "log", "debug", "verbose"],
   });
 
-  // Swagger configuration
-  const config = new DocumentBuilder()
-    .setTitle("MFL Mediator API")
-    .setDescription("API for interacting with Botswana Master Facility List")
-    .setVersion("1.0")
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup("api", app, document);
-
-  app.useGlobalPipes(new ValidationPipe());
+  // Enable CORS
   app.enableCors();
 
-  // Apply global filters and interceptors
-  app.useGlobalFilters(new HttpExceptionFilter());
-  app.useGlobalInterceptors(new LoggingInterceptor());
+  // Apply global filters
+  app.useGlobalFilters(new FhirExceptionFilter());
 
-  await app.listen(process.env.PORT || 3000);
+  // Configure body parser
+  const rawBodyBuffer = (req, res, buf, encoding) => {
+    if (buf && buf.length) {
+      req.rawBody = buf.toString(encoding || "utf8");
+    }
+  };
+  app.use(bodyParser.urlencoded({ verify: rawBodyBuffer, extended: true }));
+  app.use(bodyParser.json({ verify: rawBodyBuffer }));
+
+  // Get the port from config
+  const port = config.get("app.port") || 3000;
+  logger.log(`Starting application on port ${port}`);
+
+  await app.listen(port);
+  logger.log(`Application is running on: http://localhost:${port}`);
 }
 bootstrap();
