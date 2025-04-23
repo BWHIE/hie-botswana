@@ -1,90 +1,109 @@
 import { Injectable, Logger } from "@nestjs/common";
-import { HttpService } from "@nestjs/axios";
-import { ConfigService } from "@nestjs/config";
-import { firstValueFrom } from "rxjs";
+import { TransactionService } from "../../../common/openhim/transaction/transaction.service";
+import config from "../../../config";
 import { fhirR4 } from "@smile-cdr/fhirts";
-import { TransactionService } from "../../transaction/services/transaction.service";
+import { ApiService } from "./api.service";
+import { ApiError } from "../errors/api.error";
 
 @Injectable()
 export class MflService {
   private readonly logger = new Logger(MflService.name);
-  private readonly baseUrl: string;
 
   constructor(
-    private readonly httpService: HttpService,
-    private readonly configService: ConfigService,
+    private readonly apiService: ApiService,
     private readonly transactionService: TransactionService
-  ) {
-    this.baseUrl = this.configService.get<string>("MFL_API_URL");
+  ) {}
+
+  private convertHeaders(headers: any): Record<string, string> {
+    const result: Record<string, string> = {};
+    for (const [key, value] of Object.entries(headers)) {
+      result[key] = String(value);
+    }
+    return result;
   }
 
-  async getLocations(request: any): Promise<fhirR4.Bundle> {
-    let transaction;
+  private async handleApiCall<T>(
+    type: string,
+    url: string,
+    method: "GET" | "POST" | "PUT" | "DELETE" = "GET",
+    body: any = {}
+  ): Promise<T> {
+    const transaction = await this.transactionService.createTransaction({
+      type,
+      request: {
+        method,
+        url,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body,
+      },
+    });
+
     try {
-      transaction = await this.transactionService.logTransaction(
-        request,
-        null,
-        "Success"
-      );
+      const response = await this.apiService.makeRequest<T>(method, url, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: body,
+      });
 
-      const response = await firstValueFrom(
-        this.httpService.get<fhirR4.Bundle>(`${this.baseUrl}/bundle/location`)
-      );
+      await this.transactionService.updateTransaction(transaction.id, {
+        response: {
+          status: 200,
+          headers: {},
+          body: response,
+        },
+        status: "completed",
+      });
 
-      await this.transactionService.updateTransactionStatus(
-        transaction._id,
-        "Success"
-      );
-
-      return response.data as fhirR4.Bundle;
+      return response;
     } catch (error) {
-      this.logger.error("Error fetching locations:", error);
+      this.logger.error(`API call failed for ${type}:`, {
+        url,
+        error: error.message,
+        status: error.statusCode,
+        response: error.responseData,
+      });
 
-      if (transaction) {
-        await this.transactionService.updateTransactionStatus(
-          transaction._id,
-          "Failed",
-          error
-        );
-      }
+      await this.transactionService.updateTransaction(transaction.id, {
+        response: {
+          status: error.statusCode || 500,
+          headers: {},
+          body: error.responseData || { error: error.message },
+        },
+        status: "failed",
+      });
 
       throw error;
     }
   }
 
-  async getOrganizations(request: any): Promise<fhirR4.Bundle> {
-    let transaction;
-    try {
-      transaction = await this.transactionService.logTransaction(
-        request,
-        null,
-        "Success"
-      );
+  async getLocations(): Promise<fhirR4.Bundle> {
+    return this.handleApiCall<fhirR4.Bundle>(
+      "mfl",
+      `${config.get("mfl:apiUrl")}/bundle/location`
+    );
+  }
 
-      const response = await firstValueFrom(
-        this.httpService.get<fhirR4.Bundle>(
-          `${this.baseUrl}/bundle/organization`
-        )
-      );
+  async getLocation(id: string): Promise<fhirR4.Location> {
+    return this.handleApiCall<fhirR4.Location>(
+      "mfl",
+      `${config.get("mfl:apiUrl")}/location/${id}`
+    );
+  }
 
-      await this.transactionService.updateTransactionStatus(
-        transaction._id,
-        "Success"
-      );
+  async getOrganizations(): Promise<fhirR4.Bundle> {
+    return this.handleApiCall<fhirR4.Bundle>(
+      "mfl",
+      `${config.get("mfl:apiUrl")}/bundle/organization`
+    );
+  }
 
-      return response.data as fhirR4.Bundle;
-    } catch (error) {
-      this.logger.error("Error fetching organizations:", error);
-
-      if (transaction) {
-        await this.transactionService.updateTransactionStatus(
-          transaction._id,
-          "Failed",
-          error
-        );
-      }
-
-      throw error;
-    }
+  async getOrganization(id: string): Promise<fhirR4.Organization> {
+    return this.handleApiCall<fhirR4.Organization>(
+      "mfl",
+      `${config.get("mfl:apiUrl")}/organization/${id}`
+    );
   }
 }
