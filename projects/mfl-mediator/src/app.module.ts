@@ -1,30 +1,22 @@
-import { Module } from "@nestjs/common";
-import { ConfigModule } from "@nestjs/config";
-import { ScheduleModule } from "@nestjs/schedule";
-import { MflModule } from "./modules/mfl/mfl.module";
+import { MiddlewareConsumer, Module } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
-import { TransactionService } from "./services/transaction.service";
-import { registerOpenHimMediator } from "./config/openhim.config";
+// import { CommonModule } from "./common/common.module";
+import { MflModule } from "./modules/mfl/mfl.module";
+import { OpenhimModule } from "./common/openhim/openhim.module";
+import { CommonModule } from "./common/common.module";
+import { FhirJsonParserMiddleware } from "./middlewares/fhir-json-parser.middleware";
+import { LoggerModule } from "./common/logger/logger.module";
+// import { LoggerModule } from "./common/logger/logger.module";
+// import { FhirJsonParserMiddleware } from "./middlewares/fhir-json-parser.middleware";
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
-    ScheduleModule.forRoot(),
-    MflModule,
-  ],
+  imports: [CommonModule, MflModule, OpenhimModule, LoggerModule],
   controllers: [AppController],
-  providers: [
-    AppService,
-    TransactionService,
-    {
-      provide: "OPENHIM_REGISTRATION",
-      useFactory: async () => {
-        await registerOpenHimMediator();
-      },
-    },
-  ],
+  providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(FhirJsonParserMiddleware).exclude("health").forRoutes("*");
+  }
+}
