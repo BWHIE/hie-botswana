@@ -11,6 +11,7 @@ import {
 } from "openhim-mediator-utils";
 import { IncomingHttpHeaders } from "http";
 import { HttpService } from "@nestjs/axios";
+import { AxiosError } from "axios";
 import config from "../../config";
 import {
   OpenHimConfig,
@@ -21,12 +22,18 @@ import {
   OpenHimError,
   OpenHimResponse,
   OpenHIMTransaction,
-  OPENHIM_TRANSACTION_ID,
 } from "./types";
 
+export const OPENHIM_TRANSACTION_ID = "x-openhim-transactionid";
+
+/**
+ * Service for managing OpenHIM communication and transaction handling.
+ * This service provides methods for registering the mediator, managing transactions,
+ * and building standardized OpenHIM responses.
+ */
 @Injectable()
-export class OpenhimService implements OnModuleInit {
-  private readonly logger = new Logger(OpenhimService.name);
+export class OpenHimService implements OnModuleInit {
+  private readonly logger = new Logger(OpenHimService.name);
   private readonly openhimConfig: OpenHimConfig;
   private readonly mediatorConfig: MediatorConfig;
 
@@ -35,10 +42,18 @@ export class OpenhimService implements OnModuleInit {
     this.mediatorConfig = config.get("mediatorConfig:mediatorSetup");
   }
 
+  /**
+   * Initializes the OpenHIM service by setting up the mediator configuration.
+   * This method is called automatically when the module is initialized.
+   */
   async onModuleInit() {
     await this.setupMediator();
   }
 
+  /**
+   * Sets up the mediator in the OpenHIM server.
+   * This method registers the mediator configuration and starts the heartbeat mechanism.
+   */
   async setupMediator() {
     const config = {
       ...this.openhimConfig,
@@ -74,8 +89,20 @@ export class OpenhimService implements OnModuleInit {
     });
   }
 
+  /**
+   * Registers a new transaction with OpenHIM.
+   *
+   * @param transaction - Partial transaction data to register
+   * @returns Promise containing the registered transaction details
+   * @throws Error if registration fails
+   */
   async registerTransaction(transaction: Partial<OpenHIMTransaction>) {
     try {
+      this.logger.debug("Attempting to register transaction with OpenHIM", {
+        url: `${this.openhimConfig.apiURL}/transactions`,
+        transaction: JSON.stringify(transaction),
+      });
+
       const response = await this.httpService
         .post(`${this.openhimConfig.apiURL}/transactions`, transaction, {
           headers: {
@@ -92,23 +119,51 @@ export class OpenhimService implements OnModuleInit {
         })
         .toPromise();
 
+      this.logger.debug("Successfully registered transaction with OpenHIM", {
+        transactionId: response.data._id,
+        status: response.data.status,
+      });
+
       return {
         transactionId: response.data._id,
         status: response.data.status,
         response: response.data.response,
       };
     } catch (error) {
-      this.logger.error("Error registering transaction:", error);
+      const axiosError = error as AxiosError;
+      this.logger.error("Error registering transaction:", {
+        error: axiosError.message,
+        response: axiosError.response?.data,
+        status: axiosError.response?.status,
+        headers: axiosError.response?.headers,
+        config: {
+          url: axiosError.config?.url,
+          method: axiosError.config?.method,
+          headers: axiosError.config?.headers,
+        },
+      });
       throw error;
     }
   }
 
+  /**
+   * Updates an existing transaction in OpenHIM.
+   *
+   * @param id - The transaction ID to update
+   * @param updates - Partial transaction data containing updates
+   * @throws Error if update fails
+   */
   async updateTransaction(id: string, updates: Partial<OpenHIMTransaction>) {
     try {
       await this.httpService
         .put(`${this.openhimConfig.apiURL}/transactions/${id}`, updates, {
           headers: {
             "Content-Type": "application/json",
+            Authorization:
+              "Basic " +
+              Buffer.from(
+                this.openhimConfig.username + ":" + this.openhimConfig.password
+              ).toString("base64"),
           },
           httpsAgent: new (require("https").Agent)({
             rejectUnauthorized: !this.openhimConfig.trustSelfSigned,
@@ -116,62 +171,34 @@ export class OpenhimService implements OnModuleInit {
         })
         .toPromise();
     } catch (error) {
-      this.logger.error("Error updating transaction:", error);
+      const axiosError = error as AxiosError;
+      this.logger.error("Error updating transaction:", {
+        error: axiosError.message,
+        response: axiosError.response?.data,
+        status: axiosError.response?.status,
+      });
       throw error;
     }
   }
 
-  async updateOpenHimTransaction(
-    openHimTransactionId: string,
-    data: any,
-    orchestrations: any[] = []
-  ) {
-    try {
-      const response = await this.httpService
-        .put(
-          `${this.openhimConfig.apiURL}/transactions/${openHimTransactionId}`,
-          {
-            status: "Successful",
-            orchestrations,
-            response: {
-              headers: {
-                [OPENHIM_TRANSACTION_ID]: openHimTransactionId,
-              },
-              status: 201,
-              body: data,
-            },
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization:
-                "Basic " +
-                Buffer.from(
-                  this.openhimConfig.username +
-                    ":" +
-                    this.openhimConfig.password
-                ).toString("base64"),
-            },
-            httpsAgent: new (require("https").Agent)({
-              rejectUnauthorized: !this.openhimConfig.trustSelfSigned,
-            }),
-          }
-        )
-        .toPromise();
-
-      return response.data;
-    } catch (error) {
-      this.logger.error("Error updating transaction:", error);
-      throw error;
-    }
-  }
-
-  async getOpenHimTransaction(transactionId: string) {
+  /**
+   * Retrieves a transaction from OpenHIM by ID.
+   *
+   * @param transactionId - The ID of the transaction to retrieve
+   * @returns Promise containing the transaction data
+   * @throws Error if retrieval fails
+   */
+  async getTransaction(transactionId: string) {
     try {
       const response = await this.httpService
         .get(`${this.openhimConfig.apiURL}/transactions/${transactionId}`, {
           headers: {
             "Content-Type": "application/json",
+            Authorization:
+              "Basic " +
+              Buffer.from(
+                this.openhimConfig.username + ":" + this.openhimConfig.password
+              ).toString("base64"),
           },
           httpsAgent: new (require("https").Agent)({
             rejectUnauthorized: !this.openhimConfig.trustSelfSigned,
@@ -181,19 +208,47 @@ export class OpenhimService implements OnModuleInit {
 
       return response.data;
     } catch (error) {
-      this.logger.error("Error getting OpenHIM transaction:", error);
+      const axiosError = error as AxiosError;
+      this.logger.error("Error getting OpenHIM transaction:", {
+        error: axiosError.message,
+        response: axiosError.response?.data,
+        status: axiosError.response?.status,
+      });
       throw error;
     }
   }
 
-  buildOpenHimHeaders(headers: Headers): OpenHimHeaders {
+  /**
+   * Converts HTTP headers to OpenHIM-compatible format.
+   * Handles both single values and arrays of values.
+   *
+   * @param headers - Raw HTTP headers to convert
+   * @returns OpenHIM-compatible headers
+   */
+  buildOpenHimHeaders(
+    headers: Record<string, string | string[] | undefined>
+  ): OpenHimHeaders {
     const result: OpenHimHeaders = {};
     for (const [key, value] of Object.entries(headers)) {
-      result[key] = String(value);
+      if (value !== undefined) {
+        result[key] = Array.isArray(value) ? value.join(", ") : value;
+      }
     }
     return result;
   }
 
+  /**
+   * Builds a standardized OpenHIM response object.
+   *
+   * @param status - The status of the response
+   * @param statusCode - HTTP status code
+   * @param body - Response body to be stringified
+   * @param orchestrations - Optional array of orchestrations
+   * @param error - Optional error details
+   * @param properties - Optional additional properties
+   * @param headers - Optional response headers
+   * @returns Formatted OpenHIM response
+   */
   buildOpenHimResponse(
     status: OpenHimStatus,
     statusCode: number,
@@ -210,7 +265,7 @@ export class OpenhimService implements OnModuleInit {
         status: statusCode,
         headers: headers || {},
         body: JSON.stringify(body),
-        timestamp: new Date(),
+        timestamp: new Date().toISOString(),
       },
       orchestrations,
       properties,
@@ -218,15 +273,27 @@ export class OpenhimService implements OnModuleInit {
     };
   }
 
+  /**
+   * Extracts the transaction ID from HTTP headers.
+   *
+   * @param headers - HTTP headers containing the transaction ID
+   * @returns The transaction ID or undefined if not found
+   */
   parseTransactionIdFromHeaders(headers: IncomingHttpHeaders): string {
-    return headers["x-openhim-transactionid"] as string;
+    return headers[OPENHIM_TRANSACTION_ID] as string;
   }
 
+  /**
+   * Extracts the access token from the Authorization header.
+   *
+   * @param headers - HTTP headers containing the Authorization header
+   * @returns The access token or undefined if not found
+   */
   parseAccessTokenFromHeaders(
     headers: IncomingHttpHeaders
   ): string | undefined {
-    const authHeader = headers.authorization;
-    if (!authHeader) return undefined;
-    return authHeader.split(" ")[1];
+    const auth = (headers["authorization"] as string) || "";
+    const [, token] = auth.split(" ");
+    return token;
   }
 }
