@@ -1,9 +1,13 @@
 import { Injectable, Logger } from "@nestjs/common";
-import { TransactionService } from "../../../common/openhim/transaction/transaction.service";
+import { OpenHimService } from "../../../common/openhim/openhim.service";
 import config from "../../../config";
 import { fhirR4 } from "@smile-cdr/fhirts";
 import { ApiService } from "./api.service";
 import { ApiError } from "../errors/api.error";
+import {
+  OpenHimStatus,
+  OpenHIMTransaction,
+} from "../../../common/openhim/types";
 
 @Injectable()
 export class MflService {
@@ -11,16 +15,8 @@ export class MflService {
 
   constructor(
     private readonly apiService: ApiService,
-    private readonly transactionService: TransactionService
+    private readonly openHimService: OpenHimService
   ) {}
-
-  private convertHeaders(headers: any): Record<string, string> {
-    const result: Record<string, string> = {};
-    for (const [key, value] of Object.entries(headers)) {
-      result[key] = String(value);
-    }
-    return result;
-  }
 
   private async handleApiCall<T>(
     type: string,
@@ -28,17 +24,18 @@ export class MflService {
     method: "GET" | "POST" | "PUT" | "DELETE" = "GET",
     body: any = {}
   ): Promise<T> {
-    const transaction = await this.transactionService.createTransaction({
-      type,
+    const transaction: Partial<OpenHIMTransaction> = {
       request: {
-        method,
-        url,
+        path: url,
+        querystring: "",
         headers: {
           "Content-Type": "application/json",
         },
-        body,
+        body: JSON.stringify(body),
+        timestamp: new Date().toISOString(),
       },
-    });
+      startedAt: new Date().toISOString(),
+    };
 
     try {
       const response = await this.apiService.makeRequest<T>(method, url, {
@@ -48,31 +45,13 @@ export class MflService {
         data: body,
       });
 
-      await this.transactionService.updateTransaction(transaction.id, {
-        response: {
-          status: 200,
-          headers: {},
-          body: response,
-        },
-        status: "completed",
-      });
-
       return response;
     } catch (error) {
       this.logger.error(`API call failed for ${type}:`, {
         url,
-        error: error.message,
-        status: error.statusCode,
-        response: error.responseData,
-      });
-
-      await this.transactionService.updateTransaction(transaction.id, {
-        response: {
-          status: error.statusCode || 500,
-          headers: {},
-          body: error.responseData || { error: error.message },
-        },
-        status: "failed",
+        error: error instanceof Error ? error.message : "Unknown error",
+        status: error instanceof ApiError ? error.statusCode : 500,
+        response: error instanceof ApiError ? error.responseData : undefined,
       });
 
       throw error;
