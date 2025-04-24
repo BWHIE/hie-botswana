@@ -60,6 +60,7 @@ export class ApiService {
             error: error.message,
             status: error.response?.status,
             response: error.response?.data,
+            headers: error.response?.headers,
           }
         );
 
