@@ -1,31 +1,14 @@
-import { Controller, Get, Param, Logger, Headers } from "@nestjs/common";
+import { Controller, Get, Param, Headers } from "@nestjs/common";
 import { MflService } from "../services/mfl.service";
-import { OpenHimService } from "../../../common/openhim/openhim.service";
 import { fhirR4 } from "@smile-cdr/fhirts";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { Request } from "express";
 
 @ApiTags("MFL")
 @Controller("fhir")
 export class MflController {
-  private readonly logger = new Logger(MflController.name);
-
   constructor(
     private readonly mflService: MflService,
-    private readonly openHimService: OpenHimService
   ) {}
-
-  private convertHeaders(headers: any): Record<string, string> {
-    const result: Record<string, string> = {};
-    for (const [key, value] of Object.entries(headers)) {
-      if (Array.isArray(value)) {
-        result[key] = value.join(", ");
-      } else if (typeof value === "string") {
-        result[key] = value;
-      }
-    }
-    return result;
-  }
 
   @ApiOperation({ summary: "Get all locations from MFL" })
   @ApiResponse({

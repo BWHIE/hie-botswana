@@ -1,13 +1,8 @@
 import { Injectable, Logger } from "@nestjs/common";
-import { OpenHimService } from "../../../common/openhim/openhim.service";
 import config from "../../../config";
 import { fhirR4 } from "@smile-cdr/fhirts";
 import { ApiService } from "./api.service";
 import { ApiError } from "../errors/api.error";
-import {
-  OpenHimStatus,
-  OpenHIMTransaction,
-} from "../../../common/openhim/types";
 
 @Injectable()
 export class MflService {
@@ -15,7 +10,6 @@ export class MflService {
 
   constructor(
     private readonly apiService: ApiService,
-    private readonly openHimService: OpenHimService
   ) {}
 
   private async handleApiCall<T>(
@@ -24,19 +18,6 @@ export class MflService {
     method: "GET" | "POST" | "PUT" | "DELETE" = "GET",
     body: any = {}
   ): Promise<T> {
-    const transaction: Partial<OpenHIMTransaction> = {
-      request: {
-        path: url,
-        querystring: "",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-        timestamp: new Date().toISOString(),
-      },
-      startedAt: new Date().toISOString(),
-    };
-
     try {
       const response = await this.apiService.makeRequest<T>(method, url, {
         headers: {
