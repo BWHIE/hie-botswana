@@ -10,29 +10,29 @@ docker build \
 # TEMP: Ensure the /tmp/backups folder exists
 mkdir /tmp/backups
 
-# docker build \
-#     -t itechuw/openhim-mediator-fhir-converter:local \
-#     -f projects/openhim-mediator-fhir-converter/Dockerfile \
-#     projects/openhim-mediator-fhir-converter/ \
-#     --no-cache
+docker build \
+    -t itechuw/openhim-mediator-fhir-converter:local \
+    -f projects/openhim-mediator-fhir-converter/Dockerfile \
+    projects/openhim-mediator-fhir-converter/ \
+    --no-cache
 
-# docker build \
-#     -t docker.elastic.co/elasticsearch/elasticsearch:local \
-#     -f packages/analytics-datastore-elastic-search/Dockerfile \
-#     packages/analytics-datastore-elastic-search \
-#     --no-cache
+docker build \
+    -t docker.elastic.co/elasticsearch/elasticsearch:local \
+    -f packages/analytics-datastore-elastic-search/Dockerfile \
+    packages/analytics-datastore-elastic-search \
+    --no-cache
 
-# docker build \
-#     -t jembi/omangsvc:local \
-#     -f projects/omang-service-mediator/Dockerfile \
-#     projects/omang-service-mediator/ \
-#     --no-cache
+docker build \
+    -t jembi/omangsvc:local \
+    -f projects/omang-service-mediator/Dockerfile \
+    projects/omang-service-mediator/ \
+    --no-cache
 
-# docker build \
-#     -t jembi/shr-mediator:local \
-#     -f projects/shr-mediator/Dockerfile \
-#     projects/shr-mediator/ \
-#     --no-cache
+docker build \
+    -t jembi/shr-mediator:local \
+    -f projects/shr-mediator/Dockerfile \
+    projects/shr-mediator/ \
+    --no-cache
 
 docker build \
     -t jembi/mflsvc:local \

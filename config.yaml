@@ -16,6 +16,7 @@ packages:
   - openhim-mediator-fhir-converter
   - shr-mediator
   - dashboard-visualiser-kibana
+  - mfl-mediator
 
 profiles:
   - name: dev
@@ -32,6 +33,7 @@ profiles:
       - openhim-mediator-fhir-converter
       - shr-mediator
       - dashboard-visualiser-kibana
+      - mfl-mediator
     envFiles:
       - .env.local
     dev: true
@@ -51,6 +53,7 @@ profiles:
       - omang-service-mediator
       - openhim-mediator-fhir-converter
       - shr-mediator
+      - mfl-mediator
     envFiles:
       - .env.qa
     dev: true
@@ -69,6 +72,7 @@ profiles:
       - omang-service-mediator
       - openhim-mediator-fhir-converter
       - shr-mediator
+      - mfl-mediator
     envFiles:
       - .env.pilot
     dev: true
@@ -88,6 +92,7 @@ profiles:
       - omang-service-mediator
       - openhim-mediator-fhir-converter
       - shr-mediator
+      - mfl-mediator
     envFiles:
       - .env.uat
     dev: false
@@ -107,6 +112,7 @@ profiles:
       - omang-service-mediator
       - openhim-mediator-fhir-converter
       - shr-mediator
+      - mfl-mediator
     envFiles:
       - .env.prod
     dev: false
