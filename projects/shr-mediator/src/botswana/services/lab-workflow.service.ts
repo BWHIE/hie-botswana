@@ -41,7 +41,7 @@ export class LabWorkflowService {
       resources[resourceType]++;
 
       // Ensure that fullUrl and id match
-      if (entry.fullUrl !== `urn:uuid:${entry.resource.id}`) {
+      if (entry.fullUrl !== `urn:uuid:${entry.resource.id}` && entry.fullUrl !== `urn:oid:${entry.resource.id}`) {
         throw new BadRequestException(
           `Mismatched fullUrl and id for resource type: ${resourceType}`,
         );
