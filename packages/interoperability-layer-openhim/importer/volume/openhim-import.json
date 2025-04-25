@@ -622,6 +622,44 @@
         "name": "Super User"
       },
       "priority": 3
+    },
+    {
+      "name": "MFL",
+      "description": "Get the MFL Bundles",
+      "urlPattern": "^/MFL/.*$",
+      "methods": ["GET"],
+      "type": "http",
+      "allow": ["test"],
+      "whitelist": [],
+      "authType": "private",
+      "matchContentTypes": [],
+      "properties": [],
+      "status": "enabled",
+      "rewriteUrls": false,
+      "addAutoRewriteRules": true,
+      "autoRetryEnabled": false,
+      "autoRetryPeriodMinutes": 60,
+      "requestBody": true,
+      "responseBody": true,
+      "routes": [
+        {
+          "type": "http",
+          "status": "enabled",
+          "forwardAuthHeader": false,
+          "name": "MFL - Get Bundle",
+          "secured": false,
+          "host": "mfl-api",
+          "port": 3000,
+          "path": "",
+          "pathTransform": "s/MFL\\///g",
+          "primary": true,
+          "username": "",
+          "password": ""
+        }
+      ],
+      "alerts": [],
+      "rewriteUrlsConfig": [],
+      "priority": 3
     }
   ],
   "Mediators": [
