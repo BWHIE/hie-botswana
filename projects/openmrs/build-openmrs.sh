@@ -29,8 +29,20 @@ else
     exit 1
 fi
 
-# =========== Build the new distro / docker files ==============
 
+# TEMP: Download the required files first
+# echo "Downloading latest properties files..."
+# curl -L "https://bitbucket.org/botswana-emrs/botswanaemr-docker/raw/main/docker/openmrs-distro.properties" -o openmrs-distro.properties || {
+#     echo "Failed to download openmrs-distro.properties"
+#     exit 1
+# }
+
+# curl -L "https://bitbucket.org/botswana-emrs/botswanaemr-docker/raw/main/docker/openmrs-runtime.properties" -o openmrs-runtime.properties || {
+#     echo "Failed to download openmrs-runtime.properties"
+#     exit 1
+# }
+
+# =========== Build the new distro / docker files ==============
 # Change directory and build OpenMRS distro
 cd openmrs-module-botswanaemr || { 
     echo "Directory 'openmrs-module-botswanaemr' not found." 
@@ -39,6 +51,13 @@ cd openmrs-module-botswanaemr || {
 
 # remove the existing folder to ensure no create conflicts exists
 rm -r ~/openmrs/botswanaemr
+
+# TEMP: Download and replace the initial_db.sql file
+echo "Downloading latest initial_db.sql..."
+curl -L "https://bitbucket.org/botswana-emrs/botswanaemr-docker/raw/main/docker/dbdump/initial_db.sql" -o db/initial_db.sql || {
+    echo "Failed to download initial_db.sql"
+    exit 1
+}
 
 # TEMP: Comment out the labonfhir module - currently has a loading time issue
 # sed -i -r 's/^(omod\.labonfhir=).*/#&/' openmrs-distro.properties
