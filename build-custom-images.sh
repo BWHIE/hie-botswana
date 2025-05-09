@@ -34,6 +34,12 @@ docker build \
     projects/shr-mediator/ \
     --no-cache
 
+docker build \
+    -t jembi/mflsvc:local \
+    -f projects/mfl-mediator/Dockerfile \
+    projects/mfl-mediator/ \
+    --no-cache
+
 # Build the Platform to contain the above custom builds
 ./build-image.sh
 
