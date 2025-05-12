@@ -14,10 +14,10 @@
 1. Initialise Docker Swarm mode: `docker swarm init`
 1. Run `go cli` binary to launch the project:
 
-    - **Linux**. From terminal run: `./instant-linux` with your selected arguments. A list of available arguments can be found in the help menu by running `./instant-linux help`
-    - Mac. From terminal run: `./instant-macos` with your selected arguments. A list of available arguments can be found in the help menu by running `./instant-macos help`
-        > Warning: Mac has an issue with the binary as it views the file as a security risk. See [this article](https://www.lifewire.com/fix-developer-cannot-be-verified-error-5183898) to bypass warning
-    - Windows. Double click: `platform.exe` (Windows users will need to use a release version below 2.0.0)
+   - **Linux**. From terminal run: `./instant-linux` with your selected arguments. A list of available arguments can be found in the help menu by running `./instant-linux help`
+   - Mac. From terminal run: `./instant-macos` with your selected arguments. A list of available arguments can be found in the help menu by running `./instant-macos help`
+     > Warning: Mac has an issue with the binary as it views the file as a security risk. See [this article](https://www.lifewire.com/fix-developer-cannot-be-verified-error-5183898) to bypass warning
+   - Windows. Double click: `platform.exe` (Windows users will need to use a release version below 2.0.0)
 
 ## Quick Start for devs (remote cluster)
 
@@ -27,15 +27,15 @@ To set up a remote cluster environment, see [readme](https://github.com/jembi/cl
 1. `./build-custom-images.sh` - builds the platform image
 1. Add `.env.prod` file with your remote env vars option set.
 
-    > Each Package contains a `metadata.json` file which lists the configurable Env vars and their default values
+   > Each Package contains a `metadata.json` file which lists the configurable Env vars and their default values
 
-1. Run `go cli` binary to launch the project (*Make sure to add the `DOCKER_HOST` variable indicating your **lead Swarm manager***, i.e. DOCKER_HOST=ssh://{lead_ip} ./instant-linux):
+1. Run `go cli` binary to launch the project (\*Make sure to add the `DOCKER_HOST` variable indicating your **lead Swarm manager\***, i.e. DOCKER_HOST=ssh://{lead_ip} ./instant-linux):
 
 1. Check the current cli version in `./get-cli.sh` and run to download the binaries. This script can be run with the OS as the first parameter to download only the binary for your prefered OS.
-    - **Linux**. From terminal run: `./instant-linux` with your selected arguments. A list of available arguments can be found in the help menu by running `./instant-linux help`
-    - Mac. From terminal run: `./instant-macos` with your selected arguments. A list of available arguments can be found in the help menu by running `./instant-macos help`
-        > Warning: Mac has an issue with the binary as it views the file as a security risk. See [this article](https://www.lifewire.com/fix-developer-cannot-be-verified-error-5183898) to bypass warning
-    - Windows. Double click: `platform.exe` (Windows users will need to use a release version below 2.0.0)
+   - **Linux**. From terminal run: `./instant-linux` with your selected arguments. A list of available arguments can be found in the help menu by running `./instant-linux help`
+   - Mac. From terminal run: `./instant-macos` with your selected arguments. A list of available arguments can be found in the help menu by running `./instant-macos help`
+     > Warning: Mac has an issue with the binary as it views the file as a security risk. See [this article](https://www.lifewire.com/fix-developer-cannot-be-verified-error-5183898) to bypass warning
+   - Windows. Double click: `platform.exe` (Windows users will need to use a release version below 2.0.0)
 
 ## Go Cli Dev
 
@@ -54,7 +54,7 @@ The Go Cli runs all services from the `jembi/platform` docker image. When develo
 As you add new packages to the platform remember to list them in `config.yaml` file. This config file controls what packages the GO CLI can launch.
 
 For logging all output to a file, ensure that you have created the file and it has the required permissions to be written to.
-The default log file with it's path is set in `.env.local` in `BASHLOG_FILE_PATH`. 
+The default log file with it's path is set in `.env.local` in `BASHLOG_FILE_PATH`.
 The logPath property in the `config.yml` is used to create a bind mount for the logs to be stored on the host.
 
 ## Resource Allocations
@@ -101,7 +101,7 @@ Once the custom images have been built, you can initilize the project with the b
 
 ### Keycloak
 
-For dev environment you can access the admin console using the following credentials : 
+For dev environment you can access the admin console using the following credentials :
 
 - URL : http://localhost:9088/
 - Realm : platform-realm
@@ -110,7 +110,7 @@ For dev environment you can access the admin console using the following credent
 
 ### OpenHIM
 
-For dev environment you can access the admin console and signin with Keycloak using the following credentials : 
+For dev environment you can access the admin console and signin with Keycloak using the following credentials :
 
 - URL : http://localhost:9000/
 - username : root@openhim.org
@@ -118,7 +118,7 @@ For dev environment you can access the admin console and signin with Keycloak us
 
 ### OpenCR
 
-For dev environment you can access the OpenCR UI and signin using the following credentials : 
+For dev environment you can access the OpenCR UI and signin using the following credentials :
 
 - URL : http://localhost:3003/crux/#/
 - username : root@intrahealth.org
@@ -135,6 +135,7 @@ Once OpenMRS is properly configured locally, you can access it with the followin
 - Password: Y3z44AH2
 
 ### Elastic Search
+
 For dev environment you can access the ES and sign in using the following credentials:
 
 - URL : http://localhost:9201/
@@ -144,6 +145,7 @@ For dev environment you can access the ES and sign in using the following creden
 Note: Consider creating the ES_BACKUPS folder away from tmp since it will be deleted on system restart. The default value set inside `.env.local` is `/tmp/backups`
 
 ### Kibana
+
 For dev environment you can access the Kibana and sign in using the following credentials:
 
 - URL : http://localhost:5601/
@@ -153,6 +155,21 @@ For dev environment you can access the Kibana and sign in using the following cr
 ### HAPI FHIR UI
 
 Without credentials you could access : http://localhost:3447/
+
+### FHIR IG Importer
+
+You can install FHIR Implementation Guides through OpenHIM by making a call to the following API endpoint:
+
+- URL: https://localhost:5001/ig
+- Method: POST
+- Payload Example:
+
+```
+{
+    "name":"Botswana IG",
+    "url":"https://build.fhir.org/ig/jembi/botswana-hie-fhir-ig/branches/master"
+}
+```
 
 ### Grafana
 
@@ -178,7 +195,8 @@ Add the below alias to your `/etc/hosts`
 0.0.0.0      kafka-01
 ```
 
-Useful commands : 
+Useful commands :
+
 - SSH into container and list kafka topics : `kafka-topics.sh --bootstrap-server localhost:9092 --list`
 - SSH into container and create kafka topics : `kafka-topics.sh --bootstrap-server localhost:9092 --create --topic send-orm-to-ipms --partitions 3 --replication-factor 1`
 
@@ -186,8 +204,7 @@ Useful commands :
 
 When seeking to make changes to the Omang Service Mediator without having to repeatedly start and stop the service, one can set the `OMANG_DEV_MOUNT_FOLDER` env var in your .env.local file to the absolute path of the project to attach the service's source code files to those on your local machine. You have to set the `OMANG_DEV_MOUNT_FOLDER` variable with the absolute path to the omang-service-mediator project folder on your local machine, i.e., `OMANG_DEV_MOUNT_FOLDER=/Users/username/hie-botswana/projects/omang-service-mediator/`.
 
-
-### Useful links and commands : 
+### Useful links and commands :
 
 - Run vscode remote debugger for Node.js to debug the mediators (converter and SHR) : https://code.visualstudio.com/docs/editor/debugging
 - Setting Up Oracle Database 19c Enterprise Edition for ARM (M1/M2 Macs) : https://gist.github.com/miccheng/8120d2e17818ba2a2d227554b70cd34e
