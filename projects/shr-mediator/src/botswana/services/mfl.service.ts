@@ -40,6 +40,14 @@ export class MflService {
         );
       }
 
+      // Change contact.name.use from "Official" to "official" if it exists(To Be FHIR IG Compliant)
+      const locationData = data as R4.ILocation & {
+        contact?: { name?: { use?: string } };
+      };
+      if (locationData.contact?.name?.use === 'Official') {
+        locationData.contact.name.use = 'official';
+      }
+
       return data;
     } catch (err) {
       this.logger.error(err);
