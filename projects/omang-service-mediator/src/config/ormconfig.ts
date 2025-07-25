@@ -1,4 +1,4 @@
-import { DataSourceOptions } from 'typeorm';
+import { ConnectionOptions } from 'typeorm';
 import config from './index';
 
 export const createOracleDataSourceOptions = (
@@ -8,7 +8,7 @@ export const createOracleDataSourceOptions = (
   connectString: string,
   synchronize: boolean = false,
   hasServiceName: boolean = false,
-): DataSourceOptions => ({
+): ConnectionOptions => ({
   name,
   type: 'oracle',
   username: userConfigKey,
@@ -22,11 +22,16 @@ export const createOracleDataSourceOptions = (
     poolTimeout: 10,
     queueTimeout: 5000,
     enableStatistics: true,
-    poolPingInterval: 60
+    poolPingInterval: 60,
+    transportConnectTimeout: 120000,
+    connectTimeout: 120000,
+    fetchTimeout: 120000,
+    maxRetries: 3,
+    retryDelay: 5000
   }
 });
 
-export const omangDataSourceOptions: DataSourceOptions =
+export const omangDataSourceOptions: ConnectionOptions =
   createOracleDataSourceOptions(
     'omangConnection',
     config.get('Oracle:Omang:CitizenUsername'),
@@ -34,7 +39,7 @@ export const omangDataSourceOptions: DataSourceOptions =
     config.get('Oracle:Omang:CitizenConnectionString'),
   );
 
-export const birthDataSourceOptions: DataSourceOptions =
+export const birthDataSourceOptions: ConnectionOptions =
   createOracleDataSourceOptions(
     'birthConnection',
     config.get('Oracle:Births:BdrsUsername'),
@@ -44,7 +49,7 @@ export const birthDataSourceOptions: DataSourceOptions =
     true,
   );
 
-export const deathDataSourceOptions: DataSourceOptions =
+export const deathDataSourceOptions: ConnectionOptions =
   createOracleDataSourceOptions(
     'deathConnection',
     config.get('Oracle:Deaths:BdrsUsername'),
@@ -53,7 +58,7 @@ export const deathDataSourceOptions: DataSourceOptions =
     true,
   );
 
-export const immigrationDataSourceOptions: DataSourceOptions =
+export const immigrationDataSourceOptions: ConnectionOptions =
   createOracleDataSourceOptions(
     'immigrationConnection',
     config.get('Oracle:Immigration:ImmigrationUsername'),

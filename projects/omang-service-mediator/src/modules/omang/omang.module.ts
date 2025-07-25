@@ -14,7 +14,7 @@ import { OmangService } from './services/omang.service';
   controllers: [OmangController],
   providers: [
     {
-      provide: 'omangConnectionDataSource',
+      provide: 'omangConnectionConnection',
       useFactory: async () => await createConnection(omangDataSourceOptions),
     },
     OmangRepository,

@@ -11,7 +11,7 @@ import { ImmigrationService } from './services/immigration.service';
   controllers: [ImmigrationController],
   providers: [
     {
-      provide: 'immigrationConnectionDataSource',
+      provide: 'immigrationConnectionConnection',
       useFactory: async () =>
         await createConnection(immigrationDataSourceOptions),
     },

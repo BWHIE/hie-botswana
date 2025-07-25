@@ -18,11 +18,11 @@ import { BDRSService } from './services/bdrs.service';
   controllers: [BDRSController],
   providers: [
     {
-      provide: 'birthConnectionDataSource',
+      provide: 'birthConnectionConnection',
       useFactory: async () => await createConnection(birthDataSourceOptions),
     },
     {
-      provide: 'deathConnectionDataSource',
+      provide: 'deathConnectionConnection',
       useFactory: async () => await createConnection(deathDataSourceOptions),
     },
     BirthRepository,
