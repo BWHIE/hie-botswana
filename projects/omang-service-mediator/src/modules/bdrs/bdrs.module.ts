@@ -4,7 +4,6 @@ import {
   birthDataSourceOptions,
   deathDataSourceOptions,
 } from 'src/config/ormconfig';
-import { createConnection } from 'typeorm';
 import { BDRSController } from './controllers/bdrs.controller';
 import { BirthRepository } from './repositories/birth.repository';
 import { DeathRepository } from './repositories/death.repository';
@@ -12,23 +11,13 @@ import { BDRSService } from './services/bdrs.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([], 'birthConnection'), // Import entities related to BirthService
+    TypeOrmModule.forRoot(birthDataSourceOptions),
+    TypeOrmModule.forRoot(deathDataSourceOptions),
+    TypeOrmModule.forFeature([], 'birthConnection'),
     TypeOrmModule.forFeature([], 'deathConnection'),
   ],
   controllers: [BDRSController],
-  providers: [
-    {
-      provide: 'birthConnectionConnection',
-      useFactory: async () => await createConnection(birthDataSourceOptions),
-    },
-    {
-      provide: 'deathConnectionConnection',
-      useFactory: async () => await createConnection(deathDataSourceOptions),
-    },
-    BirthRepository,
-    DeathRepository,
-    BDRSService,
-  ],
+  providers: [BirthRepository, DeathRepository, BDRSService],
   exports: [BDRSService],
 })
 export class BdrsModule {}
