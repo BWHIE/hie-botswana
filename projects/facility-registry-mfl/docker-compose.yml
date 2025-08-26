@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  facility-registry-mfl:
+    image: facility-registry-mfl:test
+    container_name: facility-registry-mfl
+    ports:
+      - "3004:3004"
+    environment:
+      - NODE_ENV=production
+      - PORT=3004
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3004/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - mfl-network
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  mfl-network:
+    driver: bridge

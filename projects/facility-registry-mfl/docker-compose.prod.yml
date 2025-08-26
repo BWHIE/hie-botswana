@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  facility-registry-mfl:
+    image: facility-registry-mfl:latest
+    container_name: facility-registry-mfl-prod
+    environment:
+      - NODE_ENV=production
+      - PORT=3004
+    ports:
+      - "3004:3004"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3004/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - mfl-prod-network
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+      placement:
+        constraints:
+          - node.role == worker
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+        failure_action: rollback
+      rollback_config:
+        parallelism: 1
+        delay: 5s
+        order: stop-first
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  mfl-prod-network:
+    driver: overlay
+    attachable: true
+    ipam:
+      config:
+        - subnet: 172.22.0.0/16
