@@ -78,6 +78,7 @@ typings/
 # docker data volumes
 **/data
 !/projects/openhim-mediator-fhir-converter/data
+!/packages/facility-registry-mfl/config/data
 
 # production
 /docs/build
