@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  mfl:
+    image: jembi/facility-registry-mfl:local
+    ports:
+      - "3004:3004"
+    environment:
+      PORT: ${MFL_HTTP_PORT}
+      NODE_ENV: ${MFL_NODE_ENV}
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - mfl
+      - hapi-fhir
+      - shr
+      - default
+
+networks:
+  mfl:
+    name: mfl_public
+    external: true
+  hapi-fhir:
+    name: hapi-fhir_public
+    external: true
+  shr:
+    name: shr_public
+    external: true
+  default:
