@@ -10,6 +10,9 @@ A NestJS REST API service for accessing organizations and locations data from th
 - **Docker Support**: Containerized deployment with Docker and Docker Compose
 - **TypeScript**: Full TypeScript implementation with proper interfaces
 - **Error Handling**: Comprehensive error handling with proper HTTP status codes
+- **Comprehensive Documentation**: Complete JSDoc documentation for all classes and methods
+- **FHIR Compliance**: Follows FHIR Location and Organization resource standards
+- **Flexible Search**: Multi-strategy search with partial matching and case-insensitive queries
 
 ## Quick Start
 
@@ -24,9 +27,9 @@ A NestJS REST API service for accessing organizations and locations data from th
 2. **Copy data files:**
 
    ```bash
-   mkdir -p config/data
-   cp data/locations.json config/data/
-   cp data/organizations.json config/data/
+   mkdir -p config
+   cp data/locations.json config/
+   cp data/organizations.json config/
    ```
 
 3. **Start development server:**
@@ -67,36 +70,64 @@ A NestJS REST API service for accessing organizations and locations data from th
 - **Development**: `http://localhost:3004/api/v1`
 - **Production**: `http://your-domain:3004/api/v1`
 
+### Application Info
+
+- `GET /api/v1` - Welcome message with API information and available endpoints
+
 ### Health Check
 
 - `GET /api/v1/health` - Service health status
 
 ### Locations
 
-- `GET /api/v1/locations` - Get all locations
-- `GET /api/v1/locations/search?name=<name>&type=<type>` - Search locations
-- `GET /api/v1/locations/:identifier` - Get location by identifier
+- `GET /api/v1/location` - Get all locations
+- `GET /api/v1/location/search?name=<name>&identifier=<identifier>&type=<type>` - Search locations
+- `GET /api/v1/location/:identifier` - Get location by identifier
 
 ### Organizations
 
-- `GET /api/v1/organizations` - Get all organizations
-- `GET /api/v1/organizations/search?name=<name>&type=<type>&active=<true|false>` - Search organizations
-- `GET /api/v1/organizations/:identifier` - Get organization by identifier
+- `GET /api/v1/organization` - Get all organizations
+- `GET /api/v1/organization/search?name=<name>&identifier=<identifier>&type=<type>&active=<true|false>` - Search organizations
+- `GET /api/v1/organization/:identifier` - Get organization by identifier
 
 ## Search Parameters
 
 ### Locations Search
 
-- `name`: Search by location name (partial match)
-- `identifier`: Search by identifier value
-- `type`: Filter by location type
+- `name`: Search by location name (partial match, case-insensitive)
+- `identifier`: Search by identifier value (partial match, case-insensitive)
+- `type`: Filter by location type (partial match on type display or code)
 
 ### Organizations Search
 
-- `name`: Search by organization name (partial match)
-- `identifier`: Search by identifier value
-- `type`: Filter by organization type
+- `name`: Search by organization name (partial match, case-insensitive)
+- `identifier`: Search by identifier value (partial match, case-insensitive)
+- `type`: Filter by organization type (partial match on type display or code)
 - `active`: Filter by active status (true/false)
+
+## Search Capabilities
+
+### Multi-Strategy Search
+
+Both location and organization endpoints support flexible search strategies:
+
+1. **Exact ID Match**: Direct lookup by resource ID
+2. **Identifier Value Match**: Search by identifier value
+3. **Partial Name Match**: Case-insensitive partial name matching
+
+### Search Examples
+
+```bash
+# Search locations by name
+GET /api/v1/location/search?name=Gaborone
+
+# Search organizations by type
+GET /api/v1/organization/search?type=government
+
+# Combined search with multiple parameters
+GET /api/v1/location/search?name=Hospital&type=clinic
+GET /api/v1/organization/search?name=Ministry&active=true
+```
 
 ## Data Structure
 
@@ -169,7 +200,7 @@ The service expects JSON data files in the following format:
 
 ### Data Files
 
-Place your data files in the `config/data/` directory:
+Place your data files in the `config/` directory:
 
 - `locations.json` - Location data
 - `organizations.json` - Organization data
@@ -183,14 +214,14 @@ src/
 ├── app.module.ts          # Root module
 ├── app.controller.ts      # Root controller
 ├── app.service.ts         # Root service
-├── locations/             # Locations module
-│   ├── locations.module.ts
-│   ├── locations.controller.ts
-│   └── locations.service.ts
-└── organizations/         # Organizations module
-    ├── organizations.module.ts
-    ├── organizations.controller.ts
-    └── organizations.service.ts
+├── location/              # Location module
+│   ├── location.module.ts
+│   ├── location.controller.ts
+│   └── location.service.ts
+└── organization/          # Organization module
+    ├── organization.module.ts
+    ├── organization.controller.ts
+    └── organization.service.ts
 ```
 
 ## Development
@@ -240,7 +271,7 @@ For Docker Swarm deployment, the service includes:
 
 To update the data:
 
-1. Replace the JSON files in `config/data/`
+1. Replace the JSON files in `config/`
 2. Restart the container: `docker-compose restart`
 
 ## Error Handling
