@@ -5,7 +5,8 @@ import {
   Query,
   NotFoundException,
 } from "@nestjs/common";
-import { LocationService, Location } from "./location.service";
+import { LocationService } from "./location.service";
+import { Location } from "../common/interfaces";
 
 /**
  * LocationController handles HTTP requests for location-related operations.
