@@ -5,7 +5,8 @@ import {
   Query,
   NotFoundException,
 } from "@nestjs/common";
-import { OrganizationService, Organization } from "./organization.service";
+import { OrganizationService } from "./organization.service";
+import { Organization } from "../common/interfaces";
 
 /**
  * OrganizationController handles HTTP requests for organization-related operations.
