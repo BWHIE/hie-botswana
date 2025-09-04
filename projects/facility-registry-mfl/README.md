@@ -1,9 +1,10 @@
 # Facility Registry MFL API
 
-A NestJS REST API service for accessing organizations and locations data from the Botswana Master Facility List (MFL).
+A NestJS REST API service for accessing organizations and locations data from the Botswana Master Facility List (MFL). This service acts as a fallback solution when the MFL is not accessible from within the Government Network, providing reliable access to facility and organization data for healthcare systems.
 
 ## Features
 
+- **MFL Fallback Service**: Acts as a reliable fallback when MFL is not accessible from within the Government Network
 - **Locations API**: Access to all location data with search and filtering capabilities
 - **Organizations API**: Access to all organization data with search and filtering capabilities
 - **Health Monitoring**: Built-in health check endpoints
@@ -13,6 +14,17 @@ A NestJS REST API service for accessing organizations and locations data from th
 - **Comprehensive Documentation**: Complete JSDoc documentation for all classes and methods
 - **FHIR Compliance**: Follows FHIR Location and Organization resource standards
 - **Flexible Search**: Multi-strategy search with partial matching and case-insensitive queries
+
+## Fallback Service for Government Network
+
+This API service is specifically designed to serve as a fallback solution when the Botswana Master Facility List (MFL) is not accessible from within the Government Network. In such scenarios, healthcare systems can rely on this service to:
+
+- **Maintain Service Continuity**: Ensure healthcare applications continue to function even when MFL is unavailable
+- **Provide Reliable Data Access**: Offer consistent access to facility and organization information
+- **Support Critical Operations**: Enable essential healthcare workflows that depend on facility data
+- **Minimize Service Disruptions**: Reduce downtime and maintain operational efficiency
+
+The service maintains a local copy of the MFL data and provides the same API interface, ensuring seamless integration with existing healthcare systems without requiring code changes.
 
 ## Quick Start
 
