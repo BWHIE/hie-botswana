@@ -6,7 +6,8 @@
     "version": "0.0.1",
     "dependencies": [],
     "environmentVariables": {
-        "MFL_HTTP_PORT": 3004,
-        "MFL_NODE_ENV": "production"
+        "MFL_HTTP_PORT": 3005,
+        "MFL_NODE_ENV": "production",
+        "MFL_DOCKER_IMAGE": "jembi/facility-registry-mfl:local"
     }
 }
