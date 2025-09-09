@@ -32,6 +32,6 @@ COPY --from=builder /app/config ./config
 COPY --from=builder /app/tsconfig*.json ./
 COPY --from=builder /app/nest-cli.json ./
 
-EXPOSE 3004
+EXPOSE 3005
 
 CMD [ "npm", "run", "start" ]
