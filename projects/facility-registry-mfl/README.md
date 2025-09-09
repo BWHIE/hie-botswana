@@ -79,8 +79,8 @@ The service maintains a local copy of the MFL data and provides the same API int
 
 ### Base URL
 
-- **Development**: `http://localhost:3004/api/v1`
-- **Production**: `http://your-domain:3004/api/v1`
+- **Development**: `http://localhost:3005/api/v1`
+- **Production**: `http://your-domain:3005/api/v1`
 
 ### Application Info
 
@@ -207,7 +207,7 @@ The service expects JSON data files in the following format:
 
 ### Environment Variables
 
-- `PORT`: Server port (default: 3004)
+- `PORT`: Server port (default: 3005)
 - `NODE_ENV`: Environment mode (development/production)
 
 ### Data Files
