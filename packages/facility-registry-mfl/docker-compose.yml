@@ -2,9 +2,7 @@ version: "3.8"
 
 services:
   mfl:
-    image: jembi/facility-registry-mfl:local
-    ports:
-      - "3004:3004"
+    image: ${MFL_DOCKER_IMAGE}
     environment:
       PORT: ${MFL_HTTP_PORT}
       NODE_ENV: ${MFL_NODE_ENV}
