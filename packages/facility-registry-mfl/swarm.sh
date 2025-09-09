@@ -37,18 +37,24 @@ function import_sources() {
 
 function initialize_package() {
   local package_dev_compose_filename=""
+    local package_mnt_compose_filename=""
+
 
   if [[ "${MODE}" == "dev" ]]; then
     log info "Running package in DEV mode"
     package_dev_compose_filename="docker-compose.dev.yml"
+    if [[ -n "${MFL_DEV_MOUNT_FOLDER}" ]]; then
+      log info "Mounting dev volumes"
+      package_mnt_compose_filename="docker-compose.mnt.yml"
+    fi
   else
     log info "Running package in PROD mode"
   fi
   
-  log info "Deploying package with compose file: ${COMPOSE_FILE_PATH}/docker-compose.yml ${package_dev_compose_filename}"
+  log info "Deploying package with compose file: ${COMPOSE_FILE_PATH}/docker-compose.yml ${package_dev_compose_filename} ${package_mnt_compose_filename}"
   
   (
-    docker::deploy_service "$STACK" "${COMPOSE_FILE_PATH}" "docker-compose.yml" "$package_dev_compose_filename"
+    docker::deploy_service "$STACK" "${COMPOSE_FILE_PATH}" "docker-compose.yml" "$package_dev_compose_filename" "$package_mnt_compose_filename"
   ) || {
     log error "Failed to deploy package"
     exit 1
@@ -68,8 +74,8 @@ main() {
   if [[ "${ACTION}" == "init" ]] || [[ "${ACTION}" == "up" ]]; then
     log info "Running package in Single node mode"
 
-    IMAGE_NAME="facility-registry-mfl"
-    IMAGE_TAG="test"
+    IMAGE_NAME="jembi/facility-registry-mfl"
+    IMAGE_TAG="local"
 
     # Check if the Docker image exists
     if ! docker images "$IMAGE_NAME:$IMAGE_TAG" | grep -q "$IMAGE_TAG"; then
