@@ -17,6 +17,7 @@ packages:
   - shr-mediator
   - dashboard-visualiser-kibana
   - fhir-ig-importer
+  - facility-registry-mfl
 
 profiles:
   - name: dev
@@ -34,6 +35,7 @@ profiles:
       - shr-mediator
       - dashboard-visualiser-kibana
       - fhir-ig-importer
+      - facility-registry-mfl
     envFiles:
       - .env.local
     dev: true
@@ -54,6 +56,7 @@ profiles:
       - openhim-mediator-fhir-converter
       - shr-mediator
       - fhir-ig-importer
+      - facility-registry-mfl
     envFiles:
       - .env.qa
     dev: true
@@ -73,6 +76,7 @@ profiles:
       - openhim-mediator-fhir-converter
       - shr-mediator
       - fhir-ig-importer
+      - facility-registry-mfl
     envFiles:
       - .env.pilot
     dev: true
@@ -93,6 +97,7 @@ profiles:
       - openhim-mediator-fhir-converter
       - shr-mediator
       - fhir-ig-importer
+      - facility-registry-mfl
     envFiles:
       - .env.uat
     dev: false
@@ -113,6 +118,7 @@ profiles:
       - openhim-mediator-fhir-converter
       - shr-mediator
       - fhir-ig-importer
+      - facility-registry-mfl
     envFiles:
       - .env.prod
     dev: false

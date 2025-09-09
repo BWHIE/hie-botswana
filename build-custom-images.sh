@@ -34,6 +34,12 @@ docker build \
     projects/shr-mediator/ \
     --no-cache
 
+docker build \
+    -t jembi/facility-registry-mfl:local \
+    -f projects/facility-registry-mfl/Dockerfile \
+    projects/facility-registry-mfl/ \
+    --no-cache
+
 # Build the Platform to contain the above custom builds
 ./build-image.sh
 

@@ -3,7 +3,12 @@ version: '3.9'
 services:
   hapi_db_config:
     image: node:erbium-alpine
-    command: sh -c "cd /importer && ls && npm i && ls && node create-db.js"
+    command: >
+      sh -c "
+        cd /importer &&
+        tar -xzf node_modules.tar.gz &&
+        node create-db.js
+      "
     dns:
       - 8.8.8.8
       - 8.8.4.4
@@ -12,6 +17,8 @@ services:
         source: package.json
       - target: /importer/create-db.js
         source: create-db.js
+      - target: /importer/node_modules.tar.gz
+        source: node_modules.tar.gz
     networks:
       postgres:
     environment:
@@ -45,4 +52,8 @@ configs:
     name: create_db.js-${create_db_js_DIGEST:?err}
     labels:
       name: hapi-fhir
-      
+  node_modules.tar.gz:
+    file: ./node_modules.tar.gz
+    name: node_modules_tar_gz-${node_modules_tar_gz_DIGEST:?err}
+    labels:
+      name: hapi-fhir

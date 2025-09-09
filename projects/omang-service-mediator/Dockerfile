@@ -14,7 +14,7 @@ COPY --from=builder /app/package*.json .
 
 RUN npm update -g npm
 RUN npm config set registry https://registry.npmjs.com/
-RUN npm i --verbose --maxsockets 6
+RUN npm i --verbose --maxsockets 6 --legacy-peer-deps
 
 # Runner stage
 FROM node:18 AS runner
@@ -33,10 +33,11 @@ RUN wget --no-check-certificate --header "Cookie: oraclelicense=accept-securebac
     ldconfig
 
 # Set Oracle environment variables
-ENV LD_LIBRARY_PATH=/opt/oracle/instantclient_21_9:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=/opt/oracle/instantclient_21_9
 ENV PATH=/opt/oracle/instantclient_21_9:$PATH
 ENV TNS_ADMIN=/opt/oracle/instantclient_21_9
 ENV ORACLE_HOME=/opt/oracle/instantclient_21_9
+ENV NODE_ORACLEDB_INIT_ORACLE_CLIENT_LIB_DIR=/opt/oracle/instantclient_21_9
 
 WORKDIR /app
 

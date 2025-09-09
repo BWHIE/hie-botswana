@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  mfl:
+    command: ["npm", "run", "start:dev"]
+    ports:
+      - target: 3005
+        published: 3005
+        mode: host

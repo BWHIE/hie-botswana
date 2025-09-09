@@ -21,7 +21,12 @@ RUN yarn clean:cache
 ### Prod Image                         ##
 #########################################
 FROM node:14-slim
-RUN  apt-get update && apt install libcurl4 libcurl4-gnutls-dev -y && apt autoremove -y
+
+# Update sources to use archive repositories for Debian Buster
+RUN echo "deb http://archive.debian.org/debian/ buster main" > /etc/apt/sources.list && \
+    echo "deb http://archive.debian.org/debian-security/ buster/updates main" >> /etc/apt/sources.list && \
+    echo "deb http://archive.debian.org/debian/ buster-updates main" >> /etc/apt/sources.list && \
+    apt-get update && apt install libcurl4 libcurl4-gnutls-dev -y && apt autoremove -y
 
 COPY --from=build /app /app
 COPY ./deploy /app/deploy
