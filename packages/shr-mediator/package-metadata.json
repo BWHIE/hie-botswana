@@ -74,6 +74,7 @@
     "SHR_MEDIATOR_CONFIG_MEDIATOR_SETUP_URN": "urn:mediator:shared-health-record",
     "SHR_MEDIATOR_CONFIG_MEDIATOR_SETUP_VERSION": "v0.12.0",
     "SHR_MEDIATOR_CONFIG_MEDIATOR_SETUP_NAME": "Shared Health Record",
-    "SHR_MEDIATOR_CONFIG_MEDIATOR_SETUP_DESCRIPTION": "Shared Health Record"
+    "SHR_MEDIATOR_CONFIG_MEDIATOR_SETUP_DESCRIPTION": "Shared Health Record",
+    "SHR_MFL_FALLBACK_URL": "http://facility-registry-mfl:3005/api/v1"
   }
 }
