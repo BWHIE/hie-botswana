@@ -21,6 +21,7 @@ class Config {
         password: process.env.FHIR_SERVER_PASSWORD,
       },
       mflUrl: process.env.MFL_URL,
+      mflFallbackUrl: process.env.MFL_FALLBACK_URL,
       clientRegistryUrl: process.env.CR_MEDIATOR_URL,
       fhirConverterUrl: process.env.FHIR_CONVERTER_URL,
       taskRunner: {
