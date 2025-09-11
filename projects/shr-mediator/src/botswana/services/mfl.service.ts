@@ -20,8 +20,21 @@ export class MflService {
     private readonly fhirService: FhirService,
   ) {}
 
+  private applyFhirIgCompliance(location: R4.ILocation): R4.ILocation {
+    // Change contact.name.use from "Official" to "official" if it exists(To Be FHIR IG Compliant)
+    const locationData = location as R4.ILocation & {
+      contact?: { name?: { use?: string } };
+    };
+    if (locationData.contact?.name?.use === 'Official') {
+      locationData.contact.name.use = 'official';
+    }
+    return locationData;
+  }
+
   async getLocationFromMfl(anyCode: string) {
     const mflUrl = config.get('mflUrl');
+    const mflFallbackUrl = config.get('mflFallbackUrl');
+
     try {
       const { data } = await this.httpService.axiosRef.get<R4.ILocation>(
         `${mflUrl}/location/${anyCode}`,
@@ -40,20 +53,51 @@ export class MflService {
         );
       }
 
-      // Change contact.name.use from "Official" to "official" if it exists(To Be FHIR IG Compliant)
-      const locationData = data as R4.ILocation & {
-        contact?: { name?: { use?: string } };
-      };
-      if (locationData.contact?.name?.use === 'Official') {
-        locationData.contact.name.use = 'official';
-      }
-
-      return data;
+      return this.applyFhirIgCompliance(data);
     } catch (err) {
-      this.logger.error(err);
-      throw new BadRequestException(
-        `Unable to retrieve location from MFL ${anyCode}`,
+      this.logger.warn(
+        `Primary MFL service failed, trying fallback URL: ${err.message}`,
       );
+
+      // Try fallback URL if primary fails
+      if (mflFallbackUrl) {
+        try {
+          const { data } = await this.httpService.axiosRef.get<R4.ILocation>(
+            `${mflFallbackUrl}/location/${anyCode}`,
+          );
+
+          if (
+            !(
+              typeof data === 'object' &&
+              'resourceType' in data &&
+              data.resourceType === 'Location'
+            )
+          ) {
+            throw new InternalServerErrorException(
+              'Invalid MFL Fallback Response  : ',
+              JSON.stringify(data),
+            );
+          }
+
+          this.logger.log(
+            `Successfully retrieved location from MFL fallback service for code: ${anyCode}`,
+          );
+          return this.applyFhirIgCompliance(data);
+        } catch (fallbackErr) {
+          this.logger.error(
+            `Both primary and fallback MFL services failed:`,
+            fallbackErr,
+          );
+          throw new BadRequestException(
+            `Unable to retrieve location from MFL (primary and fallback failed) ${anyCode}`,
+          );
+        }
+      } else {
+        this.logger.error(err);
+        throw new BadRequestException(
+          `Unable to retrieve location from MFL ${anyCode}`,
+        );
+      }
     }
   }
 
