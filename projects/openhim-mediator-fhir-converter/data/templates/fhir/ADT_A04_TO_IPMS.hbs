@@ -1,8 +1,8 @@
 {{#with msg.fhir}}
 MSH|^~\&|DM||||{{date}}||ADT^A04|{{controlId}}|D|2.4|||AL|NE|
-EVN||{{date}}||||{{date}}|
+EVN||{{date}}|||{{targetFacility.provider}}^{{targetFacility.name}}|{{date}}|
 PID|1||NEW||{{patientFamilyName}}^{{patientFirstName.[0]}}^^^^^F||{{patientDob}}|{{patientSex}}||CT|{{patientStreetAddress}}^^{{patientCity}}^{{patientProvince}}^{{patientPostalCode}}||{{patientHomePhoneNumber}}^^^{{patientEmail}}|{{patientBusinessPhoneNumber}}||{{patientMaritalStatus}}|AC||{{patientOmang}}|
-PV1|1|O|{{targetFacility.ipmsXlocation}}||||{{targetFacility.provider}}^^^^^^^^^^^^XX|||||||||||{{targetFacility.patientType}}||U|||||||||||||||||||{{targetFacility.name}}||{{targetFacility.patientStatus}}|||{{date}}|
+PV1|1|O|{{targetFacility.ipmsXlocation}}||||{{targetFacility.provider}}^{{targetFacility.name}}^^^^^^^^^^^^XX|||||||||||{{targetFacility.patientType}}||U|||||||||||||||||||{{targetFacility.name}}||{{targetFacility.patientStatus}}|||{{date}}|
 PV2|1|{{taskId}}||||||||||||||||||||||||||||||||||N|
 ROL|1|AD|AT|{{providerId}}^{{providerLastName}}^{{providerFirstName.[0]}}|
 {{/with}}
