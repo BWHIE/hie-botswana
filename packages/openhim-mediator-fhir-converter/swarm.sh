@@ -59,7 +59,7 @@ function initialize_package() {
 function destroy_package() {
   docker::stack_destroy $STACK
 
-  docker::prune_configs "shr"
+  docker::prune_configs "fhir-converter"
 }
 
 main() {
