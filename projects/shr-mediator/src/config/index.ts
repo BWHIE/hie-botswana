@@ -1,3 +1,4 @@
+console.log(process.env.MFL_FALLBACK_URL);
 class Config {
   private static mergeEnvVariables(): any {
     const envConfig: any = {
