@@ -11,6 +11,7 @@ services:
       - opencr
       - openhim
       - converter
+      - mfl
     environment:
       HTTP_PORT: ${SHR_HTTP_PORT}
       SHR_MLLP_PORT: ${SHR_MLLP_PORT}
@@ -143,4 +144,7 @@ networks:
     external: true
   converter:
     name: converter_public
+    external: true
+  mfl:
+    name: mfl_public
     external: true

@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  mfl:
+  facility-registry-mfl:
     image: ${MFL_DOCKER_IMAGE}
     environment:
       PORT: ${MFL_HTTP_PORT}
