@@ -10,7 +10,7 @@ let dataHandler = require('../dataHandler/dataHandler')
 
 // IPMS Configuration - Fallback default values
 const IPMS_CONFIG = {
-  DEFAULT_PROVIDER: 'HGGMMO',
+  DEFAULT_PROVIDER: 'ZZHIEPROV',
   DEFAULT_PATIENT_TYPE: 'POV',
   DEFAULT_PATIENT_STATUS: 'REG',
 }
@@ -88,7 +88,7 @@ module.exports = class fhir extends dataHandler {
    *
    * This method extracts IPMS extensions from Location resources to populate targetFacility.
    * If extensions are not found, fallback default values from IPMS_CONFIG are used:
-   * - provider: "HGGMMO" (default provider code)
+   * - provider: "ZZHIEPROV" (default provider code)
    * - patientType: "POV" (default patient type)
    * - patientStatus: "REG" (default patient status)
    *
@@ -126,6 +126,32 @@ module.exports = class fhir extends dataHandler {
           ({ system }) => system === 'http://moh.bw.org/ext/identifier/facility-code',
         )?.value
 
+        console.log('=== FHIR Converter - IPMS Location Data ===');
+        console.log('IPMS X Location (Patient Location MNEMONIC):', ipmsXlocation);
+        console.log('Target Location Name:', target.name);
+        console.log('==========================================');
+
+        // Map IPMS Patient Location MNEMONIC to IPMS FACILITY code
+        const ipmsLocationMapping = {
+          'XMAFITC': 'GGC',      // Mafhitlhakgosi
+          'XKHAYAHP': 'GGC',     // Khayakholo Health Post
+          'XEXTE15': 'GGC',      // Extention 15 clinic
+          'XPHASEIIC': 'GGC',    // Phase 2 clinic
+          'XGABAHP': 'GGC',      // Gabane Health Post
+          'XMORWAC': 'DM',       // Morwa Clinic
+          'XMOSHUSDAC': 'MHC',   // Moshupa SDA Clinic
+          'XTHEBEH': 'SL',       // Thebephatshwa Hospital
+          'XBDFGLV': 'PM',       // Glen Valey BDF Clinic
+          'XLESETC': 'BL'        // Lesetlhana Clinic
+        };
+
+        const ipmsLocation = ipmsXlocation ? ipmsLocationMapping[ipmsXlocation] || '' : '';
+
+        console.log('=== FHIR Converter - Mapped IPMS Location ===');
+        console.log('IPMS X Location:', ipmsXlocation);
+        console.log('Mapped IPMS Location (FACILITY):', ipmsLocation);
+        console.log('=============================================');
+
         res.targetFacility = {
           name: target.name,
           provider: provider ? provider.valueString : IPMS_CONFIG.DEFAULT_PROVIDER, // Fallback default
@@ -134,6 +160,7 @@ module.exports = class fhir extends dataHandler {
             ? patientStatus.valueString
             : IPMS_CONFIG.DEFAULT_PATIENT_STATUS, // Fallback default
           ipmsXlocation: ipmsXlocation ? ipmsXlocation : '',
+          ipmsLocation: ipmsLocation ? ipmsLocation : '', // Add the mapped IPMS FACILITY code
         }
       }
     } catch (error) {
