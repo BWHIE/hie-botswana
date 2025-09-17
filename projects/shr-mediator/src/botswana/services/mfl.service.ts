@@ -34,10 +34,13 @@ export class MflService {
   async getLocationFromMfl(anyCode: string) {
     const mflUrl = config.get('mflUrl');
     const mflFallbackUrl = config.get('mflFallbackUrl');
-
+    // console.log('mflFallbackUrl', mflFallbackUrl);
     try {
       const { data } = await this.httpService.axiosRef.get<R4.ILocation>(
         `${mflUrl}/location/${anyCode}`,
+        {
+          timeout: config.get('bwConfig:requestTimeout'),
+        }
       );
 
       if (
@@ -61,9 +64,13 @@ export class MflService {
 
       // Try fallback URL if primary fails
       if (mflFallbackUrl) {
+        console.log('mflFallbackUrl', mflFallbackUrl);
         try {
           const { data } = await this.httpService.axiosRef.get<R4.ILocation>(
             `${mflFallbackUrl}/location/${anyCode}`,
+            {
+              timeout: config.get('bwConfig:requestTimeout'),
+            }
           );
 
           if (
@@ -402,6 +409,9 @@ export class MflService {
         const { data: fetchedBundleByIdentifier } =
           await this.httpService.axiosRef.get<R4.IBundle>(
             `${config.get('fhirServer:baseURL')}/${location.resourceType}?identifier=${identifier.value}`,
+            {
+              timeout: config.get('bwConfig:requestTimeout'),
+            }
           );
 
         if (fetchedBundleByIdentifier.entry?.[0]?.resource) {
@@ -417,6 +427,9 @@ export class MflService {
         const { data: fetchedBundleByName } =
           await this.httpService.axiosRef.get<R4.IBundle>(
             `${config.get('fhirServer:baseURL')}/${location.resourceType}?name=${location.name}`,
+            {
+              timeout: config.get('bwConfig:requestTimeout'),
+            }
           );
 
         if (fetchedBundleByName.entry?.[0]?.resource) {
