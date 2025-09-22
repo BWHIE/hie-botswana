@@ -38,6 +38,8 @@ export class SyncService {
   private readonly logger = new Logger(SyncService.name);
   private readonly mflBaseUrl = "https://mfldit.gov.org.bw/api/v1/mfl/fhir";
   private readonly dataPath = path.join(process.cwd(), "config");
+  private readonly updatePackageLocation =
+    process.env.UPDATE_PACKAGE_LOCATION !== "false";
 
   constructor(
     private readonly httpService: HttpService,
@@ -658,28 +660,128 @@ export class SyncService {
   }
 
   /**
-   * Saves locations to local file
+   * Saves locations to local files (both project and package locations)
+   * Always updates package location when there are changes
    */
   private async saveLocations(locations: Location[]): Promise<void> {
-    const filePath = path.join(this.dataPath, "locations.json");
-    await fs.promises.writeFile(filePath, JSON.stringify(locations, null, 2));
-    this.logger.log(`Saved ${locations.length} locations to ${filePath}`);
+    const projectPath = path.join(this.dataPath, "locations.json");
+    const packagePath = path.join(
+      process.cwd(),
+      "..",
+      "..",
+      "packages",
+      "facility-registry-mfl",
+      "config",
+      "data",
+      "locations.json"
+    );
+
+    const jsonData = JSON.stringify(locations, null, 2);
+
+    try {
+      // Always save to project location
+      await fs.promises.writeFile(projectPath, jsonData);
+      this.logger.log(
+        `Saved ${locations.length} locations to project: ${projectPath}`
+      );
+
+      // Always update package location when there are changes
+      if (this.updatePackageLocation) {
+        await fs.promises.writeFile(packagePath, jsonData);
+        this.logger.log(`Updated package location: ${packagePath}`);
+      } else {
+        this.logger.log(
+          `Package location updates disabled, skipping: ${packagePath}`
+        );
+      }
+    } catch (error) {
+      this.logger.error(`Failed to save locations:`, error);
+      throw error;
+    }
   }
 
   /**
-   * Saves organizations to local file
+   * Saves organizations to local files (both project and package locations)
+   * Always updates package location when there are changes
    */
   private async saveOrganizations(
     organizations: Organization[]
   ): Promise<void> {
-    const filePath = path.join(this.dataPath, "organizations.json");
-    await fs.promises.writeFile(
-      filePath,
-      JSON.stringify(organizations, null, 2)
+    const projectPath = path.join(this.dataPath, "organizations.json");
+    const packagePath = path.join(
+      process.cwd(),
+      "..",
+      "..",
+      "packages",
+      "facility-registry-mfl",
+      "config",
+      "data",
+      "organizations.json"
     );
-    this.logger.log(
-      `Saved ${organizations.length} organizations to ${filePath}`
-    );
+
+    const jsonData = JSON.stringify(organizations, null, 2);
+
+    try {
+      // Always save to project location
+      await fs.promises.writeFile(projectPath, jsonData);
+      this.logger.log(
+        `Saved ${organizations.length} organizations to project: ${projectPath}`
+      );
+
+      // Always update package location when there are changes
+      if (this.updatePackageLocation) {
+        await fs.promises.writeFile(packagePath, jsonData);
+        this.logger.log(`Updated package location: ${packagePath}`);
+      } else {
+        this.logger.log(
+          `Package location updates disabled, skipping: ${packagePath}`
+        );
+      }
+    } catch (error) {
+      this.logger.error(`Failed to save organizations:`, error);
+      throw error;
+    }
+  }
+
+  /**
+   * Syncs existing data to both project and package locations
+   */
+  async syncDataToBothLocations(): Promise<{
+    success: boolean;
+    message: string;
+    locationsSynced: number;
+    organizationsSynced: number;
+  }> {
+    try {
+      this.logger.log(
+        "Syncing existing data to both project and package locations..."
+      );
+
+      const localLocations = await this.locationService.getAllLocations();
+      const localOrganizations =
+        await this.organizationService.getAllOrganizations();
+
+      // Save to both locations
+      await this.saveLocations(localLocations);
+      await this.saveOrganizations(localOrganizations);
+
+      this.logger.log("Data sync to both locations completed successfully");
+
+      return {
+        success: true,
+        message: `Successfully synced ${localLocations.length} locations and ${localOrganizations.length} organizations to both locations`,
+        locationsSynced: localLocations.length,
+        organizationsSynced: localOrganizations.length,
+      };
+    } catch (error) {
+      this.logger.error("Failed to sync data to both locations:", error);
+      return {
+        success: false,
+        message: `Failed to sync data: ${error.message}`,
+        locationsSynced: 0,
+        organizationsSynced: 0,
+      };
+    }
   }
 
   /**
