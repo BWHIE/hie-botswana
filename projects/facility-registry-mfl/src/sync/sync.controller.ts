@@ -92,6 +92,32 @@ export class SyncController {
   }
 
   /**
+   * Syncs existing data to both project and package locations
+   */
+  @Post("sync-to-both-locations")
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: "Sync data to both locations",
+    description:
+      "Syncs existing data to both project and package config locations",
+  })
+  @ApiOkResponse({
+    description: "Data synced to both locations successfully",
+    schema: {
+      type: "object",
+      properties: {
+        success: { type: "boolean" },
+        message: { type: "string" },
+        locationsSynced: { type: "number" },
+        organizationsSynced: { type: "number" },
+      },
+    },
+  })
+  async syncDataToBothLocations() {
+    return await this.syncService.syncDataToBothLocations();
+  }
+
+  /**
    * Health check endpoint for sync functionality
    */
   @Get("health")
