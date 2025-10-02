@@ -117,7 +117,7 @@
       "txViewFullAcl": [],
       "txRerunAcl": [],
       "alerts": [],
-      "status": "disabled",
+      "status": "enabled",
       "rewriteUrls": false,
       "addAutoRewriteRules": true,
       "rewriteUrlsConfig": [],
