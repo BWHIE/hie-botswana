@@ -4,6 +4,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { LocationModule } from "./location/location.module";
 import { OrganizationModule } from "./organization/organization.module";
+import { SyncModule } from "./sync/sync.module";
 
 /**
  * AppModule is the root module of the Facility Registry MFL application.
@@ -41,6 +42,7 @@ import { OrganizationModule } from "./organization/organization.module";
     }),
     LocationModule,
     OrganizationModule,
+    SyncModule,
   ],
   controllers: [AppController],
   providers: [AppService],
