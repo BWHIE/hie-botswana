@@ -58,7 +58,6 @@ export class IpmsService {
       const adtResult: string = <string>(
         await this.mllpService.send(adtMessage, targetHost, targetPort)
       );
-      this.logger.log(`*result:\n${adtResult}\n`);
       if (adtResult.includes && adtResult.includes('AA')) {
         labBundle = setTaskStatus(labBundle, R4.TaskStatusKind._received);
       }
@@ -340,10 +339,6 @@ export class IpmsService {
    */
   async handleAdtFromIpms(adtMessage: string) {
     try {
-      this.logger.log('=== Raw ADT Message ===');
-      this.logger.log(adtMessage);
-      this.logger.log('======================');
-
       const registrationBundle: R4.IBundle =
         await this.hl7Service.translateBundle(
           adtMessage,
@@ -354,8 +349,6 @@ export class IpmsService {
         throw new Error('Could not translate ADT message!');
       }
 
-      this.logger.log('=== Translated Bundle Structure ===');
-      this.logger.log(`Bundle entries: ${registrationBundle.entry?.length || 0}`);
       registrationBundle.entry?.forEach((entry, index) => {
         this.logger.log(`Entry ${index}: ${entry.resource?.resourceType}`);
         if (entry.resource?.resourceType === 'Patient') {
@@ -367,16 +360,10 @@ export class IpmsService {
           this.logger.log(`Location identifiers: ${JSON.stringify(location.identifier)}`);
         }
       });
-      this.logger.log('===================================');
 
       // Extract association data from translated bundle
       const patientIdentifier = this.extractPatientIdentifierFromBundle(registrationBundle);
       const messageTime = this.extractMessageTimestampFromBundle(registrationBundle);
-
-      this.logger.log('=== ADT Association Data ===');
-      this.logger.log(`Patient Identifier: ${patientIdentifier?.value}`);
-      this.logger.log(`Identifier Type: ${patientIdentifier?.type}`);
-      this.logger.log(`Message Time: ${messageTime?.toISOString()}`);
 
       if (!patientIdentifier) {
         throw new InternalServerErrorException('Unable to extract patient identifier from ADT bundle - matching supported only on Omang, birth certificate number, or passport number');

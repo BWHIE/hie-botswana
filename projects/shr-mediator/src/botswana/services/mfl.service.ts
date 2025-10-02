@@ -34,7 +34,6 @@ export class MflService {
   async getLocationFromMfl(anyCode: string) {
     const mflUrl = config.get('mflUrl');
     const mflFallbackUrl = config.get('mflFallbackUrl');
-    // console.log('mflFallbackUrl', mflFallbackUrl);
     try {
       const { data } = await this.httpService.axiosRef.get<R4.ILocation>(
         `${mflUrl}/location/${anyCode}`,
@@ -64,7 +63,6 @@ export class MflService {
 
       // Try fallback URL if primary fails
       if (mflFallbackUrl) {
-        console.log('mflFallbackUrl', mflFallbackUrl);
         try {
           const { data } = await this.httpService.axiosRef.get<R4.ILocation>(
             `${mflFallbackUrl}/location/${anyCode}`,
