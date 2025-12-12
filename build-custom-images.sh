@@ -40,6 +40,15 @@ docker build \
     projects/facility-registry-mfl/ \
     --no-cache
 
+# Install npm dependencies for the SHR (Shared Health Record) mediator project
+npm install --prefix projects/shr-mediator
+
+# Install npm dependencies for the Omang service mediator project
+npm install --prefix projects/omang-service-mediator
+
+# Install npm dependencies for the FHIR datastore HAPI FHIR importer package
+./packages/fhir-datastore-hapi-fhir/importer/local-npm-install.sh
+
 # Build the Platform to contain the above custom builds
 ./build-image.sh
 
