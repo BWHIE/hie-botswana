@@ -1,5 +1,7 @@
 # Botswana HIE
 
+> 📚 **Comprehensive Documentation**: For detailed setup, configuration, architecture, and operations guides, see the [Documentation](./docs/README.md).
+
 ## Tech Used
 
 - Docker
@@ -8,6 +10,8 @@
 - Ansible (remote cluster setup)
 
 ## Quick Start for devs (local single node)
+
+> 📖 **For detailed setup instructions**, see the [Deployment Guide](./docs/deployment/setup-guide.md).
 
 1. If running into an error `invalid mount config for type "bind": bind source path does not exist: /tmp/logs` on running the CLI binary, run the following command: `sudo mkdir -p /tmp/logs/`.
 1. `./build-custom-images.sh` - builds project images as well as the platform image
@@ -20,6 +24,8 @@
    - Windows. Double click: `platform.exe` (Windows users will need to use a release version below 2.0.0)
 
 ## Quick Start for devs (remote cluster)
+
+> 📖 **For detailed remote cluster setup**, see the [Deployment Guide - Remote Cluster Setup](./docs/deployment/setup-guide.md#remote-cluster-setup).
 
 To set up a remote cluster environment, see [readme](https://github.com/jembi/cloud/blob/main/aws/mercury-team/README.md) in the [cloud repo](https://github.com/jembi/cloud).
 
@@ -59,6 +65,8 @@ The logPath property in the `config.yml` is used to create a bind mount for the 
 
 ## Resource Allocations
 
+> 📖 **For detailed resource allocation configuration**, see the [Configuration Guide](./docs/configuration/configuration.md#resource-allocation).
+
 The resource allocations for each service can be found in each service's respective docker-compose.yml file under `deploy.resources`. The field `reservations` specifies reserved resources for that service, per container. The field `limits` specifies that maximum amount of resources that can be used by that service, per container.
 
 Each service's resource allocations can be piped into their .yml file through environment variables. Look at the .yml files for environment variable names per service.
@@ -82,6 +90,8 @@ Tests that execute platform-linux with parameters and observe docker to assert e
 View `/test/cucumber/README.md` for more information
 
 ## Local Development Setup steps
+
+> 📖 **For comprehensive development setup and workflows**, see the [Development Guide](./docs/development/development.md).
 
 Due the use of custom packages within the project, we need to ensure we have built the relevant docker images as well as building a new Platform image containing these packages.
 
@@ -208,3 +218,14 @@ When seeking to make changes to the Omang Service Mediator without having to rep
 
 - Run vscode remote debugger for Node.js to debug the mediators (converter and SHR) : https://code.visualstudio.com/docs/editor/debugging
 - Setting Up Oracle Database 19c Enterprise Edition for ARM (M1/M2 Macs) : https://gist.github.com/miccheng/8120d2e17818ba2a2d227554b70cd34e
+
+## Documentation
+
+For comprehensive documentation, see the [Documentation Index](./docs/README.md):
+
+- **[Deployment Guide](./docs/deployment/setup-guide.md)** - Complete setup instructions for local and remote deployments
+- **[Architecture Guide](./docs/architecture/architecture.md)** - System architecture, components, and data flows
+- **[Configuration Guide](./docs/configuration/configuration.md)** - Environment variables, profiles, and package configuration
+- **[Operations Guide](./docs/sop/operations.md)** - Day-to-day operations, monitoring, and maintenance
+- **[Development Guide](./docs/development/development.md)** - Development setup, debugging, and best practices
+- **[Troubleshooting Guide](./docs/troubleshooting/troubleshooting.md)** - Common issues and solutions
