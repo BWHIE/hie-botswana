@@ -47,7 +47,7 @@ npm install --prefix projects/shr-mediator
 npm install --prefix projects/omang-service-mediator
 
 # Install npm dependencies for the FHIR datastore HAPI FHIR importer package
-./packages/fhir-datastore-hapi-fhir/importer/local-npm-install.sh
+(cd packages/fhir-datastore-hapi-fhir/importer && ./local-npm-install.sh)
 
 # Build the Platform to contain the above custom builds
 ./build-image.sh
