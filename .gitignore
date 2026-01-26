@@ -63,6 +63,9 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
+# Generated node_modules archives
+node_modules.tar.gz
+
 # Yarn Integrity file
 .yarn-integrity
 
@@ -79,6 +82,9 @@ typings/
 **/data
 !/projects/openhim-mediator-fhir-converter/data
 !/packages/facility-registry-mfl/config/data
+
+# IPMS mock data
+projects/ipms-mock/data.json
 
 # production
 /docs/build
